@@ -1,0 +1,149 @@
+v 0.2.5 Jan 10, 2013
+	Added support for calibration/configuration info for sensors (1134, 1142 & 1143)
+	Fixed bugs in the threading model that limited the plugin to 1 phidget per type.
+
+v 0.2.6 Jan 11, 2013
+	Fixed bug in decimal display for ifkit attached sensors
+
+v 0.3.0 Jan 11, 2013
+	Added 2 generic sensors: 0-5 volts and 0-1000 sensor value
+	Fixed bug in which subsequent attempts to configure a sensor/di or do device only showed 2 ports.
+	Fixed bug requiring redefinition of a sensor to set states
+	Added values for Indigo DEVICE table 'address' column. Sensors = ifkit device name, others = IP Address.
+	Added support for ambient temp sensor on 1048 - PhidgetTemperatureSensor 4-Input
+
+v 0.3.1 Jan 12, 2013
+	Added address column support for USB connected devices
+	Cleaned up test logging code (debug info logged as errors)
+
+v 0.3.2 Jan 14, 2013
+	Fixed issue with RFID reader antenna not indicating state at start.
+	Added code to update onboardLED at start
+	Fixed a minor bug that caused a non-fatal error when creating a new sensor/DO/DO device
+	Fixed problem where interface kits did not have an address assigned
+	Fixed problem where standalone temp sensor did not indicate online
+	Fixed issue with decimalPlace control in the Indigo GUI
+	Fixed issue which confused input and output counts in ifkits
+
+v 0.4.0 Jan 15, 2013
+	Added ability to set decimal precision for sensors in the config UI
+	Changed device ui to better control displayed data for ifkits w/o sensors
+	Added ability to set thermocouple type and sensitivity for 1048 and 1051 Phidgets devices
+	Revised logging to show device name after setup complete
+	Added custom sensor type 0999c with user defined formula
+
+v 0.4.5 Jan 20, 2013
+	Added support for phidgets libs low level logging
+	Fixed minor bug in decimal precision if precision was 0
+	Changed Digital input state reporting to assure bolean value in Indigo Digital Input devices
+	Fixed error in ifKit model name (Kept ifkits from being recognized for sensor/Di or Do devices)
+	Added support to specify ifKit ratiometric setting (ConfigUI)
+	Fixed bug in data rate and trigger sensitivity setting (ConfigUI)
+	Changed Data Rate settings to delele Max and Min and set absolute rate
+
+v 0.4.6 Jan 21, 2013
+	Fixed bug in startup.
+
+v 0.4.7 Feb 18, 2013
+	Fixed bug in getting RFID LED on state
+	Fixed error in 1130 sensor definition
+	Added 1014 and 1017 to list of ifkits in Devices.xml
+
+v 0.4.8 Feb 18, 2013
+	Fixed bug in plugin.py CalcDeviceFunc - threw error if in debug mode.
+
+v 0.5.0 Feb 23, 2013
+	Moved thread initialization to deviceStartComm(). Devices now respect the 
+	Comm Enabled flag and automatically restart when edited.
+	Added log level changes on the fly.
+	General code cleanup.
+	Initial TextLCD support with ability to include device and variable states in display message.
+
+v 0.5.1 Feb 28, 2013
+	Changing  or restarting ifKit attached sensor, DI and DO devices now forces a read of the device value/state
+	Stopping comm on a device now keeps it from updating
+	Fixed a problem with conbined TextLCD/IfKits that prevented both from being defined as devices in Indigo.
+	Added code to truncate messsages for the TextLCD to 20 characters. This will be changed later to be dynamicaly
+	set for the screen size.
+	Fixed Devices.XML bug which prevented the 1012 0/16/16 from being properly created.
+
+v 0.5.3 March 2, 2013
+	Note: 0.5.2 was an internal release
+	Changed all log messages to use indigo.server.log and support 5 log levels
+	fixed typo in interfacekit setup that caused incorrect sensor counts
+	revised the write TextLCD action to allow writes to multiople text lines
+
+v 0.5.4 March 4, 2013 - Internal release
+	Fixed typo in actions.xml for action phDigitalOutOn
+	Fixed bug in phDigitalOutOn caused by issue in IOM (device is not being passed.)
+	
+v 0.5.5 March 8, 2013 - Internal release
+	Fixed typos in phidgets dictionary
+	Added 3130 humidity sensor
+
+v 0.5.6 August 11, 2013
+	Made changes to address plugin interface changes made in Indigo v6b8
+
+v 0.5.7 August 14, 2013
+	Fixed typo/bug in ifkit.py  interfaceKitInputChanged()
+
+v 0.5.8 August 25, 2013
+	Changed default level for debug messages in tempsensor error handlers (from 0 to 1)
+
+v 0.6.0 September 13, 2013
+	Added support for 1054 Frequency counter
+
+v 0.6.1 October 08, 2013
+	Modified code to report detach and attach events and set the Indigo display accordingly
+	Correctly displays online/offline states of pseudo devices when interface kit state changes
+	Fixed bug in 1133 sound sensor calculation
+
+v 0.6.2 October 20, 2013
+	Complete revsion of the TextLCD device and options settings code.
+	Added TextLCD actions to control backlight and set brightness and contrast.
+	Added events for attach and detach of standalone phidgets.
+	Fixed a bug affecting 1054 frequency counter state column selection.
+	Added initialize function for TextLCD after re-attachment.
+	Moved Phidgets actions to the Device Actions menu in the Indigo Actions Dialog.
+
+v 0.6.3 October 23, 2013
+	Added device initialization to attach handler for 1054 Frequency Counter
+	Fixed a bug in the ifkit reinitialize that kept some outputs from working
+	Added support for TextLCD custom characters
+	Added extra time for threads to close - reduce chance of double threads
+	Fxed bug in 1051 temp sensor device config
+	Added support for Fahrenhet conversion and decimal control for 1048 and 1051 temp sensors
+
+v 0.6.4 October 23, 2013
+	Fixed bug in debug statements in ifkit.py
+	Added ablity to suppress 1048 and 1051 tempsensor error message 36871 (potential exceeded)
+	Added exception handlers for cases where a device is deleted before it has been fully configured
+
+v 0.6.5 November 30, 2013
+	Fixed problem in getDeviceDisplayStateId(): where new standalone devices threw an error on first configuration
+	Added support for the 1016 Circular Touch Sensor
+
+v 0.6.6b November 30, 2013
+	Fixed bug in top setting for circular touch sensor
+	Added line write delay property for multiline TextLCDs
+	Fixed a small issue in which the TextLCD might be written to before it was attached
+
+v 0.6.7 December 13, 2013
+	Added code to strip non-printable chars from state values posted to Indigo for the TextLCD
+
+v 0.7.0 August 16, 2017
+	Sensitivity setting  for tempsensor phidgets 1048 and 1051 now works correctly.
+	Contributions from arosen2000.  Thanks!!
+	Added log messages to capture locking on OpenRemoteIP calls 
+	Updated errorlog message to capture IP and Port of current devicefor tracking in an event code model
+	Added messaging for tracking WaitForAttach calls
+	Added try/exception clause around interfacekit.get... services as such calls made against an unattached device 
+	will cause exception currently calls to exit upon triggering of this exception. Perhaps should be reviewed for better flow
+
+v 0.7.3 October 21, 2018
+	Changed algorithm from waitForAttach to use the attach handler. waitForAttach was blocking causing all subsequent
+	connection attempts to fail, if one failed.
+	Added 250ms delay between spawning of physical phidget device threads.
+
+v 0.7.4 October 22, 2018
+	Added attach wait time setting to the plugin config.

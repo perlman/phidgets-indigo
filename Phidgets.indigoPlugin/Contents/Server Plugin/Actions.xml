@@ -1,0 +1,138 @@
+<?xml version="1.0"?>
+<Actions>
+	<Action id="phDigitalOutOn" uiPath="DeviceActions">
+        <Name>Control a Phidget Digital Output on a Standalone Phidget</Name>
+        <CallbackMethod>phidgetOutputControl</CallbackMethod>
+        <ConfigUI>
+        	<Field id="phDevice" type="menu">
+				<Label>Select Phidget:</Label>
+				<List class="indigo.devices" filter="self.phStandalonePhidget"/>
+			</Field>
+	       	<Field id='outputNum' type='menu' defaultValue='0'>
+				<Label>Output Number:</Label>
+				<List>
+					<Option value="0">0</Option>
+					<Option value="1">1</Option>
+					<Option value="2">2</Option>
+					<Option value="3">3</Option>
+				</List>
+			</Field>
+       		i<Field id='phFunction' type='menu'>
+				<Label>Output Action:</Label>
+				<List>
+					<Option value="turnOn">turnOn</Option>
+					<Option value="turnOff">turnOff</Option>
+					<Option value="toggle">toggle</Option>
+				</List>
+			</Field>	
+		</ConfigUI>
+	</Action>
+
+<Action id="phDigitalDevPulse" uiPath="DeviceActions">
+        <Name>Control a InterfaceKit Digital Output Device</Name>
+        <CallbackMethod>phidgetIfkitOutputControl</CallbackMethod>
+        <ConfigUI>
+        	<Field id="phDevice" type="menu">
+				<Label>Select Phidget:</Label>
+				<List class="indigo.devices" filter="self.phDoIfKit"/>
+			</Field>
+
+	       <Field id='phFunction' type='menu'>
+				<Label>Output Action:</Label>
+				<List>
+					<Option value="pulseOnOff">Pulse On/Off</Option>
+					<Option value="pulseOffOn">Pulse Off/On</Option>
+				</List>
+			</Field>
+			<Field id='pulseLength' type='textfield' >
+				<Label>Pulse time (𝘮𝘴)</Label>
+			</Field>
+		</ConfigUI>
+	</Action>
+ 
+    <Action id="phLcdScreenWrite" deviceFilter="self.phLcdScreen" uiPath="DeviceActions">
+        <Name>Write to Display</Name>
+        <CallbackMethod>textLcdWrite</CallbackMethod>
+        <ConfigUI>
+            <!-- displayLinesNum can be reset by plugin.py/getActionConfigUiXml -->
+            <Field id='displayLinesNum' type='textfield' hidden='true' defaultValue='1'>
+                <Label/>
+            </Field>
+
+            <Field id='displayLine_0' type='checkbox' defaultValue='false'>
+                <Label>Display line 0?</Label>
+            </Field>
+            <Field id='lcdMessage_0' type='textfield' visibleBindingId='displayLine_0' visibleBindingValue='true'>
+                <Label>Line 0 Text:</Label>
+            </Field>
+
+            <Field id='displayLine_1' type='checkbox' defaultValue='false' visibleBindingId='displayLinesNum' visibleBindingValue='2,3,4'>
+                <Label>Display line 1?</Label>
+            </Field>
+            <Field id='lcdMessage_1' type='textfield' visibleBindingId='displayLine_1' visibleBindingValue='true'>
+                <Label>Line 1 Text:</Label>
+            </Field>
+
+            <Field id='displayLine_2' type='checkbox' defaultValue='false' visibleBindingId='displayLinesNum' visibleBindingValue='3,4'>
+                <Label>Display line 2?</Label>
+            </Field>
+            <Field id='lcdMessage_2' type='textfield' visibleBindingId='displayLine_2' visibleBindingValue='true'>
+                <Label>Line 2 Text::</Label>
+            </Field>
+
+            <Field id='displayLine_3' type='checkbox' defaultValue='false' visibleBindingId='displayLinesNum' visibleBindingValue='4'>
+                <Label>Display line 3?</Label>
+            </Field>
+            <Field id='lcdMessage_3' type='textfield' visibleBindingId='displayLine_3' visibleBindingValue='true'>
+                <Label>Line 3 Text::</Label>
+            </Field>
+
+            <Field id="label" type="label" fontColor="darkgray" alignText="Left" fontSize="small">
+                <Label>In the text lines above, you can include variable, device state and custom character substitution fields in the display message. 
+    For variables, use the syntax %%v:VARIABLEID%%
+    For device states use the syntax: %%d:DEVICEID:STATENAME%%
+    And for custom characters, the syntax is: %%c:CUSTOM_CHARACTER_NUMBER%%
+   
+VARIABLEID and DEVICEID are the variable's or device's numeric id as found in the UI. STATENAME is the name of the device state whose value you wish to display. CUSTOM_CHARACTER_NUMBER is the custom character number you used when defining the TextLCD device.</Label>
+        </Field>
+        </ConfigUI>
+    </Action>
+
+    <Action id="phLcdScreenBacklight" deviceFilter="self.phLcdScreen" uiPath="DeviceActions">
+        <Name>Control the TextLCD Backlight</Name>
+        <CallbackMethod>textLcdSettings</CallbackMethod>
+        <ConfigUI>
+            <Field id='phLcdControlValue' type='menu' defaultValue='on'>
+                <Label>Set backlight:</Label>
+                <List>
+                    <Option value="on">On</Option>
+                    <Option value="off">Off</Option>
+                </List>
+            </Field>
+        </ConfigUI>
+    </Action>
+
+    <Action id="phLcdScreenContrast" deviceFilter="self.phLcdScreen" uiPath="DeviceActions">
+        <Name>Control the TextLCD Contrast</Name>
+        <CallbackMethod>textLcdSettings</CallbackMethod>
+        <ConfigUI>
+            <Field id='phLcdControlValue' type='textfield' defaultValue="128">
+                <Label>Enter contrast level (0-255):</Label>
+            </Field>
+        </ConfigUI>
+    </Action>
+
+    <Action id="phLcdScreenBrightness" deviceFilter="self.phLcdScreen" uiPath="DeviceActions">
+        <Name>Control the TextLCD Brightness</Name>
+        <CallbackMethod>textLcdSettings</CallbackMethod>
+        <ConfigUI>
+            <Field id="phLcdControlValue" type="textfield" defaultValue="128">
+                <Label>Enter brightness level (0-255):</Label>
+            </Field>
+             <Field id="label2" type="label" fontColor="darkgray" alignWithControl="true">
+                <Label>Note: brightness setting is not supported on the 1202 and 1203 text displays.</Label>
+        </Field>
+        </ConfigUI>
+    </Action>
+
+</Actions>  

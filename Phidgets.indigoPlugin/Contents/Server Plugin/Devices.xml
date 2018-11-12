@@ -1,0 +1,930 @@
+<?xml version="1.0"?>
+<Devices>
+	<Device id="ifKit" type="custom" >
+		<Name>Phidget Interface Kit</Name>
+		<ConfigUI>
+			<Field id="ifKitModel" type="menu" >
+				<Label> Select the Interface Kit model</Label>
+				<List class="self" method="getIfKitList" dynamicReload="yes"/>
+			</Field>
+			
+			<Field id="ifKitSerial" type="textfield">
+				<Label>Interface Kit serial number:</Label>
+			</Field>
+			
+			<Field id="ifKitCommType" type="menu" defaultValue="IP">
+				<Label>		Select the connection.
+		IP (Webservice) or USB:</Label>
+				<List>
+					<Option value="IP">IP Network</Option>
+					<Option value="USB">Local USB Port</Option>
+				</List>
+			</Field>
+			
+			<Field id="ifKitIpAddress" type="textfield" defaultValue='127.0.0.1' visibleBindingId="ifKitCommType" visibleBindingValue="IP">
+				<Label>IP Address or domain name:</Label>
+			</Field>
+			<Field id="ifKitIpPort" type="textfield" defaultValue="5001" visibleBindingId="ifKitCommType" visibleBindingValue="IP">
+				<Label>Port number:</Label>
+			</Field>	
+			
+			<Field id="ifKitSerialPort" type="menu" visibleBindingId="ifKitCommType" visibleBindingValue="USB" >
+				<Label>Serial port:</Label>
+				<List class="indigo.serialPorts" filter="indigo.ignoreBluetooth" />
+			</Field>
+			
+			<Field id="phSeparator1" type="separator"/>
+			
+			<Field id="address" type="textfield"  hidden='true' >
+				<Label/>
+			</Field>
+			
+			<Field id="ifKitConfig" type="button" tooltip="Click this button to read the IfKit config" visibleBindingId="ifKitModel" visibleBindingValue="1010,1011,1012,1013,1014,1017,1018,1019,1070,1072,1202,1203" >
+				<Label/>
+				<Title>Read IfKit Config</Title>
+				<CallbackMethod>readIfKitConfig</CallbackMethod>
+			</Field>
+			
+			<Field id="ifKitSensors" type="textfield" hidden="true" >
+				<Label>Sensors</Label>
+			</Field>
+			<Field id="ifKitDigitalInputs" type="textfield" hidden="true" >
+				<Label>Digital inputs</Label>
+			</Field>
+			<Field id="ifKitDigitalOutputs" type="textfield" hidden="true" >
+				<Label>Digital Outputs</Label>
+			</Field>
+	
+	<!-- Ratiometric Setting                                             -->
+			<Field id="ratiometric" type="checkbox" defaultValue="true" visibleBindingId="ifKitSensors" visibleBindingValue="2,4,8">
+				<Label>Set interfaceKit sensors to Ratiometric</Label>
+			</Field>
+
+	<!-- Sensor Trigger Settings                                         -->
+			<Field id="phLabel1" type="label"  visibleBindingId="ifKitSensors" visibleBindingValue="2,4,8" >
+				<Label>Sensor Trigger Threshold settings</Label>
+			</Field>
+			<Field id="ifKitSensorTrigger_0" type="textfield" visibleBindingId="ifKitSensors" visibleBindingValue="2,4,8" >
+				<Label>Sensor 0</Label>
+			</Field>
+			<Field id="ifKitSensorTrigger_1" type="textfield" visibleBindingId="ifKitSensors" visibleBindingValue="2,4,8" >
+				<Label>Sensor 1</Label>
+			</Field>
+			<Field id="ifKitSensorTrigger_2" type="textfield" visibleBindingId="ifKitSensors" visibleBindingValue="4,8" >
+				<Label>Sensor 2</Label>
+			</Field>
+			<Field id="ifKitSensorTrigger_3" type="textfield" visibleBindingId="ifKitSensors" visibleBindingValue="4,8" >
+				<Label>Sensor 3</Label>
+			</Field>
+			<Field id="ifKitSensorTrigger_4" type="textfield" visibleBindingId="ifKitSensors" visibleBindingValue="8" >
+				<Label>Sensor 4</Label>
+			</Field>
+			<Field id="ifKitSensorTrigger_5" type="textfield" visibleBindingId="ifKitSensors" visibleBindingValue="8" >
+				<Label>Sensor 5</Label>
+			</Field>
+			<Field id="ifKitSensorTrigger_6" type="textfield" visibleBindingId="ifKitSensors" visibleBindingValue="8" >
+				<Label>Sensor 6</Label>
+			</Field>
+			<Field id="ifKitSensorTrigger_7" type="textfield" visibleBindingId="ifKitSensors" visibleBindingValue="8" >
+				<Label>Sensor 7</Label>
+			</Field>
+
+	<!-- Sensor Data Rate Settings                                         -->
+			<Field id="phLabel2" type="label" visibleBindingId="ifKitSensors" visibleBindingValue="2,4,8" >
+				<Label>Sensor Data Rate settings (𝘮𝘴 between reads)</Label>
+			</Field>
+			<Field id="ifKitSensorRate_0" type="textfield" defaultValue="16" visibleBindingId="ifKitSensors" visibleBindingValue="2,4,8" >
+				<Label>					Sensor 0</Label>
+			</Field>
+			<Field id="ifKitSensorRate_1" type="textfield" defaultValue="16" visibleBindingId="ifKitSensors" visibleBindingValue="2,4,8" >
+				<Label>					Sensor 1</Label>
+			</Field>
+			<Field id="ifKitSensorRate_2" type="textfield" defaultValue="16" visibleBindingId="ifKitSensors" visibleBindingValue="4,8">
+				<Label>					Sensor 2</Label>
+			</Field>
+			<Field id="ifKitSensorRate_3" type="textfield" defaultValue="16" visibleBindingId="ifKitSensors" visibleBindingValue="4,8">
+				<Label>					Sensor 3</Label>
+			</Field>
+			<Field id="ifKitSensorRate_4" type="textfield" defaultValue="16" visibleBindingId="ifKitSensors" visibleBindingValue="8">
+				<Label>					Sensor 4</Label>
+			</Field>
+			<Field id="ifKitSensorRate_5" type="textfield" defaultValue="16" visibleBindingId="ifKitSensors" visibleBindingValue="8">
+				<Label>					Sensor 5</Label>
+			</Field>
+			<Field id="ifKitSensorRate_6" type="textfield" defaultValue="16" visibleBindingId="ifKitSensors" visibleBindingValue="8">
+				<Label>					Sensor 6</Label>
+			</Field>
+			<Field id="ifKitSensorRate_7" type="textfield" defaultValue="16" visibleBindingId="ifKitSensors" visibleBindingValue="8">
+				<Label>					Sensor 7</Label>
+			</Field>	
+
+			<Field id="phLabel3a" type="label"  visibleBindingId="ifKitDigitalInputs" visibleBindingValue="2" >
+				<Label>2 Inputs found: No configuration required</Label>
+			</Field>	
+
+			<Field id="phLabel3b" type="label"  visibleBindingId="ifKitDigitalInputs" visibleBindingValue="4" >
+				<Label>4 Inputs found: No configuration required</Label>
+			</Field>	
+
+			<Field id="phLabel3c" type="label"  visibleBindingId="ifKitDigitalInputs" visibleBindingValue="8" >
+				<Label>8 Inputs found: No configuration required</Label>
+			</Field>	
+
+			<Field id="phLabel4a" type="label"  visibleBindingId="ifKitDigitalOutputs" visibleBindingValue="2" >
+				<Label>2 Outputs found: No configuration required</Label>
+			</Field>	
+
+			<Field id="phLabel4b" type="label"  visibleBindingId="ifKitDigitalOutputs" visibleBindingValue="4" >
+				<Label>4 Outputs found: No configuration required</Label>
+			</Field>	
+
+			<Field id="phLabel4c" type="label"  visibleBindingId="ifKitDigitalOutputs" visibleBindingValue="8" >
+				<Label>8 Outputs found: No configuration required</Label>
+			</Field>	
+
+
+		</ConfigUI>
+		<States>
+			<State id="onOffState">
+				<ValueType >String</ValueType>
+				<TriggerLabel>Online status</TriggerLabel>
+				<ControlPageLabel>Online status</ControlPageLabel>
+			</State>
+			<State id="lastUpdate">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Update</TriggerLabel>
+				<ControlPageLabel>Last Update</ControlPageLabel>
+			</State>
+		</States>
+ 		<UiDisplayStateId>onOffState</UiDisplayStateId>
+	</Device>
+
+<!-- =============================================================== -->	
+<!--InterfaceKit Analog Sensor Input                                 -->
+	<Device id="phIfKitSensor" type="custom">
+		<Name>InterfaceKit Sensor</Name>
+		<ConfigUI>
+	<!-- Common ifKit settings -->I
+			<Field id='phSensorIfKitId' type='menu' enabledBindingId='buttonFlagSensor'>
+				<Label>		Select the Interface Kit this 
+		sensor is attached to:</Label>
+				<List class="self" method="getIfKitAnalogList"/>
+			</Field>
+			<Field id="configButton1" type="button" visibleBindingId='buttonFlagSensor' visibleBindingValue='true' >
+				<Label/>
+				<Title>Click to Continue</Title>
+				<CallbackMethod>ifKitSetIOSize</CallbackMethod>
+			</Field>
+			
+			<Field id="buttonFlagSensor" type="checkbox" hidden="true" defaultValue="true">
+				<Label/>
+			</Field>
+			
+			<!-- store the ifKit's serial number in the sensor device -->
+			<Field id='phSensorIfKitSerial' type='textfield' hidden='true'>
+				<Label/>
+			</Field>
+
+			<Field id="phIfKitSensorModel" type="menu" defaultValue="0"  visibleBindingId='buttonFlagSensor' visibleBindingValue='false' >
+				<Label>Select the sensor</Label >
+				<List class="self" method="getIfKitSensorList"/>
+			</Field>
+
+	<!-- Common ifKit analog sensor settings -->	
+			<Field id='phSensorIfKitAnalogInput' type='menu' visibleBindingId='buttonFlagSensor' visibleBindingValue='false' >
+				<Label>		Select the Analog Input 
+		this sensor is attached to:</Label>
+				<List class="self" method="getIfKitIOList" dynamicReload="yes"/>
+			</Field>
+
+			<Field id="decimalPlaces" type="menu" defaultValue="1" visibleBindingId='buttonFlagSensor' visibleBindingValue='false'  >
+				<Label>Decimal precision</Label>
+				<List>
+					<Option value="0">0</Option>
+					<Option value="1">1</Option>
+					<Option value="2">2</Option>
+					<Option value="3">3</Option>
+					<Option value="4">4</Option>
+				</List>
+			</Field>
+			<Field id="confLabel1-0" type="label" visibleBindingId='phIfKitSensorModel' visibleBindingValue="0999c" >
+				<Label>Formula to be applied to sensor reading</Label>
+			</Field>
+			<Field id="confLabel1-1" type="label" visibleBindingId='phIfKitSensorModel' visibleBindingValue="1134" >
+				<Label>Total resistance (Ω)</Label>
+			</Field>
+			<Field id="confLabel1-2" type="label" visibleBindingId='phIfKitSensorModel' visibleBindingValue="1142,1143" >
+				<Label>Sensor config value 𝘮</Label>
+			</Field>
+			<Field id="cVal1" type="textfield" visibleBindingId='phIfKitSensorModel' visibleBindingValue="0999c,1134,1142,1143" >
+			</Field>
+
+			<Field id="confLabel2" type="label" visibleBindingId='phIfKitSensorModel' visibleBindingValue="1142,1143" >
+				<Label>Sensor config value 𝘣</Label>
+			</Field>
+			<Field id="cVal2" type="textfield" visibleBindingId='phIfKitSensorModel' visibleBindingValue="1142,1143" >
+			</Field>
+	
+<!-- Common Temperature settings -->
+			<Field id="phTemp1" type="menu" defaultValue="cel" visibleBindingId="phIfKitSensorModel" visibleBindingValue="1124, 1125t" >
+				<Label>Temperature units</Label>
+				<List>
+					<!-- <Option value="na"> - Select - </Option> -->
+					<Option value="cel">Celsius</Option>
+					<Option value="fh">Fahrenheit</Option>
+				</List>
+			</Field>
+			
+			<Field id="address" type="textfield"  hidden='true' >
+				<Label/>
+			</Field>
+						
+		</ConfigUI>
+		<States>
+<!--			<State id="temperature">
+				<ValueType >Number</ValueType>
+				<TriggerLabel>Temperature</TriggerLabel>
+				<ControlPageLabel>Temperature</ControlPageLabel>
+			</State> -->
+			<State id="state">
+				<ValueType >Number</ValueType>
+				<TriggerLabel>Default State Value</TriggerLabel>
+				<ControlPageLabel>Default State Value</ControlPageLabel>
+			</State>
+			<State id="lastUpdate">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Update</TriggerLabel>
+				<ControlPageLabel>Last Update</ControlPageLabel>
+			</State>
+		</States>
+ 		<UiDisplayStateId>state</UiDisplayStateId>
+	</Device>	
+	
+<!-- =============================================================== -->	
+<!--InterfaceKit Digital Input                                       -->	
+	<Device id="phDiIfKit" type="custom">
+		<Name>InterfaceKit Digital Input</Name>
+		<ConfigUI>
+			<Field id='phDiIfKitId' type='menu' enabledBindingId='buttonFlagDi' >
+				<Label>		Select the Interface Kit this
+		input appears on:</Label>
+				<List class="self" method="getIfKitDigitalInList"/>
+			</Field>
+			
+			<Field id="configButton2" type="button" visibleBindingId='buttonFlagDi' visibleBindingValue='true' >
+				<Label/>
+				<Title>Click to Continue</Title>
+				<CallbackMethod>ifKitSetIOSize</CallbackMethod>
+			</Field>
+			
+			<Field id="buttonFlagDi" type="checkbox" hidden="true" defaultValue="true">
+				<Label/>
+			</Field>
+
+			<!-- store the ifKit's serial number in the input device -->
+			<Field id='phDiIfKitSerial' type='textfield' hidden='true'>
+				<Label/>
+			</Field>	
+			
+			<Field id="phDiIfKitModel" type="textfield" defaultValue="phDiIfKit" hidden='true' >
+				<Label/>
+			</Field>
+
+			<Field id="address" type="textfield"  hidden='true' >
+				<Label/>
+			</Field>
+			
+			<Field id='phDiIfKitInput' type='menu' defaultValue="0" visibleBindingId='buttonFlagDi' visibleBindingValue='false' >>
+				<Label>		Select the Digital Input:</Label>
+				<List class="self" method="getIfKitIOList" dynamicReload="yes"/>
+			</Field>			
+		</ConfigUI>
+		<States>
+			<State id="onOffState">
+				<ValueType boolType="onOff">Boolean</ValueType>
+				<TriggerLabel>On/Off State</TriggerLabel>
+				<ControlPageLabel>On/Off State</ControlPageLabel>
+			</State>
+			<State id="lastUpdate">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Update</TriggerLabel>
+				<ControlPageLabel>Last Update</ControlPageLabel>
+			</State>
+		</States>
+		<UiDisplayStateId>onOffState</UiDisplayStateId>
+	</Device>	
+	
+<!-- =============================================================== -->	
+<!--InterfaceKit Digital Output                                      -->	
+	<Device id="phDoIfKit" type="relay">
+		<Name>InterfaceKit Digital Output</Name>
+		<ConfigUI>
+			<Field id='phDoIfKitId' type='menu' enabledBindingId='buttonFlagDo'>
+				<Label>		Select the Interface Kit this
+		output appears on:</Label>
+				<List class="self" method="getIfKitDigitalOutList"/>
+			</Field>
+			
+			<Field id="configButton3" type="button" visibleBindingId='buttonFlagDo' visibleBindingValue='true'>
+				<Label/>
+				<Title>Click to Continue</Title>
+				<CallbackMethod>ifKitSetIOSize</CallbackMethod>
+			</Field>
+			
+			<Field id="buttonFlagDo" type="checkbox" hidden="true" defaultValue="true">
+				<Label/>
+			</Field>
+
+			<!-- store the ifKit's serial number in the output device -->
+			<Field id='phDoIfKitSerial' type='textfield' hidden='true'>
+				<Label/>
+			</Field>	
+
+			<Field id="phDoIfKitModel" type="textfield" defaultValue="phDoIfKit" hidden='true' >
+				<Label/>
+			</Field>
+			
+			<Field id="address" type="textfield"  hidden='true' >
+				<Label/>
+			</Field>
+						
+			<Field id='phDoIfKitOutput' type='menu' defaultValue="0" visibleBindingId='buttonFlagDo' visibleBindingValue='false' >
+				<Label>		Select the Digital Output:</Label>
+				<List class="self" method="getIfKitIOList" dynamicReload="yes"/>
+			</Field>			
+		</ConfigUI>
+		<States>
+<!--
+			<State id="onOffState">
+				<ValueType boolType="onOff">Boolean</ValueType>
+				<TriggerLabel>On/Off State</TriggerLabel>
+				<ControlPageLabel>On/Off State</ControlPageLabel>
+			</State>
+-->
+			<State id="lastUpdate">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Update</TriggerLabel>
+				<ControlPageLabel>Last Update</ControlPageLabel>
+			</State>
+		</States>
+		<UiDisplayStateId>onOffState</UiDisplayStateId>
+	</Device>	
+
+<!-- =============================================================== -->	
+<!--Standalone Phidgets                                      -->		
+	<Device id="phStandalonePhidget" type="custom">
+		<Name>Phidget Standalone Device</Name>
+		<ConfigUI>
+			<SupportURL>http://www.phidgets.com</SupportURL>
+
+			<Field id="phStandalonePhidgetModel" type="menu" defaultValue="0" >
+				<Label>Select the Phidget model</Label >
+				<List class="self" method="getIfKitStandaloneList"/>
+			</Field>
+
+			<Field id="phStandaloneSerial" type="textfield">
+				<Label>Interface Kit serial number:</Label>
+			</Field>
+			
+			<Field id="phStandaloneCommType" type="menu" defaultValue="IP">
+				<Label>		Select the connection.
+		IP (Webservice) or USB:</Label>
+				<List>
+					<Option value="IP">IP Network</Option>
+					<Option value="USB">Local USB Port</Option>
+				</List>
+			</Field>
+			
+			<Field id="phStandaloneIpAddress" type="textfield" defaultValue='127.0.0.1' visibleBindingId="phStandaloneCommType" visibleBindingValue="IP">
+				<Label>IP Address or domain name:</Label>
+			</Field>
+			<Field id="phStandaloneIpPort" type="textfield" defaultValue="5001" visibleBindingId="phStandaloneCommType" visibleBindingValue="IP">
+				<Label>Port number:</Label>
+			</Field>	
+			
+			<Field id="phStandaloneSerialPort" type="menu" visibleBindingId="phStandaloneCommType" visibleBindingValue="USB" >
+				<Label>Serial port:</Label>
+				<List class="indigo.serialPorts" filter="indigo.ignoreBluetooth" />
+			</Field>
+			<Field id="address" type="textfield"  hidden='true' >
+				<Label/>
+			</Field>
+
+			<Field id="tDecimal" type="menu" defaultValue="1" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048,1051,1054" >
+				<Label>Decimal places for state values</Label>
+				<List>
+					<Option value="0">0</Option>
+					<Option value="1">1</Option>
+					<Option value="2">2</Option>
+					<Option value="3">3</Option>
+					<Option value="4">4</Option>
+				</List>
+			</Field>
+
+			<!--  2 & 4 input Temperature Sensor - 1048 & 1051 -->
+			<Field id="tSeparator0" type="separator" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048,1051" />
+			<Field id="tLabel0" type="label"  fontColor="darkgray" alignText="center" fontSize="small" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048,1051" >
+				<Label>Thermocouple index 0</Label>
+			</Field>
+
+			<Field id="ambientScale" type="menu" defaultValue="celsius" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048,1051" >
+				<Label>Temp scale to display for ambient temp</Label>
+				<List>
+					<Option value="celsius">Celsius</Option>
+					<Option value="fahrenheit">Fahrenheit</Option>
+				</List>
+			</Field>
+
+			<Field id="tCouple0" type="menu" defaultValue="1" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048,1051" >
+				<Label>Type</Label>
+				<List>
+					<Option value="1">K</Option>
+					<Option value="2">J</Option>
+					<Option value="3">E</Option>
+					<Option value="4">T</Option>
+				</List>
+			</Field>
+
+			<Field id="tSens0" type="menu" defaultValue="2" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048,1051" >
+				<Label>Sensitivity (ºC)</Label>
+				<List>
+					<Option value="0.1">0.1</Option>
+					<Option value="0.2">0.2</Option>
+					<Option value="0.3">0.3</Option>
+					<Option value="0.4">0.4</Option>
+					<Option value="0.5">0.5</Option>
+					<Option value="1">1.0</Option>
+				</List>
+			</Field>
+
+			<Field id="tScale0" type="menu" defaultValue="celsius" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048,1051" >
+				<Label>Temp scale to display</Label>
+				<List>
+					<Option value="celsius">Celsius</Option>
+					<Option value="fahrenheit">Fahrenheit</Option>
+				</List>
+			</Field>
+
+			<Field id="tError0" type="checkbox" defaultValue="false" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048,1051" >
+				<Label>Suppress "thermocouple exceeds potential" errors</Label>
+			</Field>
+
+			<Field id="tSeparator1" type="separator" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" />
+			<Field id="tLabel1" type="label"  fontColor="darkgray" alignText="center" fontSize="small" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Thermocouple index 1</Label>
+			</Field>
+			<Field id="tCouple1" type="menu" defaultValue="1" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Type</Label>
+				<List>
+					<Option value="1">K</Option>
+					<Option value="2">J</Option>
+					<Option value="3">E</Option>
+					<Option value="4">T</Option>
+				</List>
+			</Field>
+
+			<Field id="tSens1" type="menu" defaultValue="2" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Sensitivity (ºC)</Label>
+				<List>
+					<Option value="0.1">0.1</Option>
+					<Option value="0.2">0.2</Option>
+					<Option value="0.3">0.3</Option>
+					<Option value="0.4">0.4</Option>
+					<Option value="0.5">0.5</Option>
+					<Option value="1">1.0</Option>
+				</List>
+			</Field>
+
+			<Field id="tScale1" type="menu" defaultValue="celsius" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Temp scale to display</Label>
+				<List>
+					<Option value="celsius">Celsius</Option>
+					<Option value="fahrenheit">Fahrenheit</Option>
+				</List>
+			</Field>
+
+			<Field id="tError1" type="checkbox" defaultValue="false" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Suppress "thermocouple exceeds potential" errors</Label>
+			</Field>
+
+			<Field id="tSeparator2" type="separator" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" />
+
+			<Field id="tLabel2" type="label"  fontColor="darkgray" alignText="center" fontSize="small" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Thermocouple index 2</Label>
+			</Field>
+			<Field id="tCouple2" type="menu" defaultValue="1" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Type</Label>
+				<List>
+					<Option value="1">K</Option>
+					<Option value="2">J</Option>
+					<Option value="3">E</Option>
+					<Option value="4">T</Option>
+				</List>
+			</Field>
+
+			<Field id="tSens2" type="menu" defaultValue="2" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Sensitivity (ºC)</Label>
+				<List>
+					<Option value="0.1">0.1</Option>
+					<Option value="0.2">0.2</Option>
+					<Option value="0.3">0.3</Option>
+					<Option value="0.4">0.4</Option>
+					<Option value="0.5">0.5</Option>
+					<Option value="1">1.0</Option>
+				</List>
+			</Field>
+
+			<Field id="tScale2" type="menu" defaultValue="celsius" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Temp scale to display</Label>
+				<List>
+					<Option value="celsius">Celsius</Option>
+					<Option value="fahrenheit">Fahrenheit</Option>
+				</List>
+			</Field>
+
+			<Field id="tError2" type="checkbox" defaultValue="false" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Suppress "thermocouple exceeds potential" errors</Label>
+			</Field>
+
+			<Field id="tSeparator3" type="separator" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" />
+
+			<Field id="tLabel3" type="label"  fontColor="darkgray" alignText="center" fontSize="small" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Thermocouple index 3</Label>
+			</Field>
+			<Field id="tCouple3" type="menu" defaultValue="1" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Type</Label>
+				<List>
+					<Option value="1">K</Option>
+					<Option value="2">J</Option>
+					<Option value="3">E</Option>
+					<Option value="4">T</Option>
+				</List>
+			</Field>
+
+			<Field id="tSens3" type="menu" defaultValue="2" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Sensitivity (ºC)</Label>
+				<List>
+					<Option value="0.1">0.1</Option>
+					<Option value="0.2">0.2</Option>
+					<Option value="0.3">0.3</Option>
+					<Option value="0.4">0.4</Option>
+					<Option value="0.5">0.5</Option>
+					<Option value="1">1.0</Option>
+				</List>
+			</Field>
+
+			<Field id="tScale3" type="menu" defaultValue="celsius" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Temp scale to display</Label>
+				<List>
+					<Option value="celsius">Celsius</Option>
+					<Option value="fahrenheit">Fahrenheit</Option>
+				</List>
+			</Field>
+
+			<Field id="tError3" type="checkbox" defaultValue="false" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1048" >
+				<Label>Suppress "thermocouple exceeds potential" errors</Label>
+			</Field>
+
+		<!--  Frequency Counter - 1054 -->
+			<Field id="fcCounter" type="menu" defaultValue='0' visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1054" >
+				<Label>Counter  Number</Label>
+				<List>
+					<Option value='0'>0</Option>
+					<Option value='1'>1</Option>
+				</List>
+			</Field>
+
+			<!-- <Field id="fcSeparatorc1" type="separator" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1054" /> -->
+
+			<Field id="fcInType" type="menu" defaultValue="2" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1054" >
+				<Label>Counter Type</Label>
+				<List>
+					<Option value="2">Logic Level</Option>
+					<Option value="1">Zero Crossing</Option>
+				</List>
+			</Field>
+
+			<Field id="fcTimeOut" type="textfield" defaultValue="1000" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1054" >
+				<Label>Timeout (ms) Counter 0</Label>
+			</Field>
+
+			<Field id="fcSeparatorc2" type="separator" visibleBindingId="fcUseCustom" visibleBindingValue="true" />
+
+			<Field id="fcUseCustom" type="checkbox" defaultValue="false" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1054" >
+				<Label>Create a custom state</Label>		
+			</Field>
+
+			<Field id="fcCustomName" type="textfield" defaultValue="custom" visibleBindingId="fcUseCustom" visibleBindingValue="true" >
+				<Label>Enter the name of the custom state</Label>
+			</Field>
+
+			<Field id="fcCustomFormula" type="textfield" defaultValue="x" visibleBindingId="fcUseCustom" visibleBindingValue="true" >
+				<Label>Formula to be applied to count and time</Label>
+			</Field>
+
+			<Field id="fcCustomDecimal" type="menu" defaultValue="0" visibleBindingId="fcUseCustom" visibleBindingValue="true" >
+				<Label>Decimal place precision</Label>
+				<List>
+					<Option value="0">0</Option>
+					<Option value="1">1</Option>
+					<Option value="2">2</Option>
+					<Option value="3">3</Option>
+					<Option value="4">4</Option>
+				</List>
+			</Field>
+
+			<Field id="fcSeparatorc3" type="separator" visibleBindingId="fcUseCustom" visibleBindingValue="true" />
+
+			<Field id="fcDisplay1" type="menu" defaultValue="None" visibleBindingId="fcUseCustom" visibleBindingValue="true" >
+				<Label>State displayed in state column</Label>
+				<List>
+					<Option value="count">count</Option>
+					<Option value="time">time (ms)</Option>
+					<Option value="frequency">frequency (Hz)</Option>
+					<Option value="state">pulse</Option>
+					<Option value="custom">custom state</Option>
+				</List>
+			</Field>
+
+			<Field id="fcDisplay2" type="menu" defaultValue="None" visibleBindingId="fcUseCustom" visibleBindingValue="false" >
+				<Label>State displayed in state column</Label>
+				<List>
+					<Option value="count">count</Option>
+					<Option value="time">time</Option>
+					<Option value="frequency">frequency(Hz)</Option>
+					<Option value="state">pulse</Option>
+				</List>
+			</Field>
+
+			<Field id="fcDisplay" type="textfield" defaultValue="" hidden="true" >
+				<Label>The state to display in Indigo's state column (taken from fcDisplay1 or fcDisplay2</Label>
+			</Field>
+
+		<!--  Circular Touch Sensor -->
+			<Field id="circularTouchSensorTrigger" type="textfield" defaultValue='10' visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1016"  >
+				<Label>Sensitivity for position detection</Label>
+			</Field>		
+
+			<Field id="circularTouchTop" type="textfield" defaultValue='0' visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1016"  >
+				<Label>Postion (0-1000) at top of sensor</Label>
+			</Field>
+
+			<Field id="posLabels" type="textfield" defaultValue='N,NNE,NE,ENE,E,ESE,SE,SSE,S,SSW,SW,WSW,W,WNW,NW,NNW' visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1016">
+				<Label>Position labels</Label>
+			</Field>
+
+			<Field id="touchLabel" type="label"  fontColor="darkgray" alignText="center" fontSize="small" visibleBindingId="phStandalonePhidgetModel" visibleBindingValue="1016" >
+				<Label>Enter a string of 16 comma separated labels. All comparisons are alpha.</Label>
+			</Field>
+
+		</ConfigUI>
+		<UiDisplayStateId>onOffState</UiDisplayStateId>
+		<States>
+			<State id="lastUpdate">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Update</TriggerLabel>
+				<ControlPageLabel>Last Update</ControlPageLabel>
+			</State>
+			<State id="onOffState">
+				<ValueType >String</ValueType>
+				<TriggerLabel>Online status</TriggerLabel>
+				<ControlPageLabel>Online status</ControlPageLabel>
+			</State>
+			<State id="state">
+				<ValueType >Number</ValueType>
+				<TriggerLabel>status</TriggerLabel>
+				<ControlPageLabel>status</ControlPageLabel>
+			</State>
+		</States>
+	</Device>
+
+<!-- =============================================================== -->	
+<!--LCD Text Display                                     -->		
+	<Device id="phLcdScreen" type="custom">
+		<Name>Phidget LCD Screen Device</Name>
+		<ConfigUI>
+			<Field id="phLcdScreenModel" type="textfield" defaultValue="phLcdScreen" readonly='YES' hidden='true' >
+				<Label>LCD Screen Model</Label>
+			</Field>
+
+			<Field id="phLcdScreenSerial" type="textfield">
+				<Label>Interface Kit serial number:</Label>
+			</Field>
+			
+			<Field id="phLcdScreenCommType" type="menu" defaultValue='none' >
+				<Label>		Select the connection.
+		IP (Webservice) or USB:</Label>
+				<List>
+					<Option value="none">-- Select Comm Type --</Option>
+					<Option value="IP">IP Network</Option>
+					<Option value="USB">Local USB Port</Option>
+				</List>
+			</Field>
+			
+			<Field id="phLcdScreenIpAddress" type="textfield" defaultValue='127.0.0.1' visibleBindingId="phLcdScreenCommType" visibleBindingValue="IP" >
+				<Label>IP Address or domain name:</Label>
+			</Field>
+
+			<Field id="phLcdScreenIpPort" type="textfield" defaultValue="5001" visibleBindingId="phLcdScreenCommType" visibleBindingValue="IP">
+				<Label>Port number:</Label>
+			</Field>	
+			
+			<Field id="phLcdScreenSerialPort" type="menu" visibleBindingId="phLcdScreenCommType" visibleBindingValue="USB" >
+				<Label>Serial port:</Label>
+				<List class="indigo.serialPorts" filter="indigo.ignoreBluetooth" />
+			</Field>
+
+			<Field id="address" type="textfield"  hidden='true' >
+				<Label/>
+			</Field>
+
+			<Field id="phLcdAdapter" type="menu" defaultValue="1204">
+				<Label>		TextLCD interface model:</Label>
+				<List>
+					<Option value="1203">1202/1203 (Combined adapter and display)</Option>
+					<Option value="1204">1204 (Separate adapter and display)</Option>
+				</List>
+			</Field>
+
+			<Field id="phLcdScreen" type="menu" defaultValue="2x20" visibleBindingId="phLcdAdapter" visibleBindingValue="1204" >
+				<Label>		TextLCD interface model:</Label>
+				<List>
+					<Option value="2x20">3650/3651/3652 2x20</Option>
+					<Option value="2x40">3653 2x40</Option>
+					<Option value="4x20">3654 4x20</Option>
+					<Option value="4x40">3655 4x40</Option>
+					<Option value="1x8">Generic 1x8</Option>
+					<Option value="1x16">Generic 1x16</Option>
+					<Option value="1x40">Generic 1x40</Option>				
+					<Option value="2x8">Generic  2x8</Option>
+					<Option value="2x16">Generic  2x16</Option>
+					<Option value="2x24">Generic  2x24</Option>
+					<Option value="4x16">Generic  1x16</Option>
+				</List>
+			</Field>
+
+			<Field id="phLcdScreenIndex" type="menu" defaultValue="0" visibleBindingId="phLcdAdapter" visibleBindingValue="1204" >
+				<Label>		TextLCD adapter screen index:</Label>
+				<List>
+					<Option value="0">0</Option>
+					<Option value="1">1</Option>
+				</List>
+			</Field>
+
+			<Field id="phSeparator2" type="separator"/>
+
+<!--			<Field id="phLcdScreenConfig" type="button" tooltip="Click to read the LCD Display config" visibleBindingId="phLcdScreenCommType" visibleBindingValue="IP,USB" > 
+				<Label/>
+				<Title>Read Display Screen Config</Title>
+				<CallbackMethod>readLcdScreenConfig</CallbackMethod>
+			</Field>
+-->
+			<Field id="buttonFlagSensor" type="checkbox" hidden="true" defaultValue="true">
+				<Label/>
+			</Field>
+
+			<Field id="phLcdScreenRows" type="textfield" hidden="true"  >
+				<Label>Rows:</Label>
+			</Field>
+
+			<Field id="phLcdScreenCols" type="textfield" hidden="true"  >
+				<Label>Columns:</Label>
+			</Field>
+
+			<Field id="contrastControl" type="checkbox" hidden="true" defaultValue="true">
+				<Label/>
+			</Field>
+			<Field id="phLcdScreenContrast" type="textfield" enabledBindingId='contrastControl' visibleBindingId="buttonFlagSensor" visibleBindingValue="true"  >
+				<Label>Contrast (0-255):</Label>
+			</Field>	
+
+			<Field id="brightnessControl" type="checkbox" hidden="true" defaultValue="true">
+				<Label/>
+			</Field>
+			<Field id="phLcdScreenBrightness" type="textfield" enabledBindingId='brightnessControl' visibleBindingId="buttonFlagSensor" visibleBindingValue="true"  >
+
+				<Label>Brightness (0-255):</Label>
+			</Field>
+
+			<Field id="backlightControl" type="checkbox" hidden="true" defaultValue="true">
+				<Label/>
+			</Field>
+			<Field id="phLcdScreenBacklight" type="checkbox" enabledBindingId='backlightControl' visibleBindingId="buttonFlagSensor" visibleBindingValue="true"  >
+				<Label>Backlight On:</Label>
+			</Field>	
+
+			<Field id="cursorVisibleControl" type="checkbox" hidden="true" defaultValue="true">
+				<Label/>
+			</Field>
+			<Field id="phLcdScreenCursorVisible" type="checkbox" enabledBindingId='cursorVisibleControl' visibleBindingId="buttonFlagSensor" visibleBindingValue="true" >
+				<Label>Cusror Visible:</Label>
+			</Field>
+
+			<Field id="cursorBlinkControl" type="checkbox" hidden="true" defaultValue="true">
+				<Label/>
+			</Field>
+
+			<Field id="phLcdScreenCursorBlink" type="checkbox"  enabledBindingId='cursorBlinkControl' visibleBindingId="buttonFlagSensor" visibleBindingValue="true"  >
+				<Label>Cusror Blink:</Label>
+			</Field>
+
+			<Field id="writeDelay" type="textfield" defaultValue="0" enabledBindingId='cursorBlinkControl' visibleBindingId="phLcdScreenRows" visibleBindingValue="2,3,4" >
+				<Label>Delay between line writes (in ms):</Label>
+			</Field>
+
+			<Field id="useCustChars" type="checkbox" defaultValue="false">
+				<Label>Use Custom Characters:</Label>
+			</Field>
+
+			<Field id="phSeparator4" type="separator" visibleBindingId="useCustChars" visibleBindingValue="true"/>
+
+			<Field id="phLabel4" type="label"  fontColor="darkgray" alignText="center" fontSize="small" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Characters should be entered as two integers separated by a comma. The Description fields are for you to enter notes to describe the custom characters. The descrption is not used by the plugin. See the Phidgets TextLCD documentation for more information on creating custom characters.</Label>
+			</Field>
+
+			<Field id="lcdCustChar_0" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Custom Character 0:</Label>
+			</Field>
+
+			<Field id="lcdCustCharNotes_0" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Description:</Label>
+			</Field>
+
+			<Field id="lcdCustChar_1" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Custom Character 1:</Label>
+			</Field>
+
+			<Field id="lcdCustCharNotes_1" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Description:</Label>
+			</Field>
+
+			<Field id="lcdCustChar_2" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Custom Character 2:</Label>
+			</Field>
+
+			<Field id="lcdCustCharNotes_2" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Description:</Label>
+			</Field>
+
+			<Field id="lcdCustChar_3" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Custom Character 3:</Label>
+			</Field>
+
+			<Field id="lcdCustCharNotes_3" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Description:</Label>
+			</Field>
+
+			<Field id="lcdCustChar_4" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Custom Character 4:</Label>
+			</Field>
+
+			<Field id="lcdCustCharNotes_4" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Description:</Label>
+			</Field>
+
+			<Field id="lcdCustChar_5" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Custom Character 5:</Label>
+			</Field>
+
+			<Field id="lcdCustCharNotes_5" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Description:</Label>
+			</Field>
+
+			<Field id="lcdCustChar_6" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Custom Character 6:</Label>
+			</Field>
+
+			<Field id="lcdCustCharNotes_6" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Description:</Label>
+			</Field>
+
+			<Field id="lcdCustChar_7" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Custom Character 7:</Label>
+			</Field>
+
+			<Field id="lcdCustCharNotes_7" type="textfield" visibleBindingId="useCustChars" visibleBindingValue="true" >
+				<Label>Description:</Label>
+			</Field>
+
+		</ConfigUI>
+		<UiDisplayStateId>onOffState</UiDisplayStateId>		
+		<States>
+			<State id="lastUpdate">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Update</TriggerLabel>
+				<ControlPageLabel>Last Update</ControlPageLabel>
+			</State>
+			<State id="onOffState">
+				<ValueType >String</ValueType>
+				<TriggerLabel>Online status</TriggerLabel>
+				<ControlPageLabel>Online status</ControlPageLabel>
+			</State>
+			<State id="textLine_0">
+				<ValueType >String</ValueType>
+				<TriggerLabel>textLine_1</TriggerLabel>
+				<ControlPageLabel>textLine_1</ControlPageLabel>
+			</State>
+<!--		Additional textLine states (textLine_1 - textLine_3) are created as needed in plugin.py		-->
+		</States>
+	</Device>						
+</Devices>

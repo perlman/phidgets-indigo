@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<Events>
+    <Event id="tagGained" deviceFilter="self.alarmKeypad">
+        <Name>RFID Tag read by reader</Name>
+        <ConfigUI>
+			<Field id="tagValue" type="textfield">
+				<Label>Tag Value</Label>
+			</Field>
+		</ConfigUI>
+    </Event> 
+
+    <Event id="detach" deviceFilter="self">
+        <Name>Phidget detached</Name>
+        <Label>A Standalone Phidget or InterfaceKit has detached</Label>
+           <ConfigUI>
+            <Field id="indigoDevice" type="menu">
+              <Label>Phdget Device</Label>
+                <List class="self" method="getEventCapableList"/>
+                <!--  <List class="indigo.devices" filter="self"/> -->
+            </Field>
+          </ConfigUI>
+    </Event> 
+
+    <Event id="attach" deviceFilter="self">
+        <Name>Phidget attached</Name>
+        <Label>A Standalone Phidget or InterfaceKit has been atached</Label>
+        <ConfigUI>
+            <Field id="indigoDevice" type="menu">
+              <Label>Phdget Device</Label> 
+                <List class="self" method="getEventCapableList"/>
+                <!--  <List class="indigo.devices" filter="self"/> -->
+            </Field>
+          </ConfigUI>
+    </Event> 
+
+</Events>
