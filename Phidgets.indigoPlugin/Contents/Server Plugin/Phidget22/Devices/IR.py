@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import sys
 import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
