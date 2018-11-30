@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<PluginConfig>
+
+    <Field type="checkbox" id="networkPhidgets" defaultValue="true" readonly="true">
+        <Label>Network phidgets:</Label>
+		<Description>(Required)</Description>
+    </Field>
+
+    <Field type="checkbox" id="enableServerDiscovery" defaultValue="true" readonly="true">
+        <Label>Enable server discovery:</Label>
+    </Field>
+
+
+
+	<Field id="simpleSeparator1" type="separator"/>
+
+	<Field id="phidgetApiLogging" type="checkbox" defaultValue="false">
+		<Label>Enable low-level Phidgets libs logging</Label>
+	</Field>
+
+	<Field id="phidgetApiLogLevel" type="menu" defaultValue="1" visibleBindingId="phidgetApiLogging" visibleBindingValue="true">
+		<Label>Logging level</Label>
+		<List>
+			<Option value="1">Critical</Option>
+			<Option value="2">Error</Option>
+			<Option value="3">Warning</Option>
+			<Option value="4">Debug</Option>
+			<Option value="5">Info</Option>		
+			<Option value="6">Verbose</Option>
+		</List>
+	</Field>
+
+</PluginConfig>

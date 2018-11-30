@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<Devices>
+	<Device id="voltageInput" type="custom">
+		<Name>VoltageInput</Name>
+		<ConfigUI>
+			<Field id="serialNumber" type="textfield">
+					<Label>Serial number:</Label>
+			</Field>
+			<Field id="channel" type="textfield">
+					<Label>Channel:</Label>
+			</Field>
+		</ConfigUI>
+		<States>
+			<State id="state">
+				<ValueType >Number</ValueType>
+				<TriggerLabel>Default State Value</TriggerLabel>
+				<ControlPageLabel>Default State Value</ControlPageLabel>
+			</State>
+		</States>
+ 		<UiDisplayStateId>state</UiDisplayStateId>
+	</Device>	
+</Devices>
