@@ -6,6 +6,7 @@ import logging
 import traceback
 
 from phidget import NetInfo, ChannelInfo
+from phidget import PhidgetManager
 from phidget import VoltageInputPhidget
 from Phidget22.PhidgetException import PhidgetException
 import phidget_util
@@ -18,6 +19,7 @@ class Plugin(indigo.PluginBase):
         self.indigo_log_handler.setLevel(logging.DEBUG)   # Logging level for Indigo Event Log
 
         self.activePhidgets = {}
+        self.phidgetManager = PhidgetManager()
 
     def __del__(self):
         indigo.PluginBase.__del__(self)
@@ -36,6 +38,15 @@ class Plugin(indigo.PluginBase):
         # TODO: Verify integer fields
         return True
 
+    def getDeviceStateList(self, dev):
+        # TODO: Figure out how to do dynamic states for sub-types (e.g. specific sensor types)
+        newStatesList = self.phidgetManager.getDeviceStateList(dev.deviceTypeId)
+        self.logger.debug(newStatesList)
+        return newStatesList
+
+    def getDeviceDisplayStateId(self, dev):
+        # TODO: Ask each device for the default state to display
+        return self.phidgetManager.getDeviceDisplayStateId(dev.deviceTypeId)
 
     def deviceStartComm(self, device):
         # TODO: Generalize to any phidget type
@@ -65,7 +76,6 @@ class Plugin(indigo.PluginBase):
                 self.logger.error(traceback.format_exc())
         else:
             self.logger.error("Unknown device type: %s" % device.deviceTypeId)
-
 
     def deviceStopComm(self, device):
         myPhidget = self.activePhidgets.pop(device.id)
