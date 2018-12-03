@@ -67,7 +67,7 @@ class PhidgetBase(object):
 
     def getDeviceSensorOption(self):
         """Query indigo device to get sensor value (if applicable)"""
-        sensorOption = int(self.indigoDevice.pluginProps.get("channel", "option0").replace('option',''))
+        sensorOption = int(self.indigoDevice.pluginProps.get("sensorType", "option0").replace('option',''))
         return sensorOption
 
     def onErrorHandler(self, ph, errorCode, errorString):
@@ -106,12 +106,12 @@ class VoltageInputPhidget(PhidgetBase):
         ph.parent.indigoDevice.updateStateOnServer("voltage", value=voltage)
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
-        ph.parent.indigoDevice.updateStateOnServer("sensor", value=voltage)
+        ph.parent.indigoDevice.updateStateOnServer("sensor", value=sensorValue)
 
     def onAttachHandler(self, ph):
         try:
             phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
-            ph.setDataInterval(PHIDGET_DATA_INTERVAL)
+            ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
             ph.setSensorType(self.getDeviceSensorOption())
         except PhidgetException as e:
             self.logger.error("%d: %s\n" % (e.code, e.details))
@@ -158,12 +158,13 @@ class VoltageRatioInputPhidget(PhidgetBase):
         ph.parent.indigoDevice.updateStateOnServer("voltageRatio", value=voltage)
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
-        ph.parent.indigoDevice.updateStateOnServer("sensor", value=voltage)
+        ph.parent.indigoDevice.updateStateOnServer("sensor", value=sensorValue)
 
     def onAttachHandler(self, ph):
         try:
             phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
-            ph.setDataInterval(PHIDGET_DATA_INTERVAL)
+            ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
+            self.logger.debug("Adding sensor type %d" % self.getDeviceSensorOption())
             ph.setSensorType(self.getDeviceSensorOption())
         except PhidgetException as e:
             self.logger.error("%d: %s\n" % (e.code, e.details))
