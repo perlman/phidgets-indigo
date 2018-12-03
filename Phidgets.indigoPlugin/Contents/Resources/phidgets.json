@@ -1,0 +1,426 @@
+{
+    "VoltageRatioSensorType": [
+        {
+            "def": "SENSOR_TYPE_VOLTAGERATIO", 
+            "desc": "Default. Configures the channel to be a generic ratiometric sensor. Unit is volts/volt.", 
+            "value": 0
+        }, 
+        {
+            "def": "SENSOR_TYPE_1101_SHARP_2D120X", 
+            "desc": "1101 - IR Distance Adapter, with Sharp Distance Sensor 2D120X (4-30cm)", 
+            "value": 11011
+        }, 
+        {
+            "def": "SENSOR_TYPE_1101_SHARP_2Y0A21", 
+            "desc": "1101 - IR Distance Adapter, with Sharp Distance Sensor 2Y0A21 (10-80cm)", 
+            "value": 11012
+        }, 
+        {
+            "def": "SENSOR_TYPE_1101_SHARP_2Y0A02", 
+            "desc": "1101 - IR Distance Adapter, with Sharp Distance Sensor 2Y0A02 (20-150cm)", 
+            "value": 11013
+        }, 
+        {
+            "def": "SENSOR_TYPE_1102", 
+            "desc": "1102 - IR Reflective Sensor 5mm", 
+            "value": 11020
+        }, 
+        {
+            "def": "SENSOR_TYPE_1103", 
+            "desc": "1103 - IR Reflective Sensor 10cm", 
+            "value": 11030
+        }, 
+        {
+            "def": "SENSOR_TYPE_1104", 
+            "desc": "1104 - Vibration Sensor", 
+            "value": 11040
+        }, 
+        {
+            "def": "SENSOR_TYPE_1105", 
+            "desc": "1105 - Light Sensor", 
+            "value": 11050
+        }, 
+        {
+            "def": "SENSOR_TYPE_1106", 
+            "desc": "1106 - Force Sensor", 
+            "value": 11060
+        }, 
+        {
+            "def": "SENSOR_TYPE_1107", 
+            "desc": "1107 - Humidity Sensor", 
+            "value": 11070
+        }, 
+        {
+            "def": "SENSOR_TYPE_1108", 
+            "desc": "1108 - Magnetic Sensor", 
+            "value": 11080
+        }, 
+        {
+            "def": "SENSOR_TYPE_1109", 
+            "desc": "1109 - Rotation Sensor", 
+            "value": 11090
+        }, 
+        {
+            "def": "SENSOR_TYPE_1110", 
+            "desc": "1110 - Touch Sensor", 
+            "value": 11100
+        }, 
+        {
+            "def": "SENSOR_TYPE_1111", 
+            "desc": "1111 - Motion Sensor", 
+            "value": 11110
+        }, 
+        {
+            "def": "SENSOR_TYPE_1112", 
+            "desc": "1112 - Slider 60", 
+            "value": 11120
+        }, 
+        {
+            "def": "SENSOR_TYPE_1113", 
+            "desc": "1113 - Mini Joy Stick Sensor", 
+            "value": 11130
+        }, 
+        {
+            "def": "SENSOR_TYPE_1115", 
+            "desc": "1115 - Pressure Sensor", 
+            "value": 11150
+        }, 
+        {
+            "def": "SENSOR_TYPE_1116", 
+            "desc": "1116 - Multi-turn Rotation Sensor", 
+            "value": 11160
+        }, 
+        {
+            "def": "SENSOR_TYPE_1118_AC", 
+            "desc": "1118 - 50Amp Current Sensor AC", 
+            "value": 11181
+        }, 
+        {
+            "def": "SENSOR_TYPE_1118_DC", 
+            "desc": "1118 - 50Amp Current Sensor DC", 
+            "value": 11182
+        }, 
+        {
+            "def": "SENSOR_TYPE_1119_AC", 
+            "desc": "1119 - 20Amp Current Sensor AC", 
+            "value": 11191
+        }, 
+        {
+            "def": "SENSOR_TYPE_1119_DC", 
+            "desc": "1119 - 20Amp Current Sensor DC", 
+            "value": 11192
+        }, 
+        {
+            "def": "SENSOR_TYPE_1120", 
+            "desc": "1120 - FlexiForce Adapter", 
+            "value": 11200
+        }, 
+        {
+            "def": "SENSOR_TYPE_1121", 
+            "desc": "1121 - Voltage Divider", 
+            "value": 11210
+        }, 
+        {
+            "def": "SENSOR_TYPE_1122_AC", 
+            "desc": "1122 - 30 Amp Current Sensor AC", 
+            "value": 11221
+        }, 
+        {
+            "def": "SENSOR_TYPE_1122_DC", 
+            "desc": "1122 - 30 Amp Current Sensor DC", 
+            "value": 11222
+        }, 
+        {
+            "def": "SENSOR_TYPE_1124", 
+            "desc": "1124 - Precision Temperature Sensor", 
+            "value": 11240
+        }, 
+        {
+            "def": "SENSOR_TYPE_1125_HUMIDITY", 
+            "desc": "1125 - Humidity Sensor", 
+            "value": 11251
+        }, 
+        {
+            "def": "SENSOR_TYPE_1125_TEMPERATURE", 
+            "desc": "1125 - Temperature Sensor", 
+            "value": 11252
+        }, 
+        {
+            "def": "SENSOR_TYPE_1126", 
+            "desc": "1126 - Differential Air Pressure Sensor +- 25kPa", 
+            "value": 11260
+        }, 
+        {
+            "def": "SENSOR_TYPE_1128", 
+            "desc": "1128 - MaxBotix EZ-1 Sonar Sensor", 
+            "value": 11280
+        }, 
+        {
+            "def": "SENSOR_TYPE_1129", 
+            "desc": "1129 - Touch Sensor", 
+            "value": 11290
+        }, 
+        {
+            "def": "SENSOR_TYPE_1131", 
+            "desc": "1131 - Thin Force Sensor", 
+            "value": 11310
+        }, 
+        {
+            "def": "SENSOR_TYPE_1134", 
+            "desc": "1134 - Switchable Voltage Divider", 
+            "value": 11340
+        }, 
+        {
+            "def": "SENSOR_TYPE_1136", 
+            "desc": "1136 - Differential Air Pressure Sensor +-2 kPa", 
+            "value": 11360
+        }, 
+        {
+            "def": "SENSOR_TYPE_1137", 
+            "desc": "1137 - Differential Air Pressure Sensor +-7 kPa", 
+            "value": 11370
+        }, 
+        {
+            "def": "SENSOR_TYPE_1138", 
+            "desc": "1138 - Differential Air Pressure Sensor 50 kPa", 
+            "value": 11380
+        }, 
+        {
+            "def": "SENSOR_TYPE_1139", 
+            "desc": "1139 - Differential Air Pressure Sensor 100 kPa", 
+            "value": 11390
+        }, 
+        {
+            "def": "SENSOR_TYPE_1140", 
+            "desc": "1140 - Absolute Air Pressure Sensor 20-400 kPa", 
+            "value": 11400
+        }, 
+        {
+            "def": "SENSOR_TYPE_1141", 
+            "desc": "1141 - Absolute Air Pressure Sensor 15-115 kPa", 
+            "value": 11410
+        }, 
+        {
+            "def": "SENSOR_TYPE_1146", 
+            "desc": "1146 - IR Reflective Sensor 1-4mm", 
+            "value": 11460
+        }, 
+        {
+            "def": "SENSOR_TYPE_3120", 
+            "desc": "3120 - Compression Load Cell (0-4.5 kg)", 
+            "value": 31200
+        }, 
+        {
+            "def": "SENSOR_TYPE_3121", 
+            "desc": "3121 - Compression Load Cell (0-11.3 kg)", 
+            "value": 31210
+        }, 
+        {
+            "def": "SENSOR_TYPE_3122", 
+            "desc": "3122 - Compression Load Cell (0-22.7 kg)", 
+            "value": 31220
+        }, 
+        {
+            "def": "SENSOR_TYPE_3123", 
+            "desc": "3123 - Compression Load Cell (0-45.3 kg)", 
+            "value": 31230
+        }, 
+        {
+            "def": "SENSOR_TYPE_3130", 
+            "desc": "3130 - Relative Humidity Sensor", 
+            "value": 31300
+        }, 
+        {
+            "def": "SENSOR_TYPE_3520", 
+            "desc": "3520 - Sharp Distance Sensor (4-30cm)", 
+            "value": 35200
+        }, 
+        {
+            "def": "SENSOR_TYPE_3521", 
+            "desc": "3521 - Sharp Distance Sensor (10-80cm)", 
+            "value": 35210
+        }, 
+        {
+            "def": "SENSOR_TYPE_3522", 
+            "desc": "3522 - Sharp Distance Sensor (20-150cm)", 
+            "value": 35220
+        }
+    ], 
+    "VoltageSensorType": [
+        {
+            "def": "SENSOR_TYPE_VOLTAGE", 
+            "desc": "Default. Configures the channel to be a generic voltage sensor. Unit is volts.", 
+            "value": 0
+        }, 
+        {
+            "def": "SENSOR_TYPE_1114", 
+            "desc": "1114 - Temperature Sensor", 
+            "value": 11140
+        }, 
+        {
+            "def": "SENSOR_TYPE_1117", 
+            "desc": "1117 - Voltage Sensor", 
+            "value": 11170
+        }, 
+        {
+            "def": "SENSOR_TYPE_1123", 
+            "desc": "1123 - Precision Voltage Sensor", 
+            "value": 11230
+        }, 
+        {
+            "def": "SENSOR_TYPE_1127", 
+            "desc": "1127 - Precision Light Sensor", 
+            "value": 11270
+        }, 
+        {
+            "def": "SENSOR_TYPE_1130_PH", 
+            "desc": "1130 - pH Adapter", 
+            "value": 11301
+        }, 
+        {
+            "def": "SENSOR_TYPE_1130_ORP", 
+            "desc": "1130 - ORP Adapter", 
+            "value": 11302
+        }, 
+        {
+            "def": "SENSOR_TYPE_1132", 
+            "desc": "1132 - 4-20mA Adapter", 
+            "value": 11320
+        }, 
+        {
+            "def": "SENSOR_TYPE_1133", 
+            "desc": "1133 - Sound Sensor", 
+            "value": 11330
+        }, 
+        {
+            "def": "SENSOR_TYPE_1135", 
+            "desc": "1135 - Precision Voltage Sensor", 
+            "value": 11350
+        }, 
+        {
+            "def": "SENSOR_TYPE_1142", 
+            "desc": "1142 - Light Sensor 1000 lux", 
+            "value": 11420
+        }, 
+        {
+            "def": "SENSOR_TYPE_1143", 
+            "desc": "1143 - Light Sensor 70000 lux", 
+            "value": 11430
+        }, 
+        {
+            "def": "SENSOR_TYPE_3500", 
+            "desc": "3500 - AC Current Sensor 10Amp", 
+            "value": 35000
+        }, 
+        {
+            "def": "SENSOR_TYPE_3501", 
+            "desc": "3501 - AC Current Sensor 25Amp", 
+            "value": 35010
+        }, 
+        {
+            "def": "SENSOR_TYPE_3502", 
+            "desc": "3502 - AC Current Sensor 50Amp", 
+            "value": 35020
+        }, 
+        {
+            "def": "SENSOR_TYPE_3503", 
+            "desc": "3503 - AC Current Sensor 100Amp", 
+            "value": 35030
+        }, 
+        {
+            "def": "SENSOR_TYPE_3507", 
+            "desc": "3507 - AC Voltage Sensor 0-250V (50Hz)", 
+            "value": 35070
+        }, 
+        {
+            "def": "SENSOR_TYPE_3508", 
+            "desc": "3508 - AC Voltage Sensor 0-250V (60Hz)", 
+            "value": 35080
+        }, 
+        {
+            "def": "SENSOR_TYPE_3509", 
+            "desc": "3509 - DC Voltage Sensor 0-200V", 
+            "value": 35090
+        }, 
+        {
+            "def": "SENSOR_TYPE_3510", 
+            "desc": "3510 - DC Voltage Sensor 0-75V", 
+            "value": 35100
+        }, 
+        {
+            "def": "SENSOR_TYPE_3511", 
+            "desc": "3511 - DC Current Sensor 0-10mA", 
+            "value": 35110
+        }, 
+        {
+            "def": "SENSOR_TYPE_3512", 
+            "desc": "3512 - DC Current Sensor 0-100mA", 
+            "value": 35120
+        }, 
+        {
+            "def": "SENSOR_TYPE_3513", 
+            "desc": "3513 - DC Current Sensor 0-1A", 
+            "value": 35130
+        }, 
+        {
+            "def": "SENSOR_TYPE_3514", 
+            "desc": "3514 - AC Active Power Sensor 0-250V*0-30A (50Hz)", 
+            "value": 35140
+        }, 
+        {
+            "def": "SENSOR_TYPE_3515", 
+            "desc": "3515 - AC Active Power Sensor 0-250V*0-30A (60Hz)", 
+            "value": 35150
+        }, 
+        {
+            "def": "SENSOR_TYPE_3516", 
+            "desc": "3516 - AC Active Power Sensor 0-250V*0-5A (50Hz)", 
+            "value": 35160
+        }, 
+        {
+            "def": "SENSOR_TYPE_3517", 
+            "desc": "3517 - AC Active Power Sensor 0-250V*0-5A (60Hz)", 
+            "value": 35170
+        }, 
+        {
+            "def": "SENSOR_TYPE_3518", 
+            "desc": "3518 - AC Active Power Sensor 0-110V*0-5A (60Hz)", 
+            "value": 35180
+        }, 
+        {
+            "def": "SENSOR_TYPE_3519", 
+            "desc": "3519 - AC Active Power Sensor 0-110V*0-15A (60Hz)", 
+            "value": 35190
+        }, 
+        {
+            "def": "SENSOR_TYPE_3584", 
+            "desc": "3584 - 0-50A DC Current Transducer", 
+            "value": 35840
+        }, 
+        {
+            "def": "SENSOR_TYPE_3585", 
+            "desc": "3585 - 0-100A DC Current Transducer", 
+            "value": 35850
+        }, 
+        {
+            "def": "SENSOR_TYPE_3586", 
+            "desc": "3586 - 0-250A DC Current Transducer", 
+            "value": 35860
+        }, 
+        {
+            "def": "SENSOR_TYPE_3587", 
+            "desc": "3587 - +-50A DC Current Transducer", 
+            "value": 35870
+        }, 
+        {
+            "def": "SENSOR_TYPE_3588", 
+            "desc": "3588 - +-100A DC Current Transducer", 
+            "value": 35880
+        }, 
+        {
+            "def": "SENSOR_TYPE_3589", 
+            "desc": "3589 - +-250A DC Current Transducer", 
+            "value": 35890
+        }
+    ]
+}

@@ -4,6 +4,7 @@
 import indigo
 import logging
 import traceback
+import json
 
 from phidget import NetInfo, ChannelInfo
 from phidget import PhidgetManager
@@ -19,12 +20,13 @@ class Plugin(indigo.PluginBase):
         self.indigo_log_handler.setLevel(logging.DEBUG)   # Logging level for Indigo Event Log
 
         self.activePhidgets = {}
-        self.phidgetManager = PhidgetManager()
+        self.phidgetManager = PhidgetManager(phidgetInfoFile='../Resources/phidgets.json')
 
     def __del__(self):
         indigo.PluginBase.__del__(self)
 
     def startup(self):
+        # Setup logging in the phidgets library
         if self.pluginPrefs.get('phidgetApiLogging', False):
             self.phidgetApiLogLevel = int(self.pluginPrefs['phidgetApiLogLevel'])
             phidget_util.setApiLogLevel(self.phidgetApiLogLevel, "/tmp/phidgets.log")      
@@ -37,6 +39,9 @@ class Plugin(indigo.PluginBase):
     def validateDeviceConfigUi(self, valuesDict, typeId, devId):
         # TODO: Verify integer fields
         return True
+
+    def getSensorMenu(self, filter="", valuesDict=None, typeId="", targetId=0):
+        return self.phidgetManager.getDeviceSensorMenu(typeId)
 
     def getDeviceStateList(self, dev):
         # TODO: Figure out how to do dynamic states for sub-types (e.g. specific sensor types)
@@ -84,4 +89,3 @@ class Plugin(indigo.PluginBase):
     def shutdown(self):
         # TODO: Close Phidget connections
         pass
-

@@ -9,6 +9,10 @@
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
+			￼<Field id="sensorType" type="menu">
+				<Label>Sensor type:</Label>
+				<List class="self" filter="self.devTypeId" method="getSensorMenu"/>
+			</Field>
 		</ConfigUI>
 	</Device>	
 </Devices>
