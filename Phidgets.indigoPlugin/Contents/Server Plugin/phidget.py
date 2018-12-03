@@ -4,11 +4,14 @@ import indigo
 import logging
 import json
 
-from Phidget22.Devices.VoltageInput import VoltageInput, VoltageSensorType
+from Phidget22.Devices.VoltageInput import VoltageInput
+from Phidget22.Devices.VoltageRatioInput import VoltageRatioInput
 from Phidget22.PhidgetException import PhidgetException
 from Phidget22.Net import Net, PhidgetServerType
 from Phidget22.DeviceClass import DeviceClass
 from Phidget22.ChannelSubclass import ChannelSubclass
+
+import phidget_util
 
 class NetInfo():
     def __init__(self, isRemote=None, serverDiscovery=None, hostname=None, port=None, password=None):
@@ -31,17 +34,14 @@ class PhidgetBase(object):
     """Base class for phidget devices living in Indigo."""
     INDIGO_DEVICE_TYPE = None
     PHIDGET_SENSOR_KEY = None
+    PHIDGET_DATA_INTERVAL = 1000     # ms
 
     def __init__(self, phidget, channelInfo=ChannelInfo(), indigoDevice=None, logger=None):
         self.phidget = phidget      # PhidgetAPI object for this phidget
         self.phidget.parent = self  # Reference back to this object from the PhidgetAPI
         self.logger = logger
-        self.value = None
         self.channelInfo = channelInfo
         self.indigoDevice = indigoDevice
-
-    def getValue(self):
-        return self.value
 
     def start(self):
         self.phidget.setDeviceSerialNumber(self.channelInfo.serialNumber)
@@ -60,11 +60,19 @@ class PhidgetBase(object):
         self.phidget.open()
 
     def addPhidgetHandlers(self):
-        # Must be implemented by subclasses
-        pass
+        raise Exception("addPhidgetHandlers() must be handled by subclass")
 
     def stop(self):
         self.phidget.close()
+
+    def getDeviceSensorOption(self):
+        """Query indigo device to get sensor value (if applicable)"""
+        sensorOption = int(self.indigoDevice.pluginProps.get("channel", "option0").replace('option',''))
+        return sensorOption
+
+    def onErrorHandler(self, ph, errorCode, errorString):
+        # TODO: Set the device to an error state?
+        ph.parent.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ")\n")
 
     @classmethod
     def getDeviceDisplayStateId(cls, deviceTypeId):
@@ -83,64 +91,106 @@ class PhidgetBase(object):
     
 class VoltageInputPhidget(PhidgetBase):
     INDIGO_DEVICE_TYPE="voltageInput"           # deviceId used by Indigo
-    PHIDGET_SENSOR_KEY="VoltageSensorType"      # Key used in phdigets.json; derived from the python filename
-    VOLTAGEINPUT_DATA_INTERVAL=1000
-    VOLTAGEINPUT_VOLTAGE_CHANGE_TRIGGER=5.0
+    PHIDGET_SENSOR_KEY="VoltageSensorType"      # Key used in phdigets.json; derived from the Phidget22 filename
 
     def __init__(self, *args, **kwargs):
         super(VoltageInputPhidget, self).__init__(phidget=VoltageInput(), *args, **kwargs)
 
     def addPhidgetHandlers(self):
+        self.phidget.setOnErrorHandler(self.onErrorHandler)
         self.phidget.setOnAttachHandler(self.onAttachHandler)
         self.phidget.setOnVoltageChangeHandler(self.onVoltageChangeHandler)
+        self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
 
     def onVoltageChangeHandler(self, ph, voltage):
-        device = ph.parent.indigoDevice.updateStateOnServer("voltage", value=voltage)
+        ph.parent.indigoDevice.updateStateOnServer("voltage", value=voltage)
+
+    def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
+        ph.parent.indigoDevice.updateStateOnServer("sensor", value=voltage)
 
     def onAttachHandler(self, ph):
         try:
-            channelClassName = ph.getChannelClassName()
-            serialNumber = ph.getDeviceSerialNumber()
-            channel = ph.getChannel()
-            deviceClass = ph.getDeviceClass()
-
-            if(deviceClass == DeviceClass.PHIDCLASS_VINT):
-                hubPort = ph.getHubPort()
-                ph.parent.logger.debug("Attach event: (\n\t-> Channel Class: " + channelClassName + "\n\t-> Serial Number: " +
-                    str(serialNumber) + "\n\t-> Hub Port: " + str(hubPort) + "\n\t-> Channel:  " + str(channel) + "\n")
-            else:
-                ph.parent.logger.debug("Attach event: \n\t-> Channel Class: " + channelClassName + "\n\t-> Serial Number: " +
-                    str(serialNumber) + "\n\t-> Channel:  " + str(channel) + "\n")
-
-            ph.parent.logger.debug("%f %f %f %f" % (ph.getMinDataInterval(), ph.getMaxDataInterval(),
-                ph.getMinVoltageChangeTrigger(), ph.getMaxVoltageChangeTrigger()))
-            ph.setDataInterval(VOLTAGEINPUT_DATA_INTERVAL)
-            ph.setVoltageChangeTrigger(VOLTAGEINPUT_VOLTAGE_CHANGE_TRIGGER)
-
-            if(ph.getChannelSubclass() == ChannelSubclass.PHIDCHSUBCLASS_VOLTAGEINPUT_SENSOR_PORT):
-                ph.setSensorType(VoltageSensorType.SENSOR_TYPE_VOLTAGE)
+            phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
+            ph.setDataInterval(PHIDGET_DATA_INTERVAL)
+            ph.setSensorType(self.getDeviceSensorOption())
         except PhidgetException as e:
-            sys.stderr.write("%d: %s\n" % (e.code, e.details))
-            traceback.print_exc()
+            self.logger.error("%d: %s\n" % (e.code, e.details))
+            self.logger.error(traceback.format_exc())
+        except Exception as e:
+            self.logger.error(traceback.format_exc())
 
     @classmethod
     def getDeviceStateList(cls, deviceTypeId):
         newStatesList = indigo.List()
-        newState = indigo.Dict()
-        newState[u"Disabled"] = False
-        newState[u"Type"] = indigo.kTriggerKeyType.Number
-        newState[u"Key"] = "voltage"
-        newState[u"StateLabel"] = "Voltage"
-        newState[u"TriggerLabel"] = "Voltage"
-        newStatesList.append(newState)
+        for stateName in ["sensor", "voltage"]:
+            newState = indigo.Dict()
+            newState[u"Disabled"] = False
+            newState[u"Type"] = indigo.kTriggerKeyType.Number
+            newState[u"Key"] = stateName
+            newState[u"StateLabel"] = stateName
+            newState[u"TriggerLabel"] = stateName
+            newStatesList.append(newState)
         return newStatesList
     
     @classmethod
     def getDeviceDisplayStateId(cls, deviceTypeId):
         return "voltage"
 
+    
+class VoltageRatioInputPhidget(PhidgetBase):
+    INDIGO_DEVICE_TYPE="voltageRatioInput"           # deviceId used by Indigo
+    PHIDGET_SENSOR_KEY="VoltageRatioSensorType"      # Key used in phdigets.json; derived from the Phidget22 filename
+
+    #
+    # TODO: Support bridge gain amplification.
+    #
+
+    def __init__(self, *args, **kwargs):
+        super(VoltageRatioInputPhidget, self).__init__(phidget=VoltageRatioInput(), *args, **kwargs)
+
+    def addPhidgetHandlers(self):
+        self.phidget.setOnErrorHandler(self.onErrorHandler)
+        self.phidget.setOnAttachHandler(self.onAttachHandler)
+        self.phidget.setOnVoltageRatioChangeHandler(self.onVoltageRatioChangeHandler)
+        self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
+
+    def onVoltageRatioChangeHandler(self, ph, voltage):
+        ph.parent.indigoDevice.updateStateOnServer("voltageRatio", value=voltage)
+
+    def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
+        ph.parent.indigoDevice.updateStateOnServer("sensor", value=voltage)
+
+    def onAttachHandler(self, ph):
+        try:
+            phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
+            ph.setDataInterval(PHIDGET_DATA_INTERVAL)
+            ph.setSensorType(self.getDeviceSensorOption())
+        except PhidgetException as e:
+            self.logger.error("%d: %s\n" % (e.code, e.details))
+            self.logger.error(traceback.format_exc())
+        except Exception as e:
+            self.logger.error(traceback.format_exc())
+
+    @classmethod
+    def getDeviceStateList(cls, deviceTypeId):
+        newStatesList = indigo.List()
+        for stateName in ["sensor", "voltageRatio"]:
+            newState = indigo.Dict()
+            newState[u"Disabled"] = False
+            newState[u"Type"] = indigo.kTriggerKeyType.Number
+            newState[u"Key"] = stateName
+            newState[u"StateLabel"] = stateName
+            newState[u"TriggerLabel"] = stateName
+            newStatesList.append(newState)
+        return newStatesList
+    
+    @classmethod
+    def getDeviceDisplayStateId(cls, deviceTypeId):
+        return "voltageRatio"
+
+
 class PhidgetManager(object):
-    PHIDGET_CLASSES = [VoltageInputPhidget]
+    PHIDGET_CLASSES = [VoltageInputPhidget, VoltageRatioInputPhidget]
 
     def __init__(self, phidgetInfoFile=None):
         if phidgetInfoFile:
@@ -154,8 +204,7 @@ class PhidgetManager(object):
         for phidgetClass in PhidgetManager.PHIDGET_CLASSES:
             if phidgetClass.INDIGO_DEVICE_TYPE == deviceTypeId:
                 return phidgetClass
-            else:
-                return None
+        return None
 
     def getDeviceDisplayStateId(self, deviceTypeId):
         return self.getClassByTypeId(deviceTypeId).getDeviceDisplayStateId(deviceTypeId)

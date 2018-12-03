@@ -8,7 +8,7 @@ import json
 
 from phidget import NetInfo, ChannelInfo
 from phidget import PhidgetManager
-from phidget import VoltageInputPhidget
+from phidget import VoltageInputPhidget, VoltageRatioInputPhidget
 from Phidget22.PhidgetException import PhidgetException
 import phidget_util
 
@@ -46,7 +46,6 @@ class Plugin(indigo.PluginBase):
     def getDeviceStateList(self, dev):
         # TODO: Figure out how to do dynamic states for sub-types (e.g. specific sensor types)
         newStatesList = self.phidgetManager.getDeviceStateList(dev.deviceTypeId)
-        self.logger.debug(newStatesList)
         return newStatesList
 
     def getDeviceDisplayStateId(self, dev):
@@ -54,24 +53,29 @@ class Plugin(indigo.PluginBase):
         return self.phidgetManager.getDeviceDisplayStateId(dev.deviceTypeId)
 
     def deviceStartComm(self, device):
-        # TODO: Generalize to any phidget type
-        # TODO: Add support for local & defined servers
-        if device.deviceTypeId == VoltageInputPhidget.INDIGO_DEVICE_TYPE:
+        # TODO: Can we fully generalize for any phidget type?
+        if device.deviceTypeId in [VoltageInputPhidget.INDIGO_DEVICE_TYPE, VoltageRatioInputPhidget.INDIGO_DEVICE_TYPE]:
             serialNumber = int(device.pluginProps.get("serialNumber", -1))
             channel = int(device.pluginProps.get("channel", -1))
 
             # TODO: These should be a global setting
             networkPhidgets = self.pluginPrefs.get("networkPhidgets", False)
             enableServerDiscovery = self.pluginPrefs.get("enableServerDiscovery", False)
-
             channelInfo = ChannelInfo(
                 serialNumber=serialNumber,
                 channel=channel,
-                netInfo=NetInfo(isRemote=networkPhidgets, serverDiscovery=enableServerDiscovery)
+                netInfo=NetInfo(isRemote=networkPhidgets,
+                serverDiscovery=enableServerDiscovery)
             )
 
             try:
-                newPhidget = VoltageInputPhidget(channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
+                # TODO: This should be generalized
+                if device.deviceTypeId == VoltageInputPhidget.INDIGO_DEVICE_TYPE:
+                    newPhidget = VoltageInputPhidget(channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
+                elif device.deviceTypeId == VoltageRatioInputPhidget.INDIGO_DEVICE_TYPE:
+                    newPhidget = VoltageRatioInputPhidget(channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
+                else:
+                    raise Exception("Unexpected device type: %s" % device.deviceTypeId)
                 self.activePhidgets[device.id] = newPhidget
                 newPhidget.start()
             except PhidgetException as e:

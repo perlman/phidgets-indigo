@@ -14,5 +14,20 @@
 				<List class="self" filter="self.devTypeId" method="getSensorMenu"/>
 			</Field>
 		</ConfigUI>
-	</Device>	
+	</Device>
+	<Device id="voltageRatioInput" type="custom">
+		<Name>VoltageRatioInput</Name>
+		<ConfigUI>
+			<Field id="serialNumber" type="textfield">
+					<Label>Serial number:</Label>
+			</Field>
+			<Field id="channel" type="textfield">
+					<Label>Channel:</Label>
+			</Field>
+			￼<Field id="sensorType" type="menu">
+				<Label>Sensor type:</Label>
+				<List class="self" filter="self.devTypeId" method="getSensorMenu"/>
+			</Field>
+		</ConfigUI>
+	</Device>		
 </Devices>
