@@ -178,6 +178,19 @@ class Phidget:
 
 		return _LibraryVersion.value.decode('utf-8')
 
+	@staticmethod
+	def resetLibrary():
+		try:
+			__func = PhidgetSupport.getDll().Phidget_resetLibrary
+			__func.restype = ctypes.c_int32
+			result = __func()
+		except RuntimeError:
+			raise
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
 	def getAttached(self):
 		_Attached = ctypes.c_int()
 

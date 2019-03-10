@@ -2,11 +2,11 @@
 import sys
 import ctypes
 class ErrorEventCode:
-	# Client and Server protocol versions don't match.
+	# Client and Server protocol versions don't match. Ensure that both sides are using the same release of phidget22.
 	EEPHIDGET_BADVERSION = 1
-	# Phidget is in use.
+	# Phidget in Use
 	EEPHIDGET_BUSY = 2
-	# Networking communication error.
+	# Network Error
 	EEPHIDGET_NETWORK = 3
 	# An error occured dispatching a command or event.
 	EEPHIDGET_DISPATCH = 4
@@ -18,7 +18,7 @@ class ErrorEventCode:
 	EEPHIDGET_OVERRUN = 4098
 	# One or more packets were lost.
 	EEPHIDGET_PACKETLOST = 4099
-	# A variable has wrapped around.
+	# Variable has wrapped around.
 	EEPHIDGET_WRAP = 4100
 	# Over-temperature condition detected.
 	EEPHIDGET_OVERTEMP = 4101
@@ -32,7 +32,7 @@ class ErrorEventCode:
 	EEPHIDGET_SATURATION = 4105
 	# Over-voltage condition detected.
 	EEPHIDGET_OVERVOLTAGE = 4107
-	# Fail-safe condition detected.
+	# Failsafe condition detected.
 	EEPHIDGET_FAILSAFE = 4108
 	# Voltage error detected.
 	EEPHIDGET_VOLTAGEERROR = 4109

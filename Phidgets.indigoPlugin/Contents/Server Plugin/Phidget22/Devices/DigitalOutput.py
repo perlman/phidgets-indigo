@@ -111,6 +111,50 @@ class DigitalOutput(Phidget):
 			raise PhidgetException(result)
 
 
+	def enableFailsafe(self, failsafeTime):
+		_failsafeTime = ctypes.c_uint32(failsafeTime)
+
+		try:
+			__func = PhidgetSupport.getDll().PhidgetDigitalOutput_enableFailsafe
+			__func.restype = ctypes.c_int32
+			result = __func(self.handle, _failsafeTime)
+		except RuntimeError:
+			raise
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinFailsafeTime(self):
+		_MinFailsafeTime = ctypes.c_uint32()
+
+		try:
+			__func = PhidgetSupport.getDll().PhidgetDigitalOutput_getMinFailsafeTime
+			__func.restype = ctypes.c_int32
+			result = __func(self.handle, ctypes.byref(_MinFailsafeTime))
+		except RuntimeError:
+			raise
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinFailsafeTime.value
+
+	def getMaxFailsafeTime(self):
+		_MaxFailsafeTime = ctypes.c_uint32()
+
+		try:
+			__func = PhidgetSupport.getDll().PhidgetDigitalOutput_getMaxFailsafeTime
+			__func.restype = ctypes.c_int32
+			result = __func(self.handle, ctypes.byref(_MaxFailsafeTime))
+		except RuntimeError:
+			raise
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxFailsafeTime.value
+
 	def getLEDCurrentLimit(self):
 		_LEDCurrentLimit = ctypes.c_double()
 
@@ -211,6 +255,18 @@ class DigitalOutput(Phidget):
 			__func = PhidgetSupport.getDll().PhidgetDigitalOutput_setLEDForwardVoltage
 			__func.restype = ctypes.c_int32
 			result = __func(self.handle, _LEDForwardVoltage)
+		except RuntimeError:
+			raise
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def resetFailsafe(self):
+		try:
+			__func = PhidgetSupport.getDll().PhidgetDigitalOutput_resetFailsafe
+			__func.restype = ctypes.c_int32
+			result = __func(self.handle)
 		except RuntimeError:
 			raise
 

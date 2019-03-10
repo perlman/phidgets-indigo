@@ -130,7 +130,7 @@ class DeviceID:
 	PHIDID_HIN1001 = 62
 	# Joystick
 	PHIDID_HIN1100 = 63
-	# Phidget Hub with 6 ports
+	# Phidget USB VINT Hub with 6 ports
 	PHIDID_HUB0000 = 64
 	# Phidget Mesh Hub with 4 ports
 	PHIDID_HUB0001 = 65
@@ -138,7 +138,7 @@ class DeviceID:
 	PHIDID_HUB0002 = 66
 	# Phidget SPI VINT Hub with 6 ports
 	PHIDID_HUB0004 = 67
-	# Phidget Lightning Hub with 6 ports
+	# Phidget Lightning VINT Hub with 6 ports
 	PHIDID_HUB0005 = 68
 	# Humidity Sensor
 	PHIDID_HUM1000 = 69
@@ -234,10 +234,14 @@ class DeviceID:
 	PHIDID_STC1003 = 119
 	# 2 Channel DC Motor Controller
 	PHIDID_DCC1003 = 120
-	# 2m distance sensor
-	PHIDID_DST2m = 121
+	# 650mm distance sensor
+	PHIDID_DST1001 = 121
 	# 4-20mA Output
 	PHIDID_CURLOOP = 122
+	# Phidget Network Hub with 6 ports
+	PHIDID_HUB5000 = 123
+	# PhidgetAdvancedServo 8-Motor (RCC0004)
+	PHIDID_RCC0004 = 124
 
 	@classmethod
 	def getName(self, val):
@@ -473,8 +477,12 @@ class DeviceID:
 			return "PHIDID_STC1003"
 		if val == self.PHIDID_DCC1003:
 			return "PHIDID_DCC1003"
-		if val == self.PHIDID_DST2m:
-			return "PHIDID_DST2m"
+		if val == self.PHIDID_DST1001:
+			return "PHIDID_DST1001"
 		if val == self.PHIDID_CURLOOP:
 			return "PHIDID_CURLOOP"
+		if val == self.PHIDID_HUB5000:
+			return "PHIDID_HUB5000"
+		if val == self.PHIDID_RCC0004:
+			return "PHIDID_RCC0004"
 		return "<invalid enumeration value>"

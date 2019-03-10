@@ -8,7 +8,7 @@ class ErrorCode:
 	EPHIDGET_PERM = 1
 	# No Such Entity
 	EPHIDGET_NOENT = 2
-	# Timed Out. This can happen for a number of common reasons. Check that the Phidget you are trying to open is plugged in, and that the addressing parameters have been specified correctly. Check that the Phidget is not already open in another program, such as the Phidget Control Panel, or another program you are developing. If you are using remote Phidgets, ensure that your computer can access the remote Phidgets using the Phidget Control Panel. If you are using remote Phidgets, ensure you have enabled Server Discovery or added the server corresponding to the Phidget you are trying to open. If you are using Network Server Discovery, try extending the timeout to allow more time for the server to be discovered.
+	# Timed Out. This can happen for a number of common reasons:Check that the Phidget you are trying to open is plugged in, and that the addressing parameters have been specified correctly.Check that the Phidget is not already open in another program, such as the Phidget Control Panel, or another program you are developing.If your Phidget has a plug or terminal block for external power, ensure it is plugged in and powered.If you are using remote Phidgets, ensure that your computer can access the remote Phidgets using the Phidget Control Panel.If you are using remote Phidgets, ensure you have enabled Server Discovery or added the server corresponding to the Phidget you are trying to open.If you are using Network Server Discovery, try extending the timeout to allow more time for the server to be discovered.
 	EPHIDGET_TIMEOUT = 3
 	# Keep Alive Failure
 	EPHIDGET_KEEPALIVE = 58
@@ -22,7 +22,7 @@ class ErrorCode:
 	EPHIDGET_ACCESS = 7
 	# Address Issue
 	EPHIDGET_FAULT = 8
-	# Resource Busy
+	# Resource Busy. This means the Phidget you are trying to open is already open elsewhere.Check that the Phidget is not already open in another program, such as the Phidget Control Panel, or another program you are developing.Check that the addressing parameters have been specified correctly.
 	EPHIDGET_BUSY = 9
 	# Object Exists
 	EPHIDGET_EXIST = 10
@@ -50,7 +50,7 @@ class ErrorCode:
 	EPHIDGET_INVALIDARG = 21
 	# Try again
 	EPHIDGET_AGAIN = 22
-	# No Empty
+	# Not Empty
 	EPHIDGET_NOTEMPTY = 26
 	# Unexpected Error
 	EPHIDGET_UNEXPECTED = 28
@@ -90,6 +90,8 @@ class ErrorCode:
 	EPHIDGET_NOTCONFIGURED = 57
 	# End of File
 	EPHIDGET_EOF = 31
+	# Failsafe Triggered on this channel. Close and Re-open the channel to resume operation.
+	EPHIDGET_FAILSAFE = 59
 
 	@classmethod
 	def getName(self, val):
@@ -181,4 +183,6 @@ class ErrorCode:
 			return "EPHIDGET_NOTCONFIGURED"
 		if val == self.EPHIDGET_EOF:
 			return "EPHIDGET_EOF"
+		if val == self.EPHIDGET_FAILSAFE:
+			return "EPHIDGET_FAILSAFE"
 		return "<invalid enumeration value>"
