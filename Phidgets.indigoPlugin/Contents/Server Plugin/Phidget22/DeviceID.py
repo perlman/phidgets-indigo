@@ -242,6 +242,12 @@ class DeviceID:
 	PHIDID_HUB5000 = 123
 	# PhidgetAdvancedServo 8-Motor (RCC0004)
 	PHIDID_RCC0004 = 124
+	# Unknown device
+	PHIDID_UNKNOWN = 125
+	# 1200mm distance sensor
+	PHIDID_DST1002 = 126
+	# Humidity Sensor
+	PHIDID_HUM1001 = 127
 
 	@classmethod
 	def getName(self, val):
@@ -485,4 +491,10 @@ class DeviceID:
 			return "PHIDID_HUB5000"
 		if val == self.PHIDID_RCC0004:
 			return "PHIDID_RCC0004"
+		if val == self.PHIDID_UNKNOWN:
+			return "PHIDID_UNKNOWN"
+		if val == self.PHIDID_DST1002:
+			return "PHIDID_DST1002"
+		if val == self.PHIDID_HUM1001:
+			return "PHIDID_HUM1001"
 		return "<invalid enumeration value>"

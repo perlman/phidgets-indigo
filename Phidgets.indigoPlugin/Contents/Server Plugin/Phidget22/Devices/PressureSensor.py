@@ -20,12 +20,9 @@ class PressureSensor(Phidget):
 		self._PressureChange = None
 		self._onPressureChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -57,12 +54,9 @@ class PressureSensor(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -72,12 +66,9 @@ class PressureSensor(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -86,12 +77,9 @@ class PressureSensor(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -101,12 +89,9 @@ class PressureSensor(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -116,12 +101,9 @@ class PressureSensor(Phidget):
 	def getPressure(self):
 		_Pressure = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_getPressure
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Pressure))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_getPressure
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Pressure))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -131,12 +113,9 @@ class PressureSensor(Phidget):
 	def getMinPressure(self):
 		_MinPressure = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMinPressure
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinPressure))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMinPressure
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinPressure))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -146,12 +125,9 @@ class PressureSensor(Phidget):
 	def getMaxPressure(self):
 		_MaxPressure = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMaxPressure
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxPressure))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMaxPressure
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxPressure))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -161,12 +137,9 @@ class PressureSensor(Phidget):
 	def getPressureChangeTrigger(self):
 		_PressureChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_getPressureChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_PressureChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_getPressureChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_PressureChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -176,12 +149,9 @@ class PressureSensor(Phidget):
 	def setPressureChangeTrigger(self, PressureChangeTrigger):
 		_PressureChangeTrigger = ctypes.c_double(PressureChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_setPressureChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _PressureChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_setPressureChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _PressureChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -190,12 +160,9 @@ class PressureSensor(Phidget):
 	def getMinPressureChangeTrigger(self):
 		_MinPressureChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMinPressureChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinPressureChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMinPressureChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinPressureChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -205,12 +172,9 @@ class PressureSensor(Phidget):
 	def getMaxPressureChangeTrigger(self):
 		_MaxPressureChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMaxPressureChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxPressureChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPressureSensor_getMaxPressureChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxPressureChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)

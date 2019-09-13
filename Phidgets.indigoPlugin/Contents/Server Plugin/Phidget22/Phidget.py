@@ -51,12 +51,9 @@ class Phidget:
 		return self.handle.value
 
 	def __del__(self):
-		try:
-			__func = PhidgetSupport.getDll().Phidget_delete
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_delete
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 		self.handle = None
 		if res > 0:
 			raise PhidgetException(res)
@@ -151,12 +148,9 @@ class Phidget:
 	def finalize(flags):
 		_flags = ctypes.c_int32(flags)
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_finalize
-			__func.restype = ctypes.c_int32
-			result = __func(_flags)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_finalize
+		__func.restype = ctypes.c_int32
+		result = __func(_flags)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -166,12 +160,9 @@ class Phidget:
 	def getLibraryVersion():
 		_LibraryVersion = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getLibraryVersion
-			__func.restype = ctypes.c_int32
-			result = __func(ctypes.byref(_LibraryVersion))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getLibraryVersion
+		__func.restype = ctypes.c_int32
+		result = __func(ctypes.byref(_LibraryVersion))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -180,12 +171,9 @@ class Phidget:
 
 	@staticmethod
 	def resetLibrary():
-		try:
-			__func = PhidgetSupport.getDll().Phidget_resetLibrary
-			__func.restype = ctypes.c_int32
-			result = __func()
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_resetLibrary
+		__func.restype = ctypes.c_int32
+		result = __func()
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -194,12 +182,9 @@ class Phidget:
 	def getAttached(self):
 		_Attached = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getAttached
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Attached))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getAttached
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Attached))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -209,12 +194,9 @@ class Phidget:
 	def getChannel(self):
 		_Channel = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getChannel
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Channel))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getChannel
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Channel))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -224,12 +206,9 @@ class Phidget:
 	def setChannel(self, Channel):
 		_Channel = ctypes.c_int(Channel)
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_setChannel
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Channel)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_setChannel
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Channel)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -238,12 +217,9 @@ class Phidget:
 	def getChannelClass(self):
 		_ChannelClass = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getChannelClass
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ChannelClass))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getChannelClass
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ChannelClass))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -253,12 +229,9 @@ class Phidget:
 	def getChannelClassName(self):
 		_ChannelClassName = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getChannelClassName
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ChannelClassName))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getChannelClassName
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ChannelClassName))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -268,12 +241,9 @@ class Phidget:
 	def getChannelName(self):
 		_ChannelName = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getChannelName
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ChannelName))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getChannelName
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ChannelName))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -283,12 +253,9 @@ class Phidget:
 	def getChannelSubclass(self):
 		_ChannelSubclass = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getChannelSubclass
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ChannelSubclass))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getChannelSubclass
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ChannelSubclass))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -296,12 +263,9 @@ class Phidget:
 		return _ChannelSubclass.value
 
 	def close(self):
-		try:
-			__func = PhidgetSupport.getDll().Phidget_close
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_close
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -311,12 +275,9 @@ class Phidget:
 		_cls = ctypes.c_int(cls)
 		_count = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getDeviceChannelCount
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _cls, ctypes.byref(_count))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getDeviceChannelCount
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _cls, ctypes.byref(_count))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -326,12 +287,9 @@ class Phidget:
 	def getDeviceClass(self):
 		_DeviceClass = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getDeviceClass
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DeviceClass))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getDeviceClass
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DeviceClass))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -341,12 +299,9 @@ class Phidget:
 	def getDeviceClassName(self):
 		_DeviceClassName = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getDeviceClassName
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DeviceClassName))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getDeviceClassName
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DeviceClassName))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -356,12 +311,9 @@ class Phidget:
 	def getDeviceID(self):
 		_DeviceID = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getDeviceID
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DeviceID))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getDeviceID
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DeviceID))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -371,12 +323,9 @@ class Phidget:
 	def getDeviceLabel(self):
 		_DeviceLabel = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getDeviceLabel
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DeviceLabel))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getDeviceLabel
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DeviceLabel))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -386,12 +335,9 @@ class Phidget:
 	def setDeviceLabel(self, DeviceLabel):
 		_DeviceLabel = ctypes.create_string_buffer(DeviceLabel.encode('utf-8'))
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_setDeviceLabel
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DeviceLabel))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_setDeviceLabel
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DeviceLabel))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -400,12 +346,9 @@ class Phidget:
 	def getDeviceName(self):
 		_DeviceName = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getDeviceName
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DeviceName))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getDeviceName
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DeviceName))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -415,12 +358,9 @@ class Phidget:
 	def getDeviceSerialNumber(self):
 		_DeviceSerialNumber = ctypes.c_int32()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getDeviceSerialNumber
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DeviceSerialNumber))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getDeviceSerialNumber
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DeviceSerialNumber))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -430,12 +370,9 @@ class Phidget:
 	def setDeviceSerialNumber(self, DeviceSerialNumber):
 		_DeviceSerialNumber = ctypes.c_int32(DeviceSerialNumber)
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_setDeviceSerialNumber
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DeviceSerialNumber)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_setDeviceSerialNumber
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DeviceSerialNumber)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -444,12 +381,9 @@ class Phidget:
 	def getDeviceSKU(self):
 		_DeviceSKU = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getDeviceSKU
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DeviceSKU))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getDeviceSKU
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DeviceSKU))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -459,12 +393,9 @@ class Phidget:
 	def getDeviceVersion(self):
 		_DeviceVersion = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getDeviceVersion
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DeviceVersion))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getDeviceVersion
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DeviceVersion))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -474,12 +405,9 @@ class Phidget:
 	def getHub(self):
 		_Hub = ctypes.c_void_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getHub
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Hub))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getHub
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Hub))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -491,12 +419,9 @@ class Phidget:
 	def getHubPort(self):
 		_HubPort = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getHubPort
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_HubPort))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getHubPort
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_HubPort))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -506,12 +431,9 @@ class Phidget:
 	def setHubPort(self, HubPort):
 		_HubPort = ctypes.c_int(HubPort)
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_setHubPort
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _HubPort)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_setHubPort
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _HubPort)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -520,12 +442,9 @@ class Phidget:
 	def getHubPortCount(self):
 		_HubPortCount = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getHubPortCount
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_HubPortCount))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getHubPortCount
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_HubPortCount))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -535,12 +454,9 @@ class Phidget:
 	def getIsChannel(self):
 		_IsChannel = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getIsChannel
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_IsChannel))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getIsChannel
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IsChannel))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -550,12 +466,9 @@ class Phidget:
 	def getIsHubPortDevice(self):
 		_IsHubPortDevice = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getIsHubPortDevice
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_IsHubPortDevice))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getIsHubPortDevice
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IsHubPortDevice))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -565,12 +478,9 @@ class Phidget:
 	def setIsHubPortDevice(self, IsHubPortDevice):
 		_IsHubPortDevice = ctypes.c_int(IsHubPortDevice)
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_setIsHubPortDevice
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _IsHubPortDevice)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_setIsHubPortDevice
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _IsHubPortDevice)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -579,12 +489,9 @@ class Phidget:
 	def getIsLocal(self):
 		_IsLocal = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getIsLocal
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_IsLocal))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getIsLocal
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IsLocal))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -594,12 +501,9 @@ class Phidget:
 	def setIsLocal(self, IsLocal):
 		_IsLocal = ctypes.c_int(IsLocal)
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_setIsLocal
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _IsLocal)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_setIsLocal
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _IsLocal)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -608,12 +512,9 @@ class Phidget:
 	def getIsRemote(self):
 		_IsRemote = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getIsRemote
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_IsRemote))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getIsRemote
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IsRemote))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -623,24 +524,18 @@ class Phidget:
 	def setIsRemote(self, IsRemote):
 		_IsRemote = ctypes.c_int(IsRemote)
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_setIsRemote
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _IsRemote)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_setIsRemote
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _IsRemote)
 
 		if result > 0:
 			raise PhidgetException(result)
 
 
 	def open(self):
-		try:
-			__func = PhidgetSupport.getDll().Phidget_open
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_open
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -649,12 +544,9 @@ class Phidget:
 	def openWaitForAttachment(self, timeout):
 		_timeout = ctypes.c_uint32(timeout)
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_openWaitForAttachment
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _timeout)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_openWaitForAttachment
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _timeout)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -663,12 +555,9 @@ class Phidget:
 	def getParent(self):
 		_Parent = ctypes.c_void_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getParent
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Parent))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getParent
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Parent))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -680,12 +569,9 @@ class Phidget:
 	def getServerHostname(self):
 		_ServerHostname = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getServerHostname
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ServerHostname))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getServerHostname
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ServerHostname))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -695,12 +581,9 @@ class Phidget:
 	def getServerName(self):
 		_ServerName = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getServerName
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ServerName))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getServerName
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ServerName))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -710,12 +593,9 @@ class Phidget:
 	def setServerName(self, ServerName):
 		_ServerName = ctypes.create_string_buffer(ServerName.encode('utf-8'))
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_setServerName
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ServerName))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_setServerName
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ServerName))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -724,12 +604,9 @@ class Phidget:
 	def getServerPeerName(self):
 		_ServerPeerName = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getServerPeerName
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ServerPeerName))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getServerPeerName
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ServerPeerName))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -739,12 +616,9 @@ class Phidget:
 	def getServerUniqueName(self):
 		_ServerUniqueName = ctypes.c_char_p()
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_getServerUniqueName
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ServerUniqueName))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_getServerUniqueName
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ServerUniqueName))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -754,12 +628,9 @@ class Phidget:
 	def writeDeviceLabel(self, deviceLabel):
 		_deviceLabel = ctypes.create_string_buffer(deviceLabel.encode('utf-8'))
 
-		try:
-			__func = PhidgetSupport.getDll().Phidget_writeDeviceLabel
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_deviceLabel))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_writeDeviceLabel
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_deviceLabel))
 
 		if result > 0:
 			raise PhidgetException(result)

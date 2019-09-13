@@ -21,12 +21,9 @@ class ResistanceInput(Phidget):
 		self._ResistanceChange = None
 		self._onResistanceChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -58,12 +55,9 @@ class ResistanceInput(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -73,12 +67,9 @@ class ResistanceInput(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -87,12 +78,9 @@ class ResistanceInput(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -102,12 +90,9 @@ class ResistanceInput(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -117,12 +102,9 @@ class ResistanceInput(Phidget):
 	def getResistance(self):
 		_Resistance = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_getResistance
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Resistance))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_getResistance
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Resistance))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -132,12 +114,9 @@ class ResistanceInput(Phidget):
 	def getMinResistance(self):
 		_MinResistance = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMinResistance
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinResistance))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMinResistance
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinResistance))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -147,12 +126,9 @@ class ResistanceInput(Phidget):
 	def getMaxResistance(self):
 		_MaxResistance = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMaxResistance
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxResistance))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMaxResistance
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxResistance))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -162,12 +138,9 @@ class ResistanceInput(Phidget):
 	def getResistanceChangeTrigger(self):
 		_ResistanceChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_getResistanceChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ResistanceChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_getResistanceChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ResistanceChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -177,12 +150,9 @@ class ResistanceInput(Phidget):
 	def setResistanceChangeTrigger(self, ResistanceChangeTrigger):
 		_ResistanceChangeTrigger = ctypes.c_double(ResistanceChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_setResistanceChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _ResistanceChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_setResistanceChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _ResistanceChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -191,12 +161,9 @@ class ResistanceInput(Phidget):
 	def getMinResistanceChangeTrigger(self):
 		_MinResistanceChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMinResistanceChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinResistanceChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMinResistanceChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinResistanceChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -206,12 +173,9 @@ class ResistanceInput(Phidget):
 	def getMaxResistanceChangeTrigger(self):
 		_MaxResistanceChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMaxResistanceChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxResistanceChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_getMaxResistanceChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxResistanceChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -221,12 +185,9 @@ class ResistanceInput(Phidget):
 	def getRTDWireSetup(self):
 		_RTDWireSetup = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_getRTDWireSetup
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_RTDWireSetup))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_getRTDWireSetup
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_RTDWireSetup))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -236,12 +197,9 @@ class ResistanceInput(Phidget):
 	def setRTDWireSetup(self, RTDWireSetup):
 		_RTDWireSetup = ctypes.c_int(RTDWireSetup)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetResistanceInput_setRTDWireSetup
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _RTDWireSetup)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetResistanceInput_setRTDWireSetup
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _RTDWireSetup)
 
 		if result > 0:
 			raise PhidgetException(result)

@@ -22,12 +22,9 @@ class DigitalInput(Phidget):
 		self._StateChange = None
 		self._onStateChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDigitalInput_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDigitalInput_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -59,12 +56,9 @@ class DigitalInput(Phidget):
 	def getInputMode(self):
 		_InputMode = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDigitalInput_getInputMode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_InputMode))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDigitalInput_getInputMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_InputMode))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -74,12 +68,9 @@ class DigitalInput(Phidget):
 	def setInputMode(self, InputMode):
 		_InputMode = ctypes.c_int(InputMode)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDigitalInput_setInputMode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _InputMode)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDigitalInput_setInputMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _InputMode)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -88,12 +79,9 @@ class DigitalInput(Phidget):
 	def getPowerSupply(self):
 		_PowerSupply = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDigitalInput_getPowerSupply
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_PowerSupply))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDigitalInput_getPowerSupply
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_PowerSupply))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -103,12 +91,9 @@ class DigitalInput(Phidget):
 	def setPowerSupply(self, PowerSupply):
 		_PowerSupply = ctypes.c_int(PowerSupply)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDigitalInput_setPowerSupply
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _PowerSupply)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDigitalInput_setPowerSupply
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _PowerSupply)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -117,12 +102,9 @@ class DigitalInput(Phidget):
 	def getState(self):
 		_State = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDigitalInput_getState
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_State))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDigitalInput_getState
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_State))
 
 		if result > 0:
 			raise PhidgetException(result)

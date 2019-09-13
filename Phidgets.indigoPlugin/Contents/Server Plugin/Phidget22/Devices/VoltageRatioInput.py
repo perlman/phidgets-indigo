@@ -31,12 +31,9 @@ class VoltageRatioInput(Phidget):
 		self._VoltageRatioChange = None
 		self._onVoltageRatioChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -92,12 +89,9 @@ class VoltageRatioInput(Phidget):
 	def getBridgeEnabled(self):
 		_BridgeEnabled = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getBridgeEnabled
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_BridgeEnabled))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getBridgeEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_BridgeEnabled))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -107,12 +101,9 @@ class VoltageRatioInput(Phidget):
 	def setBridgeEnabled(self, BridgeEnabled):
 		_BridgeEnabled = ctypes.c_int(BridgeEnabled)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setBridgeEnabled
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _BridgeEnabled)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setBridgeEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _BridgeEnabled)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -121,12 +112,9 @@ class VoltageRatioInput(Phidget):
 	def getBridgeGain(self):
 		_BridgeGain = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getBridgeGain
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_BridgeGain))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getBridgeGain
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_BridgeGain))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -136,12 +124,9 @@ class VoltageRatioInput(Phidget):
 	def setBridgeGain(self, BridgeGain):
 		_BridgeGain = ctypes.c_int(BridgeGain)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setBridgeGain
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _BridgeGain)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setBridgeGain
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _BridgeGain)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -150,12 +135,9 @@ class VoltageRatioInput(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -165,12 +147,9 @@ class VoltageRatioInput(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -179,12 +158,9 @@ class VoltageRatioInput(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -194,12 +170,9 @@ class VoltageRatioInput(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -209,12 +182,9 @@ class VoltageRatioInput(Phidget):
 	def getSensorType(self):
 		_SensorType = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getSensorType
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SensorType))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getSensorType
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SensorType))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -224,12 +194,9 @@ class VoltageRatioInput(Phidget):
 	def setSensorType(self, SensorType):
 		_SensorType = ctypes.c_int(SensorType)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setSensorType
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _SensorType)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setSensorType
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _SensorType)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -238,12 +205,9 @@ class VoltageRatioInput(Phidget):
 	def getSensorUnit(self):
 		_SensorUnit = UnitInfo()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getSensorUnit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SensorUnit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getSensorUnit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SensorUnit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -253,12 +217,9 @@ class VoltageRatioInput(Phidget):
 	def getSensorValue(self):
 		_SensorValue = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getSensorValue
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SensorValue))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getSensorValue
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SensorValue))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -268,12 +229,9 @@ class VoltageRatioInput(Phidget):
 	def getSensorValueChangeTrigger(self):
 		_SensorValueChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getSensorValueChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SensorValueChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getSensorValueChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SensorValueChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -283,12 +241,9 @@ class VoltageRatioInput(Phidget):
 	def setSensorValueChangeTrigger(self, SensorValueChangeTrigger):
 		_SensorValueChangeTrigger = ctypes.c_double(SensorValueChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setSensorValueChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _SensorValueChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setSensorValueChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _SensorValueChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -297,12 +252,9 @@ class VoltageRatioInput(Phidget):
 	def getVoltageRatio(self):
 		_VoltageRatio = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getVoltageRatio
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_VoltageRatio))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getVoltageRatio
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_VoltageRatio))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -312,12 +264,9 @@ class VoltageRatioInput(Phidget):
 	def getMinVoltageRatio(self):
 		_MinVoltageRatio = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMinVoltageRatio
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinVoltageRatio))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMinVoltageRatio
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinVoltageRatio))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -327,12 +276,9 @@ class VoltageRatioInput(Phidget):
 	def getMaxVoltageRatio(self):
 		_MaxVoltageRatio = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMaxVoltageRatio
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxVoltageRatio))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMaxVoltageRatio
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxVoltageRatio))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -342,12 +288,9 @@ class VoltageRatioInput(Phidget):
 	def getVoltageRatioChangeTrigger(self):
 		_VoltageRatioChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getVoltageRatioChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_VoltageRatioChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getVoltageRatioChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_VoltageRatioChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -357,12 +300,9 @@ class VoltageRatioInput(Phidget):
 	def setVoltageRatioChangeTrigger(self, VoltageRatioChangeTrigger):
 		_VoltageRatioChangeTrigger = ctypes.c_double(VoltageRatioChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setVoltageRatioChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _VoltageRatioChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setVoltageRatioChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _VoltageRatioChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -371,12 +311,9 @@ class VoltageRatioInput(Phidget):
 	def getMinVoltageRatioChangeTrigger(self):
 		_MinVoltageRatioChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMinVoltageRatioChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinVoltageRatioChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMinVoltageRatioChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinVoltageRatioChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -386,12 +323,9 @@ class VoltageRatioInput(Phidget):
 	def getMaxVoltageRatioChangeTrigger(self):
 		_MaxVoltageRatioChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMaxVoltageRatioChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxVoltageRatioChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_getMaxVoltageRatioChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxVoltageRatioChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)

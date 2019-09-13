@@ -13,12 +13,9 @@ class Hub(Phidget):
 		Phidget.__init__(self)
 		self.handle = ctypes.c_void_p()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHub_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHub_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -30,12 +27,9 @@ class Hub(Phidget):
 		_port = ctypes.c_int(port)
 		_state = ctypes.c_int(state)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHub_setPortPower
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _port, _state)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHub_setPortPower
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _port, _state)
 
 		if result > 0:
 			raise PhidgetException(result)

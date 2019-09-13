@@ -37,12 +37,9 @@ class Stepper(Phidget):
 		self._VelocityChange = None
 		self._onVelocityChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -116,12 +113,9 @@ class Stepper(Phidget):
 	def getAcceleration(self):
 		_Acceleration = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Acceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Acceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -131,12 +125,9 @@ class Stepper(Phidget):
 	def setAcceleration(self, Acceleration):
 		_Acceleration = ctypes.c_double(Acceleration)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_setAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Acceleration)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_setAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Acceleration)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -145,12 +136,9 @@ class Stepper(Phidget):
 	def getMinAcceleration(self):
 		_MinAcceleration = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getMinAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinAcceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMinAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinAcceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -160,12 +148,9 @@ class Stepper(Phidget):
 	def getMaxAcceleration(self):
 		_MaxAcceleration = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getMaxAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxAcceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMaxAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxAcceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -175,12 +160,9 @@ class Stepper(Phidget):
 	def getControlMode(self):
 		_ControlMode = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getControlMode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ControlMode))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getControlMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ControlMode))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -190,12 +172,9 @@ class Stepper(Phidget):
 	def setControlMode(self, ControlMode):
 		_ControlMode = ctypes.c_int(ControlMode)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_setControlMode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _ControlMode)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_setControlMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _ControlMode)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -204,12 +183,9 @@ class Stepper(Phidget):
 	def getCurrentLimit(self):
 		_CurrentLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getCurrentLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_CurrentLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_CurrentLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -219,12 +195,9 @@ class Stepper(Phidget):
 	def setCurrentLimit(self, CurrentLimit):
 		_CurrentLimit = ctypes.c_double(CurrentLimit)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_setCurrentLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _CurrentLimit)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_setCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _CurrentLimit)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -233,12 +206,9 @@ class Stepper(Phidget):
 	def getMinCurrentLimit(self):
 		_MinCurrentLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getMinCurrentLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinCurrentLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMinCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinCurrentLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -248,12 +218,9 @@ class Stepper(Phidget):
 	def getMaxCurrentLimit(self):
 		_MaxCurrentLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getMaxCurrentLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxCurrentLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMaxCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxCurrentLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -263,12 +230,9 @@ class Stepper(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -278,12 +242,9 @@ class Stepper(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -292,12 +253,9 @@ class Stepper(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -307,12 +265,9 @@ class Stepper(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -322,12 +277,9 @@ class Stepper(Phidget):
 	def getEngaged(self):
 		_Engaged = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getEngaged
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Engaged))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getEngaged
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Engaged))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -337,26 +289,55 @@ class Stepper(Phidget):
 	def setEngaged(self, Engaged):
 		_Engaged = ctypes.c_int(Engaged)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_setEngaged
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Engaged)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_setEngaged
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Engaged)
 
 		if result > 0:
 			raise PhidgetException(result)
 
 
+	def enableFailsafe(self, failsafeTime):
+		_failsafeTime = ctypes.c_uint32(failsafeTime)
+
+		__func = PhidgetSupport.getDll().PhidgetStepper_enableFailsafe
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _failsafeTime)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinFailsafeTime(self):
+		_MinFailsafeTime = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMinFailsafeTime
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinFailsafeTime))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinFailsafeTime.value
+
+	def getMaxFailsafeTime(self):
+		_MaxFailsafeTime = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMaxFailsafeTime
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxFailsafeTime))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxFailsafeTime.value
+
 	def getHoldingCurrentLimit(self):
 		_HoldingCurrentLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getHoldingCurrentLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_HoldingCurrentLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getHoldingCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_HoldingCurrentLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -366,12 +347,9 @@ class Stepper(Phidget):
 	def setHoldingCurrentLimit(self, HoldingCurrentLimit):
 		_HoldingCurrentLimit = ctypes.c_double(HoldingCurrentLimit)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_setHoldingCurrentLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _HoldingCurrentLimit)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_setHoldingCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _HoldingCurrentLimit)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -380,12 +358,9 @@ class Stepper(Phidget):
 	def getIsMoving(self):
 		_IsMoving = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getIsMoving
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_IsMoving))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getIsMoving
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IsMoving))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -395,12 +370,9 @@ class Stepper(Phidget):
 	def getPosition(self):
 		_Position = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Position))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Position))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -410,12 +382,9 @@ class Stepper(Phidget):
 	def getMinPosition(self):
 		_MinPosition = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getMinPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinPosition))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMinPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinPosition))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -425,12 +394,9 @@ class Stepper(Phidget):
 	def getMaxPosition(self):
 		_MaxPosition = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getMaxPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxPosition))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMaxPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxPosition))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -440,12 +406,9 @@ class Stepper(Phidget):
 	def addPositionOffset(self, positionOffset):
 		_positionOffset = ctypes.c_double(positionOffset)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_addPositionOffset
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _positionOffset)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_addPositionOffset
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _positionOffset)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -454,12 +417,9 @@ class Stepper(Phidget):
 	def getRescaleFactor(self):
 		_RescaleFactor = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getRescaleFactor
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_RescaleFactor))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getRescaleFactor
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_RescaleFactor))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -469,12 +429,18 @@ class Stepper(Phidget):
 	def setRescaleFactor(self, RescaleFactor):
 		_RescaleFactor = ctypes.c_double(RescaleFactor)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_setRescaleFactor
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _RescaleFactor)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_setRescaleFactor
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _RescaleFactor)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def resetFailsafe(self):
+		__func = PhidgetSupport.getDll().PhidgetStepper_resetFailsafe
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -483,12 +449,9 @@ class Stepper(Phidget):
 	def getTargetPosition(self):
 		_TargetPosition = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getTargetPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_TargetPosition))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getTargetPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_TargetPosition))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -498,12 +461,9 @@ class Stepper(Phidget):
 	def setTargetPosition(self, TargetPosition):
 		_TargetPosition = ctypes.c_double(TargetPosition)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_setTargetPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _TargetPosition)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_setTargetPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _TargetPosition)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -517,12 +477,9 @@ class Stepper(Phidget):
 			_ctx = ctypes.c_void_p(AsyncSupport.add(asyncHandler, self))
 		_asyncHandler = AsyncSupport.getCallback()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_setTargetPosition_async
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _TargetPosition, _asyncHandler, _ctx)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_setTargetPosition_async
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _TargetPosition, _asyncHandler, _ctx)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -531,12 +488,9 @@ class Stepper(Phidget):
 	def getVelocity(self):
 		_Velocity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Velocity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Velocity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -546,12 +500,9 @@ class Stepper(Phidget):
 	def getVelocityLimit(self):
 		_VelocityLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getVelocityLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_VelocityLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getVelocityLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_VelocityLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -561,12 +512,9 @@ class Stepper(Phidget):
 	def setVelocityLimit(self, VelocityLimit):
 		_VelocityLimit = ctypes.c_double(VelocityLimit)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_setVelocityLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _VelocityLimit)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_setVelocityLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _VelocityLimit)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -575,12 +523,9 @@ class Stepper(Phidget):
 	def getMinVelocityLimit(self):
 		_MinVelocityLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getMinVelocityLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinVelocityLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMinVelocityLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinVelocityLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -590,12 +535,9 @@ class Stepper(Phidget):
 	def getMaxVelocityLimit(self):
 		_MaxVelocityLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetStepper_getMaxVelocityLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxVelocityLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetStepper_getMaxVelocityLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxVelocityLimit))
 
 		if result > 0:
 			raise PhidgetException(result)

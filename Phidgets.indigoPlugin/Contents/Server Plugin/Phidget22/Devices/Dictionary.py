@@ -34,12 +34,9 @@ class Dictionary(Phidget):
 		self._Update = None
 		self._onUpdate = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDictionary_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDictionary_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -119,24 +116,18 @@ class Dictionary(Phidget):
 		_key = ctypes.create_string_buffer(key.encode('utf-8'))
 		_value = ctypes.create_string_buffer(value.encode('utf-8'))
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDictionary_add
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_key), ctypes.byref(_value))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDictionary_add
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_key), ctypes.byref(_value))
 
 		if result > 0:
 			raise PhidgetException(result)
 
 
 	def removeAll(self):
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDictionary_removeAll
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDictionary_removeAll
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -147,12 +138,9 @@ class Dictionary(Phidget):
 		_value = (ctypes.c_char * 65536)()
 		_valueLen = ctypes.c_int32(65536)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDictionary_get
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_key), ctypes.byref(_value), _valueLen)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDictionary_get
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_key), ctypes.byref(_value), _valueLen)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -162,12 +150,9 @@ class Dictionary(Phidget):
 	def remove(self, key):
 		_key = ctypes.create_string_buffer(key.encode('utf-8'))
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDictionary_remove
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_key))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDictionary_remove
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_key))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -178,12 +163,9 @@ class Dictionary(Phidget):
 		_keyList = (ctypes.c_char * 65536)()
 		_keyListLen = ctypes.c_int32(65536)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDictionary_scan
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_start), ctypes.byref(_keyList), _keyListLen)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDictionary_scan
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_start), ctypes.byref(_keyList), _keyListLen)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -194,12 +176,9 @@ class Dictionary(Phidget):
 		_key = ctypes.create_string_buffer(key.encode('utf-8'))
 		_value = ctypes.create_string_buffer(value.encode('utf-8'))
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDictionary_set
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_key), ctypes.byref(_value))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDictionary_set
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_key), ctypes.byref(_value))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -209,12 +188,9 @@ class Dictionary(Phidget):
 		_key = ctypes.create_string_buffer(key.encode('utf-8'))
 		_value = ctypes.create_string_buffer(value.encode('utf-8'))
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetDictionary_update
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_key), ctypes.byref(_value))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetDictionary_update
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_key), ctypes.byref(_value))
 
 		if result > 0:
 			raise PhidgetException(result)

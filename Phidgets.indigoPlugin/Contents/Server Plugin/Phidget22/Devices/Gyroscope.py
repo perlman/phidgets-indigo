@@ -20,12 +20,9 @@ class Gyroscope(Phidget):
 		self._AngularRateUpdate = None
 		self._onAngularRateUpdate = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -57,12 +54,9 @@ class Gyroscope(Phidget):
 	def getAngularRate(self):
 		_AngularRate = (ctypes.c_double * 3)()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_getAngularRate
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_AngularRate))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_getAngularRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_AngularRate))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -72,12 +66,9 @@ class Gyroscope(Phidget):
 	def getMinAngularRate(self):
 		_MinAngularRate = (ctypes.c_double * 3)()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_getMinAngularRate
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinAngularRate))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_getMinAngularRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinAngularRate))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -87,12 +78,9 @@ class Gyroscope(Phidget):
 	def getMaxAngularRate(self):
 		_MaxAngularRate = (ctypes.c_double * 3)()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_getMaxAngularRate
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxAngularRate))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_getMaxAngularRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxAngularRate))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -102,12 +90,9 @@ class Gyroscope(Phidget):
 	def getAxisCount(self):
 		_AxisCount = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_getAxisCount
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_AxisCount))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_getAxisCount
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_AxisCount))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -117,12 +102,9 @@ class Gyroscope(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -132,12 +114,9 @@ class Gyroscope(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -146,12 +125,9 @@ class Gyroscope(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -161,12 +137,9 @@ class Gyroscope(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -176,12 +149,9 @@ class Gyroscope(Phidget):
 	def getTimestamp(self):
 		_Timestamp = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_getTimestamp
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Timestamp))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_getTimestamp
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Timestamp))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -189,12 +159,9 @@ class Gyroscope(Phidget):
 		return _Timestamp.value
 
 	def zero(self):
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGyroscope_zero
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_zero
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)

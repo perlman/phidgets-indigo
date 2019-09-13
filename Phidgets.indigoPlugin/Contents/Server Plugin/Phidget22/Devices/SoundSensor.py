@@ -21,12 +21,9 @@ class SoundSensor(Phidget):
 		self._SPLChange = None
 		self._onSPLChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -58,12 +55,9 @@ class SoundSensor(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -73,12 +67,9 @@ class SoundSensor(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -87,12 +78,9 @@ class SoundSensor(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -102,12 +90,9 @@ class SoundSensor(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -117,12 +102,9 @@ class SoundSensor(Phidget):
 	def getdB(self):
 		_dB = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getdB
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_dB))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getdB
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_dB))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -132,12 +114,9 @@ class SoundSensor(Phidget):
 	def getMaxdB(self):
 		_MaxdB = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMaxdB
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxdB))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMaxdB
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxdB))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -147,12 +126,9 @@ class SoundSensor(Phidget):
 	def getdBA(self):
 		_dBA = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getdBA
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_dBA))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getdBA
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_dBA))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -162,12 +138,9 @@ class SoundSensor(Phidget):
 	def getdBC(self):
 		_dBC = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getdBC
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_dBC))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getdBC
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_dBC))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -177,12 +150,9 @@ class SoundSensor(Phidget):
 	def getNoiseFloor(self):
 		_NoiseFloor = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getNoiseFloor
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_NoiseFloor))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getNoiseFloor
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_NoiseFloor))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -192,12 +162,9 @@ class SoundSensor(Phidget):
 	def getOctaves(self):
 		_Octaves = (ctypes.c_double * 10)()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getOctaves
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Octaves))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getOctaves
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Octaves))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -207,12 +174,9 @@ class SoundSensor(Phidget):
 	def getSPLChangeTrigger(self):
 		_SPLChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getSPLChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SPLChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getSPLChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SPLChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -222,12 +186,9 @@ class SoundSensor(Phidget):
 	def setSPLChangeTrigger(self, SPLChangeTrigger):
 		_SPLChangeTrigger = ctypes.c_double(SPLChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_setSPLChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _SPLChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_setSPLChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _SPLChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -236,12 +197,9 @@ class SoundSensor(Phidget):
 	def getMinSPLChangeTrigger(self):
 		_MinSPLChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMinSPLChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinSPLChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMinSPLChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinSPLChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -251,12 +209,9 @@ class SoundSensor(Phidget):
 	def getMaxSPLChangeTrigger(self):
 		_MaxSPLChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMaxSPLChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxSPLChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMaxSPLChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxSPLChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -266,12 +221,9 @@ class SoundSensor(Phidget):
 	def getSPLRange(self):
 		_SPLRange = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_getSPLRange
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SPLRange))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getSPLRange
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SPLRange))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -281,12 +233,9 @@ class SoundSensor(Phidget):
 	def setSPLRange(self, SPLRange):
 		_SPLRange = ctypes.c_int(SPLRange)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetSoundSensor_setSPLRange
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _SPLRange)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_setSPLRange
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _SPLRange)
 
 		if result > 0:
 			raise PhidgetException(result)

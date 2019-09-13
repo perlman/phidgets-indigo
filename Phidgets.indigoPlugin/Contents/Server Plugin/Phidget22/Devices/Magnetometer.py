@@ -20,12 +20,9 @@ class Magnetometer(Phidget):
 		self._MagneticFieldChange = None
 		self._onMagneticFieldChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -57,12 +54,9 @@ class Magnetometer(Phidget):
 	def getAxisCount(self):
 		_AxisCount = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getAxisCount
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_AxisCount))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getAxisCount
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_AxisCount))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -84,12 +78,9 @@ class Magnetometer(Phidget):
 		_T4 = ctypes.c_double(T4)
 		_T5 = ctypes.c_double(T5)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_setCorrectionParameters
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _magneticField, _offset0, _offset1, _offset2, _gain0, _gain1, _gain2, _T0, _T1, _T2, _T3, _T4, _T5)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_setCorrectionParameters
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _magneticField, _offset0, _offset1, _offset2, _gain0, _gain1, _gain2, _T0, _T1, _T2, _T3, _T4, _T5)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -98,12 +89,9 @@ class Magnetometer(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -113,12 +101,9 @@ class Magnetometer(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -127,12 +112,9 @@ class Magnetometer(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -142,12 +124,9 @@ class Magnetometer(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -157,12 +136,9 @@ class Magnetometer(Phidget):
 	def getMagneticField(self):
 		_MagneticField = (ctypes.c_double * 3)()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMagneticField
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MagneticField))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMagneticField
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MagneticField))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -172,12 +148,9 @@ class Magnetometer(Phidget):
 	def getMinMagneticField(self):
 		_MinMagneticField = (ctypes.c_double * 3)()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMinMagneticField
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinMagneticField))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMinMagneticField
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinMagneticField))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -187,12 +160,9 @@ class Magnetometer(Phidget):
 	def getMaxMagneticField(self):
 		_MaxMagneticField = (ctypes.c_double * 3)()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMaxMagneticField
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxMagneticField))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMaxMagneticField
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxMagneticField))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -202,12 +172,9 @@ class Magnetometer(Phidget):
 	def getMagneticFieldChangeTrigger(self):
 		_MagneticFieldChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMagneticFieldChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MagneticFieldChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMagneticFieldChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MagneticFieldChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -217,12 +184,9 @@ class Magnetometer(Phidget):
 	def setMagneticFieldChangeTrigger(self, MagneticFieldChangeTrigger):
 		_MagneticFieldChangeTrigger = ctypes.c_double(MagneticFieldChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_setMagneticFieldChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _MagneticFieldChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_setMagneticFieldChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _MagneticFieldChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -231,12 +195,9 @@ class Magnetometer(Phidget):
 	def getMinMagneticFieldChangeTrigger(self):
 		_MinMagneticFieldChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMinMagneticFieldChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinMagneticFieldChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMinMagneticFieldChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinMagneticFieldChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -246,12 +207,9 @@ class Magnetometer(Phidget):
 	def getMaxMagneticFieldChangeTrigger(self):
 		_MaxMagneticFieldChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMaxMagneticFieldChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxMagneticFieldChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMaxMagneticFieldChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxMagneticFieldChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -259,24 +217,18 @@ class Magnetometer(Phidget):
 		return _MaxMagneticFieldChangeTrigger.value
 
 	def resetCorrectionParameters(self):
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_resetCorrectionParameters
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_resetCorrectionParameters
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)
 
 
 	def saveCorrectionParameters(self):
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_saveCorrectionParameters
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_saveCorrectionParameters
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -285,12 +237,9 @@ class Magnetometer(Phidget):
 	def getTimestamp(self):
 		_Timestamp = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetMagnetometer_getTimestamp
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Timestamp))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getTimestamp
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Timestamp))
 
 		if result > 0:
 			raise PhidgetException(result)

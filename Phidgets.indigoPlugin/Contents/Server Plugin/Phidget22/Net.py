@@ -87,12 +87,9 @@ class Net:
 		_password = ctypes.create_string_buffer(password.encode('utf-8'))
 		_flags = ctypes.c_int(flags)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetNet_addServer
-			__func.restype = ctypes.c_int32
-			result = __func(ctypes.byref(_serverName), ctypes.byref(_address), _port, ctypes.byref(_password), _flags)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetNet_addServer
+		__func.restype = ctypes.c_int32
+		result = __func(ctypes.byref(_serverName), ctypes.byref(_address), _port, ctypes.byref(_password), _flags)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -102,12 +99,9 @@ class Net:
 	def removeServer(serverName):
 		_serverName = ctypes.create_string_buffer(serverName.encode('utf-8'))
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetNet_removeServer
-			__func.restype = ctypes.c_int32
-			result = __func(ctypes.byref(_serverName))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetNet_removeServer
+		__func.restype = ctypes.c_int32
+		result = __func(ctypes.byref(_serverName))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -117,12 +111,9 @@ class Net:
 	def enableServer(serverName):
 		_serverName = ctypes.create_string_buffer(serverName.encode('utf-8'))
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetNet_enableServer
-			__func.restype = ctypes.c_int32
-			result = __func(ctypes.byref(_serverName))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetNet_enableServer
+		__func.restype = ctypes.c_int32
+		result = __func(ctypes.byref(_serverName))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -133,12 +124,9 @@ class Net:
 		_serverName = ctypes.create_string_buffer(serverName.encode('utf-8'))
 		_flags = ctypes.c_int(flags)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetNet_disableServer
-			__func.restype = ctypes.c_int32
-			result = __func(ctypes.byref(_serverName), _flags)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetNet_disableServer
+		__func.restype = ctypes.c_int32
+		result = __func(ctypes.byref(_serverName), _flags)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -148,12 +136,9 @@ class Net:
 	def enableServerDiscovery(serverType):
 		_serverType = ctypes.c_int(serverType)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetNet_enableServerDiscovery
-			__func.restype = ctypes.c_int32
-			result = __func(_serverType)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetNet_enableServerDiscovery
+		__func.restype = ctypes.c_int32
+		result = __func(_serverType)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -163,12 +148,9 @@ class Net:
 	def disableServerDiscovery(serverType):
 		_serverType = ctypes.c_int(serverType)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetNet_disableServerDiscovery
-			__func.restype = ctypes.c_int32
-			result = __func(_serverType)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetNet_disableServerDiscovery
+		__func.restype = ctypes.c_int32
+		result = __func(_serverType)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -179,12 +161,9 @@ class Net:
 		_serverName = ctypes.create_string_buffer(serverName.encode('utf-8'))
 		_password = ctypes.create_string_buffer(password.encode('utf-8'))
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetNet_setServerPassword
-			__func.restype = ctypes.c_int32
-			result = __func(ctypes.byref(_serverName), ctypes.byref(_password))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetNet_setServerPassword
+		__func.restype = ctypes.c_int32
+		result = __func(ctypes.byref(_serverName), ctypes.byref(_password))
 
 		if result > 0:
 			raise PhidgetException(result)

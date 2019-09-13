@@ -37,12 +37,9 @@ class RCServo(Phidget):
 		self._VelocityChange = None
 		self._onVelocityChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -116,12 +113,9 @@ class RCServo(Phidget):
 	def getAcceleration(self):
 		_Acceleration = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Acceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Acceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -131,12 +125,9 @@ class RCServo(Phidget):
 	def setAcceleration(self, Acceleration):
 		_Acceleration = ctypes.c_double(Acceleration)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Acceleration)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Acceleration)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -145,12 +136,9 @@ class RCServo(Phidget):
 	def getMinAcceleration(self):
 		_MinAcceleration = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMinAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinAcceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMinAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinAcceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -160,12 +148,9 @@ class RCServo(Phidget):
 	def getMaxAcceleration(self):
 		_MaxAcceleration = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxAcceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxAcceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -175,12 +160,9 @@ class RCServo(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -190,12 +172,9 @@ class RCServo(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -204,12 +183,9 @@ class RCServo(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -219,12 +195,9 @@ class RCServo(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -234,12 +207,9 @@ class RCServo(Phidget):
 	def getEngaged(self):
 		_Engaged = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getEngaged
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Engaged))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getEngaged
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Engaged))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -249,26 +219,55 @@ class RCServo(Phidget):
 	def setEngaged(self, Engaged):
 		_Engaged = ctypes.c_int(Engaged)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setEngaged
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Engaged)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setEngaged
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Engaged)
 
 		if result > 0:
 			raise PhidgetException(result)
 
 
+	def enableFailsafe(self, failsafeTime):
+		_failsafeTime = ctypes.c_uint32(failsafeTime)
+
+		__func = PhidgetSupport.getDll().PhidgetRCServo_enableFailsafe
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _failsafeTime)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinFailsafeTime(self):
+		_MinFailsafeTime = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMinFailsafeTime
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinFailsafeTime))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinFailsafeTime.value
+
+	def getMaxFailsafeTime(self):
+		_MaxFailsafeTime = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxFailsafeTime
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxFailsafeTime))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxFailsafeTime.value
+
 	def getIsMoving(self):
 		_IsMoving = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getIsMoving
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_IsMoving))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getIsMoving
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IsMoving))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -278,12 +277,9 @@ class RCServo(Phidget):
 	def getPosition(self):
 		_Position = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Position))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Position))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -293,12 +289,9 @@ class RCServo(Phidget):
 	def setMinPosition(self, MinPosition):
 		_MinPosition = ctypes.c_double(MinPosition)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setMinPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _MinPosition)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setMinPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _MinPosition)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -307,12 +300,9 @@ class RCServo(Phidget):
 	def getMinPosition(self):
 		_MinPosition = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMinPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinPosition))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMinPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinPosition))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -322,12 +312,9 @@ class RCServo(Phidget):
 	def setMaxPosition(self, MaxPosition):
 		_MaxPosition = ctypes.c_double(MaxPosition)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setMaxPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _MaxPosition)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setMaxPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _MaxPosition)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -336,12 +323,9 @@ class RCServo(Phidget):
 	def getMaxPosition(self):
 		_MaxPosition = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxPosition))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxPosition))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -351,12 +335,9 @@ class RCServo(Phidget):
 	def setMinPulseWidth(self, MinPulseWidth):
 		_MinPulseWidth = ctypes.c_double(MinPulseWidth)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setMinPulseWidth
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _MinPulseWidth)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setMinPulseWidth
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _MinPulseWidth)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -365,12 +346,9 @@ class RCServo(Phidget):
 	def getMinPulseWidth(self):
 		_MinPulseWidth = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMinPulseWidth
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinPulseWidth))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMinPulseWidth
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinPulseWidth))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -380,12 +358,9 @@ class RCServo(Phidget):
 	def setMaxPulseWidth(self, MaxPulseWidth):
 		_MaxPulseWidth = ctypes.c_double(MaxPulseWidth)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setMaxPulseWidth
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _MaxPulseWidth)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setMaxPulseWidth
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _MaxPulseWidth)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -394,12 +369,9 @@ class RCServo(Phidget):
 	def getMaxPulseWidth(self):
 		_MaxPulseWidth = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxPulseWidth
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxPulseWidth))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxPulseWidth
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxPulseWidth))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -409,12 +381,9 @@ class RCServo(Phidget):
 	def getMinPulseWidthLimit(self):
 		_MinPulseWidthLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMinPulseWidthLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinPulseWidthLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMinPulseWidthLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinPulseWidthLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -424,27 +393,30 @@ class RCServo(Phidget):
 	def getMaxPulseWidthLimit(self):
 		_MaxPulseWidthLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxPulseWidthLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxPulseWidthLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxPulseWidthLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxPulseWidthLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
 
 		return _MaxPulseWidthLimit.value
 
+	def resetFailsafe(self):
+		__func = PhidgetSupport.getDll().PhidgetRCServo_resetFailsafe
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
 	def getSpeedRampingState(self):
 		_SpeedRampingState = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getSpeedRampingState
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SpeedRampingState))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getSpeedRampingState
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SpeedRampingState))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -454,12 +426,9 @@ class RCServo(Phidget):
 	def setSpeedRampingState(self, SpeedRampingState):
 		_SpeedRampingState = ctypes.c_int(SpeedRampingState)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setSpeedRampingState
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _SpeedRampingState)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setSpeedRampingState
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _SpeedRampingState)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -468,12 +437,9 @@ class RCServo(Phidget):
 	def getTargetPosition(self):
 		_TargetPosition = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getTargetPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_TargetPosition))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getTargetPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_TargetPosition))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -483,12 +449,9 @@ class RCServo(Phidget):
 	def setTargetPosition(self, TargetPosition):
 		_TargetPosition = ctypes.c_double(TargetPosition)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setTargetPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _TargetPosition)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setTargetPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _TargetPosition)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -502,12 +465,9 @@ class RCServo(Phidget):
 			_ctx = ctypes.c_void_p(AsyncSupport.add(asyncHandler, self))
 		_asyncHandler = AsyncSupport.getCallback()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setTargetPosition_async
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _TargetPosition, _asyncHandler, _ctx)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setTargetPosition_async
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _TargetPosition, _asyncHandler, _ctx)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -516,12 +476,9 @@ class RCServo(Phidget):
 	def getTorque(self):
 		_Torque = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getTorque
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Torque))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getTorque
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Torque))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -531,12 +488,9 @@ class RCServo(Phidget):
 	def setTorque(self, Torque):
 		_Torque = ctypes.c_double(Torque)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setTorque
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Torque)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setTorque
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Torque)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -545,12 +499,9 @@ class RCServo(Phidget):
 	def getMinTorque(self):
 		_MinTorque = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMinTorque
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinTorque))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMinTorque
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinTorque))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -560,12 +511,9 @@ class RCServo(Phidget):
 	def getMaxTorque(self):
 		_MaxTorque = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxTorque
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxTorque))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxTorque
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxTorque))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -575,12 +523,9 @@ class RCServo(Phidget):
 	def getVelocity(self):
 		_Velocity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Velocity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Velocity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -590,12 +535,9 @@ class RCServo(Phidget):
 	def getVelocityLimit(self):
 		_VelocityLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getVelocityLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_VelocityLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getVelocityLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_VelocityLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -605,12 +547,9 @@ class RCServo(Phidget):
 	def setVelocityLimit(self, VelocityLimit):
 		_VelocityLimit = ctypes.c_double(VelocityLimit)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setVelocityLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _VelocityLimit)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setVelocityLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _VelocityLimit)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -619,12 +558,9 @@ class RCServo(Phidget):
 	def getMinVelocityLimit(self):
 		_MinVelocityLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMinVelocityLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinVelocityLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMinVelocityLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinVelocityLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -634,12 +570,9 @@ class RCServo(Phidget):
 	def getMaxVelocityLimit(self):
 		_MaxVelocityLimit = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxVelocityLimit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxVelocityLimit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getMaxVelocityLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxVelocityLimit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -649,12 +582,9 @@ class RCServo(Phidget):
 	def getVoltage(self):
 		_Voltage = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_getVoltage
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Voltage))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_getVoltage
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Voltage))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -664,12 +594,9 @@ class RCServo(Phidget):
 	def setVoltage(self, Voltage):
 		_Voltage = ctypes.c_int(Voltage)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRCServo_setVoltage
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Voltage)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRCServo_setVoltage
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Voltage)
 
 		if result > 0:
 			raise PhidgetException(result)

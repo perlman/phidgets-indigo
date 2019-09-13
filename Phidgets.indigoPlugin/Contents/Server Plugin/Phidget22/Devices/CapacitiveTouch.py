@@ -27,12 +27,9 @@ class CapacitiveTouch(Phidget):
 		self._TouchEnd = None
 		self._onTouchEnd = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -85,12 +82,9 @@ class CapacitiveTouch(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -100,12 +94,9 @@ class CapacitiveTouch(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -114,12 +105,9 @@ class CapacitiveTouch(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -129,12 +117,9 @@ class CapacitiveTouch(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -144,12 +129,9 @@ class CapacitiveTouch(Phidget):
 	def getIsTouched(self):
 		_IsTouched = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getIsTouched
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_IsTouched))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getIsTouched
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IsTouched))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -159,12 +141,9 @@ class CapacitiveTouch(Phidget):
 	def getSensitivity(self):
 		_Sensitivity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getSensitivity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Sensitivity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getSensitivity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Sensitivity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -174,12 +153,9 @@ class CapacitiveTouch(Phidget):
 	def setSensitivity(self, Sensitivity):
 		_Sensitivity = ctypes.c_double(Sensitivity)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_setSensitivity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Sensitivity)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_setSensitivity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Sensitivity)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -188,12 +164,9 @@ class CapacitiveTouch(Phidget):
 	def getMinSensitivity(self):
 		_MinSensitivity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMinSensitivity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinSensitivity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMinSensitivity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinSensitivity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -203,12 +176,9 @@ class CapacitiveTouch(Phidget):
 	def getMaxSensitivity(self):
 		_MaxSensitivity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMaxSensitivity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxSensitivity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMaxSensitivity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxSensitivity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -218,12 +188,9 @@ class CapacitiveTouch(Phidget):
 	def getTouchValue(self):
 		_TouchValue = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getTouchValue
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_TouchValue))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getTouchValue
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_TouchValue))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -233,12 +200,9 @@ class CapacitiveTouch(Phidget):
 	def getMinTouchValue(self):
 		_MinTouchValue = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMinTouchValue
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinTouchValue))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMinTouchValue
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinTouchValue))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -248,12 +212,9 @@ class CapacitiveTouch(Phidget):
 	def getMaxTouchValue(self):
 		_MaxTouchValue = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMaxTouchValue
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxTouchValue))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMaxTouchValue
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxTouchValue))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -263,12 +224,9 @@ class CapacitiveTouch(Phidget):
 	def getTouchValueChangeTrigger(self):
 		_TouchValueChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getTouchValueChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_TouchValueChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getTouchValueChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_TouchValueChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -278,12 +236,9 @@ class CapacitiveTouch(Phidget):
 	def setTouchValueChangeTrigger(self, TouchValueChangeTrigger):
 		_TouchValueChangeTrigger = ctypes.c_double(TouchValueChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_setTouchValueChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _TouchValueChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_setTouchValueChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _TouchValueChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -292,12 +247,9 @@ class CapacitiveTouch(Phidget):
 	def getMinTouchValueChangeTrigger(self):
 		_MinTouchValueChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMinTouchValueChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinTouchValueChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMinTouchValueChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinTouchValueChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -307,12 +259,9 @@ class CapacitiveTouch(Phidget):
 	def getMaxTouchValueChangeTrigger(self):
 		_MaxTouchValueChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMaxTouchValueChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxTouchValueChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_getMaxTouchValueChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxTouchValueChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)

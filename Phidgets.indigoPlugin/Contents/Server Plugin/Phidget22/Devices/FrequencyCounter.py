@@ -30,12 +30,9 @@ class FrequencyCounter(Phidget):
 		self._FrequencyChange = None
 		self._onFrequencyChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -88,12 +85,9 @@ class FrequencyCounter(Phidget):
 	def getCount(self):
 		_Count = ctypes.c_uint64()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getCount
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Count))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getCount
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Count))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -103,12 +97,9 @@ class FrequencyCounter(Phidget):
 	def getEnabled(self):
 		_Enabled = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getEnabled
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Enabled))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Enabled))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -118,12 +109,9 @@ class FrequencyCounter(Phidget):
 	def setEnabled(self, Enabled):
 		_Enabled = ctypes.c_int(Enabled)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setEnabled
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Enabled)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Enabled)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -132,12 +120,9 @@ class FrequencyCounter(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -147,12 +132,9 @@ class FrequencyCounter(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -161,12 +143,9 @@ class FrequencyCounter(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -176,12 +155,9 @@ class FrequencyCounter(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -191,12 +167,9 @@ class FrequencyCounter(Phidget):
 	def getFilterType(self):
 		_FilterType = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getFilterType
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_FilterType))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getFilterType
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_FilterType))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -206,12 +179,9 @@ class FrequencyCounter(Phidget):
 	def setFilterType(self, FilterType):
 		_FilterType = ctypes.c_int(FilterType)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setFilterType
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _FilterType)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setFilterType
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _FilterType)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -220,12 +190,9 @@ class FrequencyCounter(Phidget):
 	def getFrequency(self):
 		_Frequency = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getFrequency
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Frequency))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getFrequency
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Frequency))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -235,12 +202,9 @@ class FrequencyCounter(Phidget):
 	def getMaxFrequency(self):
 		_MaxFrequency = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMaxFrequency
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxFrequency))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMaxFrequency
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxFrequency))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -250,12 +214,9 @@ class FrequencyCounter(Phidget):
 	def getFrequencyCutoff(self):
 		_FrequencyCutoff = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getFrequencyCutoff
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_FrequencyCutoff))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getFrequencyCutoff
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_FrequencyCutoff))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -265,12 +226,9 @@ class FrequencyCounter(Phidget):
 	def setFrequencyCutoff(self, FrequencyCutoff):
 		_FrequencyCutoff = ctypes.c_double(FrequencyCutoff)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setFrequencyCutoff
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _FrequencyCutoff)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setFrequencyCutoff
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _FrequencyCutoff)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -279,12 +237,9 @@ class FrequencyCounter(Phidget):
 	def getMinFrequencyCutoff(self):
 		_MinFrequencyCutoff = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMinFrequencyCutoff
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinFrequencyCutoff))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMinFrequencyCutoff
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinFrequencyCutoff))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -294,12 +249,9 @@ class FrequencyCounter(Phidget):
 	def getMaxFrequencyCutoff(self):
 		_MaxFrequencyCutoff = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMaxFrequencyCutoff
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxFrequencyCutoff))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMaxFrequencyCutoff
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxFrequencyCutoff))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -309,12 +261,9 @@ class FrequencyCounter(Phidget):
 	def getInputMode(self):
 		_InputMode = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getInputMode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_InputMode))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getInputMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_InputMode))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -324,12 +273,9 @@ class FrequencyCounter(Phidget):
 	def setInputMode(self, InputMode):
 		_InputMode = ctypes.c_int(InputMode)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setInputMode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _InputMode)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setInputMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _InputMode)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -338,12 +284,9 @@ class FrequencyCounter(Phidget):
 	def getPowerSupply(self):
 		_PowerSupply = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getPowerSupply
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_PowerSupply))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getPowerSupply
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_PowerSupply))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -353,24 +296,18 @@ class FrequencyCounter(Phidget):
 	def setPowerSupply(self, PowerSupply):
 		_PowerSupply = ctypes.c_int(PowerSupply)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setPowerSupply
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _PowerSupply)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setPowerSupply
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _PowerSupply)
 
 		if result > 0:
 			raise PhidgetException(result)
 
 
 	def reset(self):
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_reset
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_reset
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -379,12 +316,9 @@ class FrequencyCounter(Phidget):
 	def getTimeElapsed(self):
 		_TimeElapsed = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getTimeElapsed
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_TimeElapsed))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getTimeElapsed
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_TimeElapsed))
 
 		if result > 0:
 			raise PhidgetException(result)

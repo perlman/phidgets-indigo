@@ -26,23 +26,17 @@ class Manager:
 		self._Detach = None
 		self._onDetach = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetManager_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetManager_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
 
 	def __del__(self):
-		try:
-			__func = PhidgetSupport.getDll().PhidgetManager_delete
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetManager_delete
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 		self.handle = None
 		if res > 0:
 			raise PhidgetException(res)
@@ -50,12 +44,9 @@ class Manager:
 	def _localAttachEvent(self, handle, userPtr, Channel):
 		if self._Attach == None:
 			return
-		try:
-			__func = PhidgetSupport.getDll().Phidget_retain
-			__func.restype = ctypes.c_int32
-			result = __func(ctypes.c_void_p(Channel))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_retain
+		__func.restype = ctypes.c_int32
+		result = __func(ctypes.c_void_p(Channel))
 		if result > 0:
 			raise PhidgetException(result)
 		ph = Phidget()
@@ -81,12 +72,9 @@ class Manager:
 	def _localDetachEvent(self, handle, userPtr, Channel):
 		if self._Detach == None:
 			return
-		try:
-			__func = PhidgetSupport.getDll().Phidget_retain
-			__func.restype = ctypes.c_int32
-			result = __func(ctypes.c_void_p(Channel))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().Phidget_retain
+		__func.restype = ctypes.c_int32
+		result = __func(ctypes.c_void_p(Channel))
 		if result > 0:
 			raise PhidgetException(result)
 		ph = Phidget()
@@ -110,24 +98,18 @@ class Manager:
 			self._onDetach = None
 
 	def close(self):
-		try:
-			__func = PhidgetSupport.getDll().PhidgetManager_close
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetManager_close
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)
 
 
 	def open(self):
-		try:
-			__func = PhidgetSupport.getDll().PhidgetManager_open
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetManager_open
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)

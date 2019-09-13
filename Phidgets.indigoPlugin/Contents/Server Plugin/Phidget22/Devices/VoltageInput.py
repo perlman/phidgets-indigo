@@ -32,12 +32,9 @@ class VoltageInput(Phidget):
 		self._VoltageChange = None
 		self._onVoltageChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -93,12 +90,9 @@ class VoltageInput(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -108,12 +102,9 @@ class VoltageInput(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -122,12 +113,9 @@ class VoltageInput(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -137,12 +125,9 @@ class VoltageInput(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -152,12 +137,9 @@ class VoltageInput(Phidget):
 	def getPowerSupply(self):
 		_PowerSupply = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getPowerSupply
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_PowerSupply))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getPowerSupply
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_PowerSupply))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -167,12 +149,9 @@ class VoltageInput(Phidget):
 	def setPowerSupply(self, PowerSupply):
 		_PowerSupply = ctypes.c_int(PowerSupply)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_setPowerSupply
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _PowerSupply)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_setPowerSupply
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _PowerSupply)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -181,12 +160,9 @@ class VoltageInput(Phidget):
 	def getSensorType(self):
 		_SensorType = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getSensorType
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SensorType))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getSensorType
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SensorType))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -196,12 +172,9 @@ class VoltageInput(Phidget):
 	def setSensorType(self, SensorType):
 		_SensorType = ctypes.c_int(SensorType)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_setSensorType
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _SensorType)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_setSensorType
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _SensorType)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -210,12 +183,9 @@ class VoltageInput(Phidget):
 	def getSensorUnit(self):
 		_SensorUnit = UnitInfo()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getSensorUnit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SensorUnit))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getSensorUnit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SensorUnit))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -225,12 +195,9 @@ class VoltageInput(Phidget):
 	def getSensorValue(self):
 		_SensorValue = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getSensorValue
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SensorValue))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getSensorValue
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SensorValue))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -240,12 +207,9 @@ class VoltageInput(Phidget):
 	def getSensorValueChangeTrigger(self):
 		_SensorValueChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getSensorValueChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_SensorValueChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getSensorValueChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SensorValueChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -255,12 +219,9 @@ class VoltageInput(Phidget):
 	def setSensorValueChangeTrigger(self, SensorValueChangeTrigger):
 		_SensorValueChangeTrigger = ctypes.c_double(SensorValueChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_setSensorValueChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _SensorValueChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_setSensorValueChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _SensorValueChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -269,12 +230,9 @@ class VoltageInput(Phidget):
 	def getVoltage(self):
 		_Voltage = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getVoltage
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Voltage))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getVoltage
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Voltage))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -284,12 +242,9 @@ class VoltageInput(Phidget):
 	def getMinVoltage(self):
 		_MinVoltage = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMinVoltage
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinVoltage))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMinVoltage
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinVoltage))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -299,12 +254,9 @@ class VoltageInput(Phidget):
 	def getMaxVoltage(self):
 		_MaxVoltage = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMaxVoltage
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxVoltage))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMaxVoltage
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxVoltage))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -314,12 +266,9 @@ class VoltageInput(Phidget):
 	def getVoltageChangeTrigger(self):
 		_VoltageChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getVoltageChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_VoltageChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getVoltageChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_VoltageChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -329,12 +278,9 @@ class VoltageInput(Phidget):
 	def setVoltageChangeTrigger(self, VoltageChangeTrigger):
 		_VoltageChangeTrigger = ctypes.c_double(VoltageChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_setVoltageChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _VoltageChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_setVoltageChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _VoltageChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -343,12 +289,9 @@ class VoltageInput(Phidget):
 	def getMinVoltageChangeTrigger(self):
 		_MinVoltageChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMinVoltageChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinVoltageChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMinVoltageChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinVoltageChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -358,12 +301,9 @@ class VoltageInput(Phidget):
 	def getMaxVoltageChangeTrigger(self):
 		_MaxVoltageChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMaxVoltageChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxVoltageChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getMaxVoltageChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxVoltageChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -373,12 +313,9 @@ class VoltageInput(Phidget):
 	def getVoltageRange(self):
 		_VoltageRange = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_getVoltageRange
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_VoltageRange))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_getVoltageRange
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_VoltageRange))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -388,12 +325,9 @@ class VoltageInput(Phidget):
 	def setVoltageRange(self, VoltageRange):
 		_VoltageRange = ctypes.c_int(VoltageRange)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetVoltageInput_setVoltageRange
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _VoltageRange)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetVoltageInput_setVoltageRange
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _VoltageRange)
 
 		if result > 0:
 			raise PhidgetException(result)

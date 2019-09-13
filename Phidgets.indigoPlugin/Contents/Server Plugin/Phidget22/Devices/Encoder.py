@@ -21,12 +21,9 @@ class Encoder(Phidget):
 		self._PositionChange = None
 		self._onPositionChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -58,12 +55,9 @@ class Encoder(Phidget):
 	def setEnabled(self, Enabled):
 		_Enabled = ctypes.c_int(Enabled)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_setEnabled
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Enabled)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_setEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Enabled)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -72,12 +66,9 @@ class Encoder(Phidget):
 	def getEnabled(self):
 		_Enabled = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_getEnabled
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Enabled))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_getEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Enabled))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -87,12 +78,9 @@ class Encoder(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -102,12 +90,9 @@ class Encoder(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -116,12 +101,9 @@ class Encoder(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -131,12 +113,9 @@ class Encoder(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -146,12 +125,9 @@ class Encoder(Phidget):
 	def getIndexPosition(self):
 		_IndexPosition = ctypes.c_int64()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_getIndexPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_IndexPosition))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_getIndexPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IndexPosition))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -161,12 +137,9 @@ class Encoder(Phidget):
 	def getIOMode(self):
 		_IOMode = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_getIOMode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_IOMode))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_getIOMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IOMode))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -176,12 +149,9 @@ class Encoder(Phidget):
 	def setIOMode(self, IOMode):
 		_IOMode = ctypes.c_int(IOMode)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_setIOMode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _IOMode)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_setIOMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _IOMode)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -190,12 +160,9 @@ class Encoder(Phidget):
 	def getPosition(self):
 		_Position = ctypes.c_int64()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_getPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Position))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_getPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Position))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -205,12 +172,9 @@ class Encoder(Phidget):
 	def setPosition(self, Position):
 		_Position = ctypes.c_int64(Position)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_setPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Position)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_setPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Position)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -219,12 +183,9 @@ class Encoder(Phidget):
 	def getPositionChangeTrigger(self):
 		_PositionChangeTrigger = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_getPositionChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_PositionChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_getPositionChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_PositionChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -234,12 +195,9 @@ class Encoder(Phidget):
 	def setPositionChangeTrigger(self, PositionChangeTrigger):
 		_PositionChangeTrigger = ctypes.c_uint32(PositionChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_setPositionChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _PositionChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_setPositionChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _PositionChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -248,12 +206,9 @@ class Encoder(Phidget):
 	def getMinPositionChangeTrigger(self):
 		_MinPositionChangeTrigger = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_getMinPositionChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinPositionChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_getMinPositionChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinPositionChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -263,12 +218,9 @@ class Encoder(Phidget):
 	def getMaxPositionChangeTrigger(self):
 		_MaxPositionChangeTrigger = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetEncoder_getMaxPositionChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxPositionChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetEncoder_getMaxPositionChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxPositionChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)

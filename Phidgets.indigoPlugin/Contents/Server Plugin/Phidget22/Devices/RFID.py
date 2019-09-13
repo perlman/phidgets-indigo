@@ -28,12 +28,9 @@ class RFID(Phidget):
 		self._TagLost = None
 		self._onTagLost = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRFID_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRFID_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -88,12 +85,9 @@ class RFID(Phidget):
 	def getAntennaEnabled(self):
 		_AntennaEnabled = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRFID_getAntennaEnabled
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_AntennaEnabled))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRFID_getAntennaEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_AntennaEnabled))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -103,12 +97,9 @@ class RFID(Phidget):
 	def setAntennaEnabled(self, AntennaEnabled):
 		_AntennaEnabled = ctypes.c_int(AntennaEnabled)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRFID_setAntennaEnabled
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _AntennaEnabled)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRFID_setAntennaEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _AntennaEnabled)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -119,12 +110,9 @@ class RFID(Phidget):
 		_tagStringLen = ctypes.c_int32(25)
 		_protocol = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRFID_getLastTag
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_tagString), _tagStringLen, ctypes.byref(_protocol))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRFID_getLastTag
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_tagString), _tagStringLen, ctypes.byref(_protocol))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -134,12 +122,9 @@ class RFID(Phidget):
 	def getTagPresent(self):
 		_TagPresent = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRFID_getTagPresent
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_TagPresent))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRFID_getTagPresent
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_TagPresent))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -151,12 +136,9 @@ class RFID(Phidget):
 		_protocol = ctypes.c_int(protocol)
 		_lockTag = ctypes.c_int(lockTag)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetRFID_write
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_tagString), _protocol, _lockTag)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetRFID_write
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_tagString), _protocol, _lockTag)
 
 		if result > 0:
 			raise PhidgetException(result)

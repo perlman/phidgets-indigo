@@ -20,12 +20,9 @@ class LightSensor(Phidget):
 		self._IlluminanceChange = None
 		self._onIlluminanceChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -57,12 +54,9 @@ class LightSensor(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -72,12 +66,9 @@ class LightSensor(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -86,12 +77,9 @@ class LightSensor(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -101,12 +89,9 @@ class LightSensor(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -116,12 +101,9 @@ class LightSensor(Phidget):
 	def getIlluminance(self):
 		_Illuminance = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_getIlluminance
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Illuminance))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_getIlluminance
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Illuminance))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -131,12 +113,9 @@ class LightSensor(Phidget):
 	def getMinIlluminance(self):
 		_MinIlluminance = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_getMinIlluminance
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinIlluminance))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_getMinIlluminance
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinIlluminance))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -146,12 +125,9 @@ class LightSensor(Phidget):
 	def getMaxIlluminance(self):
 		_MaxIlluminance = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_getMaxIlluminance
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxIlluminance))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_getMaxIlluminance
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxIlluminance))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -161,12 +137,9 @@ class LightSensor(Phidget):
 	def getIlluminanceChangeTrigger(self):
 		_IlluminanceChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_getIlluminanceChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_IlluminanceChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_getIlluminanceChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IlluminanceChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -176,12 +149,9 @@ class LightSensor(Phidget):
 	def setIlluminanceChangeTrigger(self, IlluminanceChangeTrigger):
 		_IlluminanceChangeTrigger = ctypes.c_double(IlluminanceChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_setIlluminanceChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _IlluminanceChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_setIlluminanceChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _IlluminanceChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -190,12 +160,9 @@ class LightSensor(Phidget):
 	def getMinIlluminanceChangeTrigger(self):
 		_MinIlluminanceChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_getMinIlluminanceChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinIlluminanceChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_getMinIlluminanceChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinIlluminanceChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -205,12 +172,9 @@ class LightSensor(Phidget):
 	def getMaxIlluminanceChangeTrigger(self):
 		_MaxIlluminanceChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetLightSensor_getMaxIlluminanceChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxIlluminanceChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetLightSensor_getMaxIlluminanceChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxIlluminanceChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)

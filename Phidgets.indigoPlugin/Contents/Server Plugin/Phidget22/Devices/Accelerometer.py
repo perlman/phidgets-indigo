@@ -20,12 +20,9 @@ class Accelerometer(Phidget):
 		self._AccelerationChange = None
 		self._onAccelerationChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -57,12 +54,9 @@ class Accelerometer(Phidget):
 	def getAcceleration(self):
 		_Acceleration = (ctypes.c_double * 3)()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Acceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Acceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -72,12 +66,9 @@ class Accelerometer(Phidget):
 	def getMinAcceleration(self):
 		_MinAcceleration = (ctypes.c_double * 3)()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMinAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinAcceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMinAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinAcceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -87,12 +78,9 @@ class Accelerometer(Phidget):
 	def getMaxAcceleration(self):
 		_MaxAcceleration = (ctypes.c_double * 3)()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMaxAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxAcceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMaxAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxAcceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -102,12 +90,9 @@ class Accelerometer(Phidget):
 	def getAccelerationChangeTrigger(self):
 		_AccelerationChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getAccelerationChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_AccelerationChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getAccelerationChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_AccelerationChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -117,12 +102,9 @@ class Accelerometer(Phidget):
 	def setAccelerationChangeTrigger(self, AccelerationChangeTrigger):
 		_AccelerationChangeTrigger = ctypes.c_double(AccelerationChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_setAccelerationChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _AccelerationChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_setAccelerationChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _AccelerationChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -131,12 +113,9 @@ class Accelerometer(Phidget):
 	def getMinAccelerationChangeTrigger(self):
 		_MinAccelerationChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMinAccelerationChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinAccelerationChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMinAccelerationChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinAccelerationChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -146,12 +125,9 @@ class Accelerometer(Phidget):
 	def getMaxAccelerationChangeTrigger(self):
 		_MaxAccelerationChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMaxAccelerationChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxAccelerationChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMaxAccelerationChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxAccelerationChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -161,12 +137,9 @@ class Accelerometer(Phidget):
 	def getAxisCount(self):
 		_AxisCount = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getAxisCount
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_AxisCount))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getAxisCount
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_AxisCount))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -176,12 +149,9 @@ class Accelerometer(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -191,12 +161,9 @@ class Accelerometer(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -205,12 +172,9 @@ class Accelerometer(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -220,12 +184,9 @@ class Accelerometer(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -235,12 +196,9 @@ class Accelerometer(Phidget):
 	def getTimestamp(self):
 		_Timestamp = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetAccelerometer_getTimestamp
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Timestamp))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetAccelerometer_getTimestamp
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Timestamp))
 
 		if result > 0:
 			raise PhidgetException(result)

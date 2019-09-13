@@ -20,12 +20,9 @@ class HumiditySensor(Phidget):
 		self._HumidityChange = None
 		self._onHumidityChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -57,12 +54,9 @@ class HumiditySensor(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -72,12 +66,9 @@ class HumiditySensor(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -86,12 +77,9 @@ class HumiditySensor(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -101,12 +89,9 @@ class HumiditySensor(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -116,12 +101,9 @@ class HumiditySensor(Phidget):
 	def getHumidity(self):
 		_Humidity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getHumidity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Humidity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getHumidity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Humidity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -131,12 +113,9 @@ class HumiditySensor(Phidget):
 	def getMinHumidity(self):
 		_MinHumidity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMinHumidity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinHumidity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMinHumidity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinHumidity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -146,12 +125,9 @@ class HumiditySensor(Phidget):
 	def getMaxHumidity(self):
 		_MaxHumidity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMaxHumidity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxHumidity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMaxHumidity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxHumidity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -161,12 +137,9 @@ class HumiditySensor(Phidget):
 	def getHumidityChangeTrigger(self):
 		_HumidityChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getHumidityChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_HumidityChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getHumidityChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_HumidityChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -176,12 +149,9 @@ class HumiditySensor(Phidget):
 	def setHumidityChangeTrigger(self, HumidityChangeTrigger):
 		_HumidityChangeTrigger = ctypes.c_double(HumidityChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_setHumidityChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _HumidityChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_setHumidityChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _HumidityChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -190,12 +160,9 @@ class HumiditySensor(Phidget):
 	def getMinHumidityChangeTrigger(self):
 		_MinHumidityChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMinHumidityChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinHumidityChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMinHumidityChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinHumidityChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -205,12 +172,9 @@ class HumiditySensor(Phidget):
 	def getMaxHumidityChangeTrigger(self):
 		_MaxHumidityChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMaxHumidityChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxHumidityChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetHumiditySensor_getMaxHumidityChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxHumidityChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)

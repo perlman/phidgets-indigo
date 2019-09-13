@@ -24,6 +24,8 @@ class ChannelSubclass:
 	PHIDCHSUBCLASS_LCD_TEXT = 81
 	# Encoder IO mode settable
 	PHIDCHSUBCLASS_ENCODER_MODE_SETTABLE = 96
+	# Spatial AHRS/IMU
+	PHIDCHSUBCLASS_SPATIAL_AHRS = 112
 
 	@classmethod
 	def getName(self, val):
@@ -49,4 +51,6 @@ class ChannelSubclass:
 			return "PHIDCHSUBCLASS_LCD_TEXT"
 		if val == self.PHIDCHSUBCLASS_ENCODER_MODE_SETTABLE:
 			return "PHIDCHSUBCLASS_ENCODER_MODE_SETTABLE"
+		if val == self.PHIDCHSUBCLASS_SPATIAL_AHRS:
+			return "PHIDCHSUBCLASS_SPATIAL_AHRS"
 		return "<invalid enumeration value>"

@@ -36,12 +36,9 @@ class GPS(Phidget):
 		self._PositionFixStateChange = None
 		self._onPositionFixStateChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGPS_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGPS_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -115,12 +112,9 @@ class GPS(Phidget):
 	def getAltitude(self):
 		_Altitude = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGPS_getAltitude
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Altitude))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGPS_getAltitude
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Altitude))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -130,12 +124,9 @@ class GPS(Phidget):
 	def getDate(self):
 		_Date = GPSDate()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGPS_getDate
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Date))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGPS_getDate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Date))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -145,12 +136,9 @@ class GPS(Phidget):
 	def getHeading(self):
 		_Heading = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGPS_getHeading
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Heading))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGPS_getHeading
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Heading))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -160,12 +148,9 @@ class GPS(Phidget):
 	def getLatitude(self):
 		_Latitude = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGPS_getLatitude
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Latitude))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGPS_getLatitude
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Latitude))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -175,12 +160,9 @@ class GPS(Phidget):
 	def getLongitude(self):
 		_Longitude = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGPS_getLongitude
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Longitude))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGPS_getLongitude
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Longitude))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -190,12 +172,9 @@ class GPS(Phidget):
 	def getPositionFixState(self):
 		_PositionFixState = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGPS_getPositionFixState
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_PositionFixState))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGPS_getPositionFixState
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_PositionFixState))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -205,12 +184,9 @@ class GPS(Phidget):
 	def getTime(self):
 		_Time = GPSTime()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGPS_getTime
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Time))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGPS_getTime
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Time))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -220,12 +196,9 @@ class GPS(Phidget):
 	def getVelocity(self):
 		_Velocity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetGPS_getVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Velocity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetGPS_getVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Velocity))
 
 		if result > 0:
 			raise PhidgetException(result)

@@ -34,12 +34,9 @@ class BLDCMotor(Phidget):
 		self._VelocityUpdate = None
 		self._onVelocityUpdate = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -113,12 +110,9 @@ class BLDCMotor(Phidget):
 	def getAcceleration(self):
 		_Acceleration = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Acceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Acceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -128,12 +122,9 @@ class BLDCMotor(Phidget):
 	def setAcceleration(self, Acceleration):
 		_Acceleration = ctypes.c_double(Acceleration)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _Acceleration)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Acceleration)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -142,12 +133,9 @@ class BLDCMotor(Phidget):
 	def getMinAcceleration(self):
 		_MinAcceleration = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinAcceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinAcceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -157,12 +145,9 @@ class BLDCMotor(Phidget):
 	def getMaxAcceleration(self):
 		_MaxAcceleration = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxAcceleration
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxAcceleration))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxAcceleration))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -172,12 +157,9 @@ class BLDCMotor(Phidget):
 	def getBrakingStrength(self):
 		_BrakingStrength = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getBrakingStrength
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_BrakingStrength))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getBrakingStrength
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_BrakingStrength))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -187,12 +169,9 @@ class BLDCMotor(Phidget):
 	def getMinBrakingStrength(self):
 		_MinBrakingStrength = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinBrakingStrength
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinBrakingStrength))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinBrakingStrength
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinBrakingStrength))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -202,12 +181,9 @@ class BLDCMotor(Phidget):
 	def getMaxBrakingStrength(self):
 		_MaxBrakingStrength = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxBrakingStrength
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxBrakingStrength))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxBrakingStrength
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxBrakingStrength))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -217,12 +193,9 @@ class BLDCMotor(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -232,12 +205,9 @@ class BLDCMotor(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -246,12 +216,9 @@ class BLDCMotor(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -261,27 +228,56 @@ class BLDCMotor(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
 
 		return _MaxDataInterval.value
 
+	def enableFailsafe(self, failsafeTime):
+		_failsafeTime = ctypes.c_uint32(failsafeTime)
+
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_enableFailsafe
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _failsafeTime)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinFailsafeTime(self):
+		_MinFailsafeTime = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinFailsafeTime
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinFailsafeTime))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinFailsafeTime.value
+
+	def getMaxFailsafeTime(self):
+		_MaxFailsafeTime = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxFailsafeTime
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxFailsafeTime))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxFailsafeTime.value
+
 	def getPosition(self):
 		_Position = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Position))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Position))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -291,12 +287,9 @@ class BLDCMotor(Phidget):
 	def getMinPosition(self):
 		_MinPosition = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinPosition))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinPosition))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -306,12 +299,9 @@ class BLDCMotor(Phidget):
 	def getMaxPosition(self):
 		_MaxPosition = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxPosition
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxPosition))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxPosition
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxPosition))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -321,12 +311,9 @@ class BLDCMotor(Phidget):
 	def addPositionOffset(self, positionOffset):
 		_positionOffset = ctypes.c_double(positionOffset)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_addPositionOffset
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _positionOffset)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_addPositionOffset
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _positionOffset)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -335,12 +322,9 @@ class BLDCMotor(Phidget):
 	def getRescaleFactor(self):
 		_RescaleFactor = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getRescaleFactor
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_RescaleFactor))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getRescaleFactor
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_RescaleFactor))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -350,12 +334,18 @@ class BLDCMotor(Phidget):
 	def setRescaleFactor(self, RescaleFactor):
 		_RescaleFactor = ctypes.c_double(RescaleFactor)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setRescaleFactor
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _RescaleFactor)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setRescaleFactor
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _RescaleFactor)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def resetFailsafe(self):
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_resetFailsafe
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -364,12 +354,9 @@ class BLDCMotor(Phidget):
 	def getStallVelocity(self):
 		_StallVelocity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getStallVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_StallVelocity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getStallVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_StallVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -379,12 +366,9 @@ class BLDCMotor(Phidget):
 	def setStallVelocity(self, StallVelocity):
 		_StallVelocity = ctypes.c_double(StallVelocity)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setStallVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _StallVelocity)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setStallVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _StallVelocity)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -393,12 +377,9 @@ class BLDCMotor(Phidget):
 	def getMinStallVelocity(self):
 		_MinStallVelocity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinStallVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinStallVelocity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinStallVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinStallVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -408,12 +389,9 @@ class BLDCMotor(Phidget):
 	def getMaxStallVelocity(self):
 		_MaxStallVelocity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxStallVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxStallVelocity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxStallVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxStallVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -423,12 +401,9 @@ class BLDCMotor(Phidget):
 	def getTargetBrakingStrength(self):
 		_TargetBrakingStrength = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getTargetBrakingStrength
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_TargetBrakingStrength))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getTargetBrakingStrength
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_TargetBrakingStrength))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -438,12 +413,9 @@ class BLDCMotor(Phidget):
 	def setTargetBrakingStrength(self, TargetBrakingStrength):
 		_TargetBrakingStrength = ctypes.c_double(TargetBrakingStrength)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setTargetBrakingStrength
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _TargetBrakingStrength)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setTargetBrakingStrength
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _TargetBrakingStrength)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -452,12 +424,9 @@ class BLDCMotor(Phidget):
 	def getTargetVelocity(self):
 		_TargetVelocity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getTargetVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_TargetVelocity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getTargetVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_TargetVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -467,12 +436,9 @@ class BLDCMotor(Phidget):
 	def setTargetVelocity(self, TargetVelocity):
 		_TargetVelocity = ctypes.c_double(TargetVelocity)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setTargetVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _TargetVelocity)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_setTargetVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _TargetVelocity)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -481,12 +447,9 @@ class BLDCMotor(Phidget):
 	def getVelocity(self):
 		_Velocity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Velocity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Velocity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -496,12 +459,9 @@ class BLDCMotor(Phidget):
 	def getMinVelocity(self):
 		_MinVelocity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinVelocity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMinVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -511,12 +471,9 @@ class BLDCMotor(Phidget):
 	def getMaxVelocity(self):
 		_MaxVelocity = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxVelocity
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxVelocity))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetBLDCMotor_getMaxVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)

@@ -4,9 +4,9 @@ import ctypes
 class ErrorEventCode:
 	# Client and Server protocol versions don't match. Ensure that both sides are using the same release of phidget22.
 	EEPHIDGET_BADVERSION = 1
-	# Phidget in Use
+	# Check that the Phidget is not already open in another program, such as the Phidget Control Panel, or another program you are developing.
 	EEPHIDGET_BUSY = 2
-	# Network Error
+	# This could be a network communication issue, an authentication issue (if server password is enabled), or a Device access / hardware issue.
 	EEPHIDGET_NETWORK = 3
 	# An error occured dispatching a command or event.
 	EEPHIDGET_DISPATCH = 4

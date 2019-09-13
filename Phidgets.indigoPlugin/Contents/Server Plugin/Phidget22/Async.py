@@ -32,10 +32,7 @@ class AsyncSupport:
 
 		_code = ctypes.c_int(res)
 		_desc = ctypes.c_char_p()
-		try :
-			result = PhidgetSupport.getDll().Phidget_getErrorDescription(_code, ctypes.byref(_desc))
-		except RuntimeError:
-			raise
+		result = PhidgetSupport.getDll().Phidget_getErrorDescription(_code, ctypes.byref(_desc))
 		details = _desc.value
 		entry[0](entry[1], res, details)
 

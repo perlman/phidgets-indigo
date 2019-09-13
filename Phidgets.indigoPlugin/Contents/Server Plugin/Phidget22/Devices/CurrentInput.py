@@ -21,12 +21,9 @@ class CurrentInput(Phidget):
 		self._CurrentChange = None
 		self._onCurrentChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -58,12 +55,9 @@ class CurrentInput(Phidget):
 	def getCurrent(self):
 		_Current = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_getCurrent
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Current))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_getCurrent
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Current))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -73,12 +67,9 @@ class CurrentInput(Phidget):
 	def getMinCurrent(self):
 		_MinCurrent = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMinCurrent
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinCurrent))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMinCurrent
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinCurrent))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -88,12 +79,9 @@ class CurrentInput(Phidget):
 	def getMaxCurrent(self):
 		_MaxCurrent = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMaxCurrent
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxCurrent))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMaxCurrent
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxCurrent))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -103,12 +91,9 @@ class CurrentInput(Phidget):
 	def getCurrentChangeTrigger(self):
 		_CurrentChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_getCurrentChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_CurrentChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_getCurrentChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_CurrentChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -118,12 +103,9 @@ class CurrentInput(Phidget):
 	def setCurrentChangeTrigger(self, CurrentChangeTrigger):
 		_CurrentChangeTrigger = ctypes.c_double(CurrentChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_setCurrentChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _CurrentChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_setCurrentChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _CurrentChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -132,12 +114,9 @@ class CurrentInput(Phidget):
 	def getMinCurrentChangeTrigger(self):
 		_MinCurrentChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMinCurrentChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinCurrentChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMinCurrentChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinCurrentChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -147,12 +126,9 @@ class CurrentInput(Phidget):
 	def getMaxCurrentChangeTrigger(self):
 		_MaxCurrentChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMaxCurrentChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxCurrentChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMaxCurrentChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxCurrentChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -162,12 +138,9 @@ class CurrentInput(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -177,12 +150,9 @@ class CurrentInput(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -191,12 +161,9 @@ class CurrentInput(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -206,12 +173,9 @@ class CurrentInput(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -221,12 +185,9 @@ class CurrentInput(Phidget):
 	def getPowerSupply(self):
 		_PowerSupply = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_getPowerSupply
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_PowerSupply))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_getPowerSupply
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_PowerSupply))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -236,12 +197,9 @@ class CurrentInput(Phidget):
 	def setPowerSupply(self, PowerSupply):
 		_PowerSupply = ctypes.c_int(PowerSupply)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetCurrentInput_setPowerSupply
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _PowerSupply)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetCurrentInput_setPowerSupply
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _PowerSupply)
 
 		if result > 0:
 			raise PhidgetException(result)

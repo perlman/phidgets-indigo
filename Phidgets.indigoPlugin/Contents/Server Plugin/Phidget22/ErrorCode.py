@@ -2,27 +2,27 @@
 import sys
 import ctypes
 class ErrorCode:
-	# Success
+	# Call succeeded.
 	EPHIDGET_OK = 0
 	# Not Permitted
 	EPHIDGET_PERM = 1
-	# No Such Entity
+	# The specified entity does not exist. This is usually a result of Net or Log API calls.
 	EPHIDGET_NOENT = 2
-	# Timed Out. This can happen for a number of common reasons:Check that the Phidget you are trying to open is plugged in, and that the addressing parameters have been specified correctly.Check that the Phidget is not already open in another program, such as the Phidget Control Panel, or another program you are developing.If your Phidget has a plug or terminal block for external power, ensure it is plugged in and powered.If you are using remote Phidgets, ensure that your computer can access the remote Phidgets using the Phidget Control Panel.If you are using remote Phidgets, ensure you have enabled Server Discovery or added the server corresponding to the Phidget you are trying to open.If you are using Network Server Discovery, try extending the timeout to allow more time for the server to be discovered.
+	# Call has timed out. This can happen for a number of common reasons: Check that the Phidget you are trying to open is plugged in, and that the addressing parameters have been specified correctly. Check that the Phidget is not already open in another program, such as the Phidget Control Panel, or another program you are developing. If your Phidget has a plug or terminal block for external power, ensure it is plugged in and powered. If you are using remote Phidgets, ensure that your computer can access the remote Phidgets using the Phidget Control Panel. If you are using remote Phidgets, ensure you have enabled Server Discovery or added the server corresponding to the Phidget you are trying to open. If you are using Network Server Discovery, try extending the timeout to allow more time for the server to be discovered.
 	EPHIDGET_TIMEOUT = 3
 	# Keep Alive Failure
 	EPHIDGET_KEEPALIVE = 58
-	# Op Interrupted
+	# The operation was interrupted; either from an error, or because the device was closed.
 	EPHIDGET_INTERRUPTED = 4
 	# IO Issue
 	EPHIDGET_IO = 5
 	# Memory Issue
 	EPHIDGET_NOMEMORY = 6
-	# Access (Permission) Issue
+	# Access to the resource (file) is denied. This can happen when enabling logging.
 	EPHIDGET_ACCESS = 7
 	# Address Issue
 	EPHIDGET_FAULT = 8
-	# Resource Busy. This means the Phidget you are trying to open is already open elsewhere.Check that the Phidget is not already open in another program, such as the Phidget Control Panel, or another program you are developing.Check that the addressing parameters have been specified correctly.
+	# Specified resource is in use. This error code is not normally used.
 	EPHIDGET_BUSY = 9
 	# Object Exists
 	EPHIDGET_EXIST = 10
@@ -30,13 +30,13 @@ class ErrorCode:
 	EPHIDGET_NOTDIR = 11
 	# Object is a directory
 	EPHIDGET_ISDIR = 12
-	# Invalid
+	# Invalid or malformed command. This can be caused by sending a command to a device which is not supported in it's current configuration.
 	EPHIDGET_INVALID = 13
 	# Too many open files in system
 	EPHIDGET_NFILE = 14
 	# Too many open files
 	EPHIDGET_MFILE = 15
-	# Not enough space
+	# The provided buffer argument size is too small.
 	EPHIDGET_NOSPC = 16
 	# File too Big
 	EPHIDGET_FBIG = 17
@@ -44,17 +44,17 @@ class ErrorCode:
 	EPHIDGET_ROFS = 18
 	# Read Only Object
 	EPHIDGET_RO = 19
-	# Operation Not Supported
+	# This API call is not supported. For Class APIs this means that this API is not supported by this device. This can also mean the API is not supported on this OS, or OS configuration.
 	EPHIDGET_UNSUPPORTED = 20
-	# Invalid Argument. One or more of the parameters passed to the function is not accepted by the channel in its current configuration.
+	# One or more of the parameters passed to the function is not accepted by the channel in its current configuration.
 	EPHIDGET_INVALIDARG = 21
 	# Try again
 	EPHIDGET_AGAIN = 22
 	# Not Empty
 	EPHIDGET_NOTEMPTY = 26
-	# Unexpected Error
+	# Something unexpected has occured. Enable library logging and have a look at the log, or contact Phidgets support.
 	EPHIDGET_UNEXPECTED = 28
-	# Duplicate
+	# Duplicated request. Can happen with some Net API calls, such as trying to add the same server twice.
 	EPHIDGET_DUPLICATE = 27
 	# Bad Credential
 	EPHIDGET_BADPASSWORD = 37
@@ -68,15 +68,15 @@ class ErrorCode:
 	EPHIDGET_HOSTUNREACH = 48
 	# No Such Device
 	EPHIDGET_NODEV = 40
-	# Wrong Device
+	# A Phidget channel object of the wrong channel class was passed into this API call.
 	EPHIDGET_WRONGDEVICE = 50
 	# Broken Pipe
 	EPHIDGET_PIPE = 41
 	# Name Resolution Failure
 	EPHIDGET_RESOLV = 44
-	# Unknown or Invalid Value
+	# The value is unknown. This can happen right after attach, when the value has not yet been recieved from the Phidget. This can also happen if a device has not yet been configured / enabled. Some properties can only be read back after being set.
 	EPHIDGET_UNKNOWNVAL = 51
-	# Device Not Attached. This can happen for a number of common reasons. Be sure you are opening the channel before trying to use it. If you are opening the channel, the program may not be waiting for the channel to be attached. If possible use openWaitForAttachment. Otherwise, be sure to check the Attached property of the channel before trying to use it.
+	# This can happen for a number of common reasons. Be sure you are opening the channel before trying to use it. If you are opening the channel, the program may not be waiting for the channel to be attached. If possible use openWaitForAttachment. Otherwise, be sure to check the Attached property of the channel before trying to use it.
 	EPHIDGET_NOTATTACHED = 52
 	# Invalid or Unexpected Packet
 	EPHIDGET_INVALIDPACKET = 53
@@ -84,9 +84,9 @@ class ErrorCode:
 	EPHIDGET_2BIG = 54
 	# Bad Version
 	EPHIDGET_BADVERSION = 55
-	# Closed
+	# Channel was closed. This can happen if a channel is closed while openWaitForAttachment is waiting.
 	EPHIDGET_CLOSED = 56
-	# Not Configured
+	# Device is not configured enough for this API call. Have a look at the must-set properties for this device and make sure to configure them first.
 	EPHIDGET_NOTCONFIGURED = 57
 	# End of File
 	EPHIDGET_EOF = 31

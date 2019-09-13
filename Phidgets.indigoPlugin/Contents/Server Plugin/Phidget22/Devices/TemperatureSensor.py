@@ -23,12 +23,9 @@ class TemperatureSensor(Phidget):
 		self._TemperatureChange = None
 		self._onTemperatureChange = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -60,12 +57,9 @@ class TemperatureSensor(Phidget):
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_DataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -75,12 +69,9 @@ class TemperatureSensor(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _DataInterval)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataInterval)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -89,12 +80,9 @@ class TemperatureSensor(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMinDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMinDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -104,12 +92,9 @@ class TemperatureSensor(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMaxDataInterval
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxDataInterval))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMaxDataInterval
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -119,12 +104,9 @@ class TemperatureSensor(Phidget):
 	def getRTDType(self):
 		_RTDType = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getRTDType
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_RTDType))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getRTDType
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_RTDType))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -134,12 +116,9 @@ class TemperatureSensor(Phidget):
 	def setRTDType(self, RTDType):
 		_RTDType = ctypes.c_int(RTDType)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setRTDType
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _RTDType)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setRTDType
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _RTDType)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -148,12 +127,9 @@ class TemperatureSensor(Phidget):
 	def getRTDWireSetup(self):
 		_RTDWireSetup = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getRTDWireSetup
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_RTDWireSetup))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getRTDWireSetup
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_RTDWireSetup))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -163,12 +139,9 @@ class TemperatureSensor(Phidget):
 	def setRTDWireSetup(self, RTDWireSetup):
 		_RTDWireSetup = ctypes.c_int(RTDWireSetup)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setRTDWireSetup
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _RTDWireSetup)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setRTDWireSetup
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _RTDWireSetup)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -177,12 +150,9 @@ class TemperatureSensor(Phidget):
 	def getTemperature(self):
 		_Temperature = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getTemperature
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_Temperature))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getTemperature
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Temperature))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -192,12 +162,9 @@ class TemperatureSensor(Phidget):
 	def getMinTemperature(self):
 		_MinTemperature = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMinTemperature
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinTemperature))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMinTemperature
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinTemperature))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -207,12 +174,9 @@ class TemperatureSensor(Phidget):
 	def getMaxTemperature(self):
 		_MaxTemperature = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMaxTemperature
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxTemperature))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMaxTemperature
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxTemperature))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -222,12 +186,9 @@ class TemperatureSensor(Phidget):
 	def getTemperatureChangeTrigger(self):
 		_TemperatureChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getTemperatureChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_TemperatureChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getTemperatureChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_TemperatureChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -237,12 +198,9 @@ class TemperatureSensor(Phidget):
 	def setTemperatureChangeTrigger(self, TemperatureChangeTrigger):
 		_TemperatureChangeTrigger = ctypes.c_double(TemperatureChangeTrigger)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setTemperatureChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _TemperatureChangeTrigger)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setTemperatureChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _TemperatureChangeTrigger)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -251,12 +209,9 @@ class TemperatureSensor(Phidget):
 	def getMinTemperatureChangeTrigger(self):
 		_MinTemperatureChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMinTemperatureChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinTemperatureChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMinTemperatureChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinTemperatureChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -266,12 +221,9 @@ class TemperatureSensor(Phidget):
 	def getMaxTemperatureChangeTrigger(self):
 		_MaxTemperatureChangeTrigger = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMaxTemperatureChangeTrigger
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxTemperatureChangeTrigger))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getMaxTemperatureChangeTrigger
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxTemperatureChangeTrigger))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -281,12 +233,9 @@ class TemperatureSensor(Phidget):
 	def getThermocoupleType(self):
 		_ThermocoupleType = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getThermocoupleType
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_ThermocoupleType))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_getThermocoupleType
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ThermocoupleType))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -296,12 +245,9 @@ class TemperatureSensor(Phidget):
 	def setThermocoupleType(self, ThermocoupleType):
 		_ThermocoupleType = ctypes.c_int(ThermocoupleType)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setThermocoupleType
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _ThermocoupleType)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setThermocoupleType
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _ThermocoupleType)
 
 		if result > 0:
 			raise PhidgetException(result)

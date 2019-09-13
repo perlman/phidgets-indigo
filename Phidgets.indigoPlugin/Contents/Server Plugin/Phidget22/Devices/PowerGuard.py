@@ -14,12 +14,9 @@ class PowerGuard(Phidget):
 		Phidget.__init__(self)
 		self.handle = ctypes.c_void_p()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPowerGuard_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -27,15 +24,47 @@ class PowerGuard(Phidget):
 	def __del__(self):
 		Phidget.__del__(self)
 
+	def enableFailsafe(self, failsafeTime):
+		_failsafeTime = ctypes.c_uint32(failsafeTime)
+
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_enableFailsafe
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _failsafeTime)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinFailsafeTime(self):
+		_MinFailsafeTime = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_getMinFailsafeTime
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinFailsafeTime))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinFailsafeTime.value
+
+	def getMaxFailsafeTime(self):
+		_MaxFailsafeTime = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_getMaxFailsafeTime
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxFailsafeTime))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxFailsafeTime.value
+
 	def getFanMode(self):
 		_FanMode = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPowerGuard_getFanMode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_FanMode))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_getFanMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_FanMode))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -45,12 +74,9 @@ class PowerGuard(Phidget):
 	def setFanMode(self, FanMode):
 		_FanMode = ctypes.c_int(FanMode)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPowerGuard_setFanMode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _FanMode)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_setFanMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _FanMode)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -59,12 +85,9 @@ class PowerGuard(Phidget):
 	def getOverVoltage(self):
 		_OverVoltage = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPowerGuard_getOverVoltage
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_OverVoltage))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_getOverVoltage
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_OverVoltage))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -74,12 +97,9 @@ class PowerGuard(Phidget):
 	def setOverVoltage(self, OverVoltage):
 		_OverVoltage = ctypes.c_double(OverVoltage)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPowerGuard_setOverVoltage
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _OverVoltage)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_setOverVoltage
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _OverVoltage)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -88,12 +108,9 @@ class PowerGuard(Phidget):
 	def getMinOverVoltage(self):
 		_MinOverVoltage = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPowerGuard_getMinOverVoltage
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MinOverVoltage))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_getMinOverVoltage
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinOverVoltage))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -103,12 +120,9 @@ class PowerGuard(Phidget):
 	def getMaxOverVoltage(self):
 		_MaxOverVoltage = ctypes.c_double()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPowerGuard_getMaxOverVoltage
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_MaxOverVoltage))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_getMaxOverVoltage
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxOverVoltage))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -118,12 +132,9 @@ class PowerGuard(Phidget):
 	def getPowerEnabled(self):
 		_PowerEnabled = ctypes.c_int()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPowerGuard_getPowerEnabled
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_PowerEnabled))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_getPowerEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_PowerEnabled))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -133,12 +144,18 @@ class PowerGuard(Phidget):
 	def setPowerEnabled(self, PowerEnabled):
 		_PowerEnabled = ctypes.c_int(PowerEnabled)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetPowerGuard_setPowerEnabled
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, _PowerEnabled)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_setPowerEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _PowerEnabled)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def resetFailsafe(self):
+		__func = PhidgetSupport.getDll().PhidgetPowerGuard_resetFailsafe
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)

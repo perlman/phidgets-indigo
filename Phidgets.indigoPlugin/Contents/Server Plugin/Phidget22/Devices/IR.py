@@ -37,12 +37,9 @@ class IR(Phidget):
 		self._RawData = None
 		self._onRawData = None
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetIR_create
-			__func.restype = ctypes.c_int32
-			res = __func(ctypes.byref(self.handle))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetIR_create
+		__func.restype = ctypes.c_int32
+		res = __func(ctypes.byref(self.handle))
 
 		if res > 0:
 			raise PhidgetException(res)
@@ -123,12 +120,9 @@ class IR(Phidget):
 		_codeLen = ctypes.c_int32(33)
 		_bitCount = ctypes.c_uint32()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetIR_getLastCode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_code), _codeLen, ctypes.byref(_bitCount))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetIR_getLastCode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_code), _codeLen, ctypes.byref(_bitCount))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -140,12 +134,9 @@ class IR(Phidget):
 		_codeLen = ctypes.c_int32(33)
 		_codeInfo = CodeInfo()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetIR_getLastLearnedCode
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_code), _codeLen, ctypes.byref(_codeInfo))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetIR_getLastLearnedCode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_code), _codeLen, ctypes.byref(_codeInfo))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -156,12 +147,9 @@ class IR(Phidget):
 		_code = ctypes.create_string_buffer(code.encode('utf-8'))
 		_codeInfo = codeInfo.fromPython()
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetIR_transmit
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_code), ctypes.byref(_codeInfo))
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetIR_transmit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_code), ctypes.byref(_codeInfo))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -174,24 +162,18 @@ class IR(Phidget):
 		_dutyCycle = ctypes.c_double(dutyCycle)
 		_gap = ctypes.c_uint32(gap)
 
-		try:
-			__func = PhidgetSupport.getDll().PhidgetIR_transmitRaw
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle, ctypes.byref(_data), _dataLen, _carrierFrequency, _dutyCycle, _gap)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetIR_transmitRaw
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_data), _dataLen, _carrierFrequency, _dutyCycle, _gap)
 
 		if result > 0:
 			raise PhidgetException(result)
 
 
 	def transmitRepeat(self):
-		try:
-			__func = PhidgetSupport.getDll().PhidgetIR_transmitRepeat
-			__func.restype = ctypes.c_int32
-			result = __func(self.handle)
-		except RuntimeError:
-			raise
+		__func = PhidgetSupport.getDll().PhidgetIR_transmitRepeat
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle)
 
 		if result > 0:
 			raise PhidgetException(result)
