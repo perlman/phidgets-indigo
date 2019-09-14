@@ -1,4 +1,3 @@
-
 import sys
 import indigo
 import logging
@@ -21,6 +20,7 @@ class NetInfo():
         self.port = port
         self.password = password
 
+
 class ChannelInfo():
     def __init__(self, serialNumber=-1, hubPort=-1, isHubPortDevice=0, channel=-1, isVINT=None, netInfo=NetInfo()):
         self.serialNumber = serialNumber
@@ -30,18 +30,21 @@ class ChannelInfo():
         self.isVINT = isVINT
         self.netInfo = netInfo
 
+
 class PhidgetBase(object):
     """Base class for phidget devices living in Indigo."""
-    INDIGO_DEVICE_TYPE = None
+    PHIDGET_DEVICE_TYPE_DESC = "UNKNOWN"
+    PHIDGET_DEVICE_TYPE = None
     PHIDGET_SENSOR_KEY = None
     PHIDGET_DATA_INTERVAL = 1000     # ms
 
-    def __init__(self, phidget, channelInfo=ChannelInfo(), indigoDevice=None, logger=None):
+    def __init__(self, phidget, indigo_plugin=None, channelInfo=ChannelInfo(), indigoDevice=None, logger=None):
         self.phidget = phidget      # PhidgetAPI object for this phidget
         self.phidget.parent = self  # Reference back to this object from the PhidgetAPI
         self.logger = logger
         self.channelInfo = channelInfo
         self.indigoDevice = indigoDevice
+        self.indigo_plugin = indigo_plugin
 
     def start(self):
         self.phidget.setDeviceSerialNumber(self.channelInfo.serialNumber)
@@ -67,7 +70,7 @@ class PhidgetBase(object):
 
     def getDeviceSensorOption(self):
         """Query indigo device to get sensor value (if applicable)"""
-        sensorOption = int(self.indigoDevice.pluginProps.get("sensorType", "option0").replace('option',''))
+        sensorOption = int(self.indigoDevice.pluginProps.get("sensorType").split('#')[1])
         return sensorOption
 
     def onErrorHandler(self, ph, errorCode, errorString):
@@ -88,9 +91,19 @@ class PhidgetBase(object):
         for item in phidgetInfo.get(cls.PHIDGET_SENSOR_KEY, {}):
             items.append( ("option%d" % item['value'], item['description']) )
         return items
+
+    @classmethod
+    def getPhidgetMenu(cls, phidgetInfo={}):
+        items = []
+        for item in phidgetInfo.get(cls.PHIDGET_SENSOR_KEY, {}):
+            items.append( ("%s#%d" % (cls.PHIDGET_DEVICE_TYPE, item['value']),
+                           "%s (%s)" % (item['description'], cls.PHIDGET_DEVICE_TYPE_DESC)))
+        return items
     
+
 class VoltageInputPhidget(PhidgetBase):
-    INDIGO_DEVICE_TYPE="voltageInput"           # deviceId used by Indigo
+    PHIDGET_DEVICE_TYPE_DESC="Voltage Input"
+    PHIDGET_DEVICE_TYPE="voltageInput"          # deviceId used by Indigo
     PHIDGET_SENSOR_KEY="VoltageSensorType"      # Key used in phdigets.json; derived from the Phidget22 filename
 
     def __init__(self, *args, **kwargs):
@@ -112,6 +125,7 @@ class VoltageInputPhidget(PhidgetBase):
         try:
             phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
             ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
+            self.logger.debug("Adding sensor type %d" % self.getDeviceSensorOption())
             ph.setSensorType(self.getDeviceSensorOption())
         except PhidgetException as e:
             self.logger.error("%d: %s\n" % (e.code, e.details))
@@ -119,16 +133,10 @@ class VoltageInputPhidget(PhidgetBase):
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
-    @classmethod
-    def getDeviceStateList(cls, deviceTypeId):
+    def getDeviceStateList(self, deviceTypeId):
         newStatesList = indigo.List()
         for stateName in ["sensor", "voltage"]:
-            newState = indigo.Dict()
-            newState[u"Disabled"] = False
-            newState[u"Type"] = indigo.kTriggerKeyType.Number
-            newState[u"Key"] = stateName
-            newState[u"StateLabel"] = stateName
-            newState[u"TriggerLabel"] = stateName
+            newState = self.indigo_plugin.getDeviceStateDictForNumberType(stateName, stateName, stateName)
             newStatesList.append(newState)
         return newStatesList
     
@@ -138,13 +146,10 @@ class VoltageInputPhidget(PhidgetBase):
 
     
 class VoltageRatioInputPhidget(PhidgetBase):
-    INDIGO_DEVICE_TYPE="voltageRatioInput"           # deviceId used by Indigo
-    PHIDGET_SENSOR_KEY="VoltageRatioSensorType"      # Key used in phdigets.json; derived from the Phidget22 filename
-
-    #
-    # TODO: Support bridge gain amplification.
-    #
-
+    PHIDGET_DEVICE_TYPE_DESC="Voltage Ratio Input"
+    PHIDGET_DEVICE_TYPE="voltageRatioInput"           # deviceId used by Indigo
+    PHIDGET_SENSOR_KEY="VoltageRatioSensorType"       # Key used in phdigets.json; derived from the Phidget22 filename
+    
     def __init__(self, *args, **kwargs):
         super(VoltageRatioInputPhidget, self).__init__(phidget=VoltageRatioInput(), *args, **kwargs)
 
@@ -160,7 +165,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
         ph.parent.indigoDevice.updateStateOnServer("sensor", value=sensorValue)
 
-    def onAttachHandler(self, ph):
+    def onAttachHandler(self, ph): 
         try:
             phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
             ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
@@ -172,16 +177,10 @@ class VoltageRatioInputPhidget(PhidgetBase):
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
-    @classmethod
-    def getDeviceStateList(cls, deviceTypeId):
+    def getDeviceStateList(self, deviceTypeId):
         newStatesList = indigo.List()
         for stateName in ["sensor", "voltageRatio"]:
-            newState = indigo.Dict()
-            newState[u"Disabled"] = False
-            newState[u"Type"] = indigo.kTriggerKeyType.Number
-            newState[u"Key"] = stateName
-            newState[u"StateLabel"] = stateName
-            newState[u"TriggerLabel"] = stateName
+            newState = self.indigo_plugin.getDeviceStateDictForNumberType(stateName, stateName, stateName)
             newStatesList.append(newState)
         return newStatesList
     
@@ -201,17 +200,15 @@ class PhidgetManager(object):
         else:
             self.phidgetInfo = {}
 
-    def getClassByTypeId(self, deviceTypeId):
+    def getClassByTypeId(self, phidget_class_id):
         for phidgetClass in PhidgetManager.PHIDGET_CLASSES:
-            if phidgetClass.INDIGO_DEVICE_TYPE == deviceTypeId:
+            if phidgetClass.PHIDGET_DEVICE_TYPE == phidget_class_id:
                 return phidgetClass
         return None
 
-    def getDeviceDisplayStateId(self, deviceTypeId):
-        return self.getClassByTypeId(deviceTypeId).getDeviceDisplayStateId(deviceTypeId)
+    def getPhidgetTypeMenu(self):
+        menu = []
+        for phidget_class in PhidgetManager.PHIDGET_CLASSES:            
+            menu = menu + phidget_class.getPhidgetMenu(self.phidgetInfo)
+        return sorted(menu, key=lambda x: (x[1][0].isdigit(), x[1]))
 
-    def getDeviceStateList(self, deviceTypeId):
-        return self.getClassByTypeId(deviceTypeId).getDeviceStateList(deviceTypeId)
-
-    def getDeviceSensorMenu(self, deviceTypeId):
-        return self.getClassByTypeId(deviceTypeId).getDeviceSensorMenu(deviceTypeId, self.phidgetInfo)

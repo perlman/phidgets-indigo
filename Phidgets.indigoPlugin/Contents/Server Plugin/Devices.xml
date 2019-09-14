@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <Devices>
-	<Device id="voltageInput" type="custom">
-		<Name>VoltageInput</Name>
+	<Device id="phidget" type="custom">
+		<Name>Phidget Device</Name>
 		<ConfigUI>
 			<Field id="serialNumber" type="textfield">
 					<Label>Serial number:</Label>
@@ -9,25 +9,10 @@
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
-			￼<Field id="sensorType" type="menu">
-				<Label>Sensor type:</Label>
-				<List class="self" filter="self.devTypeId" method="getSensorMenu"/>
+			<Field id="phidgetType" type="menu">
+				<Label>Phdiget type:</Label>
+				<List class="self" method="getPhidgetTypeMenu"/>
 			</Field>
 		</ConfigUI>
-	</Device>
-	<Device id="voltageRatioInput" type="custom">
-		<Name>VoltageRatioInput</Name>
-		<ConfigUI>
-			<Field id="serialNumber" type="textfield">
-					<Label>Serial number:</Label>
-			</Field>
-			<Field id="channel" type="textfield">
-					<Label>Channel:</Label>
-			</Field>
-			￼<Field id="sensorType" type="menu">
-				<Label>Sensor type:</Label>
-				<List class="self" filter="self.devTypeId" method="getSensorMenu"/>
-			</Field>
-		</ConfigUI>
-	</Device>		
+	</Device>	
 </Devices>

@@ -26,3 +26,10 @@ def logPhidgetEvent(ph, logger, eventType="UNKNOWN"):
             str(serialNumber) + " -> Channel:  " + str(channel))
 
     return
+
+def phidgetDecodeMenu(phidget_menu_string):
+    """Decode the phidgetType from config, stored as PhidgetClass#PhidgetType"""
+    if phidget_menu_string:
+        return (phidget_menu_string.split('#')[0], phidget_menu_string.split('#')[1])
+    else:
+        return (None, None)

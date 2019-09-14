@@ -10,6 +10,7 @@ from phidget import NetInfo, ChannelInfo
 from phidget import PhidgetManager
 from phidget import VoltageInputPhidget, VoltageRatioInputPhidget
 from Phidget22.PhidgetException import PhidgetException
+from Phidget22.Phidget import Phidget
 import phidget_util
 
 class Plugin(indigo.PluginBase):
@@ -35,31 +36,39 @@ class Plugin(indigo.PluginBase):
             self.phidgetApiLogLevel = 0
     
     def validatePrefsConfigUi(self, valuesDict):
+        # TODO
         return True
 
     def validateDeviceConfigUi(self, valuesDict, typeId, devId):
-        # TODO: Verify integer fields
+        # TODO
         return True
 
-    def getSensorMenu(self, filter="", valuesDict=None, typeId="", targetId=0):
-        return self.phidgetManager.getDeviceSensorMenu(typeId)
+    def getPhidgetTypeMenu(self, filter="", valuesDict=None, typeId="", targetId=0):
+        return self.phidgetManager.getPhidgetTypeMenu()
 
-    def getDeviceStateList(self, dev):
-        # TODO: Figure out how to do dynamic states for sub-types (e.g. specific sensor types)
-        newStatesList = self.phidgetManager.getDeviceStateList(dev.deviceTypeId)
-        return newStatesList
+    def getDeviceStateList(self, device):
+        (phidget_class_id, phidget_type) = phidget_util.phidgetDecodeMenu(device.pluginProps.get("phidgetType", None))
+        if device.id in self.activePhidgets:
+            #self.logger.error(self.activePhidgets[device.id].getDeviceStateList(phidget_class_id))
+            return self.activePhidgets[device.id].getDeviceStateList(phidget_class_id)
+        else:
+            indigo.List()
 
-    def getDeviceDisplayStateId(self, dev):
-        # TODO: Ask each device for the default state to display
-        return self.phidgetManager.getDeviceDisplayStateId(dev.deviceTypeId)
+    def getDeviceDisplayStateId(self, device):
+        (phidget_class_id, phidget_type) = phidget_util.phidgetDecodeMenu(device.pluginProps.get("phidgetType", None))
+        if device.id in self.activePhidgets:
+            #self.logger.error(self.activePhidgets[device.id].getDeviceStateList(phidget_class_id))
+            return self.activePhidgets[device.id].getDeviceDisplayStateId(phidget_class_id)
+        else:
+            return None
 
     def deviceStartComm(self, device):
-        # TODO: Can we fully generalize for any phidget type?
-        if device.deviceTypeId in [VoltageInputPhidget.INDIGO_DEVICE_TYPE, VoltageRatioInputPhidget.INDIGO_DEVICE_TYPE]:
+        # TODO: Use gemeral fumction for this
+        (phidget_class_id, phidget_type) = phidget_util.phidgetDecodeMenu(device.pluginProps.get("phidgetType", None))
+
+        if phidget_class_id in [VoltageInputPhidget.PHIDGET_DEVICE_TYPE, VoltageRatioInputPhidget.PHIDGET_DEVICE_TYPE]:
             serialNumber = int(device.pluginProps.get("serialNumber", -1))
             channel = int(device.pluginProps.get("channel", -1))
-
-            # TODO: These should be a global setting
             networkPhidgets = self.pluginPrefs.get("networkPhidgets", False)
             enableServerDiscovery = self.pluginPrefs.get("enableServerDiscovery", False)
             channelInfo = ChannelInfo(
@@ -70,15 +79,15 @@ class Plugin(indigo.PluginBase):
             )
 
             try:
-                # TODO: This should be generalized
-                if device.deviceTypeId == VoltageInputPhidget.INDIGO_DEVICE_TYPE:
-                    newPhidget = VoltageInputPhidget(channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
-                elif device.deviceTypeId == VoltageRatioInputPhidget.INDIGO_DEVICE_TYPE:
-                    newPhidget = VoltageRatioInputPhidget(channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
+                if phidget_class_id == VoltageInputPhidget.PHIDGET_DEVICE_TYPE:
+                    newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
+                elif phidget_class_id == VoltageRatioInputPhidget.PHIDGET_DEVICE_TYPE:
+                    newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
                 else:
                     raise Exception("Unexpected device type: %s" % device.deviceTypeId)
                 self.activePhidgets[device.id] = newPhidget
                 newPhidget.start()
+                device.stateListOrDisplayStateIdChanged()
             except PhidgetException as e:
                 self.logger.error("%d: %s\n" % (e.code, e.details))
                 self.logger.error(traceback.format_exc())
@@ -92,5 +101,4 @@ class Plugin(indigo.PluginBase):
         myPhidget.stop()
 
     def shutdown(self):
-        # TODO: Close Phidget connections
-        pass
+        Phidget.finalize(0)
