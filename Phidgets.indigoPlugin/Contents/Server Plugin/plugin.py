@@ -29,7 +29,8 @@ class Plugin(indigo.PluginBase):
         # Setup logging in the phidgets library
         if self.pluginPrefs.get('phidgetApiLogging', False):
             self.phidgetApiLogLevel = int(self.pluginPrefs['phidgetApiLogLevel'])
-            phidget_util.setApiLogLevel(self.phidgetApiLogLevel, "/tmp/phidgets.log")      
+            self.phidgetApiLogfile = self.pluginPrefs['phidgetApiLogfile']
+            phidget_util.setApiLogLevel(self.phidgetApiLogLevel, self.phidgetApiLogfile)
         else:
             self.phidgetApiLogLevel = 0
     
