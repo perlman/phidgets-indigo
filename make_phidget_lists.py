@@ -9,9 +9,8 @@ import argparse
 import os
 import re
 import json
-
-PHIDGET_CLASSES=["VoltageRatioSensorType", "VoltageSensorType"]
-
+import glob
+import io
 
 def main():
     parser = argparse.ArgumentParser()
@@ -23,20 +22,20 @@ def main():
 
     output = {}
 
-    for phidget_class in PHIDGET_CLASSES:
-        output[phidget_class] = []
-        with open(os.path.join(args.phidgetpath, "%s.py" % phidget_class), 'rb') as f:
+    for phidget_source in glob.iglob("%s/*.py" % args.phidgetpath):
+        phidget_class = os.path.basename(phidget_source).split('.')[0]
+        with open(os.path.join(phidget_source), 'rb') as f:
             for m in re.finditer(r'^\t# (?P<desc>.+)\n^\t(?P<def>[0-9A-Z_]+) = (?P<value>[\d]+)',
                                  f.read().decode("UTF-8"), re.MULTILINE):
+                if phidget_class not in output:
+                    output[phidget_class] = []
                 output[phidget_class].append({
                     'value' : int(m.group('value')),
-                    'desc' : m.group('desc'),
-                    'def' : m.group('def')
+                    'description' : m.group('desc'),
+                    'enum' : m.group('def')
                     })
-
-    with open(args.output, 'w') as f:
-        json.dump(output, f, ensure_ascii=False, indent=4, sort_keys=True)
-
+    with io.open(args.output, 'w', encoding='utf8') as f:
+        f.write(unicode(json.dumps(output, ensure_ascii=False, indent=4, sort_keys=True)))
 
 if __name__ == "__main__":
     main()

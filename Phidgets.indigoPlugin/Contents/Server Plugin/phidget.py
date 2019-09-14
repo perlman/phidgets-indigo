@@ -86,7 +86,7 @@ class PhidgetBase(object):
     def getDeviceSensorMenu(cls, deviceTypeId, phidgetInfo={}):
         items = []
         for item in phidgetInfo.get(cls.PHIDGET_SENSOR_KEY, {}):
-            items.append( ("option%d" % item['value'], item['desc']) )
+            items.append( ("option%d" % item['value'], item['description']) )
         return items
     
 class VoltageInputPhidget(PhidgetBase):
