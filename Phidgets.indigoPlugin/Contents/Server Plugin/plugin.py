@@ -49,16 +49,14 @@ class Plugin(indigo.PluginBase):
         return self.phidgetManager.getPhidgetTypeMenu()
 
     def getDeviceStateList(self, device):
-        (phidget_class_id, phidget_type) = phidget_util.phidgetDecodeMenu(device.pluginProps.get("phidgetType", None))
         if device.id in self.activePhidgets:
-            return self.activePhidgets[device.id].getDeviceStateList(phidget_class_id)
+            return self.activePhidgets[device.id].getDeviceStateList()
         else:
             indigo.List()
 
     def getDeviceDisplayStateId(self, device):
-        (phidget_class_id, phidget_type) = phidget_util.phidgetDecodeMenu(device.pluginProps.get("phidgetType", None))
         if device.id in self.activePhidgets:
-            return self.activePhidgets[device.id].getDeviceDisplayStateId(phidget_class_id)
+            return self.activePhidgets[device.id].getDeviceDisplayStateId()
         else:
             return None
 

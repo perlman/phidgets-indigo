@@ -9,6 +9,9 @@ from Phidget22.PhidgetException import PhidgetException
 from Phidget22.Net import Net, PhidgetServerType
 from Phidget22.DeviceClass import DeviceClass
 from Phidget22.ChannelSubclass import ChannelSubclass
+from Phidget22.Unit import Unit
+from Phidget22.VoltageRatioSensorType import VoltageRatioSensorType
+from Phidget22.VoltageSensorType import VoltageSensorType
 
 import phidget_util
 
@@ -95,7 +98,6 @@ class PhidgetBase(object):
             items.append( ("%s#%d" % (cls.PHIDGET_DEVICE_TYPE, item['value']),
                            "%s (%s)" % (item['description'], cls.PHIDGET_DEVICE_TYPE_DESC)))
         return items
-    
 
 class VoltageInputPhidget(PhidgetBase):
     PHIDGET_DEVICE_TYPE_DESC="Voltage Input"
@@ -104,6 +106,7 @@ class VoltageInputPhidget(PhidgetBase):
 
     def __init__(self, *args, **kwargs):
         super(VoltageInputPhidget, self).__init__(phidget=VoltageInput(), *args, **kwargs)
+        self.sensor_unit = Unit()
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -112,10 +115,10 @@ class VoltageInputPhidget(PhidgetBase):
         self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
 
     def onVoltageChangeHandler(self, ph, voltage):
-        ph.parent.indigoDevice.updateStateOnServer("voltage", value=voltage)
+        ph.parent.indigoDevice.updateStateOnServer("voltage", value=voltage, uiValue="%f V" % voltage)
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
-        ph.parent.indigoDevice.updateStateOnServer("sensor", value=sensorValue)
+        ph.parent.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, uiValue="%f %s" % (sensorValue, sensorUnit.symbol))
 
     def onAttachHandler(self, ph):
         try:
@@ -129,16 +132,18 @@ class VoltageInputPhidget(PhidgetBase):
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
-    def getDeviceStateList(self, deviceTypeId):
+    def getDeviceStateList(self):
         newStatesList = indigo.List()
-        for stateName in ["sensor", "voltage"]:
-            newState = self.indigo_plugin.getDeviceStateDictForNumberType(stateName, stateName, stateName)
-            newStatesList.append(newState)
+        newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltage", "voltage", "voltage"))
+        if self.phidget_type != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorValue", "sensorValue", "sensorValue"))
         return newStatesList
     
-    @classmethod
-    def getDeviceDisplayStateId(cls, deviceTypeId):
-        return "sensor"
+    def getDeviceDisplayStateId(self):
+        if self.phidget_type != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
+            return "sensorValue"
+        else:
+            return "voltage"
 
     
 class VoltageRatioInputPhidget(PhidgetBase):
@@ -155,11 +160,11 @@ class VoltageRatioInputPhidget(PhidgetBase):
         self.phidget.setOnVoltageRatioChangeHandler(self.onVoltageRatioChangeHandler)
         self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
 
-    def onVoltageRatioChangeHandler(self, ph, voltage):
-        ph.parent.indigoDevice.updateStateOnServer("voltageRatio", value=voltage)
+    def onVoltageRatioChangeHandler(self, ph, voltageRatio):
+        ph.parent.indigoDevice.updateStateOnServer("voltageRatio", value=voltageRatio, uiValue="%f V/V" % voltageRatio)
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
-        ph.parent.indigoDevice.updateStateOnServer("sensor", value=sensorValue)
+        ph.parent.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, uiValue="%f %s" % (sensorValue, sensorUnit.symbol))
 
     def onAttachHandler(self, ph): 
         try:
@@ -173,16 +178,18 @@ class VoltageRatioInputPhidget(PhidgetBase):
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
-    def getDeviceStateList(self, deviceTypeId):
+    def getDeviceStateList(self):
         newStatesList = indigo.List()
-        for stateName in ["sensor", "voltageRatio"]:
-            newState = self.indigo_plugin.getDeviceStateDictForNumberType(stateName, stateName, stateName)
-            newStatesList.append(newState)
+        newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltageRatio", "voltageRatio", "voltageRatio"))
+        if self.phidget_type != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorValue", "sensorValue", "sensorValue"))
         return newStatesList
     
-    @classmethod
-    def getDeviceDisplayStateId(cls, deviceTypeId):
-        return "sensor"
+    def getDeviceDisplayStateId(self):
+        if self.phidget_type != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
+            return "sensorValue"
+        else:
+            return "voltageRatio"
 
 
 class PhidgetManager(object):
