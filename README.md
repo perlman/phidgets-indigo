@@ -5,7 +5,17 @@ for [Indigo](https://www.indigodomo.com/).
 
 ## Requirements
 
+- [Indigo 7.x](https://www.indigodomo.com)
 - [Phidgets 2.2 Driver](https://www.phidgets.com/docs/OS_-_macOS)
+
+## Status
+
+The only Phidgets currently supported are analog Phidgets using VoltageRatioInput and VoltageInput.
+This code is currently _unstable_ and is in the process of being reworked.
+
+## Phidget Addressing
+
+See the [Phidget Documentation](https://www.phidgets.com/docs/Addressing_Phidgets]) for details on how to address a Phidget.
 
 ## Other notes
 

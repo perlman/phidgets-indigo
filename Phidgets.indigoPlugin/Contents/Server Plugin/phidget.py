@@ -25,12 +25,11 @@ class NetInfo():
 
 
 class ChannelInfo():
-    def __init__(self, serialNumber=-1, hubPort=-1, isHubPortDevice=0, channel=-1, isVINT=None, netInfo=NetInfo()):
+    def __init__(self, serialNumber=-1, hubPort=-1, isHubPortDevice=0, channel=-1, netInfo=NetInfo()):
         self.serialNumber = serialNumber
         self.hubPort = hubPort
         self.isHubPortDevice = isHubPortDevice
         self.channel = channel
-        self.isVINT = isVINT
         self.netInfo = netInfo
 
 

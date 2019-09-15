@@ -67,11 +67,18 @@ class Plugin(indigo.PluginBase):
         if phidget_class_id in [VoltageInputPhidget.PHIDGET_DEVICE_TYPE, VoltageRatioInputPhidget.PHIDGET_DEVICE_TYPE]:
             serialNumber = int(device.pluginProps.get("serialNumber", -1))
             channel = int(device.pluginProps.get("channel", -1))
+            isHubPortDevice = int(device.pluginProps.get("isHubPortDevice", 0))
+            try:
+                hubPort = int(device.pluginProps.get("hubPort", -1))
+            except:
+                hubPort = -1
             networkPhidgets = self.pluginPrefs.get("networkPhidgets", False)
             enableServerDiscovery = self.pluginPrefs.get("enableServerDiscovery", False)
             channelInfo = ChannelInfo(
                 serialNumber=serialNumber,
                 channel=channel,
+                isHubPortDevice=isHubPortDevice,
+                hubPort=hubPort,
                 netInfo=NetInfo(isRemote=networkPhidgets,
                 serverDiscovery=enableServerDiscovery)
             )

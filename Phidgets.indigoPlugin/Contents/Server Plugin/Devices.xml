@@ -3,15 +3,24 @@
 	<Device id="phidget" type="custom">
 		<Name>Phidget Device</Name>
 		<ConfigUI>
+			<Field id="phidgetType" type="menu">
+				<Label>Phdiget type:</Label>
+				<List class="self" method="getPhidgetTypeMenu"/>
+			</Field>
 			<Field id="serialNumber" type="textfield">
 					<Label>Serial number:</Label>
 			</Field>
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
-			<Field id="phidgetType" type="menu">
-				<Label>Phdiget type:</Label>
-				<List class="self" method="getPhidgetTypeMenu"/>
+ 		    <Field id="isVINT" type="checkbox" defaultValue="False">
+				<Label>VINT hub?</Label>
+			</Field>
+			<Field id="isHubPortDevice" type="checkbox" defaultValue="False" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Hub port device?</Label>
+			</Field>
+			<Field id="hubPort" type="textfield" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Hub port:</Label>
 			</Field>
 		</ConfigUI>
 	</Device>	
