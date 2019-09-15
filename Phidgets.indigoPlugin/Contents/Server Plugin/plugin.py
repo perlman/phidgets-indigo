@@ -23,6 +23,8 @@ class Plugin(indigo.PluginBase):
         self.activePhidgets = {}
         self.phidgetManager = PhidgetManager(phidgetInfoFile='../Resources/phidgets.json')
 
+        self.logger.setLevel(logging.DEBUG)
+
     def __del__(self):
         indigo.PluginBase.__del__(self)
 
@@ -49,7 +51,6 @@ class Plugin(indigo.PluginBase):
     def getDeviceStateList(self, device):
         (phidget_class_id, phidget_type) = phidget_util.phidgetDecodeMenu(device.pluginProps.get("phidgetType", None))
         if device.id in self.activePhidgets:
-            #self.logger.error(self.activePhidgets[device.id].getDeviceStateList(phidget_class_id))
             return self.activePhidgets[device.id].getDeviceStateList(phidget_class_id)
         else:
             indigo.List()
@@ -57,7 +58,6 @@ class Plugin(indigo.PluginBase):
     def getDeviceDisplayStateId(self, device):
         (phidget_class_id, phidget_type) = phidget_util.phidgetDecodeMenu(device.pluginProps.get("phidgetType", None))
         if device.id in self.activePhidgets:
-            #self.logger.error(self.activePhidgets[device.id].getDeviceStateList(phidget_class_id))
             return self.activePhidgets[device.id].getDeviceDisplayStateId(phidget_class_id)
         else:
             return None
@@ -80,9 +80,9 @@ class Plugin(indigo.PluginBase):
 
             try:
                 if phidget_class_id == VoltageInputPhidget.PHIDGET_DEVICE_TYPE:
-                    newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
+                    newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, phidget_type=phidget_type, indigoDevice=device, logger=self.logger)
                 elif phidget_class_id == VoltageRatioInputPhidget.PHIDGET_DEVICE_TYPE:
-                    newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
+                    newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, phidget_type=phidget_type, indigoDevice=device, logger=self.logger)
                 else:
                     raise Exception("Unexpected device type: %s" % device.deviceTypeId)
                 self.activePhidgets[device.id] = newPhidget

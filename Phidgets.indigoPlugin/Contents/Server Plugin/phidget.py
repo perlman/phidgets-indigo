@@ -38,13 +38,14 @@ class PhidgetBase(object):
     PHIDGET_SENSOR_KEY = None
     PHIDGET_DATA_INTERVAL = 1000     # ms
 
-    def __init__(self, phidget, indigo_plugin=None, channelInfo=ChannelInfo(), indigoDevice=None, logger=None):
+    def __init__(self, phidget, indigo_plugin=None, phidget_type=None, channelInfo=ChannelInfo(), indigoDevice=None, logger=None):
         self.phidget = phidget      # PhidgetAPI object for this phidget
         self.phidget.parent = self  # Reference back to this object from the PhidgetAPI
         self.logger = logger
         self.channelInfo = channelInfo
         self.indigoDevice = indigoDevice
         self.indigo_plugin = indigo_plugin
+        self.phidget_type = int(phidget_type)   # Argument from main phidget menu (e.g., sensor #)
 
     def start(self):
         self.phidget.setDeviceSerialNumber(self.channelInfo.serialNumber)
@@ -67,11 +68,6 @@ class PhidgetBase(object):
 
     def stop(self):
         self.phidget.close()
-
-    def getDeviceSensorOption(self):
-        """Query indigo device to get sensor value (if applicable)"""
-        sensorOption = int(self.indigoDevice.pluginProps.get("sensorType").split('#')[1])
-        return sensorOption
 
     def onErrorHandler(self, ph, errorCode, errorString):
         # TODO: Set the device to an error state?
@@ -125,8 +121,8 @@ class VoltageInputPhidget(PhidgetBase):
         try:
             phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
             ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
-            self.logger.debug("Adding sensor type %d" % self.getDeviceSensorOption())
-            ph.setSensorType(self.getDeviceSensorOption())
+            self.logger.debug("Adding sensor type %d" % self.phidget_type)
+            ph.setSensorType(self.phidget_type)
         except PhidgetException as e:
             self.logger.error("%d: %s\n" % (e.code, e.details))
             self.logger.error(traceback.format_exc())
@@ -142,7 +138,7 @@ class VoltageInputPhidget(PhidgetBase):
     
     @classmethod
     def getDeviceDisplayStateId(cls, deviceTypeId):
-        return "voltage"
+        return "sensor"
 
     
 class VoltageRatioInputPhidget(PhidgetBase):
@@ -169,8 +165,8 @@ class VoltageRatioInputPhidget(PhidgetBase):
         try:
             phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
             ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
-            self.logger.debug("Adding sensor type %d" % self.getDeviceSensorOption())
-            ph.setSensorType(self.getDeviceSensorOption())
+            self.logger.debug("Adding sensor type %d" % self.phidget_type)
+            ph.setSensorType(self.phidget_type)
         except PhidgetException as e:
             self.logger.error("%d: %s\n" % (e.code, e.details))
             self.logger.error(traceback.format_exc())
@@ -186,7 +182,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
     
     @classmethod
     def getDeviceDisplayStateId(cls, deviceTypeId):
-        return "voltageRatio"
+        return "sensor"
 
 
 class PhidgetManager(object):
