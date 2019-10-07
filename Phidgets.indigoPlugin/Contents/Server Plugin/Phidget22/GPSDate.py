@@ -35,3 +35,10 @@ class GPSDate(ctypes.Structure):
 		else:
 			self.tm_year = self._tm_year
 		return self
+
+	def __str__(self):
+		return ("[GPSDate] ("
+			"tm_mday: " + str(self.tm_mday) + ", "
+			"tm_mon: " + str(self.tm_mon) + ", "
+			"tm_year: " + str(self.tm_year) + 
+			")")

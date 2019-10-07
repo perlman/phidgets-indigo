@@ -86,11 +86,7 @@ class DigitalOutput(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetDigitalOutput_setDutyCycle_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _DutyCycle, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _DutyCycle, _asyncHandler, _ctx)
 
 
 	def enableFailsafe(self, failsafeTime):
@@ -184,11 +180,7 @@ class DigitalOutput(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetDigitalOutput_setLEDCurrentLimit_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _LEDCurrentLimit, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _LEDCurrentLimit, _asyncHandler, _ctx)
 
 
 	def getLEDForwardVoltage(self):
@@ -255,9 +247,5 @@ class DigitalOutput(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetDigitalOutput_setState_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _State, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _State, _asyncHandler, _ctx)
 

@@ -42,3 +42,11 @@ class GPSTime(ctypes.Structure):
 		else:
 			self.tm_hour = self._tm_hour
 		return self
+
+	def __str__(self):
+		return ("[GPSTime] ("
+			"tm_ms: " + str(self.tm_ms) + ", "
+			"tm_sec: " + str(self.tm_sec) + ", "
+			"tm_min: " + str(self.tm_min) + ", "
+			"tm_hour: " + str(self.tm_hour) + 
+			")")

@@ -119,11 +119,7 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_setCharacterBitmap_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _font, ctypes.byref(_character), ctypes.byref(_bitmap), _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _font, ctypes.byref(_character), ctypes.byref(_bitmap), _asyncHandler, _ctx)
 
 
 	def getMaxCharacters(self, font):
@@ -156,11 +152,7 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_clear_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _asyncHandler, _ctx)
 
 
 	def getContrast(self):
@@ -246,11 +238,7 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_copy_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _sourceFramebuffer, _destFramebuffer, _sourceX1, _sourceY1, _sourceX2, _sourceY2, _destX, _destY, _inverted, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _sourceFramebuffer, _destFramebuffer, _sourceX1, _sourceY1, _sourceX2, _sourceY2, _destX, _destY, _inverted, _asyncHandler, _ctx)
 
 
 	def getCursorBlink(self):
@@ -325,11 +313,7 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_drawLine_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _x1, _y1, _x2, _y2, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _x1, _y1, _x2, _y2, _asyncHandler, _ctx)
 
 
 	def drawPixel(self, x, y, pixelState):
@@ -356,11 +340,7 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_drawPixel_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _x, _y, _pixelState, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _x, _y, _pixelState, _asyncHandler, _ctx)
 
 
 	def drawRect(self, x1, y1, x2, y2, filled, inverted):
@@ -393,11 +373,7 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_drawRect_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _x1, _y1, _x2, _y2, _filled, _inverted, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _x1, _y1, _x2, _y2, _filled, _inverted, _asyncHandler, _ctx)
 
 
 	def flush(self):
@@ -417,11 +393,7 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_flush_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _asyncHandler, _ctx)
 
 
 	def getFontSize(self, font):
@@ -483,11 +455,7 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_setFrameBuffer_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _FrameBuffer, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _FrameBuffer, _asyncHandler, _ctx)
 
 
 	def getHeight(self):
@@ -531,11 +499,7 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_saveFrameBuffer_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _frameBuffer, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _frameBuffer, _asyncHandler, _ctx)
 
 
 	def getScreenSize(self):
@@ -624,11 +588,7 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_writeBitmap_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _xPosition, _yPosition, _xSize, _ySize, ctypes.byref(_bitmap), _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _xPosition, _yPosition, _xSize, _ySize, ctypes.byref(_bitmap), _asyncHandler, _ctx)
 
 
 	def writeText(self, font, xPosition, yPosition, text):
@@ -657,9 +617,5 @@ class LCD(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetLCD_writeText_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _font, _xPosition, _yPosition, ctypes.byref(_text), _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _font, _xPosition, _yPosition, ctypes.byref(_text), _asyncHandler, _ctx)
 

@@ -33,6 +33,7 @@ class Magnetometer(Phidget):
 	def _localMagneticFieldChangeEvent(self, handle, userPtr, magneticField, timestamp):
 		if self._MagneticFieldChange == None:
 			return
+		magneticField = [magneticField[i] for i in range(3)]
 		self._MagneticFieldChange(self, magneticField, timestamp)
 
 	def setOnMagneticFieldChangeHandler(self, handler):

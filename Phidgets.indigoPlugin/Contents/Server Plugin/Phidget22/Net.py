@@ -168,3 +168,5 @@ class Net:
 		if result > 0:
 			raise PhidgetException(result)
 
+
+	AUTHREQUIRED = 1

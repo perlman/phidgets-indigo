@@ -61,6 +61,8 @@ class DistanceSensor(Phidget):
 	def _localSonarReflectionsUpdateEvent(self, handle, userPtr, distances, amplitudes, count):
 		if self._SonarReflectionsUpdate == None:
 			return
+		distances = [distances[i] for i in range(8)]
+		amplitudes = [amplitudes[i] for i in range(8)]
 		self._SonarReflectionsUpdate(self, distances, amplitudes, count)
 
 	def setOnSonarReflectionsUpdateHandler(self, handler):

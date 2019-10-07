@@ -2,8 +2,8 @@
 import sys
 import ctypes
 
-from Phidget22.Encoding import Encoding
-from Phidget22.Length import Length
+from Phidget22.IRCodeEncoding import IRCodeEncoding
+from Phidget22.IRCodeLength import IRCodeLength
 
 class CodeInfo(ctypes.Structure):
 	_fields_ = [
@@ -107,3 +107,20 @@ class CodeInfo(ctypes.Structure):
 		else:
 			self.toggleMask = self._toggleMask.decode('utf-8')
 		return self
+
+	def __str__(self):
+		return ("[CodeInfo] ("
+			"bitCount: " + str(self.bitCount) + ", "
+			"encoding: " + str(self.encoding) + ", "
+			"length: " + str(self.length) + ", "
+			"gap: " + str(self.gap) + ", "
+			"trail: " + str(self.trail) + ", "
+			"header: " + str(self.header) + ", "
+			"one: " + str(self.one) + ", "
+			"zero: " + str(self.zero) + ", "
+			"repeat: " + str(self.repeat) + ", "
+			"minRepeat: " + str(self.minRepeat) + ", "
+			"dutyCycle: " + str(self.dutyCycle) + ", "
+			"carrierFrequency: " + str(self.carrierFrequency) + ", "
+			"toggleMask: " + str(self.toggleMask) + 
+			")")

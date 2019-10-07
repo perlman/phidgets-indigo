@@ -33,6 +33,7 @@ class Accelerometer(Phidget):
 	def _localAccelerationChangeEvent(self, handle, userPtr, acceleration, timestamp):
 		if self._AccelerationChange == None:
 			return
+		acceleration = [acceleration[i] for i in range(3)]
 		self._AccelerationChange(self, acceleration, timestamp)
 
 	def setOnAccelerationChangeHandler(self, handler):

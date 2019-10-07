@@ -149,11 +149,7 @@ class VoltageOutput(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetVoltageOutput_setVoltage_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _Voltage, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _Voltage, _asyncHandler, _ctx)
 
 
 	def getVoltageOutputRange(self):

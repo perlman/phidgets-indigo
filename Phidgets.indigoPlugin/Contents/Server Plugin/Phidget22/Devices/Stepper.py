@@ -3,7 +3,7 @@ import sys
 import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
 from Phidget22.Async import *
-from Phidget22.ControlMode import ControlMode
+from Phidget22.StepperControlMode import StepperControlMode
 from Phidget22.PhidgetException import PhidgetException
 
 from Phidget22.Phidget import Phidget
@@ -478,11 +478,7 @@ class Stepper(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetStepper_setTargetPosition_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _TargetPosition, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _TargetPosition, _asyncHandler, _ctx)
 
 
 	def getVelocity(self):

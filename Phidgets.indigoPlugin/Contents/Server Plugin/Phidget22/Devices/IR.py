@@ -4,8 +4,8 @@ import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
 from Phidget22.Async import *
 from Phidget22.CodeInfo import CodeInfo
-from Phidget22.Encoding import Encoding
-from Phidget22.Length import Length
+from Phidget22.IRCodeEncoding import IRCodeEncoding
+from Phidget22.IRCodeLength import IRCodeLength
 from Phidget22.PhidgetException import PhidgetException
 
 from Phidget22.Phidget import Phidget
@@ -97,7 +97,8 @@ class IR(Phidget):
 	def _localRawDataEvent(self, handle, userPtr, data, dataLen):
 		if self._RawData == None:
 			return
-		self._RawData(self, data, dataLen)
+		data = [data[i] for i in range(dataLen)]
+		self._RawData(self, data)
 
 	def setOnRawDataHandler(self, handler):
 		if handler == None:
@@ -157,7 +158,7 @@ class IR(Phidget):
 
 	def transmitRaw(self, data, carrierFrequency, dutyCycle, gap):
 		_data = (ctypes.c_uint32 * len(data))(*data)
-		_dataLen = ctypes.c_int32(undefined)
+		_dataLen = ctypes.c_int32(len(data))
 		_carrierFrequency = ctypes.c_uint32(carrierFrequency)
 		_dutyCycle = ctypes.c_double(dutyCycle)
 		_gap = ctypes.c_uint32(gap)
@@ -178,3 +179,9 @@ class IR(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
+
+	RAW_DATA_LONG_SPACE = 4294967295
+
+	IR_MAX_CODE_BIT_COUNT = 128
+
+	IR_MAX_CODE_STR_LENGTH = 33

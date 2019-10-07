@@ -33,6 +33,7 @@ class Gyroscope(Phidget):
 	def _localAngularRateUpdateEvent(self, handle, userPtr, angularRate, timestamp):
 		if self._AngularRateUpdate == None:
 			return
+		angularRate = [angularRate[i] for i in range(3)]
 		self._AngularRateUpdate(self, angularRate, timestamp)
 
 	def setOnAngularRateUpdateHandler(self, handler):

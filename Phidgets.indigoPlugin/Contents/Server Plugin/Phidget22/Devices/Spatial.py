@@ -41,6 +41,7 @@ class Spatial(Phidget):
 	def _localAlgorithmDataEvent(self, handle, userPtr, quaternion, timestamp):
 		if self._AlgorithmData == None:
 			return
+		quaternion = [quaternion[i] for i in range(4)]
 		self._AlgorithmData(self, quaternion, timestamp)
 
 	def setOnAlgorithmDataHandler(self, handler):
@@ -62,6 +63,9 @@ class Spatial(Phidget):
 	def _localSpatialDataEvent(self, handle, userPtr, acceleration, angularRate, magneticField, timestamp):
 		if self._SpatialData == None:
 			return
+		acceleration = [acceleration[i] for i in range(3)]
+		angularRate = [angularRate[i] for i in range(3)]
+		magneticField = [magneticField[i] for i in range(3)]
 		self._SpatialData(self, acceleration, angularRate, magneticField, timestamp)
 
 	def setOnSpatialDataHandler(self, handler):

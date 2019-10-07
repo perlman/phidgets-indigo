@@ -36,3 +36,10 @@ class UnitInfo(ctypes.Structure):
 		else:
 			self.symbol = self._symbol.decode('utf-8')
 		return self
+
+	def __str__(self):
+		return ("[UnitInfo] ("
+			"unit: " + str(self.unit) + ", "
+			"name: " + str(self.name) + ", "
+			"symbol: " + str(self.symbol) + 
+			")")

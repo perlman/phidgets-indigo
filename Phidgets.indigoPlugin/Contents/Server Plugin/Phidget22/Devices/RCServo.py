@@ -466,11 +466,7 @@ class RCServo(Phidget):
 		_asyncHandler = AsyncSupport.getCallback()
 
 		__func = PhidgetSupport.getDll().PhidgetRCServo_setTargetPosition_async
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _TargetPosition, _asyncHandler, _ctx)
-
-		if result > 0:
-			raise PhidgetException(result)
+		__func(self.handle, _TargetPosition, _asyncHandler, _ctx)
 
 
 	def getTorque(self):

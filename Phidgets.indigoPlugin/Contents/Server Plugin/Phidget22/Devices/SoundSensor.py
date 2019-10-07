@@ -34,6 +34,7 @@ class SoundSensor(Phidget):
 	def _localSPLChangeEvent(self, handle, userPtr, dB, dBA, dBC, Octaves):
 		if self._SPLChange == None:
 			return
+		Octaves = [Octaves[i] for i in range(10)]
 		self._SPLChange(self, dB, dBA, dBC, Octaves)
 
 	def setOnSPLChangeHandler(self, handler):

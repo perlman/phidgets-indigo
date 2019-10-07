@@ -50,6 +50,16 @@ class Phidget:
 	def __hash__(self):
 		return self.handle.value
 
+	def __str__(self):
+		_value = (ctypes.c_char * 65536)()
+		_valueLen = ctypes.c_int32(65536)
+		if self.getIsChannel():
+			__func = PhidgetSupport.getDll().channelInfo
+		else:
+			__func = PhidgetSupport.getDll().deviceInfo
+		result = __func(self.handle, ctypes.byref(_value), _valueLen)
+		return _value.value.decode('utf- 8')
+
 	def __del__(self):
 		__func = PhidgetSupport.getDll().Phidget_delete
 		__func.restype = ctypes.c_int32
@@ -635,3 +645,15 @@ class Phidget:
 		if result > 0:
 			raise PhidgetException(result)
 
+
+	ANY_SERIAL_NUMBER = -1
+
+	ANY_HUB_PORT = -1
+
+	ANY_CHANNEL = -1
+
+	ANY_LABEL = None
+
+	INFINITE_TIMEOUT = 0
+
+	DEFAULT_TIMEOUT = 1000

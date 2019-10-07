@@ -13,6 +13,8 @@ class DCMotor(Phidget):
 	def __init__(self):
 		Phidget.__init__(self)
 		self.handle = ctypes.c_void_p()
+		self._setTargetVelocity_async = None
+		self._onsetTargetVelocity_async = None
 
 		if sys.platform == 'win32':
 			self._BackEMFChangeFactory = ctypes.WINFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_double)
@@ -478,6 +480,18 @@ class DCMotor(Phidget):
 
 		if result > 0:
 			raise PhidgetException(result)
+
+
+	def setTargetVelocity_async(self, TargetVelocity, asyncHandler):
+		_TargetVelocity = ctypes.c_double(TargetVelocity)
+
+		_ctx = ctypes.c_void_p()
+		if asyncHandler != None:
+			_ctx = ctypes.c_void_p(AsyncSupport.add(asyncHandler, self))
+		_asyncHandler = AsyncSupport.getCallback()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_setTargetVelocity_async
+		__func(self.handle, _TargetVelocity, _asyncHandler, _ctx)
 
 
 	def getVelocity(self):

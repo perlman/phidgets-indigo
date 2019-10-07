@@ -64,3 +64,14 @@ class PhidgetServer(ctypes.Structure):
 		else:
 			self.port = self._port
 		return self
+
+	def __str__(self):
+		return ("[PhidgetServer] ("
+			"name: " + str(self.name) + ", "
+			"stype: " + str(self.stype) + ", "
+			"type: " + str(self.type) + ", "
+			"flags: " + str(self.flags) + ", "
+			"addr: " + str(self.addr) + ", "
+			"host: " + str(self.host) + ", "
+			"port: " + str(self.port) + 
+			")")
