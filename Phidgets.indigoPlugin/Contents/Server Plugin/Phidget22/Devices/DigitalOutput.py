@@ -124,6 +124,53 @@ class DigitalOutput(Phidget):
 
 		return _MaxFailsafeTime.value
 
+	def getFrequency(self):
+		_Frequency = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDigitalOutput_getFrequency
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Frequency))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _Frequency.value
+
+	def setFrequency(self, Frequency):
+		_Frequency = ctypes.c_double(Frequency)
+
+		__func = PhidgetSupport.getDll().PhidgetDigitalOutput_setFrequency
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Frequency)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinFrequency(self):
+		_MinFrequency = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDigitalOutput_getMinFrequency
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinFrequency))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinFrequency.value
+
+	def getMaxFrequency(self):
+		_MaxFrequency = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDigitalOutput_getMaxFrequency
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxFrequency))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxFrequency.value
+
 	def getLEDCurrentLimit(self):
 		_LEDCurrentLimit = ctypes.c_double()
 

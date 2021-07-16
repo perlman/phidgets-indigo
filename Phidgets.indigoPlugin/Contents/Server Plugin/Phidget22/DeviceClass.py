@@ -52,6 +52,8 @@ class DeviceClass:
 	PHIDCLASS_FIRMWAREUPGRADE = 23
 	# Dictionary device
 	PHIDCLASS_DICTIONARY = 24
+	# PhidgetDataAdapter device
+	PHIDCLASS_DATAADAPTER = 25
 
 	@classmethod
 	def getName(self, val):
@@ -105,4 +107,6 @@ class DeviceClass:
 			return "PHIDCLASS_FIRMWAREUPGRADE"
 		if val == self.PHIDCLASS_DICTIONARY:
 			return "PHIDCLASS_DICTIONARY"
+		if val == self.PHIDCLASS_DATAADAPTER:
+			return "PHIDCLASS_DATAADAPTER"
 		return "<invalid enumeration value>"

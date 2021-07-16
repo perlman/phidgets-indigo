@@ -40,6 +40,10 @@ class ErrorEventCode:
 	EEPHIDGET_ENERGYDUMP = 4110
 	# Motor stall detected.
 	EEPHIDGET_MOTORSTALL = 4111
+	# Invalid state detected.
+	EEPHIDGET_INVALIDSTATE = 4112
+	# Bad connection detected.
+	EEPHIDGET_BADCONNECTION = 4113
 
 	@classmethod
 	def getName(self, val):
@@ -81,4 +85,8 @@ class ErrorEventCode:
 			return "EEPHIDGET_ENERGYDUMP"
 		if val == self.EEPHIDGET_MOTORSTALL:
 			return "EEPHIDGET_MOTORSTALL"
+		if val == self.EEPHIDGET_INVALIDSTATE:
+			return "EEPHIDGET_INVALIDSTATE"
+		if val == self.EEPHIDGET_BADCONNECTION:
+			return "EEPHIDGET_BADCONNECTION"
 		return "<invalid enumeration value>"

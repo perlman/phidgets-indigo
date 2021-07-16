@@ -180,6 +180,19 @@ class Phidget:
 		return _LibraryVersion.value.decode('utf-8')
 
 	@staticmethod
+	def getLibraryVersionNumber():
+		_LibraryVersionNumber = ctypes.c_char_p()
+
+		__func = PhidgetSupport.getDll().Phidget_getLibraryVersionNumber
+		__func.restype = ctypes.c_int32
+		result = __func(ctypes.byref(_LibraryVersionNumber))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _LibraryVersionNumber.value.decode('utf-8')
+
+	@staticmethod
 	def resetLibrary():
 		__func = PhidgetSupport.getDll().Phidget_resetLibrary
 		__func.restype = ctypes.c_int32

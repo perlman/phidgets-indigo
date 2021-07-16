@@ -133,13 +133,13 @@ class DeviceID:
 	# Phidget USB VINT Hub with 6 ports
 	PHIDID_HUB0000 = 64
 	# Phidget Mesh Hub with 4 ports
-	PHIDID_HUB0001 = 65
+	PHIDID_MESHHUB = 65
 	# Phidget Mesh Dongle
-	PHIDID_HUB0002 = 66
+	PHIDID_MESHDONGLE = 66
 	# Phidget SPI VINT Hub with 6 ports
 	PHIDID_HUB0004 = 67
 	# Phidget Lightning VINT Hub with 6 ports
-	PHIDID_HUB0005 = 68
+	PHIDID_LIGHTNINGHUB = 68
 	# Humidity Sensor
 	PHIDID_HUM1000 = 69
 	# LCD
@@ -248,6 +248,34 @@ class DeviceID:
 	PHIDID_DST1002 = 126
 	# Humidity Sensor
 	PHIDID_HUM1001 = 127
+	# DC Motor Controller 12A
+	PHIDID_DCC1004 = 128
+	# DC Motor Controller High Current
+	PHIDID_DCC1005 = 129
+	# PhidgetSpatial 3/3/3
+	PHIDID_MOT0108 = 131
+	# RS232 Prototype
+	PHIDID_ADP_RS232 = 132
+	# RS485/422 Prototype
+	PHIDID_ADP_RS485_422 = 133
+	# Serial Prototype
+	PHIDID_ADP_SERIAL = 134
+	# VINT Moisture Sensor
+	PHIDID_HUM1100 = 136
+	# VINT Spatial Phidget AHRS
+	PHIDID_MOT1102 = 137
+	# VINT Accelerometer
+	PHIDID_VINTACCEL = 138
+	# Testpoint Diagnoser
+	PHIDID_TP_DIAGNOSER = 139
+	# PhidgetSpatial Precision 3/3/3
+	PHIDID_MOT0109 = 140
+	# PhidgetSpatial Precision 3/3/3
+	PHIDID_MOT0110 = 141
+	# Phidget USB VINT Hub with 6 ports
+	PHIDID_HUB0001 = 142
+	# VINT Device in firmware upgrade mode, STM32G0 Proc.
+	PHIDID_FIRMWARE_UPGRADE_STM32G0 = 143
 
 	@classmethod
 	def getName(self, val):
@@ -381,14 +409,14 @@ class DeviceID:
 			return "PHIDID_HIN1100"
 		if val == self.PHIDID_HUB0000:
 			return "PHIDID_HUB0000"
-		if val == self.PHIDID_HUB0001:
-			return "PHIDID_HUB0001"
-		if val == self.PHIDID_HUB0002:
-			return "PHIDID_HUB0002"
+		if val == self.PHIDID_MESHHUB:
+			return "PHIDID_MESHHUB"
+		if val == self.PHIDID_MESHDONGLE:
+			return "PHIDID_MESHDONGLE"
 		if val == self.PHIDID_HUB0004:
 			return "PHIDID_HUB0004"
-		if val == self.PHIDID_HUB0005:
-			return "PHIDID_HUB0005"
+		if val == self.PHIDID_LIGHTNINGHUB:
+			return "PHIDID_LIGHTNINGHUB"
 		if val == self.PHIDID_HUM1000:
 			return "PHIDID_HUM1000"
 		if val == self.PHIDID_LCD1100:
@@ -497,4 +525,32 @@ class DeviceID:
 			return "PHIDID_DST1002"
 		if val == self.PHIDID_HUM1001:
 			return "PHIDID_HUM1001"
+		if val == self.PHIDID_DCC1004:
+			return "PHIDID_DCC1004"
+		if val == self.PHIDID_DCC1005:
+			return "PHIDID_DCC1005"
+		if val == self.PHIDID_MOT0108:
+			return "PHIDID_MOT0108"
+		if val == self.PHIDID_ADP_RS232:
+			return "PHIDID_ADP_RS232"
+		if val == self.PHIDID_ADP_RS485_422:
+			return "PHIDID_ADP_RS485_422"
+		if val == self.PHIDID_ADP_SERIAL:
+			return "PHIDID_ADP_SERIAL"
+		if val == self.PHIDID_HUM1100:
+			return "PHIDID_HUM1100"
+		if val == self.PHIDID_MOT1102:
+			return "PHIDID_MOT1102"
+		if val == self.PHIDID_VINTACCEL:
+			return "PHIDID_VINTACCEL"
+		if val == self.PHIDID_TP_DIAGNOSER:
+			return "PHIDID_TP_DIAGNOSER"
+		if val == self.PHIDID_MOT0109:
+			return "PHIDID_MOT0109"
+		if val == self.PHIDID_MOT0110:
+			return "PHIDID_MOT0110"
+		if val == self.PHIDID_HUB0001:
+			return "PHIDID_HUB0001"
+		if val == self.PHIDID_FIRMWARE_UPGRADE_STM32G0:
+			return "PHIDID_FIRMWARE_UPGRADE_STM32G0"
 		return "<invalid enumeration value>"

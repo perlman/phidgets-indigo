@@ -177,6 +177,29 @@ class Spatial(Phidget):
 
 		return _MaxDataInterval.value
 
+	def getHeatingEnabled(self):
+		_HeatingEnabled = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getHeatingEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_HeatingEnabled))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _HeatingEnabled.value
+
+	def setHeatingEnabled(self, HeatingEnabled):
+		_HeatingEnabled = ctypes.c_int(HeatingEnabled)
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_setHeatingEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _HeatingEnabled)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
 	def setMagnetometerCorrectionParameters(self, magneticField, offset0, offset1, offset2, gain0, gain1, gain2, T0, T1, T2, T3, T4, T5):
 		_magneticField = ctypes.c_double(magneticField)
 		_offset0 = ctypes.c_double(offset0)

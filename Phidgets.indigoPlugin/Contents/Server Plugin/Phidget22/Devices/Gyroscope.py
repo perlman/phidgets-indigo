@@ -147,6 +147,29 @@ class Gyroscope(Phidget):
 
 		return _MaxDataInterval.value
 
+	def getHeatingEnabled(self):
+		_HeatingEnabled = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_getHeatingEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_HeatingEnabled))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _HeatingEnabled.value
+
+	def setHeatingEnabled(self, HeatingEnabled):
+		_HeatingEnabled = ctypes.c_int(HeatingEnabled)
+
+		__func = PhidgetSupport.getDll().PhidgetGyroscope_setHeatingEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _HeatingEnabled)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
 	def getTimestamp(self):
 		_Timestamp = ctypes.c_double()
 
