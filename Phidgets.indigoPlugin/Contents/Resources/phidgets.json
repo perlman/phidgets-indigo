@@ -255,6 +255,11 @@
             "value": 17
         }, 
         {
+            "description": "Digital output frequency", 
+            "enum": "PHIDCHSUBCLASS_DIGITALOUTPUT_FREQUENCY", 
+            "value": 18
+        }, 
+        {
             "description": "Temperature sensor RTD", 
             "enum": "PHIDCHSUBCLASS_TEMPERATURESENSOR_RTD", 
             "value": 32
@@ -437,6 +442,11 @@
             "description": "Dictionary device", 
             "enum": "PHIDCLASS_DICTIONARY", 
             "value": 24
+        }, 
+        {
+            "description": "PhidgetDataAdapter device", 
+            "enum": "PHIDCLASS_DATAADAPTER", 
+            "value": 25
         }
     ], 
     "DeviceID": [
@@ -767,12 +777,12 @@
         }, 
         {
             "description": "Phidget Mesh Hub with 4 ports", 
-            "enum": "PHIDID_HUB0001", 
+            "enum": "PHIDID_MESHHUB", 
             "value": 65
         }, 
         {
             "description": "Phidget Mesh Dongle", 
-            "enum": "PHIDID_HUB0002", 
+            "enum": "PHIDID_MESHDONGLE", 
             "value": 66
         }, 
         {
@@ -782,7 +792,7 @@
         }, 
         {
             "description": "Phidget Lightning VINT Hub with 6 ports", 
-            "enum": "PHIDID_HUB0005", 
+            "enum": "PHIDID_LIGHTNINGHUB", 
             "value": 68
         }, 
         {
@@ -1054,6 +1064,76 @@
             "description": "Humidity Sensor", 
             "enum": "PHIDID_HUM1001", 
             "value": 127
+        }, 
+        {
+            "description": "DC Motor Controller 12A", 
+            "enum": "PHIDID_DCC1004", 
+            "value": 128
+        }, 
+        {
+            "description": "DC Motor Controller High Current", 
+            "enum": "PHIDID_DCC1005", 
+            "value": 129
+        }, 
+        {
+            "description": "PhidgetSpatial 3/3/3", 
+            "enum": "PHIDID_MOT0108", 
+            "value": 131
+        }, 
+        {
+            "description": "RS232 Prototype", 
+            "enum": "PHIDID_ADP_RS232", 
+            "value": 132
+        }, 
+        {
+            "description": "RS485/422 Prototype", 
+            "enum": "PHIDID_ADP_RS485_422", 
+            "value": 133
+        }, 
+        {
+            "description": "Serial Prototype", 
+            "enum": "PHIDID_ADP_SERIAL", 
+            "value": 134
+        }, 
+        {
+            "description": "VINT Moisture Sensor", 
+            "enum": "PHIDID_HUM1100", 
+            "value": 136
+        }, 
+        {
+            "description": "VINT Spatial Phidget AHRS", 
+            "enum": "PHIDID_MOT1102", 
+            "value": 137
+        }, 
+        {
+            "description": "VINT Accelerometer", 
+            "enum": "PHIDID_VINTACCEL", 
+            "value": 138
+        }, 
+        {
+            "description": "Testpoint Diagnoser", 
+            "enum": "PHIDID_TP_DIAGNOSER", 
+            "value": 139
+        }, 
+        {
+            "description": "PhidgetSpatial Precision 3/3/3", 
+            "enum": "PHIDID_MOT0109", 
+            "value": 140
+        }, 
+        {
+            "description": "PhidgetSpatial Precision 3/3/3", 
+            "enum": "PHIDID_MOT0110", 
+            "value": 141
+        }, 
+        {
+            "description": "Phidget USB VINT Hub with 6 ports", 
+            "enum": "PHIDID_HUB0001", 
+            "value": 142
+        }, 
+        {
+            "description": "VINT Device in firmware upgrade mode, STM32G0 Proc.", 
+            "enum": "PHIDID_FIRMWARE_UPGRADE_STM32G0", 
+            "value": 143
         }
     ], 
     "EncoderIOMode": [
@@ -1113,6 +1193,18 @@
             "description": "RC6 - a type of Bi-Phase encoding", 
             "enum": "IR_ENCODING_RC6", 
             "value": 6
+        }
+    ], 
+    "Endianness": [
+        {
+            "description": "MSB First", 
+            "enum": "ENDIANNESS_MSB_FIRST", 
+            "value": 1
+        }, 
+        {
+            "description": "LSB First", 
+            "enum": "ENDIANNESS_LSB_FIRST", 
+            "value": 2
         }
     ], 
     "ErrorCode": [
@@ -1437,6 +1529,16 @@
             "description": "Motor stall detected.", 
             "enum": "EEPHIDGET_MOTORSTALL", 
             "value": 4111
+        }, 
+        {
+            "description": "Invalid state detected.", 
+            "enum": "EEPHIDGET_INVALIDSTATE", 
+            "value": 4112
+        }, 
+        {
+            "description": "Bad connection detected.", 
+            "enum": "EEPHIDGET_BADCONNECTION", 
+            "value": 4113
         }
     ], 
     "FanMode": [
@@ -1468,6 +1570,23 @@
             "value": 2
         }
     ], 
+    "HandshakeMode": [
+        {
+            "description": "RTS is never set, and CTS is ignored.", 
+            "enum": "HANDSHAKE_MODE_NONE", 
+            "value": 1
+        }, 
+        {
+            "description": "RTS Pin requests to transmit data. CTS input confirms we can send data.", 
+            "enum": "HANDSHAKE_MODE_REQUEST_TO_SEND", 
+            "value": 2
+        }, 
+        {
+            "description": "RTS signals this device can receive data. CTS confirms we can send data.", 
+            "enum": "HANDSHAKE_MODE_READY_TO_RECEIVE", 
+            "value": 3
+        }
+    ], 
     "HubPortMode": [
         {
             "description": "Communicate with a smart VINT device", 
@@ -1493,6 +1612,33 @@
             "description": "0-5V voltage input for ratiometric sensors", 
             "enum": "PORT_MODE_VOLTAGE_RATIO_INPUT", 
             "value": 4
+        }
+    ], 
+    "IOVoltage": [
+        {
+            "description": "Voltage supplied by external device", 
+            "enum": "IO_VOLTAGE_EXTERN", 
+            "value": 1
+        }, 
+        {
+            "description": "1.8V", 
+            "enum": "IO_VOLTAGE_1_8V", 
+            "value": 2
+        }, 
+        {
+            "description": "2.5V", 
+            "enum": "IO_VOLTAGE_2_5V", 
+            "value": 3
+        }, 
+        {
+            "description": "3.3V", 
+            "enum": "IO_VOLTAGE_3_3V", 
+            "value": 4
+        }, 
+        {
+            "description": "5.0V", 
+            "enum": "IO_VOLTAGE_5_0V", 
+            "value": 5
         }
     ], 
     "IRCodeEncoding": [
@@ -1683,6 +1829,60 @@
             "value": 2
         }
     ], 
+    "PacketErrorCode": [
+        {
+            "description": "No error", 
+            "enum": "PACKET_ERROR_OK", 
+            "value": 0
+        }, 
+        {
+            "description": "Unknown Error", 
+            "enum": "PACKET_ERROR_UNKNOWN", 
+            "value": 1
+        }, 
+        {
+            "description": "The response packet timed out", 
+            "enum": "PACKET_ERROR_TIMEOUT", 
+            "value": 2
+        }, 
+        {
+            "description": "Something about the received transmission didn't match the expected format.", 
+            "enum": "PACKET_ERROR_FORMAT", 
+            "value": 3
+        }, 
+        {
+            "description": "The input lines are invalid. This likely means a cable has been unplugged.", 
+            "enum": "PACKET_ERROR_INVALID", 
+            "value": 4
+        }, 
+        {
+            "description": "Data is being received fater than it can be processed. Some has been lost.", 
+            "enum": "PACKET_ERROR_OVERRUN", 
+            "value": 5
+        }, 
+        {
+            "description": "Something behind the scenes got out of sequence.", 
+            "enum": "PACKET_ERROR_CORRUPT", 
+            "value": 6
+        }
+    ], 
+    "Parity": [
+        {
+            "description": "No Parity Bit", 
+            "enum": "PARITY_MODE_NONE", 
+            "value": 1
+        }, 
+        {
+            "description": "Even Parity", 
+            "enum": "PARITY_MODE_EVEN", 
+            "value": 2
+        }, 
+        {
+            "description": "Odd Parity", 
+            "enum": "PARITY_MODE_ODD", 
+            "value": 3
+        }
+    ], 
     "PhidgetServerType": [
         {
             "description": "Unknown or unspecified server type", 
@@ -1769,6 +1969,48 @@
             "value": 3
         }
     ], 
+    "Protocol": [
+        {
+            "description": "Basic half-duplex RS485. Always receiving until you send data.", 
+            "enum": "PROTOCOL_RS485", 
+            "value": 1
+        }, 
+        {
+            "description": "Uses full-duplex RS422 communication.", 
+            "enum": "PROTOCOL_RS422", 
+            "value": 2
+        }, 
+        {
+            "description": "Allows communication with DMX512-compatible devices, such as stage lighting", 
+            "enum": "PROTOCOL_DMX512", 
+            "value": 3
+        }, 
+        {
+            "description": "Allows communication with MODBUS RTU compatible devices", 
+            "enum": "PROTOCOL_MODBUS_RTU", 
+            "value": 4
+        }, 
+        {
+            "description": "Allows communication with SPI compatible devices", 
+            "enum": "PROTOCOL_SPI", 
+            "value": 5
+        }, 
+        {
+            "description": "Allows communication with I2C compatible devices", 
+            "enum": "PROTOCOL_I2C", 
+            "value": 6
+        }, 
+        {
+            "description": "Allows communication with UART compatible devices", 
+            "enum": "PROTOCOL_UART", 
+            "value": 7
+        }, 
+        {
+            "description": "Allows communication with RS232 compatible devices", 
+            "enum": "PROTOCOL_RS232", 
+            "value": 8
+        }
+    ], 
     "RCServoVoltage": [
         {
             "description": "Run all servos on 5V DC", 
@@ -1842,6 +2084,28 @@
             "value": 3
         }
     ], 
+    "SPIMode": [
+        {
+            "description": "CPOL = 0 CPHA = 0", 
+            "enum": "SPI_MODE_0", 
+            "value": 1
+        }, 
+        {
+            "description": "CPOL = 0 CPHA = 1", 
+            "enum": "SPI_MODE_1", 
+            "value": 2
+        }, 
+        {
+            "description": "CPOL = 1 CPHA = 0", 
+            "enum": "SPI_MODE_2", 
+            "value": 3
+        }, 
+        {
+            "description": "CPOL = 1 CPHA = 1", 
+            "enum": "SPI_MODE_3", 
+            "value": 4
+        }
+    ], 
     "SpatialAlgorithm": [
         {
             "description": "No AHRS algorithm is used.", 
@@ -1886,6 +2150,18 @@
             "description": "Control the motor by selecting a target velocity (sign indicates direction). The motor will rotate continously in the chosen direction.", 
             "enum": "CONTROL_MODE_RUN", 
             "value": 1
+        }
+    ], 
+    "StopBits": [
+        {
+            "description": "One Stop Bit", 
+            "enum": "STOP_BITS_ONE", 
+            "value": 1
+        }, 
+        {
+            "description": "Two Stop Bits", 
+            "enum": "STOP_BITS_TWO", 
+            "value": 2
         }
     ], 
     "ThermocoupleType": [
@@ -2463,6 +2739,26 @@
             "description": "3589 - +-250A DC Current Transducer", 
             "enum": "SENSOR_TYPE_3589", 
             "value": 35890
+        }, 
+        {
+            "description": "MOT2002 - Motion Sensor Low Sensitivity", 
+            "enum": "SENSOR_TYPE_MOT2002_LOW", 
+            "value": 20020
+        }, 
+        {
+            "description": "MOT2002 - Motion Sensor Medium Sensitivity", 
+            "enum": "SENSOR_TYPE_MOT2002_MED", 
+            "value": 20021
+        }, 
+        {
+            "description": "MOT2002 - Motion Sensor High Sensitivity", 
+            "enum": "SENSOR_TYPE_MOT2002_HIGH", 
+            "value": 20022
+        }, 
+        {
+            "description": "VCP4114 - +-25A DC Current Transducer", 
+            "enum": "SENSOR_TYPE_VCP4114", 
+            "value": 41140
         }
     ]
 }
