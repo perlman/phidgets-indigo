@@ -2,6 +2,7 @@ import sys
 import indigo
 import logging
 import json
+import traceback
 
 from Phidget22.Devices.VoltageInput import VoltageInput
 from Phidget22.Devices.VoltageRatioInput import VoltageRatioInput
@@ -98,26 +99,11 @@ class PhidgetBase(object):
                            "%s (%s)" % (item['description'], cls.PHIDGET_DEVICE_TYPE_DESC)))
         return items
 
-class VoltageInputPhidget(PhidgetBase):
-    PHIDGET_DEVICE_TYPE_DESC="Voltage Input"
-    PHIDGET_DEVICE_TYPE="voltageInput"          # deviceId used by Indigo
-    PHIDGET_SENSOR_KEY="VoltageSensorType"      # Key used in phdigets.json; derived from the Phidget22 filename
 
+class InputPhidget(PhidgetBase):
+    """Base class for input Phidgets"""
     def __init__(self, *args, **kwargs):
-        super(VoltageInputPhidget, self).__init__(phidget=VoltageInput(), *args, **kwargs)
-        self.sensor_unit = Unit()
-
-    def addPhidgetHandlers(self):
-        self.phidget.setOnErrorHandler(self.onErrorHandler)
-        self.phidget.setOnAttachHandler(self.onAttachHandler)
-        self.phidget.setOnVoltageChangeHandler(self.onVoltageChangeHandler)
-        self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
-
-    def onVoltageChangeHandler(self, ph, voltage):
-        ph.parent.indigoDevice.updateStateOnServer("voltage", value=voltage, uiValue="%f V" % voltage)
-
-    def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
-        ph.parent.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, uiValue="%f %s" % (sensorValue, sensorUnit.symbol))
+        super(InputPhidget, self).__init__(*args, **kwargs)
 
     def onAttachHandler(self, ph):
         try:
@@ -131,6 +117,27 @@ class VoltageInputPhidget(PhidgetBase):
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
+
+class VoltageInputPhidget(InputPhidget):
+    PHIDGET_DEVICE_TYPE_DESC="Voltage Input"
+    PHIDGET_DEVICE_TYPE="voltageInput"          # deviceId used by Indigo
+    PHIDGET_SENSOR_KEY="VoltageSensorType"      # Key used in phdigets.json; derived from the Phidget22 filename
+
+    def __init__(self, *args, **kwargs):
+        super(VoltageInputPhidget, self).__init__(phidget=VoltageInput(), *args, **kwargs)
+
+    def addPhidgetHandlers(self):
+        self.phidget.setOnErrorHandler(self.onErrorHandler)
+        self.phidget.setOnAttachHandler(self.onAttachHandler)
+        self.phidget.setOnVoltageChangeHandler(self.onVoltageChangeHandler)
+        self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
+
+    def onVoltageChangeHandler(self, ph, voltage):
+        ph.parent.indigoDevice.updateStateOnServer("voltage", value=voltage, uiValue="%f V" % voltage)
+
+    def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
+        ph.parent.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, uiValue="%f %s" % (sensorValue, sensorUnit.symbol))
+
     def getDeviceStateList(self):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltage", "voltage", "voltage"))
@@ -139,13 +146,13 @@ class VoltageInputPhidget(PhidgetBase):
         return newStatesList
     
     def getDeviceDisplayStateId(self):
-        if self.phidget_type != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
+        if self.phidget_type != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
             return "sensorValue"
         else:
             return "voltage"
 
     
-class VoltageRatioInputPhidget(PhidgetBase):
+class VoltageRatioInputPhidget(InputPhidget):
     PHIDGET_DEVICE_TYPE_DESC="Voltage Ratio Input"
     PHIDGET_DEVICE_TYPE="voltageRatioInput"           # deviceId used by Indigo
     PHIDGET_SENSOR_KEY="VoltageRatioSensorType"       # Key used in phdigets.json; derived from the Phidget22 filename
@@ -164,18 +171,6 @@ class VoltageRatioInputPhidget(PhidgetBase):
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
         ph.parent.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, uiValue="%f %s" % (sensorValue, sensorUnit.symbol))
-
-    def onAttachHandler(self, ph): 
-        try:
-            phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
-            ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
-            self.logger.debug("Adding sensor type %d" % self.phidget_type)
-            ph.setSensorType(self.phidget_type)
-        except PhidgetException as e:
-            self.logger.error("%d: %s\n" % (e.code, e.details))
-            self.logger.error(traceback.format_exc())
-        except Exception as e:
-            self.logger.error(traceback.format_exc())
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
