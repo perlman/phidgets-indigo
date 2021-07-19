@@ -28,7 +28,6 @@ class DigitalOutputPhidget(PhidgetBase):
     def onAttachHandler(self, ph):
         try:
             phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
-            ph.setDutyCycle(1.0)    # Set the duty cycle to 100% by default
             self.updateIndigoStatus()
         except Exception as e:
             self.logger.error(traceback.format_exc())
@@ -47,10 +46,11 @@ class DigitalOutputPhidget(PhidgetBase):
     def actionControlDevice(self, action):
         if action.deviceAction == indigo.kDeviceAction.TurnOn:
             self.phidget.setState_async(True, self.asyncSetResult)
-            ##self.indigoDevice.updateStateOnServer("onOffState", value=False, uiValue="on")
         elif action.deviceAction == indigo.kDeviceAction.TurnOff:
             self.phidget.setState_async(False, self.asyncSetResult)
-            #self.indigoDevice.updateStateOnServer("onOffState", value=False, uiValue="off")
+        elif action.deviceAction == indigo.kDeviceAction.Toggle:
+            onOffState = bool(self.phidget.getState())
+            self.phidget.setState_async(not onOffState, self.asyncSetResult)
         elif action.deviceAction == indigo.kDeviceAction.SetBrightness:
             # Brightness value will be 0-100; phidgets expects 0.0-1.0
             self.phidget.setDutyCycle_async(action.actionValue / 100.0, self.asyncSetResult)
