@@ -65,6 +65,7 @@
 	<Device id="digitalOutput" type="dimmer">
 		<Name>Digital Output</Name>
 		<ConfigUI>
+		
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.
 				</Label>
@@ -91,8 +92,11 @@
 	<Device id="temperatureSensor" type="custom">
 		<Name>Temperature Sensor</Name>
 		<ConfigUI>
-			<Field id="thermocoupleType" type="menu">
-				<Label>Voltage input type:</Label>
+		 	<Field id="useThermoCouple" type="checkbox" defaultValue="False">
+				<Label>Custom thermoCouple?</Label>
+			</Field>
+			<Field id="thermocoupleType" type="menu" visibleBindingId="useThermoCouple" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Thermocouple Type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="ThermocoupleType"/>
 			</Field>
 

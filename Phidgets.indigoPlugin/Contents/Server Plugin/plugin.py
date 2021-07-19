@@ -126,7 +126,10 @@ class Plugin(indigo.PluginBase):
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "temperatureSensor":
-                thermocoupleType = int(device.pluginProps.get("thermocoupleType", None))
+                if device.pluginProps.get("useThermoCouple", False):
+                    thermocoupleType = int(device.pluginProps.get("thermocoupleType", None))
+                else:
+                    thermocoupleType = None
                 newPhidget = TemperatureSensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, thermocoupleType=thermocoupleType)
             else:
                 raise Exception("Unexpected device type: %s" % device.deviceTypeId)

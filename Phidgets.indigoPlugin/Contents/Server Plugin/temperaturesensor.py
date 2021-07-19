@@ -25,7 +25,8 @@ class TemperatureSensorPhidget(PhidgetBase):
         try:
             phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
             ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
-            ph.setThermocoupleType(self.thermocoupleType)
+            if self.thermocoupleType:
+                ph.setThermocoupleType(self.thermocoupleType)
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
