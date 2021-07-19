@@ -18,6 +18,7 @@ from phidget import ChannelInfo, NetInfo
 # Our wrappers around phidget objects
 from voltageinput import VoltageInputPhidget
 from voltageratioinput import VoltageRatioInputPhidget
+from digitaloutput import DigitalOutputPhidget
 
 import phidget_util
 
@@ -79,6 +80,14 @@ class Plugin(indigo.PluginBase):
         else:
             return None
 
+    def actionControlDevice(self, action, device):
+        if device.id in self.activePhidgets:
+            return self.activePhidgets[device.id].actionControlDevice(action)
+        else:
+            raise Exception("Unexpected device: %s" % device.id)
+
+
+
     def deviceStartComm(self, device):
         # Phidget device type (device.deviceTypeId) are defined in devices.xml
         try:
@@ -112,6 +121,8 @@ class Plugin(indigo.PluginBase):
             elif device.deviceTypeId == "voltageRatioInput":
                 sensorType = int(device.pluginProps.get("voltageRatioInputType", None))
                 newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
+            elif device.deviceTypeId == "digitalOutput":
+                newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             else:
                 raise Exception("Unexpected device type: %s" % device.deviceTypeId)
             self.activePhidgets[device.id] = newPhidget
@@ -123,6 +134,9 @@ class Plugin(indigo.PluginBase):
             self.logger.error(traceback.format_exc())
         except Exception as e:
             self.logger.error(traceback.format_exc())
+
+        # Should this be called every time?
+        device.stateListOrDisplayStateIdChanged()
 
     #
     # Methods related to shutdown

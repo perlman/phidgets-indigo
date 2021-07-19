@@ -59,6 +59,9 @@ class PhidgetBase(object):
         # TODO: Set error state in Indigo
         ph.parent.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ")\n")
 
+    #
+    # Methods to be implemented by subclasses
+    #
     def onAttachHandler(self, ph):
         raise Exception("onAttachHandler() must be handled by subclass")
 
@@ -68,8 +71,11 @@ class PhidgetBase(object):
     def stop(self):
         self.phidget.close()
 
-    def getDeviceDisplayStateId(deviceTypeId):
+    def getDeviceDisplayStatesId(self):
         raise Exception("getDeviceDisplayStateId() must be handled by subclass")
 
-    def getDeviceStateList(deviceTypeId):
+    def getDeviceStateList(self):
         raise Exception("getDeviceStateList() must be handled by subclass")
+
+    def actionControlDevice(self, action):
+        raise Exception("actionControlDevice() may be handled by subclass")

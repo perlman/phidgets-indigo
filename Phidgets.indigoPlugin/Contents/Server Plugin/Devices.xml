@@ -62,7 +62,7 @@
 		</ConfigUI>
 	</Device>
 
-	<Device id="digitalOutput" type="custom">
+	<Device id="digitalOutput" type="relay">
 		<Name>Digital Output</Name>
 		<ConfigUI>
 			<Field id="exampleLabel" type="label">
