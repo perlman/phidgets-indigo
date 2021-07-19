@@ -19,6 +19,7 @@ from phidget import ChannelInfo, NetInfo
 from voltageinput import VoltageInputPhidget
 from voltageratioinput import VoltageRatioInputPhidget
 from digitaloutput import DigitalOutputPhidget
+from temperaturesensor import TemperatureSensorPhidget
 
 import phidget_util
 
@@ -115,6 +116,7 @@ class Plugin(indigo.PluginBase):
                 netInfo=NetInfo(isRemote=networkPhidgets, serverDiscovery=enableServerDiscovery)
             )
 
+            # TODO: Use better default sensor types... this might error if not populated
             if device.deviceTypeId == "voltageInput":
                 sensorType = int(device.pluginProps.get("voltageInputType", None))
                 newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
@@ -123,6 +125,9 @@ class Plugin(indigo.PluginBase):
                 newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
+            elif device.deviceTypeId == "temperatureSensor":
+                thermocoupleType = int(device.pluginProps.get("thermocoupleType", None))
+                newPhidget = TemperatureSensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, thermocoupleType=thermocoupleType)
             else:
                 raise Exception("Unexpected device type: %s" % device.deviceTypeId)
             self.activePhidgets[device.id] = newPhidget

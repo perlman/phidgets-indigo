@@ -1,4 +1,5 @@
-import traceback
+# -*- coding: utf-8 -*-
+# import traceback
 
 import indigo
 

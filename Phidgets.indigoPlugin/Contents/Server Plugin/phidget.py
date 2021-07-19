@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 #
 # Bulk of the code for actually interacting with the phidget devices.
 #
