@@ -114,7 +114,6 @@ class Plugin(indigo.PluginBase):
                 newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
             else:
                 raise Exception("Unexpected device type: %s" % device.deviceTypeId)
-            self.logger.error("Started device %d" % device.id)
             self.activePhidgets[device.id] = newPhidget
             newPhidget.start()
             device.stateListOrDisplayStateIdChanged()

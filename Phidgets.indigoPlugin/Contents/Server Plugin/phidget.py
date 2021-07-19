@@ -31,9 +31,6 @@ class PhidgetBase(object):
     Base class for phidget devices living in Indigo.
     This will be extended for the various types of devices.   
     """
-    PHIDGET_DEVICE_TYPE_DESC = "UNKNOWN"
-    PHIDGET_DEVICE_TYPE = None
-    PHIDGET_SENSOR_KEY = None
     PHIDGET_DATA_INTERVAL = 1000     # ms
 
     def __init__(self, phidget, indigo_plugin=None, channelInfo=ChannelInfo(), indigoDevice=None, logger=None):

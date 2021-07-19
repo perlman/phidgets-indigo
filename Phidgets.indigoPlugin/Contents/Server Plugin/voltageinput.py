@@ -11,10 +11,6 @@ from phidget import PhidgetBase
 import phidget_util
 
 class VoltageInputPhidget(PhidgetBase):
-    PHIDGET_DEVICE_TYPE_DESC="Voltage Input"
-    PHIDGET_DEVICE_TYPE="voltageInput"          # deviceId used by Indigo
-    PHIDGET_SENSOR_KEY="VoltageSensorType"      # Key used in phdigets.json; derived from the Phidget22 filename
-
     def __init__(self, sensorType, *args, **kwargs):
         super(VoltageInputPhidget, self).__init__(phidget=VoltageInput(), *args, **kwargs)
         self.sensorType = sensorType
