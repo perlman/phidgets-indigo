@@ -93,13 +93,13 @@ class Plugin(indigo.PluginBase):
         try:
             # Common properties for _all_ phidgets
             serialNumber = device.pluginProps.get("serialNumber", None)
-            serialNumber = int(serialNumber) if serialNumber else None
+            serialNumber = int(serialNumber) if serialNumber else 0
 
             channel = device.pluginProps.get("channel", None)
-            channel = int(channel) if channel else None
+            channel = int(channel) if channel else -1
 
             isHubPortDevice = device.pluginProps.get("isHubPortDevice", None)
-            isHubPortDevice = bool(isHubPortDevice) if isHubPortDevice else False
+            isHubPortDevice = bool(isHubPortDevice) if isHubPortDevice else 0
 
             hubPort = device.pluginProps.get("hubPort", -1)
             hubPort = int(hubPort) if hubPort else -1
