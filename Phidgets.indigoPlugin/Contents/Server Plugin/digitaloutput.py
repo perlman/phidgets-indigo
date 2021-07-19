@@ -15,9 +15,9 @@ class DigitalOutputPhidget(PhidgetBase):
         super(DigitalOutputPhidget, self).__init__(phidget=DigitalOutput(), *args, **kwargs)
 
     def updateIndigoStatus(self):
-        dutyCycle = self.phidget.getDutyCycle()
+        dutyCycle = int(100 * self.phidget.getDutyCycle())
         onOffState = bool(self.phidget.getState())
-        self.indigoDevice.updateStateOnServer("dutyCycle", value=dutyCycle)
+        self.indigoDevice.updateStateOnServer("brightnessLevel", value=dutyCycle)
         self.indigoDevice.updateStateOnServer("onOffState", value=onOffState, uiValue="on" if onOffState else "off")
 
     def addPhidgetHandlers(self):
@@ -35,14 +35,13 @@ class DigitalOutputPhidget(PhidgetBase):
     def getDeviceStateList(self):
         # Currently support the minimal states used by all phidget DigitalOutput devices
         newStatesList = indigo.List()
-        # onOffState is automatically inherited from an Indigo relay class
+        # onOffState and brightnessLevel are automatically inherited from an Indigo relay class
         # newStatesList.append(self.indigo_plugin.getDeviceStateDictForBoolOnOffType("onOffState", "onOffState", "onOffState"))
-        newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("dutyCycle", "dutyCycle", "dutyCycle"))
+        # newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("dutyCycle", "dutyCycle", "dutyCycle"))
         return newStatesList
     
     def getDeviceDisplayStateId(self):
-        return False
-        #return "onOffState"
+        return None
 
     def actionControlDevice(self, action):
         if action.deviceAction == indigo.kDeviceAction.TurnOn:
@@ -51,6 +50,9 @@ class DigitalOutputPhidget(PhidgetBase):
         elif action.deviceAction == indigo.kDeviceAction.TurnOff:
             self.phidget.setState_async(False, self.asyncSetResult)
             #self.indigoDevice.updateStateOnServer("onOffState", value=False, uiValue="off")
+        elif action.deviceAction == indigo.kDeviceAction.SetBrightness:
+            # Brightness value will be 0-100; phidgets expects 0.0-1.0
+            self.phidget.setDutyCycle_async(action.actionValue / 100.0, self.asyncSetResult)
         elif action.deviceAction == indigo.kDeviceAction.RequestStatus:
             self.updateIndigoStatus()
         else:

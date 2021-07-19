@@ -62,7 +62,7 @@
 		</ConfigUI>
 	</Device>
 
-	<Device id="digitalOutput" type="relay">
+	<Device id="digitalOutput" type="dimmer">
 		<Name>Digital Output</Name>
 		<ConfigUI>
 			<Field id="exampleLabel" type="label">
@@ -87,4 +87,5 @@
 			</Field>
 		</ConfigUI>
 	</Device>
+	
 </Devices>
