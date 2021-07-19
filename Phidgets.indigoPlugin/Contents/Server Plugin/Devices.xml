@@ -1,12 +1,18 @@
 <?xml version="1.0"?>
 <Devices>
-	<Device id="phidget" type="custom">
-		<Name>Phidget Device</Name>
+	<Device id="voltageInput" type="custom">
+		<Name>Voltage Input</Name>
 		<ConfigUI>
-			<Field id="phidgetType" type="menu">
-				<Label>Phdiget type:</Label>
-				<List class="self" method="getPhidgetTypeMenu"/>
+			<Field id="voltageInputType" type="menu">
+				<Label>Voltage input type:</Label>
+				<List class="self" method="getPhidgetTypeMenu" filter="VoltageSensorType"/>
 			</Field>
+
+			<Field id="exampleLabel" type="label">
+				<Label>The following sections will (eventually) be populated automatically.
+				</Label>
+			</Field>
+
 			<Field id="serialNumber" type="textfield">
 					<Label>Serial number:</Label>
 			</Field>
@@ -22,6 +28,8 @@
 			<Field id="hubPort" type="textfield" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
+
+
 		</ConfigUI>
 	</Device>	
 </Devices>
