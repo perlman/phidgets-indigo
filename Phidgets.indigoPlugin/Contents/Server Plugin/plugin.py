@@ -19,6 +19,8 @@ from phidget import ChannelInfo, NetInfo
 from voltageinput import VoltageInputPhidget
 from voltageratioinput import VoltageRatioInputPhidget
 
+import phidget_util
+
 class Plugin(indigo.PluginBase):
     def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
         super(Plugin, self).__init__(pluginId, pluginDisplayName, pluginVersion, pluginPrefs)
@@ -54,8 +56,8 @@ class Plugin(indigo.PluginBase):
         return True
 
     def validateDeviceConfigUi(self, valuesDict, typeId, devId):
-        # TODO
-        return True
+        # TODO: Perform some type of verification on the fields?
+        return (True, valuesDict)
 
     def getPhidgetTypeMenu(self, filter="", valuesDict=None, typeId="", targetId=0):
         classes = filter.split(',')
@@ -79,26 +81,31 @@ class Plugin(indigo.PluginBase):
 
     def deviceStartComm(self, device):
         # Phidget device type (device.deviceTypeId) are defined in devices.xml
-
-        # Common properties for _all_ phidgets
-        serialNumber = int(device.pluginProps.get("serialNumber", -1))
-        channel = int(device.pluginProps.get("channel", -1))
-        isHubPortDevice = int(device.pluginProps.get("isHubPortDevice", 0))
         try:
-            hubPort = int(device.pluginProps.get("hubPort", -1))
-        except:
-            hubPort = -1
-        networkPhidgets = self.pluginPrefs.get("networkPhidgets", False)
-        enableServerDiscovery = self.pluginPrefs.get("enableServerDiscovery", False)
-        channelInfo = ChannelInfo(
-            serialNumber=serialNumber,
-            channel=channel,
-            isHubPortDevice=isHubPortDevice,
-            hubPort=hubPort,
-            netInfo=NetInfo(isRemote=networkPhidgets, serverDiscovery=enableServerDiscovery)
-        )
+            # Common properties for _all_ phidgets
+            serialNumber = device.pluginProps.get("serialNumber", None)
+            serialNumber = int(serialNumber) if serialNumber else None
 
-        try:
+            channel = device.pluginProps.get("channel", None)
+            channel = int(channel) if channel else None
+
+            isHubPortDevice = device.pluginProps.get("isHubPortDevice", None)
+            isHubPortDevice = bool(isHubPortDevice) if isHubPortDevice else False
+
+            hubPort = device.pluginProps.get("hubPort", -1)
+            hubPort = int(hubPort) if hubPort else -1
+
+            networkPhidgets = self.pluginPrefs.get("networkPhidgets", False)
+            enableServerDiscovery = self.pluginPrefs.get("enableServerDiscovery", False)
+            
+            channelInfo = ChannelInfo(
+                serialNumber=serialNumber,
+                channel=channel,
+                isHubPortDevice=isHubPortDevice,
+                hubPort=hubPort,
+                netInfo=NetInfo(isRemote=networkPhidgets, serverDiscovery=enableServerDiscovery)
+            )
+
             if device.deviceTypeId == "voltageInput":
                 sensorType = int(device.pluginProps.get("voltageInputType", None))
                 newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
@@ -107,7 +114,7 @@ class Plugin(indigo.PluginBase):
                 newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
             else:
                 raise Exception("Unexpected device type: %s" % device.deviceTypeId)
-
+            self.logger.error("Started device %d" % device.id)
             self.activePhidgets[device.id] = newPhidget
             newPhidget.start()
             device.stateListOrDisplayStateIdChanged()
@@ -121,7 +128,7 @@ class Plugin(indigo.PluginBase):
     #
     # Methods related to shutdown
     #
-    
+
     def deviceStopComm(self, device):
         myPhidget = self.activePhidgets.pop(device.id)
         myPhidget.stop()
