@@ -5,14 +5,19 @@ import logging
 import traceback
 import json
 
+# Phidget libraries
 from Phidget22.Devices.Log import Log
 from Phidget22.Net import Net, PhidgetServerType
 from Phidget22.Phidget import Phidget
 from Phidget22.PhidgetException import PhidgetException
 from PhidgetInfo import PhidgetInfo
 
+# Classes to describe network & channel search info
 from phidget import ChannelInfo, NetInfo
+
+# Our wrappers around phidget objects
 from voltageinput import VoltageInputPhidget
+from voltageratioinput import VoltageRatioInputPhidget
 
 class Plugin(indigo.PluginBase):
     def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
@@ -23,7 +28,6 @@ class Plugin(indigo.PluginBase):
 
         self.activePhidgets = {} # Map between Indigio ID and current instance of phidget
         
-        # TODO: Recreate the PhidgetManager as PhidgetInfoManager
         self.phidgetInfo = PhidgetInfo(phidgetInfoFile='../Resources/phidgets.json')
 
         self.logger.setLevel(logging.DEBUG)
@@ -41,10 +45,10 @@ class Plugin(indigo.PluginBase):
         # Should this be configurable?
         Net.enableServerDiscovery(PhidgetServerType.PHIDGETSERVER_DEVICEREMOTE)
 
-
     #
     # Methods for working with interactive Indigo UI
     #
+
     def validatePrefsConfigUi(self, valuesDict):
         # TODO
         return True
@@ -53,11 +57,9 @@ class Plugin(indigo.PluginBase):
         # TODO
         return True
 
-
     def getPhidgetTypeMenu(self, filter="", valuesDict=None, typeId="", targetId=0):
         classes = filter.split(',')
         return self.phidgetInfo.getPhidgetTypeMenu(classes)
-
 
     #
     # Interact with the phidgets
@@ -100,7 +102,9 @@ class Plugin(indigo.PluginBase):
             if device.deviceTypeId == "voltageInput":
                 sensorType = int(device.pluginProps.get("voltageInputType", None))
                 newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
-
+            elif device.deviceTypeId == "voltageRatioInput":
+                sensorType = int(device.pluginProps.get("voltageRatioInputType", None))
+                newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
             else:
                 raise Exception("Unexpected device type: %s" % device.deviceTypeId)
 
@@ -117,6 +121,7 @@ class Plugin(indigo.PluginBase):
     #
     # Methods related to shutdown
     #
+    
     def deviceStopComm(self, device):
         myPhidget = self.activePhidgets.pop(device.id)
         myPhidget.stop()
