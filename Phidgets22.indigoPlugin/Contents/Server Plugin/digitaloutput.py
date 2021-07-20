@@ -16,9 +16,9 @@ class DigitalOutputPhidget(PhidgetBase):
         super(DigitalOutputPhidget, self).__init__(phidget=DigitalOutput(), *args, **kwargs)
 
     def updateIndigoStatus(self):
-        dutyCycle = int(100 * self.phidget.getDutyCycle())
+        brightnessLevel = int(100 * self.phidget.getDutyCycle())
         onOffState = bool(self.phidget.getState())
-        self.indigoDevice.updateStateOnServer("brightnessLevel", value=dutyCycle)
+        self.indigoDevice.updateStateOnServer("brightnessLevel", value=brightnessLevel, uiValue="%d" % brightnessLevel)
         self.indigoDevice.updateStateOnServer("onOffState", value=onOffState, uiValue="on" if onOffState else "off")
 
     def addPhidgetHandlers(self):
