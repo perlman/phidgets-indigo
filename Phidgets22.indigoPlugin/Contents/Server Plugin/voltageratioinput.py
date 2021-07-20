@@ -12,9 +12,10 @@ from phidget import PhidgetBase
 import phidget_util
 
 class VoltageRatioInputPhidget(PhidgetBase):
-    def __init__(self, sensorType, *args, **kwargs):
+    def __init__(self, sensorType, dataInterval, *args, **kwargs):
         super(VoltageRatioInputPhidget, self).__init__(phidget=VoltageRatioInput(), *args, **kwargs)
         self.sensorType = sensorType
+        self.dataInterval = dataInterval
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -26,7 +27,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
     def onAttachHandler(self, ph):
         super(VoltageRatioInputPhidget, self).onAttachHandler(ph)
         try:
-            ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
+            self.setDataInterval(self.dataInterval)
             ph.setSensorType(self.sensorType)
         except Exception as e:
             self.logger.error(traceback.format_exc())

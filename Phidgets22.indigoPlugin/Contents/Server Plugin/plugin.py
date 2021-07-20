@@ -129,13 +129,17 @@ class Plugin(indigo.PluginBase):
                 netInfo=NetInfo(isRemote=networkPhidgets, serverDiscovery=enableServerDiscovery)
             )
 
+            # Data interval is used by many types. See if it is set
+            dataInterval = device.pluginProps.get("dataInterval", None)
+            dataInterval = int(dataInterval) if dataInterval else None
+
             # TODO: Use better default sensor types... this might error if not populated
             if device.deviceTypeId == "voltageInput":
                 sensorType = int(device.pluginProps.get("voltageSensorType", 0))
-                newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
+                newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType, dataInterval=dataInterval)
             elif device.deviceTypeId == "voltageRatioInput":
                 sensorType = int(device.pluginProps.get("voltageRatioSensorType", 0))
-                newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
+                newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType, dataInterval=dataInterval)
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "temperatureSensor":
@@ -143,7 +147,7 @@ class Plugin(indigo.PluginBase):
                     thermocoupleType = int(device.pluginProps.get("thermocoupleType", None))
                 else:
                     thermocoupleType = None
-                newPhidget = TemperatureSensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, thermocoupleType=thermocoupleType)
+                newPhidget = TemperatureSensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, thermocoupleType=thermocoupleType, dataInterval=dataInterval)
             else:
                 raise Exception("Unexpected device type: %s" % device.deviceTypeId)
             self.activePhidgets[device.id] = newPhidget

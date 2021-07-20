@@ -35,7 +35,7 @@ class PhidgetBase(object):
     Base class for phidget devices living in Indigo.
     This will be extended for the various types of devices.   
     """
-    PHIDGET_DATA_INTERVAL = 1000          # ms
+    PHIDGET_DEFAULT_DATA_INTERVAL = 1000  # ms
     PHIDGET_INITIAL_CONNECT_TIMEOUT = 5   # s
 
     def __init__(self, phidget, indigo_plugin=None, channelInfo=ChannelInfo(), indigoDevice=None, logger=None):
@@ -106,3 +106,25 @@ class PhidgetBase(object):
 
     def actionControlDevice(self, action):
         raise Exception("actionControlDevice() may be handled by subclass")
+
+
+    #
+    # Utility functions that are used by a subset of phidgets
+    #
+
+    def outOfRangeError(self, field, minValue, maxValue, value):
+        self.logger.error("Out of range " + field + " for Indigo device '" + str(self.indigoDevice.name) +
+                          "' (%d): " % self.indigoDevice.id +
+                          "%d (valid range: [%d-%d])" % (value, minValue, maxValue))
+
+    def setDataInterval(self, dataInterval):
+        """Post-attach configuration of dataInterval"""
+        min_interval = self.phidget.getMinDataInterval()
+        max_interval = self.phidget.getMaxDataInterval()
+        if dataInterval is None:
+            self.phidget.setDataInterval(PhidgetBase.PHIDGET_DEFAULT_DATA_INTERVAL)
+        elif dataInterval < min_interval or dataInterval > max_interval:
+            self.outOfRangeError(field="dataInterval", minValue=min_interval, maxValue=max_interval, value=dataInterval)
+            self.phidget.setDataInterval(PhidgetBase.PHIDGET_DEFAULT_DATA_INTERVAL)
+        else:
+            self.phidget.setDataInterval(dataInterval)

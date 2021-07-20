@@ -12,9 +12,10 @@ from phidget import PhidgetBase
 import phidget_util
 
 class TemperatureSensorPhidget(PhidgetBase):
-    def __init__(self, thermocoupleType, *args, **kwargs):
+    def __init__(self, thermocoupleType, dataInterval, *args, **kwargs):
         super(TemperatureSensorPhidget, self).__init__(phidget=TemperatureSensor(), *args, **kwargs)
         self.thermocoupleType = thermocoupleType
+        self.dataInterval = dataInterval
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -25,7 +26,7 @@ class TemperatureSensorPhidget(PhidgetBase):
     def onAttachHandler(self, ph):
         super(TemperatureSensorPhidget, self).onAttachHandler(ph)
         try:
-            ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
+            self.setDataInterval(self.dataInterval)
             if self.thermocoupleType:
                 ph.setThermocoupleType(self.thermocoupleType)
         except Exception as e:
