@@ -55,8 +55,6 @@ class PhidgetBase(object):
         self.phidget.setIsHubPortDevice(self.channelInfo.isHubPortDevice)
         self.phidget.setHubPort(self.channelInfo.hubPort)
 
-
-
         # Set the initial connection timer
         self.timer = threading.Timer(self.PHIDGET_INITIAL_CONNECT_TIMEOUT, self.connectionTimeoutHandler)
         self.timer.start()
@@ -68,12 +66,10 @@ class PhidgetBase(object):
         self.phidget.open()
 
     def connectionTimeoutHandler(self):
-        self.indigoDevice.setErrorStateOnServer('No response from device')
+        self.indigoDevice.setErrorStateOnServer('Detached')
         self.logger.error("No response creating " + self.__class__.__name__ + " for Indigo device '" +
-            str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id + ' after ' +
-            self.PHIDGET_INITIAL_CONNECT_TIMEOUT + ' seconds.')
-
-
+            str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id +
+            ' after %d seconds.' % self.PHIDGET_INITIAL_CONNECT_TIMEOUT)
 
     def onErrorHandler(self, ph, errorCode, errorString):
         """Default error handler for Phidgets."""
@@ -81,6 +77,7 @@ class PhidgetBase(object):
         ph.parent.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ")\n")
 
     def onDetachHandler(self, ph):
+        self.indigoDevice.setErrorStateOnServer('Detached')
         phidget_util.logPhidgetEvent(ph, self.logger.debug, "Detach")
 
     def onAttachHandler(self, ph):

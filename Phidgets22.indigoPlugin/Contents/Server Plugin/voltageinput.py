@@ -19,11 +19,12 @@ class VoltageInputPhidget(PhidgetBase):
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
         self.phidget.setOnAttachHandler(self.onAttachHandler)
+        self.phidget.setOnDetachHandler(self.onDetachHandler)
         self.phidget.setOnVoltageChangeHandler(self.onVoltageChangeHandler)
         self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
 
     def onAttachHandler(self, ph):
-        super(VoltageInputPhidget, self).onAttachHandler(self)
+        super(VoltageInputPhidget, self).onAttachHandler(ph)
         try:
             ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
             ph.setSensorType(self.sensorType)

@@ -27,6 +27,7 @@ class DigitalOutputPhidget(PhidgetBase):
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
         self.phidget.setOnAttachHandler(self.onAttachHandler)
+        self.phidget.setOnDetachHandler(self.onDetachHandler)
 
     def onAttachHandler(self, ph):
         super(DigitalOutputPhidget, self).onAttachHandler(ph)

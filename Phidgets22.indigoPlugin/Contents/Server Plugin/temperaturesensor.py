@@ -19,6 +19,7 @@ class TemperatureSensorPhidget(PhidgetBase):
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
         self.phidget.setOnAttachHandler(self.onAttachHandler)
+        self.phidget.setOnDetachHandler(self.onDetachHandler)
         self.phidget.setOnTemperatureChangeHandler(self.onTemperatureChangeHandler)
 
     def onAttachHandler(self, ph):
