@@ -6,8 +6,11 @@
 import sys
 import logging
 import json
+import time
+import threading
 import traceback
 import indigo
+
 import phidget_util
 
 class NetInfo():
@@ -32,7 +35,8 @@ class PhidgetBase(object):
     Base class for phidget devices living in Indigo.
     This will be extended for the various types of devices.   
     """
-    PHIDGET_DATA_INTERVAL = 1000     # ms
+    PHIDGET_DATA_INTERVAL = 1000          # ms
+    PHIDGET_INITIAL_CONNECT_TIMEOUT = 5   # s
 
     def __init__(self, phidget, indigo_plugin=None, channelInfo=ChannelInfo(), indigoDevice=None, logger=None):
         self.phidget = phidget      # PhidgetAPI object for this phidget
@@ -51,11 +55,24 @@ class PhidgetBase(object):
         self.phidget.setIsHubPortDevice(self.channelInfo.isHubPortDevice)
         self.phidget.setHubPort(self.channelInfo.hubPort)
 
+
+
+        # Set the initial connection timer
+        self.timer = threading.Timer(self.PHIDGET_INITIAL_CONNECT_TIMEOUT, self.connectionTimeoutHandler)
+        self.timer.start()
+
         # Add appropriate handlers
         self.addPhidgetHandlers()
 
         # Open the phidget asynchronously.
         self.phidget.open()
+
+    def connectionTimeoutHandler(self):
+        self.indigoDevice.setErrorStateOnServer('No response from device')
+        self.logger.error("No response creating " + self.__class__.__name__ + " for Indigo device '" +
+            str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id + ' after ' +
+            self.PHIDGET_INITIAL_CONNECT_TIMEOUT + ' seconds.')
+
 
 
     def onErrorHandler(self, ph, errorCode, errorString):
@@ -67,6 +84,8 @@ class PhidgetBase(object):
         phidget_util.logPhidgetEvent(ph, self.logger.debug, "Detach")
 
     def onAttachHandler(self, ph):
+        self.timer.cancel()
+        self.indigoDevice.setErrorStateOnServer(None)
         phidget_util.logPhidgetEvent(ph, self.logger.debug, "Attach")
 
     def stop(self):
