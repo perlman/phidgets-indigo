@@ -41,7 +41,7 @@ class DigitalOutputPhidget(PhidgetBase):
         return newStatesList
     
     def getDeviceDisplayStateId(self):
-        return None
+        return "onOffState"
 
     def actionControlDevice(self, action):
         if action.deviceAction == indigo.kDeviceAction.TurnOn:
