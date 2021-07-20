@@ -13,6 +13,9 @@
 
 	<Field id="simpleSeparator1" type="separator"/>
 
+
+	<Field id="simpleSeparator1" type="separator"/>
+
 	<Field id="phidgetApiLogging" type="checkbox" defaultValue="false">
 		<Label>Enable low-level Phidgets logging</Label>
 	</Field>
