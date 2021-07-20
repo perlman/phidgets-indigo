@@ -16,21 +16,20 @@ class DigitalOutputPhidget(PhidgetBase):
         super(DigitalOutputPhidget, self).__init__(phidget=DigitalOutput(), *args, **kwargs)
 
     def updateIndigoStatus(self):
-        brightnessLevel = int(100 * self.phidget.getDutyCycle())
-        onOffState = bool(self.phidget.getState())
-        self.indigoDevice.updateStateOnServer("brightnessLevel", value=brightnessLevel, uiValue="%d" % brightnessLevel)
-        self.indigoDevice.updateStateOnServer("onOffState", value=onOffState, uiValue="on" if onOffState else "off")
+        try:
+            brightnessLevel = int(100 * self.phidget.getDutyCycle())
+            onOffState = bool(self.phidget.getState())
+            self.indigoDevice.updateStateOnServer("brightnessLevel", value=brightnessLevel, uiValue="%d" % brightnessLevel)
+            self.indigoDevice.updateStateOnServer("onOffState", value=onOffState, uiValue="on" if onOffState else "off")
+        except Exception as e:
+            self.logger.error(traceback.format_exc())
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
         self.phidget.setOnAttachHandler(self.onAttachHandler)
 
     def onAttachHandler(self, ph):
-        try:
-            phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
-            self.updateIndigoStatus()
-        except Exception as e:
-            self.logger.error(traceback.format_exc())
+        super(DigitalOutputPhidget, self).onAttachHandler(ph)
 
     def getDeviceStateList(self):
         # Currently support the minimal states used by all phidget DigitalOutput devices

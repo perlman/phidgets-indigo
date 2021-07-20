@@ -22,8 +22,8 @@ class TemperatureSensorPhidget(PhidgetBase):
         self.phidget.setOnTemperatureChangeHandler(self.onTemperatureChangeHandler)
 
     def onAttachHandler(self, ph):
+        super(TemperatureSensorPhidget, self).onAttachHandler(ph)
         try:
-            phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
             ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
             if self.thermocoupleType:
                 ph.setThermocoupleType(self.thermocoupleType)

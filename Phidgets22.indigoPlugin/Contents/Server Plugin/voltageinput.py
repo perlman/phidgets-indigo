@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-# import traceback
+import traceback
 
 import indigo
 
@@ -23,8 +23,8 @@ class VoltageInputPhidget(PhidgetBase):
         self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
 
     def onAttachHandler(self, ph):
+        super(VoltageInputPhidget, self).onAttachHandler(self)
         try:
-            phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
             ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
             ph.setSensorType(self.sensorType)
         except Exception as e:

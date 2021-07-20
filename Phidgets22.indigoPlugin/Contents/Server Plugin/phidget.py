@@ -8,7 +8,7 @@ import logging
 import json
 import traceback
 import indigo
-
+import phidget_util
 
 class NetInfo():
     def __init__(self, isRemote=None, serverDiscovery=None, hostname=None, port=None, password=None):
@@ -43,6 +43,8 @@ class PhidgetBase(object):
         self.indigo_plugin = indigo_plugin
 
     def start(self):
+        self.logger.debug("Creating " + self.__class__.__name__ + " for Indigo device '" + str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
+
         self.phidget.setDeviceSerialNumber(self.channelInfo.serialNumber)
         self.phidget.setChannel(self.channelInfo.channel)
         self.phidget.setIsRemote(self.channelInfo.netInfo.isRemote)
@@ -55,22 +57,29 @@ class PhidgetBase(object):
         # Open the phidget asynchronously.
         self.phidget.open()
 
+
     def onErrorHandler(self, ph, errorCode, errorString):
         """Default error handler for Phidgets."""
         # TODO: Set error state in Indigo
         ph.parent.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ")\n")
 
+    def onDetachHandler(self, ph):
+        phidget_util.logPhidgetEvent(ph, self.logger.debug, "Detach")
+
+    def onAttachHandler(self, ph):
+        phidget_util.logPhidgetEvent(ph, self.logger.debug, "Attach")
+
+    def stop(self):
+        self.logger.debug("Stopping " + self.__class__.__name__ + " for Indigo device '" + str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
+
+        self.phidget.close()
+    
     #
     # Methods to be implemented by subclasses
     #
-    def onAttachHandler(self, ph):
-        raise Exception("onAttachHandler() must be handled by subclass")
 
     def addPhidgetHandlers(self):
         raise Exception("addPhidgetHandlers() must be handled by subclass")
-
-    def stop(self):
-        self.phidget.close()
 
     def getDeviceDisplayStatesId(self):
         raise Exception("getDeviceDisplayStateId() must be handled by subclass")

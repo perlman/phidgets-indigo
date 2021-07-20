@@ -23,8 +23,8 @@ class VoltageRatioInputPhidget(PhidgetBase):
         self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
 
     def onAttachHandler(self, ph):
+        super(VoltageRatioInputPhidget, self).onAttachHandler(ph)
         try:
-            phidget_util.logPhidgetEvent(ph, self.logger.info, "Attach")
             ph.setDataInterval(PhidgetBase.PHIDGET_DATA_INTERVAL)
             ph.setSensorType(self.sensorType)
         except Exception as e:

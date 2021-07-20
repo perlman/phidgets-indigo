@@ -27,8 +27,8 @@ class Plugin(indigo.PluginBase):
     def __init__(self, pluginId, pluginDisplayName, pluginVersion, pluginPrefs):
         super(Plugin, self).__init__(pluginId, pluginDisplayName, pluginVersion, pluginPrefs)
 
-        self.plugin_file_handler.setLevel(logging.DEBUG)  # Master Logging Level for Plugin Log file
-        self.indigo_log_handler.setLevel(logging.DEBUG)   # Logging level for Indigo Event Log
+        self.plugin_file_handler.setLevel(logging.INFO)  # Master Logging Level for Plugin Log file
+        self.indigo_log_handler.setLevel(logging.INFO)   # Logging level for Indigo Event Log
 
         self.activePhidgets = {} # Map between Indigio ID and current instance of phidget
         
@@ -45,6 +45,12 @@ class Plugin(indigo.PluginBase):
         else:
             Log.disable()
             self.phidgetApiLogLevel = 0
+
+        loglevel = int(self.pluginPrefs.get('phidgetPluginLoggingLevel', '0'))
+        if loglevel:
+            self.plugin_file_handler.setLevel(loglevel)  # Master Logging Level for Plugin Log file
+            self.indigo_log_handler.setLevel(loglevel)   # Logging level for Indigo Event Log
+            self.logger.debug("Setting log level to %s" % logging.getLevelName(loglevel))
 
         # Should this be configurable?
         Net.enableServerDiscovery(PhidgetServerType.PHIDGETSERVER_DEVICEREMOTE)

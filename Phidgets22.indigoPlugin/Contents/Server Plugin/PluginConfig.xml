@@ -12,12 +12,21 @@
     </Field>
 
 	<Field id="simpleSeparator1" type="separator"/>
+		<Field id="phidgetPluginLoggingLevel" type="menu" defaultValue="0">
+		<Label>Phidget plugin logging level</Label>
+		<List>
+			<Option value="10">Debug</Option>
+			<Option value="20">Info</Option>
+			<Option value="30">Warning</Option>
+			<Option value="40">Error</Option>
+			<Option value="50">Critical</Option>	
+		</List>
+	</Field>
 
-
-	<Field id="simpleSeparator1" type="separator"/>
+	<Field id="simpleSeparator2" type="separator"/>
 
 	<Field id="phidgetApiLogging" type="checkbox" defaultValue="false">
-		<Label>Enable low-level Phidgets logging</Label>
+		<Label>Enable low-level Phidgets API logging</Label>
 	</Field>
 
 	<Field id="phidgetApiLogfile" type="textfield" visibleBindingId="phidgetApiLogging" visibleBindingValue="true" defaultValue="/tmp/phidgets.log">
