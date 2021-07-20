@@ -20,6 +20,7 @@ from voltageinput import VoltageInputPhidget
 from voltageratioinput import VoltageRatioInputPhidget
 from digitaloutput import DigitalOutputPhidget
 from temperaturesensor import TemperatureSensorPhidget
+from digitalinput import DigitalInputPhidget
 
 import phidget_util
 
@@ -142,6 +143,8 @@ class Plugin(indigo.PluginBase):
                 newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType, dataInterval=dataInterval)
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
+            elif device.deviceTypeId == "digitalInput":
+                newPhidget = DigitalInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "temperatureSensor":
                 if device.pluginProps.get("useThermoCouple", False):
                     thermocoupleType = int(device.pluginProps.get("thermocoupleType", None))

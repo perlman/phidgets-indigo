@@ -36,6 +36,33 @@
 		</ConfigUI>
 	</Device>
 
+	<Device id="digitalInput" type="custom">
+		<Name>Digital Input</Name>
+		<ConfigUI>
+			<Field id="exampleLabel" type="label">
+				<Label>The following sections will (eventually) be populated automatically.
+				</Label>
+			</Field>
+
+			<Field id="serialNumber" type="textfield">
+					<Label>Serial number:</Label>
+			</Field>
+			<Field id="channel" type="textfield">
+					<Label>Channel:</Label>
+			</Field>
+ 		    <Field id="isVINT" type="checkbox" defaultValue="False">
+				<Label>VINT hub?</Label>
+			</Field>
+			<Field id="isHubPortDevice" type="checkbox" defaultValue="False" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Hub port device?</Label>
+			</Field>
+			<Field id="hubPort" type="textfield" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Hub port:</Label>
+			</Field>
+
+		</ConfigUI>
+	</Device>
+
 	<Device id="voltageRatioInput" type="custom">
 		<Name>Voltage Ratio Input</Name>
 		<ConfigUI>
