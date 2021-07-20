@@ -52,6 +52,8 @@ class Plugin(indigo.PluginBase):
             self.indigo_log_handler.setLevel(loglevel)   # Logging level for Indigo Event Log
             self.logger.debug("Setting log level to %s" % logging.getLevelName(loglevel))
 
+        self.logger.debug("Using %s" % Phidget.getLibraryVersion())
+
         # Should this be configurable?
         Net.enableServerDiscovery(PhidgetServerType.PHIDGETSERVER_DEVICEREMOTE)
 
