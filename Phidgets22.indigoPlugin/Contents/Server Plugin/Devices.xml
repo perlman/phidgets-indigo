@@ -36,7 +36,7 @@
 		</ConfigUI>
 	</Device>
 
-	<Device id="digitalInput" type="custom">
+	<Device id="digitalInput" type="sensor">
 		<Name>Digital Input</Name>
 		<ConfigUI>
 			<Field id="exampleLabel" type="label">

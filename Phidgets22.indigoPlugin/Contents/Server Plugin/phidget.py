@@ -107,6 +107,9 @@ class PhidgetBase(object):
     def actionControlDevice(self, action):
         raise Exception("actionControlDevice() may be handled by subclass")
 
+    def actionControlSensor(self, action):
+        raise Exception("actionControlSensor() may be handled by subclass")
+
 
     #
     # Utility functions that are used by a subset of phidgets

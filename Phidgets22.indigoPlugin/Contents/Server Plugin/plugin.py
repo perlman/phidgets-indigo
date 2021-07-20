@@ -101,7 +101,11 @@ class Plugin(indigo.PluginBase):
         else:
             raise Exception("Unexpected device: %s" % device.id)
 
-
+    def actionControlSensor(self, action, device):
+        if device.id in self.activePhidgets:
+            return self.activePhidgets[device.id].actionControlSensor(action)
+        else:
+            raise Exception("Unexpected device: %s" % device.id)
 
     def deviceStartComm(self, device):
         # Phidget device type (device.deviceTypeId) are defined in devices.xml

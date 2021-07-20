@@ -25,12 +25,19 @@ class DigitalInputPhidget(PhidgetBase):
         super(DigitalInputPhidget, self).onAttachHandler(ph)
 
     def onStateChangeHandler(self, ph, state):
-        ph.parent.indigoDevice.updateStateOnServer("sensorState", value=state)
+        ph.parent.indigoDevice.updateStateOnServer("onOffState", value=state)
+
+    def actionControlSensor(self, action):
+        if action.sensorAction == indigo.kSensorAction.RequestStatus:
+            state = self.phidget.getState()
+            self.indigoDevice.updateStateOnServer("onOffState", value=state)
+        else:
+            self.logger.error("Unexpected action: %s" % action.deviceAction) 
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
-        newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorState", "sensorState", "sensorState"))
+        # onOffState will be in the default state list for a sensor
         return newStatesList
     
     def getDeviceDisplayStateId(self):
-        return "sensorState"
+        return "onOffState"
