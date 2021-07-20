@@ -5,65 +5,62 @@
 #
 
 import time
+import re
 
 from Phidget22.Devices.Manager import Manager
 from Phidget22.Net import Net, PhidgetServerType
 from Phidget22.ChannelClass import ChannelClass
+from Phidget22.ChannelSubclass import ChannelSubclass
 from Phidget22.DeviceClass import DeviceClass
-from Phidget22.Phidget import *
+from Phidget22.DeviceID import DeviceID
+from Phidget22.Phidget import Phidget
 
 
 class PhidgetDevice():
     def __init__(self, channel):
+        # device
         self.serialNumber = channel.getDeviceSerialNumber()
         self.deviceClass = channel.getDeviceClass()
         self.deviceName = channel.getDeviceName()
+        self.deviceId = channel.getDeviceID()
+        self.deviceLabel = channel.getDeviceLabel()
+        self.deviceSku = channel.getDeviceSKU()
+        # channel
         self.sku = channel.getDeviceSKU()
+        self.channel = channel.getChannel()
         self.channelClass = channel.getChannelClass()
         self.channelSubClass = channel.getChannelSubclass()
-        self.deviceId = channel.getDeviceID()
         self.channelName = channel.getChannelName()
-        self.deviceLabel = channel.getDeviceLabel()
-
+        self.deviceParent = channel.getParent()
         if channel.getDeviceClass() == DeviceClass.PHIDCLASS_INTERFACEKIT:
             self.devicePort = channel.getChannel()
         else:
             self.devicePort = channel.getHubPort()
-
         if channel.getIsRemote():
             self.serverPeerName = channel.getServerPeerName()
             self.serverHostname = channel.getServerHostname()
             self.serverName = channel.getServerName()
             self.serverIpAddr = channel.getServerPeerName()
+            self.serverUniqueName = channel.getServerUniqueName()
         else:
             self.serverPeerName = "Local"
             self.serverHostname = "Local"
             self.serverName = "Local"
             self.serverIpAddr = "Local"
-
-        # print("server name: %s" % channel.getServerName())
-        # print("server host name: %s" % channel.getServerHostname())
-        # print("parent: %s" % channel.getParent())
-        # print("peer: %s" % channel.getServerPeerName())
-        # print("channel: %s" % channel.getChannel())
-        # print("Channel Name: %s" % channel.getChannelName())
-        # print("Unique Name: %s" % channel.getServerUniqueName())
-
-        # print("Device Name: %s" % channel.getDeviceName())
-        # print("Hub Port: %s" % channel.getHubPort())
-        # print("Channel Class: %s" % channel.getChannelClass())
-        # print("Device Class: %s" % channel.getDeviceClass())
-        # try:
-        #     print("Hub Port Count: %s" % channel.getHubPortCount())
-        # except:
-        #     print("Device Channel Count: %s" % channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_NOTHING))
-        #     print("DO Channel Count: %s" % channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_DIGITALOUTPUT))
-        #     print("DI Channel Count: %s" % channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_DIGITALINPUT))
-        #     print("AI Channel Count: %s" % channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_VOLTAGEINPUT))
-        #     print("ARI Channel Count: %s" % channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_VOLTAGERATIOINPUT))
+            self.serverUniqueName = "Local"
+        try:
+            self.channelCount = "Hub Port Count: %s" % channel.getHubPortCount()
+        except Exception:
+            self.channelCount = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_NOTHING)
+            self.channelCountDO = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_DIGITALOUTPUT)
+            self.channelCountDI = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_DIGITALINPUT)
+            self.channelCountVI = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_VOLTAGEINPUT)
+            self.channelCountVR = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_VOLTAGERATIOINPUT)
+        # hub
+        self.hubPort = channel.getHubPort()
 
     def __str__(self):
-        return '<device '+' '.join(['%s=%s' % (x, getattr(self, x)) for x in vars(self)]) + '>'
+        return '<device ' + ' '.join(['%s=%s' % (x, getattr(self, x)) for x in vars(self)]) + '>'
 
 
 class PhidgetFinder():
@@ -104,14 +101,42 @@ class PhidgetFinder():
         self.close()
 
 
+def printReport(phType, devices):
+    if phType == 'other':
+        print('Other')
+    else:
+        print(ChannelClass.getName(phType))
+    devList = {}
+    if phType == 'other':
+        for device in sorted(devices):
+            if device.channelClass not in [5, 6, 13, 29, 31, 36]:
+                print(device.deviceLabel)
+                print(device.hubPort)
+                print(device.channel)
+                devKey = device.serverName + " : " + device.deviceName + " : " + str(device.channel)
+                devList[devKey] = [device.deviceLabel, device.serialNumber, device.devicePort,
+                                   ChannelClass.getName(device.channelClass), ChannelSubclass.getName(device.channelSubClass),
+                                   device.serverIpAddr, device.hubPort, device.channel]
+    else:
+        for device in sorted(devices):
+            if device.channelClass == phType:
+                devKey = device.serverName + " : " + device.deviceName + " : " + str(device.channel)
+                devList[devKey] = [device.deviceLabel, device.serialNumber, device.devicePort,
+                                   ChannelClass.getName(device.channelClass), ChannelSubclass.getName(device.channelSubClass),
+                                   device.serverIpAddr, device.hubPort, device.channel]
+
+    for device in sorted(devList):
+        print("%s | %s" % (device, devList[device]))
+
+    print("\n")
+
+
 def main():
     # Example on how to use this class
-
-    devList = {}
     finder = PhidgetFinder()
     finder.open()
 
-    toSleep = 6
+    toSleep = 3
     print("Phidget Simple Playground (plug and unplug devices)")
     libraryVersion = Phidget.getLibraryVersion()
     print("Library Version: " + str(libraryVersion))
@@ -119,43 +144,30 @@ def main():
 
     time.sleep(toSleep)
 
-    for phType in [ChannelClass.PHIDCHCLASS_DIGITALINPUT, ChannelClass.PHIDCHCLASS_DIGITALOUTPUT, ChannelClass.PHIDCHCLASS_VOLTAGEINPUT]:
-        print(ChannelClass.getName(phType))
-        devList = {}
-        for device in sorted(finder.devices):
-            if device.channelClass == phType:
-                devKey = device.serverName + " : " + device.deviceName
-                devList[devKey] = [device.deviceLabel, device.serialNumber, device.devicePort + 1, device.channelClass, device.serverIpAddr]
+    # printReport(ChannelClass.PHIDCHCLASS_DIGITALOUTPUT, finder.devices)
+    # printReport(ChannelClass.PHIDCHCLASS_DIGITALINPUT, finder.devices)
+    # printReport(ChannelClass.PHIDCHCLASS_VOLTAGEINPUT, finder.devices)
+    # printReport('other', finder.devices)
 
-        for device in sorted(devList):
-            print("%s | %s" % (device, devList[device]))
-
-        print("\n")
-
-    print("other")
-    devList = {}
+    # matchString = '283587'
+    matchString = '\d*'
     for device in sorted(finder.devices):
-        if device.channelClass not in [5, 6, 13, 29, 31, 36]:
-            devKey = device.serverName + " : " + device.deviceName
-            devList[devKey] = [device.deviceLabel, device.serialNumber, device.devicePort, device.channelClass, device.serverIpAddr]
-
-    for device in sorted(devList):
-        print("%s | %s" % (device, devList[device]))
-
-    # for device in sorted(finder.devices):
-    #     if device.deviceName != "Dictionary":
-    #         if device.channelClass == ChannelClass.PHIDCHCLASS_DIGITALINPUT:
-    #             print("DI: %s | %s | %s | %s" % (device.serialNumber, device.serverHostname, device.deviceName, device.devicePort))
-    #         elif device.channelClass == ChannelClass.PHIDCHCLASS_DIGITALOUTPUT:
-    #             print("DO: %s | %s | %s | %s" % (device.serialNumber, device.serverHostname, device.deviceName, device.devicePort))
-    #         elif device.channelClass == ChannelClass.PHIDCHCLASS_VOLTAGEINPUT or device.channelClass == ChannelClass.PHIDCHCLASS_VOLTAGERATIOINPUT:
-    #             print("AI: %s | %s | %s | %s" % (device.serialNumber, device.serverHostname, device.deviceName, device.devicePort))
-    #         else:
-    #             print("OTHER: %s | %s | %s" % (device.serialNumber, device.serverHostname, device.deviceName))
-
-    # print("Available serial numbers are: %s" % list(finder.getSerialNumbers()))
-    # print("Available serial numbers for devices with voltage input are : %s" \
-    #  % list(finder.getSerialNumbers(channelClass=ChannelClass.PHIDCHCLASS_VOLTAGEINPUT)))
+        if re.match(matchString, str(device.serialNumber)):
+            print('\nNew Device: ' + device.deviceName + ' - ' + device.serverName)
+            for var in sorted(vars(device)):
+                value = getattr(device, var)
+                # Check if we have an enumeration for this var...
+                if var == "channelClass":
+                    print('    %s = %s (%s)' % (var, value, ChannelClass.getName(value)))
+                elif var == "channelSubClass":
+                    print('    %s = %s (%s)' % (var, value, ChannelSubclass.getName(value)))
+                elif var == "deviceId":
+                    print('    %s = %s (%s)' % (var, value, DeviceID.getName(value)))
+                elif var == "deviceClass":
+                    print('    %s = %s (%s)' % (var, value, DeviceClass.getName(value)))
+                # ... now print everything else
+                else:
+                    print('    %s = %s' % (var, value))
 
     finder.close()
 

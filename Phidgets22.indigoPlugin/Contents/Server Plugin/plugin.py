@@ -65,6 +65,11 @@ class Plugin(indigo.PluginBase):
 
     def validateDeviceConfigUi(self, valuesDict, typeId, devId):
         # TODO: Perform some type of verification on the fields?
+
+        # Set an address here
+        # TODO: dynamic address updating would require replacing the device and using didDeviceCommPropertyChange to prevent respawn
+        valuesDict[u'address'] = valuesDict['serialNumber']
+
         return (True, valuesDict)
 
     def getPhidgetTypeMenu(self, filter="", valuesDict=None, typeId="", targetId=0):
@@ -124,10 +129,10 @@ class Plugin(indigo.PluginBase):
 
             # TODO: Use better default sensor types... this might error if not populated
             if device.deviceTypeId == "voltageInput":
-                sensorType = int(device.pluginProps.get("voltageInputType", None))
+                sensorType = int(device.pluginProps.get("voltageInputType", 0))
                 newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
             elif device.deviceTypeId == "voltageRatioInput":
-                sensorType = int(device.pluginProps.get("voltageRatioInputType", None))
+                sensorType = int(device.pluginProps.get("voltageRatioInputType", 0))
                 newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)

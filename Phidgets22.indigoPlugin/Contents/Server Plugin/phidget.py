@@ -87,9 +87,9 @@ class PhidgetBase(object):
 
     def stop(self):
         self.logger.debug("Stopping " + self.__class__.__name__ + " for Indigo device '" + str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
-
         self.phidget.close()
-    
+
+
     #
     # Methods to be implemented by subclasses
     #
