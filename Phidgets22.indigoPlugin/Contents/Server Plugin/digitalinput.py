@@ -25,7 +25,7 @@ class DigitalInputPhidget(PhidgetBase):
         super(DigitalInputPhidget, self).onAttachHandler(ph)
 
     def onStateChangeHandler(self, ph, state):
-        ph.parent.indigoDevice.updateStateOnServer("onOffState", value=state)
+        self.indigoDevice.updateStateOnServer("onOffState", value=state)
 
     def actionControlSensor(self, action):
         if action.sensorAction == indigo.kSensorAction.RequestStatus:
