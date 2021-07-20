@@ -131,10 +131,10 @@ class Plugin(indigo.PluginBase):
 
             # TODO: Use better default sensor types... this might error if not populated
             if device.deviceTypeId == "voltageInput":
-                sensorType = int(device.pluginProps.get("voltageInputType", 0))
+                sensorType = int(device.pluginProps.get("voltageSensorType", 0))
                 newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
             elif device.deviceTypeId == "voltageRatioInput":
-                sensorType = int(device.pluginProps.get("voltageRatioInputType", 0))
+                sensorType = int(device.pluginProps.get("voltageRatioSensorType", 0))
                 newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, sensorType=sensorType)
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)

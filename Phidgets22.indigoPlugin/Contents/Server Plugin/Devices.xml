@@ -3,7 +3,7 @@
 	<Device id="voltageInput" type="custom">
 		<Name>Voltage Input</Name>
 		<ConfigUI>
-			<Field id="voltageInputType" type="menu">
+			<Field id="voltageSensorType" type="menu">
 				<Label>Voltage input type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="VoltageSensorType"/>
 			</Field>
@@ -34,7 +34,7 @@
 	<Device id="voltageRatioInput" type="custom">
 		<Name>Voltage Ratio Input</Name>
 		<ConfigUI>
-			<Field id="voltageRatioInputType" type="menu">
+			<Field id="voltageRatioSensorType" type="menu">
 				<Label>Voltage input type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="VoltageRatioSensorType"/>
 			</Field>
