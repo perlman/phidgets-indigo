@@ -3,7 +3,7 @@
 	<Device id="voltageInput" type="custom">
 		<Name>Voltage Input</Name>
 		<ConfigUI>
-			<Field id="voltageSensorType" type="menu">
+			<Field id="voltageSensorType" type="menu" defaultValue="">
 				<Label>Voltage input type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="VoltageSensorType"/>
 			</Field>
@@ -34,7 +34,7 @@
 	<Device id="voltageRatioInput" type="custom">
 		<Name>Voltage Ratio Input</Name>
 		<ConfigUI>
-			<Field id="voltageRatioSensorType" type="menu">
+			<Field id="voltageRatioSensorType" type="menu" defaultValue="">
 				<Label>Voltage input type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="VoltageRatioSensorType"/>
 			</Field>
@@ -95,7 +95,7 @@
 		 	<Field id="useThermoCouple" type="checkbox" defaultValue="False">
 				<Label>Custom thermoCouple?</Label>
 			</Field>
-			<Field id="thermocoupleType" type="menu" visibleBindingId="useThermoCouple" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="thermocoupleType" type="menu" visibleBindingId="useThermoCouple" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true" defaultValue="">
 				<Label>Thermocouple Type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="ThermocoupleType"/>
 			</Field>
