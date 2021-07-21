@@ -12,10 +12,12 @@ from phidget import PhidgetBase
 import phidget_util
 
 class VoltageRatioInputPhidget(PhidgetBase):
-    def __init__(self, sensorType, dataInterval, *args, **kwargs):
+    def __init__(self, sensorType, dataInterval, voltageRatioChangeTrigger, sensorValueChangeTrigger, *args, **kwargs):
         super(VoltageRatioInputPhidget, self).__init__(phidget=VoltageRatioInput(), *args, **kwargs)
         self.sensorType = sensorType
         self.dataInterval = dataInterval
+        self.voltageRatioChangeTrigger = voltageRatioChangeTrigger
+        self.sensorValueChangeTrigger = sensorValueChangeTrigger
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -27,8 +29,24 @@ class VoltageRatioInputPhidget(PhidgetBase):
     def onAttachHandler(self, ph):
         super(VoltageRatioInputPhidget, self).onAttachHandler(ph)
         try:
-            self.setDataInterval(self.dataInterval)
-            ph.setSensorType(self.sensorType)
+            newDataInterval = self.checkValueRange("dataInterval", value=self.dataInterval, minValue=self.phidget.getMinDataInterval(),  maxValue=self.phidget.getMaxDataInterval())
+            if newDataInterval is None:
+                self.phidget.setDataInterval(PhidgetBase.PHIDGET_DEFAULT_DATA_INTERVAL)
+            else:
+                self.phidget.setDataInterval(newDataInterval)
+
+            self.phidget.setSensorType(self.sensorType)
+
+            newVoltageRatioChangeTrigger = self.checkValueRange(
+                fieldname="voltageRatioChangeTrigger", value=self.voltageRatioChangeTrigger,
+                minValue=self.phidget.getMinVoltageRatioChangeTrigger(), 
+                maxValue=self.phidget.getMaxVoltageRatioChangeTrigger())
+            if newVoltageRatioChangeTrigger is not None:
+                self.phidget.setVoltageRatioChangeTrigger(newVoltageRatioChangeTrigger)
+
+            if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
+                self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
+
         except Exception as e:
             self.logger.error(traceback.format_exc())
 

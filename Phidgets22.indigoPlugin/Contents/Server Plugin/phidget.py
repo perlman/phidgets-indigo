@@ -112,7 +112,7 @@ class PhidgetBase(object):
 
 
     #
-    # Utility functions that are used by a subset of phidgets
+    # Utility functions to help with checking setting ranges
     #
 
     def outOfRangeError(self, field, minValue, maxValue, value):
@@ -120,14 +120,12 @@ class PhidgetBase(object):
                           "' (%d): " % self.indigoDevice.id +
                           "%d (valid range: [%d-%d])" % (value, minValue, maxValue))
 
-    def setDataInterval(self, dataInterval):
-        """Post-attach configuration of dataInterval"""
-        min_interval = self.phidget.getMinDataInterval()
-        max_interval = self.phidget.getMaxDataInterval()
-        if dataInterval is None:
-            self.phidget.setDataInterval(PhidgetBase.PHIDGET_DEFAULT_DATA_INTERVAL)
-        elif dataInterval < min_interval or dataInterval > max_interval:
-            self.outOfRangeError(field="dataInterval", minValue=min_interval, maxValue=max_interval, value=dataInterval)
-            self.phidget.setDataInterval(PhidgetBase.PHIDGET_DEFAULT_DATA_INTERVAL)
+    def checkValueRange(self, fieldname, value, minValue, maxValue, zero_ok=False):
+        """Helper utility to check that a value is in a range (or, optionally zero)"""
+        if zero_ok and value == 0:
+            return 0
+        elif value < minValue or value > maxValue:
+            self.outOfRangeError(field=fieldname, minValue=minValue, maxValue=maxValue, value=value)
+            return None
         else:
-            self.phidget.setDataInterval(dataInterval)
+            return value

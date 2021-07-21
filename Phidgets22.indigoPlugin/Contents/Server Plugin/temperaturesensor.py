@@ -12,10 +12,11 @@ from phidget import PhidgetBase
 import phidget_util
 
 class TemperatureSensorPhidget(PhidgetBase):
-    def __init__(self, thermocoupleType, dataInterval, *args, **kwargs):
+    def __init__(self, thermocoupleType, dataInterval, temperatureChangeTrigger, *args, **kwargs):
         super(TemperatureSensorPhidget, self).__init__(phidget=TemperatureSensor(), *args, **kwargs)
         self.thermocoupleType = thermocoupleType
         self.dataInterval = dataInterval
+        self.temperatureChangeTrigger = temperatureChangeTrigger
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -26,9 +27,22 @@ class TemperatureSensorPhidget(PhidgetBase):
     def onAttachHandler(self, ph):
         super(TemperatureSensorPhidget, self).onAttachHandler(ph)
         try:
-            self.setDataInterval(self.dataInterval)
+            newDataInterval = self.checkValueRange("dataInterval", value=self.dataInterval, minValue=self.phidget.getMinDataInterval(),  maxValue=self.phidget.getMaxDataInterval())
+            if newDataInterval is None:
+                self.phidget.setDataInterval(PhidgetBase.PHIDGET_DEFAULT_DATA_INTERVAL)
+            else:
+                self.phidget.setDataInterval(newDataInterval)
+
             if self.thermocoupleType:
                 ph.setThermocoupleType(self.thermocoupleType)
+
+            newTemperatureChangeTrigger = self.checkValueRange(
+                fieldname="temperatureChangeTrigger", value=self.temperatureChangeTrigger,
+                minValue=self.phidget.getMinTemperatureChangeTrigger(), 
+                maxValue=self.phidget.getMaxTemperatureChangeTrigger())
+            if newTemperatureChangeTrigger is not None:
+                self.phidget.setTemperatureChangeTrigger(newTemperatureChangeTrigger)
+
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
