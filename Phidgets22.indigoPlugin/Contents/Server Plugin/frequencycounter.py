@@ -26,8 +26,13 @@ class FrequencyCounterPhidget(PhidgetBase):
     def onAttachHandler(self, ph):
         super(FrequencyCounterPhidget, self).onAttachHandler(ph)
         try:
-            self.setDataInterval(self.dataInterval)
-            ph.setFilterType(self.filterType)
+            newDataInterval = self.checkValueRange("dataInterval", value=self.dataInterval, minValue=self.phidget.getMinDataInterval(),  maxValue=self.phidget.getMaxDataInterval())
+            if newDataInterval is None:
+                self.phidget.setDataInterval(PhidgetBase.PHIDGET_DEFAULT_DATA_INTERVAL)
+            else:
+                self.phidget.setDataInterval(newDataInterval)
+
+            self.phidget.setFilterType(self.filterType)
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
