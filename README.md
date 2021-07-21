@@ -1,17 +1,28 @@
+
 # phidgets-indigo
+
+<img src="./Phidgets22.indigoPlugin/Contents/Resources/icon.png" width="200" height="200" alt="[Phidget22 logo]" align="right"/>
 
 An update to the [Phidgets Plugin](https://www.indigodomo.com/pluginstore/76/)
 for [Indigo](https://www.indigodomo.com/).
 
 ## Requirements
 
-- [Indigo 7.x](https://www.indigodomo.com)
+- [Indigo >= 2021.1](https://www.indigodomo.com)
 - [Phidgets 2.2 Driver](https://www.phidgets.com/docs/OS_-_macOS)
 
 ## Status
 
-The only Phidgets currently supported are analog Phidgets using VoltageRatioInput and VoltageInput.
-This code is currently _unstable_ and is in the process of being reworked.
+The following Phidget classes are currently supported:
+* DigitalInput
+* DigitalOutput
+* FrequencyCounter
+* TemperatureSensor
+* VoltageInput
+* VoltageRatioInput
+
+Various devices are supported, including PhidgetInterfaceKits and VINT devices.
+Only network phidgets are supported. To use local attached phidgets, enable the [network server](https://www.phidgets.com/docs/Phidget_Network_Server).
 
 ## Phidget Addressing
 
