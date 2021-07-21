@@ -1,0 +1,49 @@
+# -*- coding: utf-8 -*-
+import traceback
+
+import indigo
+
+from Phidget22.PhidgetException import PhidgetException
+from Phidget22.Devices.FrequencyCounter import FrequencyCounter
+from Phidget22.ErrorCode import ErrorCode
+
+from phidget import PhidgetBase
+
+import phidget_util
+
+class FrequencyCounterPhidget(PhidgetBase):
+    def __init__(self, filterType, dataInterval, *args, **kwargs):
+        super(FrequencyCounterPhidget, self).__init__(phidget=FrequencyCounter(), *args, **kwargs)
+        self.filterType = filterType
+        self.dataInterval = dataInterval
+
+    def addPhidgetHandlers(self):
+        self.phidget.setOnErrorHandler(self.onErrorHandler)
+        self.phidget.setOnAttachHandler(self.onAttachHandler)
+        self.phidget.setOnDetachHandler(self.onDetachHandler)
+        self.phidget.setOnFrequencyChangeHandler(self.onFrequencyChangeHandler)
+
+    def onAttachHandler(self, ph):
+        super(FrequencyCounterPhidget, self).onAttachHandler(ph)
+        try:
+            self.setDataInterval(self.dataInterval)
+            ph.setFilterType(self.filterType)
+        except Exception as e:
+            self.logger.error(traceback.format_exc())
+
+    def onFrequencyChangeHandler(self, ph, frequency):
+        self.indigoDevice.updateStateOnServer("frequency", value=frequency)  #, uiValue="%0.2f °C" % temperature)
+
+    def onCountChangeHandler(self, ph, count, timeChange):
+        self.indigoDevice.updateStateOnServer("count", value=count)  #, uiValue="%0.2f °C" % temperature)
+        self.indigoDevice.updateStateOnServer("timeChange", value=timeChange)  #, uiValue="%0.2f °C" % temperature)
+
+    def getDeviceStateList(self):
+        newStatesList = indigo.List()
+        newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("frequency", "frequency", "frequency"))
+        newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("count", "count", "count"))
+        newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("timeChange", "timeChange", "timeChange"))
+        return newStatesList
+
+    def getDeviceDisplayStateId(self):
+        return "frequency"

@@ -113,7 +113,7 @@
 	<Device id="digitalOutput" type="dimmer">
 		<Name>Digital Output</Name>
 		<ConfigUI>
-		
+
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.
 				</Label>
@@ -153,6 +153,9 @@
 				<Label>Thermocouple Type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="ThermocoupleType"/>
 			</Field>
+			<Field id="dataInterval" type="textfield" defaultValue="1000">
+					<Label>Data interval (ms):</Label>
+			</Field>
 
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.
@@ -176,5 +179,79 @@
 			</Field>
 		</ConfigUI>
 	</Device>
-	
+
+	<Device id="frequencyCounter" type="custom">
+		<Name>Frequency Counter</Name>
+		<ConfigUI>
+			<Field id="filterType" type="menu" defaultValue="">
+				<Label>Filter type:</Label>
+				<List class="self" method="getPhidgetTypeMenu" filter="FilterType"/>
+			</Field>
+<!-- Add Frequency cutoff -->
+
+
+<!-- 			<Field id="fcUseCustom" type="checkbox" defaultValue="false" >
+				<Label>Create a custom state</Label>
+			</Field>
+
+			<Field id="fcCustomName" type="textfield" defaultValue="custom" >
+				<Label>Enter the name of the custom state</Label>
+			</Field>
+
+			<Field id="fcCustomFormula" type="textfield" defaultValue="x" >
+				<Label>Formula to be applied to count and time</Label>
+			</Field> -->
+
+			<Field id="fcCustomDecimal" type="menu" defaultValue="0" >
+				<Label>Decimal place precision</Label>
+				<List>
+					<Option value="0">0</Option>
+					<Option value="1">1</Option>
+					<Option value="2">2</Option>
+					<Option value="3">3</Option>
+					<Option value="4">4</Option>
+				</List>
+			</Field>
+
+			<Field id="fcDisplay" type="menu" defaultValue="None">
+				<Label>State displayed in state column</Label>
+				<List>
+					<Option value="count">count</Option>
+					<Option value="time">time (ms)</Option>
+					<Option value="frequency">frequency (Hz)</Option>
+					<Option value="state">pulse</Option>
+					<!-- <Option value="custom">custom state</Option> -->
+				</List>
+			</Field>
+
+			<Field id="dataInterval" type="textfield" defaultValue="1000">
+					<Label>Data interval (ms 32-6000):</Label>
+			</Field>
+
+			<Field id="exampleLabel" type="label">
+				<Label>The following sections will (eventually) be populated automatically.
+				</Label>
+			</Field>
+
+			<Field id="serialNumber" type="textfield">
+					<Label>Serial number:</Label>
+			</Field>
+			<Field id="channel" type="textfield">
+					<Label>Channel:</Label>
+			</Field>
+ 		    <Field id="isVINT" type="checkbox" defaultValue="False">
+				<Label>VINT hub?</Label>
+			</Field>
+			<Field id="isHubPortDevice" type="checkbox" defaultValue="False" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Hub port device?</Label>
+			</Field>
+			<Field id="hubPort" type="textfield" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Hub port:</Label>
+			</Field>
+		</ConfigUI>
+	</Device>
+
+
+
+
 </Devices>

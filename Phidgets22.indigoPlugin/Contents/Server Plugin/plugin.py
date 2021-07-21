@@ -21,6 +21,7 @@ from voltageratioinput import VoltageRatioInputPhidget
 from digitaloutput import DigitalOutputPhidget
 from temperaturesensor import TemperatureSensorPhidget
 from digitalinput import DigitalInputPhidget
+from frequencycounter import FrequencyCounterPhidget
 
 import phidget_util
 
@@ -32,7 +33,7 @@ class Plugin(indigo.PluginBase):
         self.indigo_log_handler.setLevel(logging.INFO)   # Logging level for Indigo Event Log
 
         self.activePhidgets = {} # Map between Indigio ID and current instance of phidget
-        
+
         self.phidgetInfo = PhidgetInfo(phidgetInfoFile='../Resources/phidgets.json')
 
         self.logger.setLevel(logging.DEBUG)
@@ -125,7 +126,7 @@ class Plugin(indigo.PluginBase):
 
             networkPhidgets = self.pluginPrefs.get("networkPhidgets", False)
             enableServerDiscovery = self.pluginPrefs.get("enableServerDiscovery", False)
-            
+
             channelInfo = ChannelInfo(
                 serialNumber=serialNumber,
                 channel=channel,
@@ -137,7 +138,6 @@ class Plugin(indigo.PluginBase):
             # Data interval is used by many types. See if it is set
             dataInterval = device.pluginProps.get("dataInterval", None)
             dataInterval = int(dataInterval) if dataInterval else None
-
             # TODO: Use better default sensor types... this might error if not populated
             if device.deviceTypeId == "voltageInput":
                 sensorType = int(device.pluginProps.get("voltageSensorType", 0))
@@ -160,6 +160,9 @@ class Plugin(indigo.PluginBase):
                 else:
                     thermocoupleType = None
                 newPhidget = TemperatureSensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, thermocoupleType=thermocoupleType, dataInterval=dataInterval, temperatureChangeTrigger=temperatureChangeTrigger)
+            elif device.deviceTypeId == "frequencyCounter":
+                filterType = int(device.pluginProps.get("filterType", 0))
+                newPhidget = FrequencyCounterPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, filterType=filterType, dataInterval=dataInterval)
             else:
                 raise Exception("Unexpected device type: %s" % device.deviceTypeId)
             self.activePhidgets[device.id] = newPhidget
