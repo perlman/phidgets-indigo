@@ -198,7 +198,7 @@
 			<Field id="fcCustomFormula" type="textfield" defaultValue="x" >
 				<Label>Formula to be applied to count and time</Label>
 			</Field> -->
-
+<!--
 			<Field id="fcCustomDecimal" type="menu" defaultValue="0" >
 				<Label>Decimal place precision</Label>
 				<List>
@@ -217,9 +217,8 @@
 					<Option value="time">time (ms)</Option>
 					<Option value="frequency">frequency (Hz)</Option>
 					<Option value="state">pulse</Option>
-					<!-- <Option value="custom">custom state</Option> -->
 				</List>
-			</Field>
+			</Field> -->
 
 			<Field id="dataInterval" type="textfield" defaultValue="1000">
 					<Label>Data interval (ms 32-6000):</Label>
