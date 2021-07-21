@@ -153,9 +153,6 @@
 				<Label>Thermocouple Type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="ThermocoupleType"/>
 			</Field>
-			<Field id="dataInterval" type="textfield" defaultValue="1000">
-					<Label>Data interval (ms):</Label>
-			</Field>
 
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.
