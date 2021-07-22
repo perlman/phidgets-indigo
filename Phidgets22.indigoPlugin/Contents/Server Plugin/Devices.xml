@@ -41,13 +41,13 @@
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
- 		    <Field id="isVINT" type="checkbox" defaultValue="False">
+ 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
 				<Label>Connected to a VINT hub?</Label>
 			</Field>
-			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Is this a VINT device?</Label>
 			</Field>
-			<Field id="hubPort" type="textfield" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
 
@@ -68,13 +68,13 @@
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
- 		    <Field id="isVINT" type="checkbox" defaultValue="False">
-				<Label>VINT hub?</Label>
+ 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
+				<Label>Connected to a VINT hub?</Label>
 			</Field>
-			<Field id="isHubPortDevice" type="checkbox" defaultValue="False" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
-				<Label>Hub port device?</Label>
+			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Is this a VINT device?</Label>
 			</Field>
-			<Field id="hubPort" type="textfield" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
 
@@ -122,13 +122,13 @@
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
- 		    <Field id="isVINT" type="checkbox" defaultValue="False">
+ 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
 				<Label>Connected to a VINT hub?</Label>
 			</Field>
-			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Is this a VINT device?</Label>
 			</Field>
-			<Field id="hubPort" type="textfield" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
 		</ConfigUI>
@@ -149,13 +149,13 @@
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
- 		    <Field id="isVINT" type="checkbox" defaultValue="False">
+ 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
 				<Label>Connected to a VINT hub?</Label>
 			</Field>
-			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Is this a VINT device?</Label>
 			</Field>
-			<Field id="hubPort" type="textfield" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
 		</ConfigUI>
@@ -209,13 +209,13 @@
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
-  		    <Field id="isVINT" type="checkbox" defaultValue="False">
+  		    <Field id="isVintHub" type="checkbox" defaultValue="False">
 				<Label>Connected to a VINT hub?</Label>
 			</Field>
-			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Is this a VINT device?</Label>
 			</Field>
-			<Field id="hubPort" type="textfield" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
 		</ConfigUI>
@@ -264,13 +264,13 @@
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
- 		    <Field id="isVINT" type="checkbox" defaultValue="False">
+ 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
 				<Label>Connected to a VINT hub?</Label>
 			</Field>
-			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Is this a VINT device?</Label>
 			</Field>
-			<Field id="hubPort" type="textfield" visibleBindingId="isVINT" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
 		</ConfigUI>

@@ -125,7 +125,7 @@ class Plugin(indigo.PluginBase):
             isVintHub = bool(isVintHub) if isVintHub else 0
             isVintDevice = device.pluginProps.get("isVintDevice", None)
             isVintDevice = bool(isVintDevice) if isVintDevice else 0
-            isHubPortDevice = isVintHub and not isVintDevice
+            isHubPortDevice = int(isVintHub and not isVintDevice)
 
             hubPort = device.pluginProps.get("hubPort", -1)
             hubPort = int(hubPort) if hubPort else -1
