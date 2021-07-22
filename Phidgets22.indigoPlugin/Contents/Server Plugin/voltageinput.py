@@ -56,10 +56,10 @@ class VoltageInputPhidget(PhidgetBase):
             self.logger.error(traceback.format_exc())
 
     def onVoltageChangeHandler(self, ph, voltage):
-        self.indigoDevice.updateStateOnServer("voltage", value=voltage, uiValue="%.2f V" % voltage)
+        self.indigoDevice.updateStateOnServer("voltage", value=voltage, decimalPlaces=self.decimalPlaces)
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
-        self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, uiValue="%.2f %s" % (sensorValue, sensorUnit.symbol))
+        self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()

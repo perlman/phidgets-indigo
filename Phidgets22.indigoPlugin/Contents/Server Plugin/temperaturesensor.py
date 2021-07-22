@@ -12,11 +12,16 @@ from phidget import PhidgetBase
 import phidget_util
 
 class TemperatureSensorPhidget(PhidgetBase):
-    def __init__(self, thermocoupleType, dataInterval, temperatureChangeTrigger, *args, **kwargs):
+    def __init__(self, thermocoupleType, dataInterval, temperatureChangeTrigger, displayTempUnit, *args, **kwargs):
         super(TemperatureSensorPhidget, self).__init__(phidget=TemperatureSensor(), *args, **kwargs)
         self.thermocoupleType = thermocoupleType
         self.dataInterval = dataInterval
-        self.temperatureChangeTrigger = temperatureChangeTrigger
+        self.displayTempUnit = displayTempUnit
+
+        if self.displayTempUnit.upper() == "F":
+            self.temperatureChangeTrigger = 9.0/5.0 * temperatureChangeTrigger
+        else: # C
+            self.temperatureChangeTrigger = temperatureChangeTrigger
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -47,12 +52,18 @@ class TemperatureSensorPhidget(PhidgetBase):
             self.logger.error(traceback.format_exc())
 
     def onTemperatureChangeHandler(self, ph, temperature):
-        self.indigoDevice.updateStateOnServer("temperature", value=temperature, uiValue="%0.2f °C" % temperature)
+
+        self.indigoDevice.updateStateOnServer("tempC", value=temperature, decimalPlaces=self.decimalPlaces)
+        self.indigoDevice.updateStateOnServer("tempF", value=(9.0/5.0 * temperature + 32), decimalPlaces=self.decimalPlaces)
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
-        newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("temperature", "temperature", "temperature"))
+        newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("tempF", "tempF", "tempF"))
+        newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("tempC", "tempC", "tempC"))
         return newStatesList
     
     def getDeviceDisplayStateId(self):
-        return "temperature"
+        if self.displayTempUnit.upper() == "F":
+            return "tempF"
+        else:
+            return "tempC"

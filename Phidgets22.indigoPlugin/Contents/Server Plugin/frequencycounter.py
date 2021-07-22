@@ -12,10 +12,11 @@ from phidget import PhidgetBase
 import phidget_util
 
 class FrequencyCounterPhidget(PhidgetBase):
-    def __init__(self, filterType, dataInterval, *args, **kwargs):
+    def __init__(self, filterType, dataInterval, displayStateName, *args, **kwargs):
         super(FrequencyCounterPhidget, self).__init__(phidget=FrequencyCounter(), *args, **kwargs)
         self.filterType = filterType
         self.dataInterval = dataInterval
+        self.displayStateName = displayStateName
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -37,11 +38,11 @@ class FrequencyCounterPhidget(PhidgetBase):
             self.logger.error(traceback.format_exc())
 
     def onFrequencyChangeHandler(self, ph, frequency):
-        self.indigoDevice.updateStateOnServer("frequency", value=frequency)  #, uiValue="%0.2f °C" % temperature)
+        self.indigoDevice.updateStateOnServer("frequency", value=frequency,  decimalPlaces=self.decimalPlaces)
 
     def onCountChangeHandler(self, ph, count, timeChange):
-        self.indigoDevice.updateStateOnServer("count", value=count)  #, uiValue="%0.2f °C" % temperature)
-        self.indigoDevice.updateStateOnServer("timeChange", value=timeChange)  #, uiValue="%0.2f °C" % temperature)
+        self.indigoDevice.updateStateOnServer("count", value=count)
+        self.indigoDevice.updateStateOnServer("timeChange", value=timeChange,  decimalPlaces=self.decimalPlaces)
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
@@ -51,4 +52,7 @@ class FrequencyCounterPhidget(PhidgetBase):
         return newStatesList
 
     def getDeviceDisplayStateId(self):
-        return "frequency"
+        if self.displayStateName in ["frequency", "count", "timeChange"]:
+            return self.displayStateName
+        else:
+            return "frequency"

@@ -38,13 +38,14 @@ class PhidgetBase(object):
     PHIDGET_DEFAULT_DATA_INTERVAL = 1000  # ms
     PHIDGET_INITIAL_CONNECT_TIMEOUT = 5   # s
 
-    def __init__(self, phidget, indigo_plugin=None, channelInfo=ChannelInfo(), indigoDevice=None, logger=None):
+    def __init__(self, phidget, indigo_plugin=None, channelInfo=ChannelInfo(), indigoDevice=None, logger=None, decimalPlaces=-1):
         self.phidget = phidget      # PhidgetAPI object for this phidget
         self.phidget.parent = self  # Reference back to this object from the PhidgetAPI
         self.logger = logger        # Where do we log?
         self.channelInfo = channelInfo
         self.indigoDevice = indigoDevice
         self.indigo_plugin = indigo_plugin
+        self.decimalPlaces = decimalPlaces # Number of decimal places for Indigo do display for numbers. -1 means default (likely 5)
 
     def start(self):
         self.logger.debug("Creating " + self.__class__.__name__ + " for Indigo device '" + str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)

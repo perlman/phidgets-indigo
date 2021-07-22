@@ -12,7 +12,8 @@
     </Field>
 
 	<Field id="simpleSeparator1" type="separator"/>
-		<Field id="phidgetPluginLoggingLevel" type="menu" defaultValue="0">
+	
+	<Field id="phidgetPluginLoggingLevel" type="menu" defaultValue="0">
 		<Label>Phidget plugin logging level</Label>
 		<List>
 			<Option value="10">Debug</Option>
