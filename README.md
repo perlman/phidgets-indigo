@@ -8,7 +8,7 @@ for [Indigo](https://www.indigodomo.com/).
 
 ## Requirements
 
-- [Indigo >= 2021.1](https://www.indigodomo.com)
+- [Indigo](https://www.indigodomo.com) 2021.1 or newer
 - [Phidgets 2.2 Driver](https://www.phidgets.com/docs/OS_-_macOS)
 
 ## Status
@@ -17,11 +17,11 @@ The following Phidget classes are currently supported:
 * DigitalInput
 * DigitalOutput
 * FrequencyCounter
+* HumiditySensor
 * TemperatureSensor
 * VoltageInput
 * VoltageRatioInput
 
-Various devices are supported, including PhidgetInterfaceKits and VINT devices.
 Only network phidgets are supported. To use local attached phidgets, enable the [network server](https://www.phidgets.com/docs/Phidget_Network_Server).
 
 ## Phidget Addressing

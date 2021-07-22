@@ -22,6 +22,7 @@ from digitaloutput import DigitalOutputPhidget
 from temperaturesensor import TemperatureSensorPhidget
 from digitalinput import DigitalInputPhidget
 from frequencycounter import FrequencyCounterPhidget
+from humiditysensor import HumiditySensorPhidget
 
 import phidget_util
 
@@ -173,6 +174,9 @@ class Plugin(indigo.PluginBase):
                 filterType = int(device.pluginProps.get("filterType", 0))
                 displayStateName = device.pluginProps.get("displayStateName", None)
                 newPhidget = FrequencyCounterPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, filterType=filterType, dataInterval=dataInterval, displayStateName=displayStateName)
+            elif device.deviceTypeId == "humiditySensor":
+                humidityChangeTrigger = float(device.pluginProps.get("humidityChangeTrigger", 0))
+                newPhidget = HumiditySensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, humidityChangeTrigger=humidityChangeTrigger, dataInterval=dataInterval)
             else:
                 raise Exception("Unexpected device type: %s" % device.deviceTypeId)
             self.activePhidgets[device.id] = newPhidget
