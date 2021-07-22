@@ -120,8 +120,12 @@ class Plugin(indigo.PluginBase):
             channel = device.pluginProps.get("channel", None)
             channel = int(channel) if channel else -1
 
-            isHubPortDevice = device.pluginProps.get("isHubPortDevice", None)
-            isHubPortDevice = bool(isHubPortDevice) if isHubPortDevice else 0
+            # isHubPortDevice is true only when non-VINT devices not attached to a VINT hub
+            isVintHub = device.pluginProps.get("isVintHub", None)
+            isVintHub = bool(isVintHub) if isVintHub else 0
+            isVintDevice = device.pluginProps.get("isVintDevice", None)
+            isVintDevice = bool(isVintDevice) if isVintDevice else 0
+            isHubPortDevice= isVintDevice and isVintHub
 
             hubPort = device.pluginProps.get("hubPort", -1)
             hubPort = int(hubPort) if hubPort else -1
@@ -174,7 +178,6 @@ class Plugin(indigo.PluginBase):
             self.activePhidgets[device.id] = newPhidget
             newPhidget.start()
             device.stateListOrDisplayStateIdChanged()
-
         except PhidgetException as e:
             self.logger.error("%d: %s\n" % (e.code, e.details))
             self.logger.error(traceback.format_exc())
