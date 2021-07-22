@@ -120,12 +120,12 @@ class Plugin(indigo.PluginBase):
             channel = device.pluginProps.get("channel", None)
             channel = int(channel) if channel else -1
 
-            # isHubPortDevice is true only when non-VINT devices not attached to a VINT hub
+            # isHubPortDevice is true only when non-VINT devices are attached to a VINT hub
             isVintHub = device.pluginProps.get("isVintHub", None)
             isVintHub = bool(isVintHub) if isVintHub else 0
             isVintDevice = device.pluginProps.get("isVintDevice", None)
             isVintDevice = bool(isVintDevice) if isVintDevice else 0
-            isHubPortDevice= isVintDevice and isVintHub
+            isHubPortDevice = isVintHub and not isVintDevice
 
             hubPort = device.pluginProps.get("hubPort", -1)
             hubPort = int(hubPort) if hubPort else -1
