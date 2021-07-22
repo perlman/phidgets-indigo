@@ -74,9 +74,9 @@ class PhidgetBase(object):
 
     def onErrorHandler(self, ph, errorCode, errorString):
         """Default error handler for Phidgets."""
-        # TODO: Set error state in Indigo
-        ph.parent.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ")\n")
-
+        self.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ") for Indigo device '" +
+            str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
+    
     def onDetachHandler(self, ph):
         self.indigoDevice.setErrorStateOnServer('Detached')
         phidget_util.logPhidgetEvent(ph, self.logger.debug, "Detach")

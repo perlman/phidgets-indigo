@@ -115,7 +115,7 @@ class Plugin(indigo.PluginBase):
         try:
             # Common properties for _all_ phidgets
             serialNumber = device.pluginProps.get("serialNumber", None)
-            serialNumber = int(serialNumber) if serialNumber else 0
+            serialNumber = int(serialNumber) if serialNumber else -1
 
             channel = device.pluginProps.get("channel", None)
             channel = int(channel) if channel else -1
