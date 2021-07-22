@@ -7,6 +7,8 @@
 import time
 import re
 
+import argparse
+
 from Phidget22.Devices.Manager import Manager
 from Phidget22.Net import Net, PhidgetServerType
 from Phidget22.ChannelClass import ChannelClass
@@ -15,6 +17,22 @@ from Phidget22.DeviceClass import DeviceClass
 from Phidget22.DeviceID import DeviceID
 from Phidget22.Phidget import Phidget
 
+# setup argparse
+parser = argparse.ArgumentParser(description='Scan netwiork for Phidget devices',
+    formatter_class=argparse.RawTextHelpFormatter)
+group = parser.add_mutually_exclusive_group()
+group.add_argument('-d', type=int, default=None,
+    help="Phidget device class", metavar=('<device class>'))
+group.add_argument('-s', type=int, default=None,
+    help="Phidget serial number", metavar=('<serial number>'))
+group.add_argument('-c', type=str, default=None,
+    help="Phidget Channel class", metavar=('<channel class>'))
+
+# save the args received by argparse into variables
+args = parser.parse_args()
+scanDevice = args.d
+scanSerial = args.s
+scanChannel = args.c
 
 class PhidgetDevice():
     def __init__(self, channel):
@@ -48,14 +66,19 @@ class PhidgetDevice():
             self.serverName = "Local"
             self.serverIpAddr = "Local"
             self.serverUniqueName = "Local"
+
         try:
-            self.channelCount = "Hub Port Count: %s" % channel.getHubPortCount()
-        except Exception:
-            self.channelCount = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_NOTHING)
-            self.channelCountDO = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_DIGITALOUTPUT)
-            self.channelCountDI = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_DIGITALINPUT)
-            self.channelCountVI = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_VOLTAGEINPUT)
-            self.channelCountVR = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_VOLTAGERATIOINPUT)
+            if self.deviceClass in [DeviceClass.PHIDCLASS_VINT, DeviceClass.PHIDCLASS_HUB]:  # 8, 21
+                self.channelCount = "Hub Port Count: %s" % channel.getHubPortCount()
+            else:
+                self.channelCount = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_NOTHING)
+                self.channelCountDO = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_DIGITALOUTPUT)
+                self.channelCountDI = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_DIGITALINPUT)
+                self.channelCountVI = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_VOLTAGEINPUT)
+                self.channelCountVR = channel.getDeviceChannelCount(ChannelClass.PHIDCHCLASS_VOLTAGERATIOINPUT)
+        except Exception as e:
+                print('Error reading hub/channel count for serial number: %s. e = %s' % (channel.serialNumber, e))
+
         # hub
         self.hubPort = channel.getHubPort()
 
@@ -101,37 +124,7 @@ class PhidgetFinder():
         self.close()
 
 
-def printReport(phType, devices):
-    if phType == 'other':
-        print('Other')
-    else:
-        print(ChannelClass.getName(phType))
-    devList = {}
-    if phType == 'other':
-        for device in sorted(devices):
-            if device.channelClass not in [5, 6, 13, 29, 31, 36]:
-                print(device.deviceLabel)
-                print(device.hubPort)
-                print(device.channel)
-                devKey = device.serverName + " : " + device.deviceName + " : " + str(device.channel)
-                devList[devKey] = [device.deviceLabel, device.serialNumber, device.devicePort,
-                                   ChannelClass.getName(device.channelClass), ChannelSubclass.getName(device.channelSubClass),
-                                   device.serverIpAddr, device.hubPort, device.channel]
-    else:
-        for device in sorted(devices):
-            if device.channelClass == phType:
-                devKey = device.serverName + " : " + device.deviceName + " : " + str(device.channel)
-                devList[devKey] = [device.deviceLabel, device.serialNumber, device.devicePort,
-                                   ChannelClass.getName(device.channelClass), ChannelSubclass.getName(device.channelSubClass),
-                                   device.serverIpAddr, device.hubPort, device.channel]
-
-    for device in sorted(devList):
-        print("%s | %s" % (device, devList[device]))
-
-    print("\n")
-
-
-def main():
+def main(scanSerial, scanDevice, scanChannel):
     # Example on how to use this class
     finder = PhidgetFinder()
     finder.open()
@@ -144,15 +137,58 @@ def main():
 
     time.sleep(toSleep)
 
-    # printReport(ChannelClass.PHIDCHCLASS_DIGITALOUTPUT, finder.devices)
-    # printReport(ChannelClass.PHIDCHCLASS_DIGITALINPUT, finder.devices)
-    # printReport(ChannelClass.PHIDCHCLASS_VOLTAGEINPUT, finder.devices)
-    # printReport('other', finder.devices)
+    if scanSerial:
+        searchField = 'serialNumber'
+        matchString = [scanSerial]
+    elif scanDevice:
+        searchField = 'deviceClass'
+        matchString = [scanDevice]
+    elif scanChannel:
+        searchField = 'channelClass'
+        if scanChannel == 'o':
+            # everything except  PHIDCHCLASS_[DIGITALINPUT | DIGITALOUTPUT | HUB | VOLTAGEINPUT | VOLTAGERATIOINPUT | DICTIONARY]
+            matchString = [
+                ChannelClass.PHIDCHCLASS_NOTHING,
+                ChannelClass.PHIDCHCLASS_ACCELEROMETER,
+                ChannelClass.PHIDCHCLASS_CURRENTINPUT,
+                ChannelClass.PHIDCHCLASS_DATAADAPTER,
+                ChannelClass.PHIDCHCLASS_DCMOTOR,
+                ChannelClass.PHIDCHCLASS_DISTANCESENSOR,
+                ChannelClass.PHIDCHCLASS_ENCODER,
+                ChannelClass.PHIDCHCLASS_FREQUENCYCOUNTER,
+                ChannelClass.PHIDCHCLASS_GPS,
+                ChannelClass.PHIDCHCLASS_LCD,
+                ChannelClass.PHIDCHCLASS_GYROSCOPE,
+                ChannelClass.PHIDCHCLASS_CAPACITIVETOUCH,
+                ChannelClass.PHIDCHCLASS_HUMIDITYSENSOR,
+                ChannelClass.PHIDCHCLASS_IR,
+                ChannelClass.PHIDCHCLASS_LIGHTSENSOR,
+                ChannelClass.PHIDCHCLASS_MAGNETOMETER,
+                ChannelClass.PHIDCHCLASS_MESHDONGLE,
+                ChannelClass.PHIDCHCLASS_PHSENSOR,
+                ChannelClass.PHIDCHCLASS_POWERGUARD,
+                ChannelClass.PHIDCHCLASS_PRESSURESENSOR,
+                ChannelClass.PHIDCHCLASS_RCSERVO,
+                ChannelClass.PHIDCHCLASS_RESISTANCEINPUT,
+                ChannelClass.PHIDCHCLASS_RFID,
+                ChannelClass.PHIDCHCLASS_SOUNDSENSOR,
+                ChannelClass.PHIDCHCLASS_SPATIAL,
+                ChannelClass.PHIDCHCLASS_STEPPER,
+                ChannelClass.PHIDCHCLASS_TEMPERATURESENSOR,
+                ChannelClass.PHIDCHCLASS_VOLTAGEOUTPUT,
+                ChannelClass.PHIDCHCLASS_FIRMWAREUPGRADE,
+                ChannelClass.PHIDCHCLASS_GENERIC,
+                ChannelClass.PHIDCHCLASS_MOTORPOSITIONCONTROLLER,
+                ChannelClass.PHIDCHCLASS_BLDCMOTOR,
+                ChannelClass.PHIDCHCLASS_CURRENTOUTPUT
+            ]  # [0, 1, 2, 3, 4, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18, 19, 37, 20, 21, 22, 23, 24, 25, 26, 27, 28, 30, 32, 33, 34, 35, 38]
+        else:
+            matchString = [int(scanChannel)]
+    else:
+        matchString = None
 
-    # matchString = '283587'
-    matchString = '\d*'
     for device in sorted(finder.devices):
-        if re.match(matchString, str(device.serialNumber)):
+        if not matchString or getattr(device, searchField) in matchString:
             print('\nNew Device: ' + device.deviceName + ' - ' + device.serverName)
             for var in sorted(vars(device)):
                 value = getattr(device, var)
@@ -173,4 +209,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    main(scanSerial, scanDevice, scanChannel)
