@@ -18,6 +18,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
         self.dataInterval = dataInterval
         self.voltageRatioChangeTrigger = voltageRatioChangeTrigger
         self.sensorValueChangeTrigger = sensorValueChangeTrigger
+        self.sensorUnit = None
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -55,16 +56,27 @@ class VoltageRatioInputPhidget(PhidgetBase):
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
         self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
+        if self.sensorUnit is None or self.sensorUnit.name != sensorUnit.name:
+            # First update with a new sensorUnit. Trigger an Indigo refresh of getDeviceStateList()
+            self.sensorUnit = sensorUnit
+            self.indigoDevice.stateListOrDisplayStateIdChanged()
+        elif self.sensorUnit and self.sensorUnit.name != "none":
+            self.indigoDevice.updateStateOnServer(self.sensorUnit.name, value=sensorValue, decimalPlaces=self.decimalPlaces)
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltageRatio", "voltageRatio", "voltageRatio"))
         if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorValue", "sensorValue", "sensorValue"))
+            if self.sensorUnit and self.sensorUnit.name != "none":
+                newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorUnit.name, self.sensorUnit.name, self.sensorUnit.name))
         return newStatesList
     
     def getDeviceDisplayStateId(self):
         if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
-            return "sensorValue"
+            if self.sensorUnit and self.sensorUnit.name != "none":
+                return self.sensorUnit.name
+            else:
+                return "sensorValue"
         else:
             return "voltageRatio"

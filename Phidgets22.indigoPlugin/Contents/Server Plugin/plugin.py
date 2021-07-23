@@ -188,9 +188,6 @@ class Plugin(indigo.PluginBase):
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
-        # Should this be called every time?
-        device.stateListOrDisplayStateIdChanged()
-
     #
     # Methods related to shutdown
     #
