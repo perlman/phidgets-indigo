@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import traceback
-
+import string
 import indigo
 
 from Phidget22.Devices.VoltageInput import VoltageInput
@@ -23,7 +23,8 @@ class VoltageInputPhidget(PhidgetBase):
         self.dataInterval = dataInterval
         self.voltageChangeTrigger = voltageChangeTrigger
         self.sensorValueChangeTrigger = sensorValueChangeTrigger
-        self.sensorUnit = None
+        self.sensorUnit = None          # Last sensor unit
+        self.sensorStateName = None     # Clean name for Indigo
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -64,9 +65,10 @@ class VoltageInputPhidget(PhidgetBase):
         if self.sensorUnit is None or self.sensorUnit.name != sensorUnit.name:
             # First update with a new sensorUnit. Trigger an Indigo refresh of getDeviceStateList()
             self.sensorUnit = sensorUnit
+            self.sensorStateName = filter(lambda x: x in string.ascii_letters, self.sensorUnit.name)
             self.indigoDevice.stateListOrDisplayStateIdChanged()
         elif self.sensorUnit and self.sensorUnit.name != "none":
-            self.indigoDevice.updateStateOnServer(self.sensorUnit.name, value=sensorValue, decimalPlaces=self.decimalPlaces)
+            self.indigoDevice.updateStateOnServer(self.sensorStateName , value=sensorValue, decimalPlaces=self.decimalPlaces)
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
@@ -74,13 +76,13 @@ class VoltageInputPhidget(PhidgetBase):
         if self.sensorType != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorValue", "sensorValue", "sensorValue"))
             if self.sensorUnit and self.sensorUnit.name != "none":
-                newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorUnit.name, self.sensorUnit.name, self.sensorUnit.name))
+                newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
         return newStatesList
     
     def getDeviceDisplayStateId(self):
         if self.sensorType != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
             if self.sensorUnit and self.sensorUnit.name != "none":
-                return self.sensorUnit.name
+                return self.sensorStateName
             else:
                 return "sensorValue"
         else:
