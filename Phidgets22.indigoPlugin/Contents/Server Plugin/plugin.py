@@ -73,7 +73,12 @@ class Plugin(indigo.PluginBase):
 
         # Set an address here
         # TODO: dynamic address updating would require replacing the device and using didDeviceCommPropertyChange to prevent respawn
-        valuesDict[u'address'] = valuesDict['serialNumber']
+        if 'hubPort' in valuesDict and len(valuesDict['hubPort']) > 0:
+            valuesDict[u'address'] = valuesDict['serialNumber'] + "|" + valuesDict['hubPort']
+        elif 'channel' in valuesDict and len(valuesDict['channel']) > 0:
+            valuesDict[u'address'] = valuesDict['serialNumber'] + "|" + valuesDict['channel']
+        else:
+            valuesDict[u'address'] = valuesDict['serialNumber']
 
         return (True, valuesDict)
 
