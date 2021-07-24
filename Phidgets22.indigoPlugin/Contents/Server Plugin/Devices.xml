@@ -54,7 +54,7 @@
 		</ConfigUI>
 	</Device>
 
-	<Device id="digitalInput" type="sensor">
+	<Device id="digitalInput" type="custom">
 		<Name>Digital Input</Name>
 		<ConfigUI>
 			<Field id="exampleLabel" type="label">
@@ -77,8 +77,27 @@
 			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
+			<!-- <Field id="SupportsOnState" type="checkbox" defaultValue="true">
+				<Label>Show ON/OFF state:</Label>
+			</Field>
+			<Field id="SupportsSensorValue" type="checkbox" defaultValue="true">
+				<Label>Show sensor value:</Label>
+			</Field> -->
 
 		</ConfigUI>
+		<States>
+			<State id="onOffState">
+				<ValueType boolType="onOff">Boolean</ValueType>
+				<TriggerLabel>On/Off State</TriggerLabel>
+				<ControlPageLabel>On/Off State</ControlPageLabel>
+			</State>
+			<State id="lastUpdate">
+				<ValueType>String</ValueType>
+				<TriggerLabel>Last Update</TriggerLabel>
+				<ControlPageLabel>Last Update</ControlPageLabel>
+			</State>
+		</States>
+		<UiDisplayStateId>onOffState</UiDisplayStateId>
 	</Device>
 
 	<Device id="voltageRatioInput" type="custom">
