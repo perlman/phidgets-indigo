@@ -12,10 +12,11 @@ from phidget import PhidgetBase
 import phidget_util
 
 class FrequencyCounterPhidget(PhidgetBase):
-    def __init__(self, filterType, dataInterval, displayStateName, *args, **kwargs):
+    def __init__(self, filterType, dataInterval, frequencyCutoff, displayStateName, *args, **kwargs):
         super(FrequencyCounterPhidget, self).__init__(phidget=FrequencyCounter(), *args, **kwargs)
         self.filterType = filterType
         self.dataInterval = dataInterval
+        self.frequencyCutoff = frequencyCutoff
         self.displayStateName = displayStateName
 
     def addPhidgetHandlers(self):
@@ -33,10 +34,16 @@ class FrequencyCounterPhidget(PhidgetBase):
             else:
                 self.phidget.setDataInterval(newDataInterval)
 
-            self.phidget.setFilterType(self.filterType)
-            # rdp. this seems to be missing in the UI - not sure how necessary it enev is
-            # we should also look at: setFrequencyCutoff() - (self.phidget.frequencyCutoff). The frequency at which zero hertz is assumed.
+            # setFrequencyCutoff() - The frequency at which zero hertz is assumed.
+            newFrequencyCutoff = self.checkValueRange('frequencyCutoff', value=self.frequencyCutoff, minValue=0, maxValue=100, zero_ok=True)
+            if newFrequencyCutoff is None:
+                self.phidget.setFrequencyCutoff(1.0)
+            else:
+                self.phidget.setFrequencyCutoff(float(newFrequencyCutoff))
+            
+            # rdp. this seems to be missing in the UI - not sure how necessary it enev is    
             self.phidget.setEnabled(True)
+            self.phidget.setFilterType(self.filterType)
         except Exception as e:
             self.logger.error(traceback.format_exc())
 

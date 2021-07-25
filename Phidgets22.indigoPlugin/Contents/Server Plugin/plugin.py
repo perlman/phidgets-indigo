@@ -177,8 +177,9 @@ class Plugin(indigo.PluginBase):
                 newPhidget = TemperatureSensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, displayTempUnit=displayTempUnit, thermocoupleType=thermocoupleType, dataInterval=dataInterval, temperatureChangeTrigger=temperatureChangeTrigger)
             elif device.deviceTypeId == "frequencyCounter":
                 filterType = int(device.pluginProps.get("filterType", 0))
+                frequencyCutoff = float(device.pluginProps.get("frequencyCutoff", 1))
                 displayStateName = device.pluginProps.get("displayStateName", None)
-                newPhidget = FrequencyCounterPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, filterType=filterType, dataInterval=dataInterval, displayStateName=displayStateName)
+                newPhidget = FrequencyCounterPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, filterType=filterType, dataInterval=dataInterval, frequencyCutoff=frequencyCutoff, displayStateName=displayStateName)
             elif device.deviceTypeId == "humiditySensor":
                 humidityChangeTrigger = float(device.pluginProps.get("humidityChangeTrigger", 0))
                 newPhidget = HumiditySensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, humidityChangeTrigger=humidityChangeTrigger, dataInterval=dataInterval)
