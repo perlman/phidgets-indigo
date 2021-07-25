@@ -32,6 +32,7 @@ class DigitalInputPhidget(PhidgetBase):
             setState = 'on'
             stateImage = indigo.kStateImageSel.SensorOn
         self.indigoDevice.updateStateOnServer("onOffState", value=setState)
+        now = datetime.datetime.now()
         self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now.strftime("%Y-%m-%d %H:%M:%S"))
         self.indigoDevice.updateStateImageOnServer(stateImage)
 
@@ -43,6 +44,7 @@ class DigitalInputPhidget(PhidgetBase):
                 setState = 'on'
                 stateImage = indigo.kStateImageSel.SensorOn
             self.indigoDevice.updateStateOnServer("onOffState", value=state)
+            now = datetime.datetime.now()
             self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now.strftime("%Y-%m-%d %H:%M:%S"))
             self.indigoDevice.updateStateImageOnServer(stateImage)
         else:
@@ -52,7 +54,7 @@ class DigitalInputPhidget(PhidgetBase):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForBoolOnOffType('onOffState', 'onOffState', 'onOffState'))
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForStringType('lastUpdate', 'lastUpdate', 'lastUpdate'))
-        # onOffState will be in the default state list for a sensor
+        
         return newStatesList
     
     def getDeviceDisplayStateId(self):
