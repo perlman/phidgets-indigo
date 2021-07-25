@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import traceback
+import time
 
 import indigo
 
@@ -31,6 +32,7 @@ class DigitalInputPhidget(PhidgetBase):
             setState = 'on'
             stateImage = indigo.kStateImageSel.SensorOn
         self.indigoDevice.updateStateOnServer("onOffState", value=setState)
+        self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now.strftime("%Y-%m-%d %H:%M:%S"))
         self.indigoDevice.updateStateImageOnServer(stateImage)
 
     def actionControlSensor(self, action):
@@ -41,6 +43,7 @@ class DigitalInputPhidget(PhidgetBase):
                 setState = 'on'
                 stateImage = indigo.kStateImageSel.SensorOn
             self.indigoDevice.updateStateOnServer("onOffState", value=state)
+            self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now.strftime("%Y-%m-%d %H:%M:%S"))
             self.indigoDevice.updateStateImageOnServer(stateImage)
         else:
             self.logger.error("Unexpected action: %s" % action.deviceAction) 
@@ -48,6 +51,7 @@ class DigitalInputPhidget(PhidgetBase):
     def getDeviceStateList(self):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForBoolOnOffType('onOffState', 'onOffState', 'onOffState'))
+        newStatesList.append(self.indigo_plugin.getDeviceStateDictForStringType('lastUpdate', 'lastUpdate', 'lastUpdate'))
         # onOffState will be in the default state list for a sensor
         return newStatesList
     
