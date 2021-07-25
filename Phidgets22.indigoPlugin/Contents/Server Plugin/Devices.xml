@@ -1,5 +1,58 @@
 <?xml version="1.0"?>
 <Devices>
+	<Device id="digitalOutput" type="dimmer">
+		<Name>Digital Output</Name>
+		<ConfigUI>
+
+			<Field id="exampleLabel" type="label">
+				<Label>The following sections will (eventually) be populated automatically.
+				</Label>
+			</Field>
+
+			<Field id="serialNumber" type="textfield">
+					<Label>Serial number:</Label>
+			</Field>
+			<Field id="channel" type="textfield">
+					<Label>Channel:</Label>
+			</Field>
+ 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
+				<Label>Connected to a VINT hub?</Label>
+			</Field>
+			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Is this a VINT device?</Label>
+			</Field>
+			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Hub port:</Label>
+			</Field>
+		</ConfigUI>
+	</Device>
+
+	<Device id="digitalInput" type="custom">
+		<Name>Digital Input</Name>
+		<ConfigUI>
+			<Field id="exampleLabel" type="label">
+				<Label>The following sections will (eventually) be populated automatically.
+				</Label>
+			</Field>
+
+			<Field id="serialNumber" type="textfield">
+					<Label>Serial number:</Label>
+			</Field>
+			<Field id="channel" type="textfield">
+					<Label>Channel:</Label>
+			</Field>
+ 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
+				<Label>Connected to a VINT hub?</Label>
+			</Field>
+			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Is this a VINT device?</Label>
+			</Field>
+			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Hub port:</Label>
+			</Field>
+		</ConfigUI>
+	</Device>
+
 	<Device id="voltageInput" type="custom">
 		<Name>Voltage Input</Name>
 		<ConfigUI>
@@ -54,38 +107,6 @@
 		</ConfigUI>
 	</Device>
 
-	<Device id="digitalInput" type="custom">
-		<Name>Digital Input</Name>
-		<ConfigUI>
-			<Field id="exampleLabel" type="label">
-				<Label>The following sections will (eventually) be populated automatically.
-				</Label>
-			</Field>
-
-			<Field id="serialNumber" type="textfield">
-					<Label>Serial number:</Label>
-			</Field>
-			<Field id="channel" type="textfield">
-					<Label>Channel:</Label>
-			</Field>
- 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
-				<Label>Connected to a VINT hub?</Label>
-			</Field>
-			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
-				<Label>Is this a VINT device?</Label>
-			</Field>
-			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
-				<Label>Hub port:</Label>
-			</Field>
-			<!-- <Field id="SupportsOnState" type="checkbox" defaultValue="true">
-				<Label>Show ON/OFF state:</Label>
-			</Field>
-			<Field id="SupportsSensorValue" type="checkbox" defaultValue="true">
-				<Label>Show sensor value:</Label>
-			</Field> -->
-
-		</ConfigUI>
-	</Device>
 
 	<Device id="voltageRatioInput" type="custom">
 		<Name>Voltage Ratio Input</Name>
@@ -116,33 +137,6 @@
 					<Option value="4">4</Option>
 				</List>
 			</Field>
-
-			<Field id="exampleLabel" type="label">
-				<Label>The following sections will (eventually) be populated automatically.
-				</Label>
-			</Field>
-
-			<Field id="serialNumber" type="textfield">
-					<Label>Serial number:</Label>
-			</Field>
-			<Field id="channel" type="textfield">
-					<Label>Channel:</Label>
-			</Field>
- 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
-				<Label>Connected to a VINT hub?</Label>
-			</Field>
-			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
-				<Label>Is this a VINT device?</Label>
-			</Field>
-			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
-				<Label>Hub port:</Label>
-			</Field>
-		</ConfigUI>
-	</Device>
-
-	<Device id="digitalOutput" type="dimmer">
-		<Name>Digital Output</Name>
-		<ConfigUI>
 
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.
@@ -304,6 +298,10 @@
 
 			<Field id="dataInterval" type="textfield" defaultValue="1000">
 					<Label>Data interval:</Label>
+			</Field>
+
+			<Field id="frequencyCutoff" type="textfield" defaultValue="1.0">
+					<Label>Frequency cuoff (Hz):</Label>
 			</Field>
 
 			<Field id="exampleLabel" type="label">

@@ -34,6 +34,9 @@ class FrequencyCounterPhidget(PhidgetBase):
                 self.phidget.setDataInterval(newDataInterval)
 
             self.phidget.setFilterType(self.filterType)
+            # rdp. this seems to be missing in the UI - not sure how necessary it enev is
+            # we should also look at: setFrequencyCutoff() - (self.phidget.frequencyCutoff). The frequency at which zero hertz is assumed.
+            self.phidget.setEnabled(True)
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
