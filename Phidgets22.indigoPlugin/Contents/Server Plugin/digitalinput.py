@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import traceback
-import time
+import datetime
 
 import indigo
 
@@ -32,8 +32,8 @@ class DigitalInputPhidget(PhidgetBase):
             setState = 'on'
             stateImage = indigo.kStateImageSel.SensorOn
         self.indigoDevice.updateStateOnServer("onOffState", value=setState)
-        now = datetime.datetime.now()
-        self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now.strftime("%Y-%m-%d %H:%M:%S"))
+        now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now)
         self.indigoDevice.updateStateImageOnServer(stateImage)
 
     def actionControlSensor(self, action):
@@ -44,8 +44,9 @@ class DigitalInputPhidget(PhidgetBase):
                 setState = 'on'
                 stateImage = indigo.kStateImageSel.SensorOn
             self.indigoDevice.updateStateOnServer("onOffState", value=state)
-            now = datetime.datetime.now()
-            self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now.strftime("%Y-%m-%d %H:%M:%S"))
+            now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+            self.logger.error("Unexpected action: %s" % now) 
+            self.indigoDevice.updateStateOnServer("lastUpdate", value=now)
             self.indigoDevice.updateStateImageOnServer(stateImage)
         else:
             self.logger.error("Unexpected action: %s" % action.deviceAction) 

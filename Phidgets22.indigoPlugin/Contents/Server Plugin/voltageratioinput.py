@@ -51,6 +51,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
                 self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
 
         except Exception as e:
+            self.logger.error("Dev: %s" % str(self.indigoDevice))
             self.logger.error(traceback.format_exc())
 
     def setOnVoltageRatioChangeHandler(self, ph, voltageRatio):
