@@ -13,46 +13,38 @@ from phidget import PhidgetBase
 import phidget_util
 
 class VoltageRatioInputPhidget(PhidgetBase):
-    def __init__(self, sensorType, dataInterval, voltageRatioChangeTrigger, sensorValueChangeTrigger, *args, **kwargs):
+    def __init__(self, indigo_plugin, channelInfo, indigoDevice, logger, *args, **kwargs):
         super(VoltageRatioInputPhidget, self).__init__(phidget=VoltageRatioInput(), *args, **kwargs)
-        self.sensorType = sensorType
-        self.dataInterval = dataInterval
-        self.voltageRatioChangeTrigger = voltageRatioChangeTrigger
-        self.sensorValueChangeTrigger = sensorValueChangeTrigger
+        self.indigo_plugin = indigo_plugin
+        self.channelInfo = channelInfo
+        self.indigoDevice = indigoDevice
+        self.logger = logger
+        self.sensorType = int(self.indigoDevice.pluginProps.get("voltageRatioSensorType", 0))   
+        self.dataInterval = int(self.indigoDevice.pluginProps.get("dataInterval", 0))
+        self.voltageRatioChangeTrigger = float(self.indigoDevice.pluginProps.get("voltageRatioChangeTrigger", 0))
+        self.sensorValueChangeTrigger = float(self.indigoDevice.pluginProps.get("sensorValueChangeTrigger", 0))
+        self.decimalPlaces = int(self.indigoDevice.pluginProps.get("decimalPlaces", 2))
         self.sensorUnit = None          # Last sensor unit
         self.sensorStateName = None     # Clean name for Indigo
-
+        
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
         self.phidget.setOnAttachHandler(self.onAttachHandler)
         self.phidget.setOnDetachHandler(self.onDetachHandler)
         self.phidget.setOnVoltageRatioChangeHandler(self.setOnVoltageRatioChangeHandler)
         self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
-
+        
     def onAttachHandler(self, ph):
         super(VoltageRatioInputPhidget, self).onAttachHandler(ph)
+        self.phidget.openWaitForAttachment(5000)
         try:
-            newDataInterval = self.checkValueRange("dataInterval", value=self.dataInterval, minValue=self.phidget.getMinDataInterval(),  maxValue=self.phidget.getMaxDataInterval())
-            if newDataInterval is None:
-                self.phidget.setDataInterval(PhidgetBase.PHIDGET_DEFAULT_DATA_INTERVAL)
-            else:
-                self.phidget.setDataInterval(newDataInterval)
-
+            self.phidget.setDataInterval(self.dataInterval)
             self.phidget.setSensorType(self.sensorType)
-
-            newVoltageRatioChangeTrigger = self.checkValueRange(
-                fieldname="voltageRatioChangeTrigger", value=self.voltageRatioChangeTrigger,
-                minValue=self.phidget.getMinVoltageRatioChangeTrigger(), 
-                maxValue=self.phidget.getMaxVoltageRatioChangeTrigger())
-            if newVoltageRatioChangeTrigger is not None:
-                self.phidget.setVoltageRatioChangeTrigger(newVoltageRatioChangeTrigger)
-
-            if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
-                self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
+            self.phidget.setVoltageRatioChangeTrigger(self.voltageRatioChangeTrigger)
+            self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
 
         except Exception as e:
-            self.logger.error("Dev: %s" % str(self.indigoDevice))
-            self.logger.error(traceback.format_exc())
+            self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice))
 
     def setOnVoltageRatioChangeHandler(self, ph, voltageRatio):
         self.indigoDevice.updateStateOnServer("voltageRatio", value=voltageRatio, decimalPlaces=self.decimalPlaces)

@@ -70,7 +70,8 @@ class Plugin(indigo.PluginBase):
 
     def validateDeviceConfigUi(self, valuesDict, typeId, devId):
         # TODO: Perform some type of verification on the fields?
-
+        returnValue = True
+        errorDict = indigo.Dict()
         # Set an address here
         # TODO: dynamic address updating would require replacing the device and using didDeviceCommPropertyChange to prevent respawn
         if 'hubPort' in valuesDict and len(valuesDict['hubPort']) > 0:
@@ -80,7 +81,22 @@ class Plugin(indigo.PluginBase):
         else:
             valuesDict[u'address'] = valuesDict['serialNumber']
 
-        return (True, valuesDict)
+        try:
+            if 'dataInterval' in valuesDict:
+                valuesDict['dataInterval'] = int(valuesDict['dataInterval'])
+                if valuesDict['dataInterval'] >= 0 and valuesDict['dataInterval'] <= 1000:
+                    pass
+                else:
+                    returnValue = False
+                    errorDict['dataInterval'] = "The value of this field must be from 0 to 1000"
+            else:
+                returnValue = False
+                errorDict['dataInterval'] = "The value of this field must be from 1 to 1000"
+        except Exception as e:
+                returnValue = False
+                errorDict['dataInterval'] = "Illegal valuye"
+
+        return (returnValue, valuesDict, errorDict)
 
     def getPhidgetTypeMenu(self, filter="", valuesDict=None, typeId="", targetId=0):
         classes = filter.split(',')
@@ -159,10 +175,10 @@ class Plugin(indigo.PluginBase):
                 sensorValueChangeTrigger = float(device.pluginProps.get("sensorValueChangeTrigger", 0))
                 newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, decimalPlaces=decimalPlaces, logger=self.logger, sensorType=sensorType, dataInterval=dataInterval, voltageChangeTrigger=voltageChangeTrigger, sensorValueChangeTrigger=sensorValueChangeTrigger)
             elif device.deviceTypeId == "voltageRatioInput":
-                voltageRatioChangeTrigger = float(device.pluginProps.get("voltageRatioChangeTrigger", 0))
-                sensorValueChangeTrigger = float(device.pluginProps.get("sensorValueChangeTrigger", 0))
-                sensorType = int(device.pluginProps.get("voltageRatioSensorType", 0))
-                newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, decimalPlaces=decimalPlaces, logger=self.logger, sensorType=sensorType, dataInterval=dataInterval, voltageRatioChangeTrigger=voltageRatioChangeTrigger, sensorValueChangeTrigger=sensorValueChangeTrigger)
+                # voltageRatioChangeTrigger = float(device.pluginProps.get("voltageRatioChangeTrigger", 0))
+                # sensorValueChangeTrigger = float(device.pluginProps.get("sensorValueChangeTrigger", 0))
+                # sensorType = int(device.pluginProps.get("voltageRatioSensorType", 0))
+                newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "digitalInput":
