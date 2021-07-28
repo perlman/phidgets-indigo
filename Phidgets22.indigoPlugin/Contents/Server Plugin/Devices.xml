@@ -1,9 +1,8 @@
 <?xml version="1.0"?>
 <Devices>
-	<Device id="digitalOutput" type="dimmer">
-		<Name>Digital Output</Name>
+	<Device id="digitalInput" type="custom">
+		<Name>Digital Input</Name>
 		<ConfigUI>
-
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.
 				</Label>
@@ -14,6 +13,9 @@
 			</Field>
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
+			</Field>
+			<Field id="isAlarm" type="checkbox" defaultValue="False" tooltip="Device state Off will show as green, On as red">
+				<Label>Does this device signal an alarm condition</Label>
 			</Field>
  		    <Field id="isVintHub" type="checkbox" defaultValue="False">
 				<Label>Connected to a VINT hub?</Label>
@@ -27,9 +29,10 @@
 		</ConfigUI>
 	</Device>
 
-	<Device id="digitalInput" type="custom">
-		<Name>Digital Input</Name>
+	<Device id="digitalOutput" type="dimmer">
+		<Name>Digital Output</Name>
 		<ConfigUI>
+
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.
 				</Label>

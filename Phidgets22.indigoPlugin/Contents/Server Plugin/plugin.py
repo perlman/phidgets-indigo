@@ -89,9 +89,6 @@ class Plugin(indigo.PluginBase):
                 else:
                     returnValue = False
                     errorDict['dataInterval'] = "The value of this field must be from 0 to 1000"
-            else:
-                returnValue = False
-                errorDict['dataInterval'] = "The value of this field must be from 1 to 1000"
         except Exception as e:
                 returnValue = False
                 errorDict['dataInterval'] = "Illegal valuye"

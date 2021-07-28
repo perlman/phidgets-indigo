@@ -13,12 +13,9 @@ from phidget import PhidgetBase
 import phidget_util
 
 class VoltageRatioInputPhidget(PhidgetBase):
-    def __init__(self, indigo_plugin, channelInfo, indigoDevice, logger, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(VoltageRatioInputPhidget, self).__init__(phidget=VoltageRatioInput(), *args, **kwargs)
-        self.indigo_plugin = indigo_plugin
-        self.channelInfo = channelInfo
-        self.indigoDevice = indigoDevice
-        self.logger = logger
+ 
         self.sensorType = int(self.indigoDevice.pluginProps.get("voltageRatioSensorType", 0))   
         self.dataInterval = int(self.indigoDevice.pluginProps.get("dataInterval", 0))
         self.voltageRatioChangeTrigger = float(self.indigoDevice.pluginProps.get("voltageRatioChangeTrigger", 0))
@@ -36,7 +33,6 @@ class VoltageRatioInputPhidget(PhidgetBase):
         
     def onAttachHandler(self, ph):
         super(VoltageRatioInputPhidget, self).onAttachHandler(ph)
-        self.phidget.openWaitForAttachment(5000)
         try:
             self.phidget.setDataInterval(self.dataInterval)
             self.phidget.setSensorType(self.sensorType)
@@ -44,7 +40,8 @@ class VoltageRatioInputPhidget(PhidgetBase):
             self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
 
         except Exception as e:
-            self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice))
+            self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
+        
 
     def setOnVoltageRatioChangeHandler(self, ph, voltageRatio):
         self.indigoDevice.updateStateOnServer("voltageRatio", value=voltageRatio, decimalPlaces=self.decimalPlaces)
