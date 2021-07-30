@@ -72,12 +72,19 @@ class Plugin(indigo.PluginBase):
         # TODO: Perform some type of verification on the fields?
         returnValue = True
         errorDict = indigo.Dict()
+
         # Set an address here
         # TODO: dynamic address updating would require replacing the device and using didDeviceCommPropertyChange to prevent respawn
-        if 'hubPort' in valuesDict and len(valuesDict['hubPort']) > 0:
-            valuesDict[u'address'] = valuesDict['serialNumber'] + "|" + valuesDict['hubPort']
+        if bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):
+            valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort']
+        elif not bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):
+            valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['channel']
+        elif 'hubPort' in valuesDict and len(valuesDict['hubPort']) > 0 and 'channel' in valuesDict and len(valuesDict['channel']) > 0:
+            valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort'] + "-c" + valuesDict['channel']
+        elif 'hubPort' in valuesDict and len(valuesDict['hubPort']):
+            valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort']
         elif 'channel' in valuesDict and len(valuesDict['channel']) > 0:
-            valuesDict[u'address'] = valuesDict['serialNumber'] + "|" + valuesDict['channel']
+            valuesDict[u'address'] = valuesDict['serialNumber'] + "|c" + valuesDict['channel']
         else:
             valuesDict[u'address'] = valuesDict['serialNumber']
 
@@ -97,6 +104,7 @@ class Plugin(indigo.PluginBase):
 
     def getPhidgetTypeMenu(self, filter="", valuesDict=None, typeId="", targetId=0):
         classes = filter.split(',')
+
         return self.phidgetInfo.getPhidgetTypeMenu(classes)
 
     #

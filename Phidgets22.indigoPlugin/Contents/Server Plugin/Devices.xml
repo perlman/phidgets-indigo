@@ -7,18 +7,17 @@
 				<Label>The following sections will (eventually) be populated automatically.
 				</Label>
 			</Field>
-
 			<Field id="serialNumber" type="textfield">
 					<Label>Serial number:</Label>
+			</Field>
+			<Field id="isVintHub" type="checkbox" defaultValue="False">
+				<Label>Connected to a VINT hub?</Label>
 			</Field>
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
 			<Field id="isAlarm" type="checkbox" defaultValue="False" tooltip="Device state Off will show as green, On as red">
 				<Label>Does this device signal an alarm condition</Label>
-			</Field>
- 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
-				<Label>Connected to a VINT hub?</Label>
 			</Field>
 			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Is this a VINT device?</Label>
@@ -64,6 +63,10 @@
 				<List class="self" method="getPhidgetTypeMenu" filter="VoltageSensorType"/>
 			</Field>
 
+			 <Field id="isVintHub" type="checkbox" defaultValue="False">
+				<Label>Connected to a VINT hub?</Label>
+			</Field>
+
 			<Field id="dataInterval" type="textfield" defaultValue="1000">
 					<Label>Data interval (ms):</Label>
 			</Field>
@@ -97,15 +100,13 @@
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
- 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
-				<Label>Connected to a VINT hub?</Label>
-			</Field>
 			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Is this a VINT device?</Label>
 			</Field>
 			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
+			<Field id="customStateName" type="textfield" hidden="True" />
 
 		</ConfigUI>
 	</Device>

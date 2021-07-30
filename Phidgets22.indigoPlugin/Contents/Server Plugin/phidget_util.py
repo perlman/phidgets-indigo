@@ -21,4 +21,3 @@ def logPhidgetEvent(ph, logger, eventType="UNKNOWN"):
             str(serialNumber) + " -> Channel:  " + str(channel))
 
     return
-    
