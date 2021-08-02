@@ -21,6 +21,9 @@ class VoltageRatioInputPhidget(PhidgetBase):
         self.voltageRatioChangeTrigger = float(self.indigoDevice.pluginProps.get("voltageRatioChangeTrigger", 0))
         self.sensorValueChangeTrigger = float(self.indigoDevice.pluginProps.get("sensorValueChangeTrigger", 0))
         self.decimalPlaces = int(self.indigoDevice.pluginProps.get("decimalPlaces", 2))
+        self.voltageRatioSensorType = str(self.indigoDevice.pluginProps.get("voltageRatioSensorType", 0))
+        self.customFormula = self.indigoDevice.pluginProps.get("customFormula", None)
+        self.customStateName = str(self.indigoDevice.pluginProps.get("customState", 'custom'))
         self.sensorUnit = None          # Last sensor unit
         self.sensorStateName = None     # Clean name for Indigo
         
@@ -28,7 +31,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
         self.phidget.setOnAttachHandler(self.onAttachHandler)
         self.phidget.setOnDetachHandler(self.onDetachHandler)
-        self.phidget.setOnVoltageRatioChangeHandler(self.setOnVoltageRatioChangeHandler)
+        self.phidget.setOnVoltageRatioChangeHandler(self.onVoltageRatioChangeHandler)
         self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
         
     def onAttachHandler(self, ph):
@@ -43,19 +46,20 @@ class VoltageRatioInputPhidget(PhidgetBase):
             self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
         
 
-    def setOnVoltageRatioChangeHandler(self, ph, voltageRatio):
-        voltageRatioSensorType = str(self.indigoDevice.pluginProps.get("voltageRatioSensorType", 0))
-        if voltageRatioSensorType == '0':  # a generic voltage ratio device
-            customFormula = self.indigoDevice.pluginProps.get("customFormula", None)
-            if customFormula:
+    def onVoltageRatioChangeHandler(self, ph, voltageRatio):
+        self.indigoDevice.updateStateOnServer("voltageRatio", value=voltageRatio, decimalPlaces=self.decimalPlaces)
+
+        if self.voltageRatioSensorType == '0':  # a generic voltage ratio device
+            if self.customFormula:
                 try:
-                    formula = lambda x: eval(customFormula)
+                    formula = lambda x: eval(self.customFormula)
                     customValue = formula(float(voltageRatio))
                 except Exception as e:
                     self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
-                customState = str(self.indigoDevice.pluginProps.get("customState", 'custom'))
-                self.indigoDevice.updateStateOnServer(customState, value=customValue, decimalPlaces=self.decimalPlaces)
-        self.indigoDevice.updateStateOnServer("voltageRatio", value=voltageRatio, decimalPlaces=self.decimalPlaces)
+                # self.logger.debug('for %s. Received: %s, Calculated: %s' %  (self.indigoDevice.name, voltageRatio, customValue))
+                # Need to add the new state before we can update it
+                # self.indigoDevice.updateStateOnServer(self.customStateName, value=customValue, decimalPlaces=self.decimalPlaces)
+        
 
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
