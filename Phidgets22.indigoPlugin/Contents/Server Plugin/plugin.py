@@ -70,6 +70,7 @@ class Plugin(indigo.PluginBase):
 
     def validateDeviceConfigUi(self, valuesDict, typeId, devId):
         # TODO: Perform some type of verification on the fields?
+        # self.logger.error("%s\n%s\n" % (valuesDict, typeId))
         returnValue = True
         errorDict = indigo.Dict()
 
@@ -77,8 +78,17 @@ class Plugin(indigo.PluginBase):
         # TODO: dynamic address updating would require replacing the device and using didDeviceCommPropertyChange to prevent respawn
         if bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):
             valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort']
-        elif not bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):
-            valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['channel']
+        elif not bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):   # an interfaceKit
+            if typeId == 'digitalInput':
+                valuesDict[u'address'] = valuesDict['serialNumber'] + "|di-" + valuesDict['channel']
+            elif typeId == 'digitalOutput':
+                valuesDict[u'address'] = valuesDict['serialNumber'] + "|do-" + valuesDict['channel']
+            elif typeId == 'voltageRatioInput':
+                valuesDict[u'address'] = valuesDict['serialNumber'] + "|vr-" + valuesDict['channel']
+            elif typeId == 'voltageInput':
+                valuesDict[u'address'] = valuesDict['serialNumber'] + "|av-" + valuesDict['channel']
+            else:
+                valuesDict[u'address'] = valuesDict['serialNumber'] + "|p-" + valuesDict['channel']
         elif 'hubPort' in valuesDict and len(valuesDict['hubPort']) > 0 and 'channel' in valuesDict and len(valuesDict['channel']) > 0:
             valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort'] + "-c" + valuesDict['channel']
         elif 'hubPort' in valuesDict and len(valuesDict['hubPort']):
