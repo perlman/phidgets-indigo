@@ -162,6 +162,12 @@
 			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
+			<Field id="customFormula" type="textfield" visibleBindingId='voltageRatioSensorType' visibleBindingValue="0" > 
+				<Label>Formula to be applied to sensor reading</Label>
+			</Field>
+			<Field id="customState" type="textfield" visibleBindingId='voltageRatioSensorType' visibleBindingValue="0" >
+				<Label>Name to be given to custom state</Label>
+			</Field>
 		</ConfigUI>
 	</Device>
 

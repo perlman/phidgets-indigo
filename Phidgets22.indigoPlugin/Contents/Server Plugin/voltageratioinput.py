@@ -44,7 +44,19 @@ class VoltageRatioInputPhidget(PhidgetBase):
         
 
     def setOnVoltageRatioChangeHandler(self, ph, voltageRatio):
+        voltageRatioSensorType = str(self.indigoDevice.pluginProps.get("voltageRatioSensorType", 0))
+        if voltageRatioSensorType == '0':  # a generic voltage ratio device
+            customFormula = self.indigoDevice.pluginProps.get("customFormula", None)
+            if customFormula:
+                try:
+                    formula = lambda x: eval(customFormula)
+                    customValue = formula(float(voltageRatio))
+                except Exception as e:
+                    self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
+                customState = str(self.indigoDevice.pluginProps.get("customState", 'custom'))
+                self.indigoDevice.updateStateOnServer(customState, value=customValue, decimalPlaces=self.decimalPlaces)
         self.indigoDevice.updateStateOnServer("voltageRatio", value=voltageRatio, decimalPlaces=self.decimalPlaces)
+
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
         self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
