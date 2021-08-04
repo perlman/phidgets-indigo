@@ -76,6 +76,8 @@ class Plugin(indigo.PluginBase):
 
         # Set an address here
         # TODO: dynamic address updating would require replacing the device and using didDeviceCommPropertyChange to prevent respawn
+
+        # Calculate something for the Indigo device address property
         if bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):
             valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort']
         elif not bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):   # an interfaceKit
@@ -97,6 +99,18 @@ class Plugin(indigo.PluginBase):
             valuesDict[u'address'] = valuesDict['serialNumber'] + "|c" + valuesDict['channel']
         else:
             valuesDict[u'address'] = valuesDict['serialNumber']
+
+        # Make sure we have a useful serial number
+        if not valuesDict['serialNumber']:
+            errorDict['serialNumber'] = "A serial number is required"
+            returnValue = False
+        elif not valuesDict['serialNumber'].isdigit():
+            errorDict['serialNumber'] = "The serial number must be numeric"
+            returnValue = False
+        elif len(valuesDict['serialNumber']) < 5:
+            errorDict['serialNumber'] = "Serial number too short"
+            returnValue = False
+        # else we should check to see if this serial number can actually be reached
 
         try:
             if 'dataInterval' in valuesDict:
