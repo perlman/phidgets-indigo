@@ -107,7 +107,12 @@
 				<Label>Hub port:</Label>
 			</Field>
 			<Field id="customStateName" type="textfield" hidden="True" />
-
+			<Field id="customFormula" type="textfield" visibleBindingId='voltageSensorType' visibleBindingValue="0" >
+				<Label>Formula to be applied to sensor reading</Label>
+			</Field>
+			<Field id="customState" type="textfield" visibleBindingId='voltageSensorType' visibleBindingValue="0" >
+				<Label>Name to be given to custom state</Label>
+			</Field>
 		</ConfigUI>
 	</Device>
 
@@ -162,7 +167,7 @@
 			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
-			<Field id="customFormula" type="textfield" visibleBindingId='voltageRatioSensorType' visibleBindingValue="0" > 
+			<Field id="customFormula" type="textfield" visibleBindingId='voltageRatioSensorType' visibleBindingValue="0" >
 				<Label>Formula to be applied to sensor reading</Label>
 			</Field>
 			<Field id="customState" type="textfield" visibleBindingId='voltageRatioSensorType' visibleBindingValue="0" >
@@ -181,7 +186,7 @@
 					<Label>Temperature scale to display</Label>
 					<List>
 						<Option value="F">Fahrenheit</Option>
-						<Option value="C">Celsius</Option>	
+						<Option value="C">Celsius</Option>
 					</List>
 			</Field>
 			<Field id="temperatureChangeTrigger" type="textfield" defaultValue="0.0">
@@ -241,7 +246,7 @@
 			<Field id="humidityChangeTrigger" type="textfield" defaultValue="0.0">
 					<Label>Humidity change trigger (in %RH):</Label>
 			</Field>
-			
+
 			<Field id="decimalPlaces" type="menu" defaultValue="2" >
 				<Label>Decimals places</Label>
 				<List>
@@ -290,7 +295,7 @@
 					<List>
 						<Option value="count">count</Option>
 						<Option value="timeChange">time (ms)</Option>
-						<Option value="frequency">frequency (Hz)</Option>	
+						<Option value="frequency">frequency (Hz)</Option>
 					</List>
 			</Field>
 

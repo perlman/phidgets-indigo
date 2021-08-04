@@ -23,6 +23,12 @@ class VoltageInputPhidget(PhidgetBase):
         self.dataInterval = dataInterval
         self.voltageChangeTrigger = voltageChangeTrigger
         self.sensorValueChangeTrigger = sensorValueChangeTrigger
+        self.decimalPlaces = int(self.indigoDevice.pluginProps.get("decimalPlaces", 2))
+        self.voltageSensorType = str(self.indigoDevice.pluginProps.get("voltageSensorType", 0))
+        self.customFormula = self.indigoDevice.pluginProps.get("customFormula", None)
+        self.customStateName = str(self.indigoDevice.pluginProps.get("customState", ""))
+        if not self.customStateName:  # for some reason a cleared field still has a value and the default is not used.
+            self.customStateName = 'custom'
         self.sensorUnit = None          # Last sensor unit
         self.sensorStateName = None     # Clean name for Indigo
 
@@ -46,19 +52,28 @@ class VoltageInputPhidget(PhidgetBase):
 
             newVoltageChangeTrigger = self.checkValueRange(
                 fieldname="voltageChangeTrigger", value=self.voltageChangeTrigger,
-                minValue=self.phidget.getMinVoltageChangeTrigger(), 
+                minValue=self.phidget.getMinVoltageChangeTrigger(),
                 maxValue=self.phidget.getMaxVoltageChangeTrigger())
             if newVoltageChangeTrigger is not None:
                 self.phidget.setVoltageChangeTrigger(newVoltageChangeTrigger)
 
             if self.sensorType != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
                 self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
-            
+
         except Exception as e:
             self.logger.error(traceback.format_exc())
 
     def onVoltageChangeHandler(self, ph, voltage):
         self.indigoDevice.updateStateOnServer("voltage", value=voltage, decimalPlaces=3) #self.decimalPlaces)
+        if self.voltageSensorType == '0':  # a generic voltage ratio device
+            if self.customFormula:
+                try:
+                    formula = lambda x: eval(self.customFormula)
+                    customValue = formula(float(voltage))
+                except Exception as e:
+                    self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
+                # self.logger.debug('for %s. Received: %s, Calculated: %s for name %s' %  (self.indigoDevice.name, voltage, customValue, self.customStateName))
+                self.indigoDevice.updateStateOnServer(self.customStateName, value=customValue, decimalPlaces=self.decimalPlaces)
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
         self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
@@ -77,13 +92,17 @@ class VoltageInputPhidget(PhidgetBase):
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorValue", "sensorValue", "sensorValue"))
             if self.sensorUnit and self.sensorUnit.name != "none":
                 newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
+        if self.customFormula:
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.customStateName, self.customStateName, self.customStateName))
         return newStatesList
-    
+
     def getDeviceDisplayStateId(self):
         if self.sensorType != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
             if self.sensorUnit and self.sensorUnit.name != "none":
                 return self.sensorStateName
             else:
                 return "sensorValue"
+        elif self.customFormula:
+            return self.customStateName
         else:
             return "voltage"

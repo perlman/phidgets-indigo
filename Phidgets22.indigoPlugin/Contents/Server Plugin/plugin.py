@@ -101,7 +101,7 @@ class Plugin(indigo.PluginBase):
         try:
             if 'dataInterval' in valuesDict:
                 valuesDict['dataInterval'] = int(valuesDict['dataInterval'])
-                if valuesDict['dataInterval'] >= 0 and valuesDict['dataInterval'] <= 1000:
+                if valuesDict['dataInterval'] >= 0 and valuesDict['dataInterval'] <= 5000:
                     pass
                 else:
                     returnValue = False
