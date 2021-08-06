@@ -27,10 +27,14 @@ class VoltageInputPhidget(PhidgetBase):
         self.voltageSensorType = str(self.indigoDevice.pluginProps.get("voltageSensorType", 0))
         self.customFormula = self.indigoDevice.pluginProps.get("customFormula", None)
         self.customStateName = str(self.indigoDevice.pluginProps.get("customState", ""))
+        self.sensorStateName = str(self.indigoDevice.pluginProps.get("sensorUnit", None))
         if not self.customStateName:  # for some reason a cleared field still has a value and the default is not used.
             self.customStateName = 'custom'
         self.sensorUnit = None          # Last sensor unit
-        self.sensorStateName = None     # Clean name for Indigo
+        # self.sensorStateName = None     # Clean name for Indigo
+
+        if self.sensorStateName:
+            self.indigoDevice.stateListOrDisplayStateIdChanged()
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -88,10 +92,19 @@ class VoltageInputPhidget(PhidgetBase):
     def getDeviceStateList(self):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltage", "voltage", "voltage"))
-        if self.sensorType != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
+        # if self.sensorType != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
+        #     newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorValue", "sensorValue", "sensorValue"))
+        #     if self.sensorUnit and self.sensorUnit.name != "none":
+        #         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
+
+        if self.sensorStateName != None:
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType('sensorValue', 'sensorValue', 'sensorValue'))
+        elif self.sensorType != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorValue", "sensorValue", "sensorValue"))
             if self.sensorUnit and self.sensorUnit.name != "none":
                 newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
+
         if self.customFormula:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.customStateName, self.customStateName, self.customStateName))
         return newStatesList

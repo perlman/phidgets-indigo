@@ -28,7 +28,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
         if not self.customStateName:  # for some reason a cleared field still has a value and the default is not used.
             self.customStateName = 'custom'
         self.sensorUnit = None          # Last sensor unit
-        self.sensorStateName = None     # Clean name for Indigo
+        # self.sensorStateName = None     # Clean name for Indigo
 
         if self.sensorStateName:
             self.indigoDevice.stateListOrDisplayStateIdChanged()
@@ -44,13 +44,13 @@ class VoltageRatioInputPhidget(PhidgetBase):
     def onAttachHandler(self, ph):
         super(VoltageRatioInputPhidget, self).onAttachHandler(ph)
         try:
-            self.phidget.setDataInterval(self.dataInterval)
-            self.phidget.setSensorType(self.sensorType)
+            # self.phidget.setDataInterval(self.dataInterval)
+            # self.phidget.setSensorType(self.sensorType)
             self.phidget.setVoltageRatioChangeTrigger(self.voltageRatioChangeTrigger)
             self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
 
         except Exception as e:
-            self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
+            self.logger.error('Indigo device: %s: %s' %  (self.indigoDevice.name, traceback.format_exc()))
 
 
     def onVoltageRatioChangeHandler(self, ph, voltageRatio):
@@ -80,7 +80,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
     def getDeviceStateList(self):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltageRatio", "voltageRatio", "voltageRatio"))
-        if self.sensorUnit != None:
+        if self.sensorStateName != None:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType('sensorValue', 'sensorValue', 'sensorValue'))
         elif self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:

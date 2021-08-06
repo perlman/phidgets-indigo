@@ -74,7 +74,7 @@ class Plugin(indigo.PluginBase):
 
     def validateDeviceConfigUi(self, valuesDict, typeId, devId):
         # TODO: Perform some type of verification on the fields?
-        self.logger.error("%s\n%s\n" % (valuesDict, typeId))
+        # self.logger.debug("%s\n%s\n" % (valuesDict, typeId))
         returnValue = True
         errorDict = indigo.Dict()
 
@@ -138,32 +138,30 @@ class Plugin(indigo.PluginBase):
 
 
     def getPhidgetSensorInfo(self, valuesDict, typeId, targetId):
-        self.logger.debug("typeId=%s, targetId=%s\nvaluesDict = %s\n" % (typeId, targetId, valuesDict))
+        # self.logger.debug("typeId=%s, targetId=%s\nvaluesDict = %s\n" % (typeId, targetId, valuesDict))
 
         if typeId == 'voltageInput':
-            phidgetType = True
+            analogPhidget = True
             valuesDict['voltageSensorType'] = valuesDict['voltageSensorType'].split('|')[0]
-            valuesDict['phidgetTypeEnum'] = valuesDict['deviceTypeLookup'].split('|')[1]
-            # if 'voltageRatioSensorType' in valuesDict: del valuesDict['voltageRatioSensorType']   #   valuesDict.pop('voltageSensorType', None)
         elif typeId == 'voltageRatioInput':
-            phidgetType = True
+            analogPhidget = True
             valuesDict['voltageRatioSensorType'] = valuesDict['deviceTypeLookup'].split('|')[0]
-            valuesDict['phidgetTypeEnum'] = valuesDict['deviceTypeLookup'].split('|')[1]
-            # if 'voltageSensorType' in valuesDict: del valuesDict['voltageSensorType']  #valuesDict.pop('voltageRatioSensorType', None)
         else:
-            phidgetType = False
+            analogPhidget = False
 
-        if phidgetType:
-            phLookup = valuesDict['phidgetTypeEnum'] # 'SENSOR_TYPE_' + phidgetType[0:-1]
+        if analogPhidget:
+            valuesDict['phidgetTypeEnum'] = valuesDict['deviceTypeLookup'].split('|')[1]
+            phLookup = valuesDict['phidgetTypeEnum']
             valuesDict['sensorFormula'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[0]
             valuesDict['sensorRange'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[1]
             sensorUnitAll = self.phidgetSensorInfo.getSensorInfo(phLookup)[2]
             valuesDict['sensorUnit'] = sensorUnitAll[0]
-            self.logger.debug("Lookup = %s, returned %s" % (phLookup, self.phidgetSensorInfo.getSensorInfo(phLookup)))
-            self.logger.debug("Formula = %s, Range = %s, Unit = %s\n" % (valuesDict['sensorFormula'], valuesDict['sensorRange'], valuesDict['sensorUnit'] ))
-            self.logger.debug("valuedDict = %s\n" % (valuesDict))
+            # self.logger.debug("Lookup = %s, returned %s" % (phLookup, self.phidgetSensorInfo.getSensorInfo(phLookup)))
+            # self.logger.debug("Formula = %s, Range = %s, Unit = %s\n" % (valuesDict['sensorFormula'], valuesDict['sensorRange'], valuesDict['sensorUnit'] ))
+            # self.logger.debug("valuedDict = %s\n" % (valuesDict))
 
         return valuesDict
+
     #
     # Interact with the phidgets
     #
