@@ -137,22 +137,27 @@ class Plugin(indigo.PluginBase):
         return self.phidgetInfo.getPhidgetTypeMenu(classes)
 
 
-    def getPhidgetSensorInfo(self, valuesDict, typeId="", targetId=0):
-        # self.logger.debug("valuedDict = %s\n" % (valuesDict))
+    def getPhidgetSensorInfo(self, valuesDict, typeId, targetId):
+        self.logger.debug("typeId=%s, targetId=%s\nvaluesDict = %s\n" % (typeId, targetId, valuesDict))
 
-        if 'voltageRatioSensorType' in valuesDict:
-            phidgetType = valuesDict['voltageRatioSensorType']
-        elif 'voltageSensorType' in valuesDict:
+        if typeId == 'voltageInput':
             phidgetType = valuesDict['voltageSensorType']
+            if 'voltageRatioSensorType' in valuesDict: del valuesDict['voltageRatioSensorType']   #   valuesDict.pop('voltageSensorType', None)
+        elif typeId == 'voltageRatioInput':
+            phidgetType = valuesDict['voltageRatioSensorType']
+            if 'voltageSensorType' in valuesDict: del valuesDict['voltageSensorType']  #valuesDict.pop('voltageRatioSensorType', None)
         else:
             phidgetType = None
+
         if phidgetType:
             phLookup = 'SENSOR_TYPE_' + phidgetType[0:-1]
             valuesDict['sensorFormula'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[0]
             valuesDict['sensorRange'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[1]
             sensorUnitAll = self.phidgetSensorInfo.getSensorInfo(phLookup)[2]
             valuesDict['sensorUnit'] = sensorUnitAll[0]
-            # self.logger.debug("Lookup = %s| %s| %s|%s|\n" % (phLookup, valuesDict['sensorFormula'], valuesDict['sensorRange'], valuesDict['sensorUnit'] ))
+            self.logger.debug("Lookup = %s, returned %s" % (phLookup, self.phidgetSensorInfo.getSensorInfo(phLookup)))
+            self.logger.debug("Formula = %s, Range = %s, Unit = %s\n" % (valuesDict['sensorFormula'], valuesDict['sensorRange'], valuesDict['sensorUnit'] ))
+            self.logger.debug("valuedDict = %s\n" % (valuesDict))
 
         return valuesDict
     #
