@@ -15,8 +15,8 @@ import phidget_util
 class VoltageRatioInputPhidget(PhidgetBase):
     def __init__(self, *args, **kwargs):
         super(VoltageRatioInputPhidget, self).__init__(phidget=VoltageRatioInput(), *args, **kwargs)
- 
-        self.sensorType = int(self.indigoDevice.pluginProps.get("voltageRatioSensorType", 0))   
+
+        self.sensorType = int(self.indigoDevice.pluginProps.get("voltageRatioSensorType", 0))
         self.dataInterval = int(self.indigoDevice.pluginProps.get("dataInterval", 0))
         self.voltageRatioChangeTrigger = float(self.indigoDevice.pluginProps.get("voltageRatioChangeTrigger", 0))
         self.sensorValueChangeTrigger = float(self.indigoDevice.pluginProps.get("sensorValueChangeTrigger", 0))
@@ -24,18 +24,23 @@ class VoltageRatioInputPhidget(PhidgetBase):
         self.voltageRatioSensorType = str(self.indigoDevice.pluginProps.get("voltageRatioSensorType", 0))
         self.customFormula = self.indigoDevice.pluginProps.get("customFormula", None)
         self.customStateName = str(self.indigoDevice.pluginProps.get("customState", ""))
+        self.sensorStateName = str(self.indigoDevice.pluginProps.get("sensorUnit", None))
         if not self.customStateName:  # for some reason a cleared field still has a value and the default is not used.
             self.customStateName = 'custom'
         self.sensorUnit = None          # Last sensor unit
         self.sensorStateName = None     # Clean name for Indigo
-        
+
+        if self.sensorStateName:
+            self.indigoDevice.stateListOrDisplayStateIdChanged()
+
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
         self.phidget.setOnAttachHandler(self.onAttachHandler)
         self.phidget.setOnDetachHandler(self.onDetachHandler)
         self.phidget.setOnVoltageRatioChangeHandler(self.onVoltageRatioChangeHandler)
         self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
-        
+
+
     def onAttachHandler(self, ph):
         super(VoltageRatioInputPhidget, self).onAttachHandler(ph)
         try:
@@ -46,7 +51,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
 
         except Exception as e:
             self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
-        
+
 
     def onVoltageRatioChangeHandler(self, ph, voltageRatio):
         self.indigoDevice.updateStateOnServer("voltageRatio", value=voltageRatio, decimalPlaces=3) #self.decimalPlaces)
@@ -60,7 +65,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
                     self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
                 # self.logger.debug('for %s. Received: %s, Calculated: %s for name' %  (self.indigoDevice.name, voltageRatio, customValue, self.customStateName))
                 self.indigoDevice.updateStateOnServer(self.customStateName, value=customValue, decimalPlaces=self.decimalPlaces)
-        
+
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
         self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
@@ -75,14 +80,18 @@ class VoltageRatioInputPhidget(PhidgetBase):
     def getDeviceStateList(self):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltageRatio", "voltageRatio", "voltageRatio"))
-        if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
+        if self.sensorUnit != None:
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType('sensorValue', 'sensorValue', 'sensorValue'))
+        elif self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorValue", "sensorValue", "sensorValue"))
             if self.sensorUnit and self.sensorUnit.name != "none":
                 newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
+
         if self.customFormula:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.customStateName, self.customStateName, self.customStateName))
         return newStatesList
-    
+
     def getDeviceDisplayStateId(self):
         if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
             if self.sensorUnit and self.sensorUnit.name != "none":
@@ -90,6 +99,6 @@ class VoltageRatioInputPhidget(PhidgetBase):
             else:
                 return "sensorValue"
         elif self.customFormula:
-            return self.customStateName     
+            return self.customStateName
         else:
             return "voltageRatio"

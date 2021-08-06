@@ -133,8 +133,7 @@ class PhidgetInfo(object):
         # Example: myArray = [("option1", "First Option"),("option2","Second Option")]
         menu = []
         for phidget_class in classes:
-            for item in self.phidgetInfo.get(phidget_class, {}):            
+            for item in self.phidgetInfo.get(phidget_class, {}):
                 menu.append( (item['value'], item['description']) )
         return sorted(menu, key=lambda x: (x[1][0].isdigit(), x[1]))
-        
 

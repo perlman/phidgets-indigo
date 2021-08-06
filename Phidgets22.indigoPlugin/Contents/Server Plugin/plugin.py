@@ -11,6 +11,9 @@ from Phidget22.Net import Net, PhidgetServerType
 from Phidget22.Phidget import Phidget
 from Phidget22.PhidgetException import PhidgetException
 from PhidgetInfo import PhidgetInfo
+from SensorInfo import PhidgetSensorInfo
+
+
 
 # Classes to describe network & channel search info
 from phidget import ChannelInfo, NetInfo
@@ -36,6 +39,7 @@ class Plugin(indigo.PluginBase):
         self.activePhidgets = {} # Map between Indigio ID and current instance of phidget
 
         self.phidgetInfo = PhidgetInfo(phidgetInfoFile='../Resources/phidgets.json')
+        self.phidgetSensorInfo = PhidgetSensorInfo()
 
         self.logger.setLevel(logging.DEBUG)
 
@@ -126,11 +130,31 @@ class Plugin(indigo.PluginBase):
 
         return (returnValue, valuesDict, errorDict)
 
+    # Callbacks from Devices.xml
     def getPhidgetTypeMenu(self, filter="", valuesDict=None, typeId="", targetId=0):
         classes = filter.split(',')
 
         return self.phidgetInfo.getPhidgetTypeMenu(classes)
 
+
+    def getPhidgetSensorInfo(self, valuesDict, typeId="", targetId=0):
+        # self.logger.debug("valuedDict = %s\n" % (valuesDict))
+
+        if 'voltageRatioSensorType' in valuesDict:
+            phidgetType = valuesDict['voltageRatioSensorType']
+        elif 'voltageSensorType' in valuesDict:
+            phidgetType = valuesDict['voltageSensorType']
+        else:
+            phidgetType = None
+        if phidgetType:
+            phLookup = 'SENSOR_TYPE_' + phidgetType[0:-1]
+            valuesDict['sensorFormula'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[0]
+            valuesDict['sensorRange'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[1]
+            sensorUnitAll = self.phidgetSensorInfo.getSensorInfo(phLookup)[2]
+            valuesDict['sensorUnit'] = sensorUnitAll[0]
+            # self.logger.debug("Lookup = %s| %s| %s|%s|\n" % (phLookup, valuesDict['sensorFormula'], valuesDict['sensorRange'], valuesDict['sensorUnit'] ))
+
+        return valuesDict
     #
     # Interact with the phidgets
     #

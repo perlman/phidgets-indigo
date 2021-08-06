@@ -61,6 +61,7 @@
 			<Field id="voltageSensorType" type="menu" defaultValue="">
 				<Label>Voltage input type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="VoltageSensorType"/>
+				<CallbackMethod>getPhidgetSensorInfo</CallbackMethod>
 			</Field>
 
 			 <Field id="isVintHub" type="checkbox" defaultValue="False">
@@ -123,7 +124,13 @@
 			<Field id="voltageRatioSensorType" type="menu" defaultValue="">
 				<Label>Voltage input type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="VoltageRatioSensorType"/>
+				<CallbackMethod>getPhidgetSensorInfo</CallbackMethod>
 			</Field>
+
+			<!-- <Field id="phidgetSensorInfo" type="menu" defaultValue="0" defaultValue="0" dynamicReload="true">
+				<Label>Sensor info:</Label>
+				<List class="self" method="getPhidgetSensorInfo" filter="VoltageRatioSensorType"/>
+			</Field> -->
 
 			<Field id="dataInterval" type="textfield" defaultValue="1000">
 					<Label>Data interval (ms):</Label>
