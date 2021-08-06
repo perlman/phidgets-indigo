@@ -35,7 +35,7 @@ class PhidgetSensorInfo(object):
         self.stateNames['PHIDUNIT_AMPERE'] = ["ampere","A"]
         self.stateNames['PHIDUNIT_KILOPASCAL'] = ["kilopascal","kPa"]
         self.stateNames['PHIDUNIT_VOLT'] = ["volt","V"]
-        self.stateNames['PHIDUNIT_DEGREE_CELCIUS'] = ["degree Celsius","C"]
+        self.stateNames['PHIDUNIT_DEGREE_CELCIUS'] = ["degreeCelsius","C"]
         #self.stateNames['PHIDUNIT_DEGREE_CELCIUS'] = ["degree Celsius","\xC2\xB0""C"]
         self.stateNames['PHIDUNIT_LUX'] = ["lux","lx"]
         self.stateNames['PHIDUNIT_GAUSS'] = ["gauss","G"]
