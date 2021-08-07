@@ -130,7 +130,9 @@ class Plugin(indigo.PluginBase):
 
         return (returnValue, valuesDict, errorDict)
 
+    #
     # Callbacks from Devices.xml
+    #
     def getPhidgetTypeMenu(self, filter="", valuesDict=None, typeId="", targetId=0):
         classes = filter.split(',')
 
@@ -138,11 +140,11 @@ class Plugin(indigo.PluginBase):
 
 
     def getPhidgetSensorInfo(self, valuesDict, typeId, targetId):
-        # self.logger.debug("typeId=%s, targetId=%s\nvaluesDict = %s\n" % (typeId, targetId, valuesDict))
+        self.logger.debug("typeId=%s, targetId=%s\nvaluesDict = %s\n" % (typeId, targetId, valuesDict))
 
         if typeId == 'voltageInput':
             analogPhidget = True
-            valuesDict['voltageSensorType'] = valuesDict['voltageSensorType'].split('|')[0]
+            valuesDict['voltageSensorType'] = valuesDict['deviceTypeLookup'].split('|')[0]
         elif typeId == 'voltageRatioInput':
             analogPhidget = True
             valuesDict['voltageRatioSensorType'] = valuesDict['deviceTypeLookup'].split('|')[0]
@@ -156,9 +158,9 @@ class Plugin(indigo.PluginBase):
             valuesDict['sensorRange'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[1]
             sensorUnitAll = self.phidgetSensorInfo.getSensorInfo(phLookup)[2]
             valuesDict['sensorUnit'] = sensorUnitAll[0]
-            # self.logger.debug("Lookup = %s, returned %s" % (phLookup, self.phidgetSensorInfo.getSensorInfo(phLookup)))
-            # self.logger.debug("Formula = %s, Range = %s, Unit = %s\n" % (valuesDict['sensorFormula'], valuesDict['sensorRange'], valuesDict['sensorUnit'] ))
-            # self.logger.debug("valuedDict = %s\n" % (valuesDict))
+            self.logger.debug("Lookup = %s, returned %s" % (phLookup, self.phidgetSensorInfo.getSensorInfo(phLookup)))
+            self.logger.debug("Formula = %s, Range = %s, Unit = %s\n" % (valuesDict['sensorFormula'], valuesDict['sensorRange'], valuesDict['sensorUnit'] ))
+            self.logger.debug("valuedDict = %s\n" % (valuesDict))
 
         return valuesDict
 

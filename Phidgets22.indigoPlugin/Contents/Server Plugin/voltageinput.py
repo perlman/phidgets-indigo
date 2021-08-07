@@ -97,7 +97,9 @@ class VoltageInputPhidget(PhidgetBase):
         #     if self.sensorUnit and self.sensorUnit.name != "none":
         #         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
 
-        if self.sensorStateName != None and self.sensorStateName not in self.indigoDevice.states:
+        if self.customFormula:
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.customStateName, self.customStateName, self.customStateName))
+        elif self.sensorStateName != None and self.sensorStateName not in self.indigoDevice.states:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType('sensorValue', 'sensorValue', 'sensorValue'))
         elif self.sensorType != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
@@ -105,8 +107,7 @@ class VoltageInputPhidget(PhidgetBase):
             if self.sensorUnit and self.sensorUnit.name != "none":
                 newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
 
-        if self.customFormula:
-            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.customStateName, self.customStateName, self.customStateName))
+
         return newStatesList
 
     def getDeviceDisplayStateId(self):

@@ -50,7 +50,8 @@ class VoltageRatioInputPhidget(PhidgetBase):
             self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
 
         except Exception as e:
-            self.logger.error('Indigo device: %s: %s' %  (self.indigoDevice.name, traceback.format_exc()))
+            self.logger.error('Indigo device: %s failed to attach' %  (self.indigoDevice.name))
+            # self.logger.error('Indigo device: %s: %s' %  (self.indigoDevice.name, traceback.format_exc()))
 
 
     def onVoltageRatioChangeHandler(self, ph, voltageRatio):
@@ -79,12 +80,11 @@ class VoltageRatioInputPhidget(PhidgetBase):
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
-
-
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltageRatio", "voltageRatio", "voltageRatio"))
 
-
-        if self.sensorStateName != None and self.sensorStateName not in self.indigoDevice.states:
+        if self.customFormula:
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.customStateName, self.customStateName, self.customStateName))
+        elif self.sensorStateName != None and self.sensorStateName not in self.indigoDevice.states:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType('sensorValue', 'sensorValue', 'sensorValue'))
         elif self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
@@ -92,8 +92,6 @@ class VoltageRatioInputPhidget(PhidgetBase):
             if self.sensorUnit and self.sensorUnit.name != "none":
                 newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
 
-        if self.customFormula:
-            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.customStateName, self.customStateName, self.customStateName))
         return newStatesList
 
     def getDeviceDisplayStateId(self):

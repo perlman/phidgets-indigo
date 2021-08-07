@@ -36,9 +36,9 @@ class PhidgetBase(object):
     This will be extended for the various types of devices.
     """
     PHIDGET_DEFAULT_DATA_INTERVAL = 1000  # ms
-    PHIDGET_INITIAL_CONNECT_TIMEOUT = 5   # s
+    # PHIDGET_INITIAL_CONNECT_TIMEOUT = 5   # s
 
-    def __init__(self, phidget, indigo_plugin=None, channelInfo=ChannelInfo(), indigoDevice=None, logger=None, decimalPlaces=-1):
+    def __init__(self, phidget, indigo_plugin, channelInfo=ChannelInfo(), indigoDevice=None, logger=None, decimalPlaces=-1):
         self.phidget = phidget      # PhidgetAPI object for this phidget
         self.phidget.parent = self  # Reference back to this object from the PhidgetAPI
         self.logger = logger        # Where do we log?
@@ -46,6 +46,8 @@ class PhidgetBase(object):
         self.indigoDevice = indigoDevice
         self.indigo_plugin = indigo_plugin
         self.decimalPlaces = decimalPlaces # Number of decimal places for Indigo do display for numbers. -1 means default (likely 5)
+        self.PHIDGET_INITIAL_CONNECT_TIMEOUT = int(indigo_plugin.pluginPrefs.get('attachTimeout', '5'))
+        # self.logger.error(PHIDGET_INITIAL_CONNECT_TIMEOUT)
 
     def start(self):
         self.logger.debug("Creating " + self.__class__.__name__ + " for Indigo device '" + str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
@@ -86,7 +88,8 @@ class PhidgetBase(object):
     def onAttachHandler(self, ph):
         self.timer.cancel()
         self.indigoDevice.setErrorStateOnServer(None)
-        phidget_util.logPhidgetEvent(ph, self.logger.info, "Attached '" + self.indigoDevice.name + "'")
+        phidget_util.logPhidgetEvent(ph, self.logger.debug, "Attached '" + self.indigoDevice.name + "'")
+        self.logger.info("Attached '" + self.indigoDevice.name + "'")
 
     def stop(self):
         self.timer.cancel()
