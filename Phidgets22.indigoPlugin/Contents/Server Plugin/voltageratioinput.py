@@ -79,8 +79,12 @@ class VoltageRatioInputPhidget(PhidgetBase):
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
+
+
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltageRatio", "voltageRatio", "voltageRatio"))
-        if self.sensorStateName != None:
+
+
+        if self.sensorStateName != None and self.sensorStateName not in self.indigoDevice.states:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType('sensorValue', 'sensorValue', 'sensorValue'))
         elif self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:

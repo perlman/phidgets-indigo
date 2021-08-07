@@ -33,7 +33,7 @@ class ChannelInfo():
 class PhidgetBase(object):
     """
     Base class for phidget devices living in Indigo.
-    This will be extended for the various types of devices.   
+    This will be extended for the various types of devices.
     """
     PHIDGET_DEFAULT_DATA_INTERVAL = 1000  # ms
     PHIDGET_INITIAL_CONNECT_TIMEOUT = 5   # s
@@ -74,9 +74,11 @@ class PhidgetBase(object):
 
     def onErrorHandler(self, ph, errorCode, errorString):
         """Default error handler for Phidgets."""
-        self.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ") for Indigo device '" +
-            str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
-    
+        # drop sample overrun (4098) and dropped packet (4099) errors
+        if errorCode != 4098 and errorCode != 4099:
+            self.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ") for Indigo device '" +
+                str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
+
     def onDetachHandler(self, ph):
         self.indigoDevice.setErrorStateOnServer('Detached')
         phidget_util.logPhidgetEvent(ph, self.logger.debug, "Detach")
