@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import string
 import traceback
+from time import sleep
 
 import indigo
 
@@ -48,6 +49,14 @@ class VoltageRatioInputPhidget(PhidgetBase):
             self.phidget.setSensorType(self.sensorType)
             self.phidget.setVoltageRatioChangeTrigger(self.voltageRatioChangeTrigger)
             self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
+
+            # self.logger.error(self.phidget.getSensorValue())
+            # try:
+            #     foo = self.phidget.getSensorUnit()
+            #     self.logger.error('%s:%s' % (self.sensorType, foo))
+            # except Exception as e:
+            #     self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
+
 
         except Exception as e:
             self.logger.error('Indigo device: %s failed to attach' %  (self.indigoDevice.name))

@@ -89,7 +89,7 @@ class PhidgetBase(object):
         self.timer.cancel()
         self.indigoDevice.setErrorStateOnServer(None)
         phidget_util.logPhidgetEvent(ph, self.logger.debug, "Attached '" + self.indigoDevice.name + "'")
-        self.logger.info("Attached '" + self.indigoDevice.name + "'")
+        # self.logger.debug("Attached '" + self.indigoDevice.name + "'")
 
     def stop(self):
         self.timer.cancel()

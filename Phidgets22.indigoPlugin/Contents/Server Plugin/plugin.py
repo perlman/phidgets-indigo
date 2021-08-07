@@ -266,11 +266,19 @@ class Plugin(indigo.PluginBase):
             self.activePhidgets[device.id] = newPhidget
             newPhidget.start()
             device.stateListOrDisplayStateIdChanged()
+
+            self.logger.info("Adding %s" % (device.name))
         except PhidgetException as e:
             self.logger.error("%d: %s\n" % (e.code, e.details))
             self.logger.error(traceback.format_exc())
         except Exception as e:
             self.logger.error(traceback.format_exc())
+
+    def _postStartup(self):
+        super(Plugin, self)._postStartup()
+
+        self.logger.info("----------------\n")
+        self.logger.info("%s initialization complete.\n" % "Phidgets22 plugin")
 
     #
     # Methods related to shutdown
