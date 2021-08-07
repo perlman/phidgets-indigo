@@ -80,14 +80,26 @@ class VoltageInputPhidget(PhidgetBase):
                 self.indigoDevice.updateStateOnServer(self.customStateName, value=customValue, decimalPlaces=self.decimalPlaces)
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
+        sensorState = str(sensorUnit.name).replace(' ', '')
+
+        # self.logger.error('for dev %s. value: %s, State name: %s' % (self.indigoDevice.name, str(sensorValue), sensorState))
+
         self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
-        if self.sensorUnit is None or self.sensorUnit.name != sensorUnit.name:
-            # First update with a new sensorUnit. Trigger an Indigo refresh of getDeviceStateList()
-            self.sensorUnit = sensorUnit
-            self.sensorStateName = filter(lambda x: x in string.ascii_letters, self.sensorUnit.name)
-            self.indigoDevice.stateListOrDisplayStateIdChanged()
-        elif self.sensorUnit and self.sensorUnit.name != "none":
-            self.indigoDevice.updateStateOnServer(self.sensorStateName, value=sensorValue, decimalPlaces=self.decimalPlaces)
+
+        try:
+            if sensorState not in self.indigoDevice.states:
+                self.indigoDevice.stateListOrDisplayStateIdChanged()
+            self.indigoDevice.updateStateOnServer(sensorState, value=sensorValue, decimalPlaces=self.decimalPlaces)
+        except Exception as e:
+            self.logger.error('%s reveived for device: %s, state name: %s' %  (traceback.format_exc(), self.indigoDevice.name, sensorState))
+        # self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
+        # if self.sensorUnit is None or self.sensorUnit.name != sensorUnit.name:
+        #     # First update with a new sensorUnit. Trigger an Indigo refresh of getDeviceStateList()
+        #     self.sensorUnit = sensorUnit
+        #     self.sensorStateName = filter(lambda x: x in string.ascii_letters, self.sensorUnit.name)
+        #     self.indigoDevice.stateListOrDisplayStateIdChanged()
+        # elif self.sensorUnit and self.sensorUnit.name != "none":
+        #     self.indigoDevice.updateStateOnServer(self.sensorStateName, value=sensorValue, decimalPlaces=self.decimalPlaces)
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
