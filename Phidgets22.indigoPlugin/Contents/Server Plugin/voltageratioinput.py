@@ -45,7 +45,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
         super(VoltageRatioInputPhidget, self).onAttachHandler(ph)
         try:
             # self.phidget.setDataInterval(self.dataInterval)
-            # self.phidget.setSensorType(self.sensorType)
+            self.phidget.setSensorType(self.sensorType)
             self.phidget.setVoltageRatioChangeTrigger(self.voltageRatioChangeTrigger)
             self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
 
@@ -69,6 +69,9 @@ class VoltageRatioInputPhidget(PhidgetBase):
 
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
+        # self.logger.error('for dev %s. value: %s, State name: %s' % (self.indigoDevice.name, str(sensorValue), "sensorUnit"))
+        # foo = self.phidget.getSensorUnit()
+        # self.logger.error('GOT HERE with %s' % type(foo))
         self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
         if self.sensorUnit is None or self.sensorUnit.name != sensorUnit.name:
             # First update with a new sensorUnit. Trigger an Indigo refresh of getDeviceStateList()

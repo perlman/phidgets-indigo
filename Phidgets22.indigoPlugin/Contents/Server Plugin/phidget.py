@@ -76,7 +76,7 @@ class PhidgetBase(object):
 
     def onErrorHandler(self, ph, errorCode, errorString):
         """Default error handler for Phidgets."""
-        # drop sample overrun (4098) and dropped packet (4099) errors
+        # do not log sample overrun (4098) and dropped packet (4099) errors
         if errorCode != 4098 and errorCode != 4099:
             self.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ") for Indigo device '" +
                 str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
@@ -95,7 +95,6 @@ class PhidgetBase(object):
         self.timer.cancel()
         self.logger.debug("Stopping " + self.__class__.__name__ + " for Indigo device '" + str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
         self.phidget.close()
-
 
     #
     # Methods to be implemented by subclasses
