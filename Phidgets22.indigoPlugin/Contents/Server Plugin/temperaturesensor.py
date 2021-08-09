@@ -43,7 +43,7 @@ class TemperatureSensorPhidget(PhidgetBase):
 
             newTemperatureChangeTrigger = self.checkValueRange(
                 fieldname="temperatureChangeTrigger", value=self.temperatureChangeTrigger,
-                minValue=self.phidget.getMinTemperatureChangeTrigger(), 
+                minValue=self.phidget.getMinTemperatureChangeTrigger(),
                 maxValue=self.phidget.getMaxTemperatureChangeTrigger())
             if newTemperatureChangeTrigger is not None:
                 self.phidget.setTemperatureChangeTrigger(newTemperatureChangeTrigger)
@@ -61,7 +61,7 @@ class TemperatureSensorPhidget(PhidgetBase):
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("tempF", "tempF", "tempF"))
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("tempC", "tempC", "tempC"))
         return newStatesList
-    
+
     def getDeviceDisplayStateId(self):
         if self.displayTempUnit.upper() == "F":
             return "tempF"

@@ -1,0 +1,1549 @@
+INFO [phidget22][2021-08-09T14:04:09]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:04:09]:Starting Networking
+INFO [phidget22net][2021-08-09T14:04:09]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:04:09]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:04:09]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T14:04:09]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:04:09]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T14:04:10]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T14:04:10]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:04:10]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T14:04:10]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T14:04:10]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:04:10]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T14:04:10]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:04:10]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T14:04:10]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:04:10]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:04:10]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T14:04:10]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T14:04:10]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:04:10]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T14:04:10]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T14:04:10]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:04:10]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T14:04:10]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:04:10]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T14:04:10]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:04:10]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:04:10]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T14:04:10]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T14:04:10]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:04:10]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T14:04:10]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:04:10]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:04:10]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:04:10]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T14:04:10]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T14:04:10]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:04:10]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T14:04:10]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T14:04:10]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:04:11]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:04:11]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:04:11]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:04:11]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:04:11]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T14:04:11]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:04:11]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:04:11]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T14:04:11]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:04:11]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:04:11]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T14:04:11]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T14:04:11]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:04:11]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T14:04:11]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T14:04:11]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:04:11]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:04:11]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:04:11]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T14:04:11]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:04:11]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:04:11]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T14:04:11]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:04:11]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22net][2021-08-09T14:04:11]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:04:11]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:04:11]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T14:04:11]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T14:04:11]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:04:11]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T14:04:11]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T14:04:11]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22][2021-08-09T14:21:11]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:21:11]:Starting Networking
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:21:11]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22netctl][2021-08-09T14:21:11]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22netctl][2021-08-09T14:21:11]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry for CM-Heater rediscovered
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:21:11]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:21:11]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T14:21:11]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22netctl][2021-08-09T14:21:11]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry for CM-Maison rediscovered
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T14:21:11]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T14:21:11]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:21:11]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:21:11]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:21:11]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T14:21:11]:server handshake 'phid22device' 2.2
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T14:21:11]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:21:11]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T14:21:11]:connected to server 'CM-Heater'
+INFO [phidget22net][2021-08-09T14:21:11]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T14:21:11]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:21:11]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T14:21:11]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:21:11]:server handshake 'phid22device' 2.2
+WARN [phidget22][2021-08-09T14:21:11]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:21:11]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T14:21:11]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:21:11]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:21:11]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:21:11]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T14:21:11]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T14:21:11]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:21:11]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T14:21:11]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:21:11]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:21:11]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T14:21:11]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T14:21:11]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T14:21:11]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:21:11]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22][2021-08-09T14:23:17]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:23:17]:Starting Networking
+ERR [phidget22][2021-08-09T14:23:17]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:24:14]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:24:14]:Starting Networking
+ERR [phidget22][2021-08-09T14:24:14]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:25:11]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:25:11]:Starting Networking
+ERR [phidget22][2021-08-09T14:25:11]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:25:51]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:25:51]:Starting Networking
+ERR [phidget22][2021-08-09T14:25:51]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:27:33]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:27:33]:Starting Networking
+INFO [phidget22][2021-08-09T14:28:06]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:28:06]:Starting Networking
+INFO [phidget22][2021-08-09T14:28:49]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:28:49]:Starting Networking
+INFO [phidget22][2021-08-09T14:32:09]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:32:09]:Starting Networking
+ERR [phidget22][2021-08-09T14:32:09]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:32:24]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:32:24]:Starting Networking
+ERR [phidget22][2021-08-09T14:32:24]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:33:41]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:33:41]:Starting Networking
+ERR [phidget22][2021-08-09T14:33:41]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:34:33]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:34:33]:Starting Networking
+ERR [phidget22][2021-08-09T14:34:33]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:35:22]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:35:22]:Starting Networking
+ERR [phidget22][2021-08-09T14:35:22]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:36:14]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:36:14]:Starting Networking
+ERR [phidget22][2021-08-09T14:36:14]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:36:36]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:36:36]:Starting Networking
+ERR [phidget22][2021-08-09T14:36:36]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:37:00]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:37:00]:Starting Networking
+ERR [phidget22][2021-08-09T14:37:00]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T14:38:25]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:38:25]:Starting Networking
+INFO [phidget22net][2021-08-09T14:38:25]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:38:25]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:38:25]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:38:25]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:38:25]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T14:38:25]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T14:38:25]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:38:25]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T14:38:25]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T14:38:25]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:38:27]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.129:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:38:27]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:38:27]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.129:5661)
+INFO [phidget22net][2021-08-09T14:38:27]:Starting client connection to '192.168.5.129:5661'
+INFO [phidget22net][2021-08-09T14:38:27]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:38:27]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T14:38:27]:server netconn://192.168.5.129:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:38:27]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:38:27]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:38:27]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T14:38:27]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T14:38:27]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:38:27]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T14:38:27]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T14:38:27]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:38:27]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T14:38:27]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:38:27]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T14:38:27]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:38:27]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:38:27]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:38:27]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:38:27]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T14:38:27]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:38:27]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T14:38:27]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:38:27]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T14:38:27]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T14:38:27]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:38:27]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T14:38:27]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:38:27]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:38:27]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:38:27]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T14:38:27]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T14:38:27]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:38:27]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T14:38:27]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T14:38:27]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:38:28]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:38:28]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:38:28]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T14:38:28]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:38:28]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:38:28]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T14:38:28]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:38:28]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:38:28]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:38:28]:network control entry for CM-Maison rediscovered
+INFO [phidget22netctl][2021-08-09T14:38:28]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T14:38:28]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T14:38:28]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:38:28]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T14:38:28]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T14:38:28]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T14:38:28]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:38:28]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22][2021-08-09T14:39:55]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:39:55]:Starting Networking
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:39:55]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:39:55]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:39:55]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:39:55]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:39:55]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T14:39:55]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T14:39:55]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22netctl][2021-08-09T14:39:55]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T14:39:55]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T14:39:55]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T14:39:55]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:39:55]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:39:55]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T14:39:55]:connected to server 'CM-Heater'
+INFO [phidget22net][2021-08-09T14:39:55]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T14:39:55]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Poulaller
+INFO [phidget22net][2021-08-09T14:39:55]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T14:39:55]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:39:55]:Discovered Server: CM-Heater
+INFO [phidget22net][2021-08-09T14:39:55]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry for CM-Heater rediscovered
+WARN [phidget22][2021-08-09T14:39:55]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:39:55]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T14:39:55]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:39:55]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:39:55]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:39:55]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T14:39:55]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T14:39:55]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:39:55]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:39:55]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:39:55]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T14:39:55]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:39:55]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T14:39:55]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T14:39:55]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T14:39:56]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:39:56]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22][2021-08-09T14:41:35]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:41:35]:Starting Networking
+INFO [phidget22net][2021-08-09T14:41:35]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:41:35]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:41:35]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:41:35]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:41:35]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T14:41:35]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T14:41:35]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:41:35]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T14:41:35]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T14:41:35]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:41:35]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:41:35]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:41:35]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T14:41:35]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:41:35]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22net][2021-08-09T14:41:35]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T14:41:35]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:41:35]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T14:41:35]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T14:41:35]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:41:35]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:41:35]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:41:35]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:41:35]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:41:35]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T14:41:35]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T14:41:35]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:41:35]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T14:41:35]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T14:41:35]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T14:41:35]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:41:35]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22][2021-08-09T14:42:01]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:42:01]:Starting Networking
+INFO [phidget22net][2021-08-09T14:42:01]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:42:01]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:42:01]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:42:01]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:42:01]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T14:42:01]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:42:01]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:42:01]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T14:42:01]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:42:01]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:42:01]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:42:01]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:42:01]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:42:01]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22netctl][2021-08-09T14:42:01]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T14:42:01]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T14:42:01]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T14:42:01]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T14:42:01]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:42:01]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:42:01]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T14:42:01]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T14:42:01]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:42:01]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T14:42:01]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T14:42:01]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:42:01]:server handshake 'phid22device' 2.2
+WARN [phidget22][2021-08-09T14:42:01]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:42:01]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T14:42:01]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T14:42:01]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T14:42:01]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:42:01]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:42:01]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:42:01]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T14:42:02]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:42:02]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:42:02]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:42:02]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:42:02]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:42:02]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:42:02]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22netctl][2021-08-09T14:42:02]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T14:42:02]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:42:02]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:42:02]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T14:42:02]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T14:42:02]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:42:02]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:42:02]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T14:42:02]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:42:02]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T14:42:02]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T14:42:02]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:42:02]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:42:02]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:42:02]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T14:42:02]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:42:02]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T14:42:02]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T14:42:02]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:42:02]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T14:42:02]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T14:42:02]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:42:03]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:42:03]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:42:03]:network control entry for CM-Portail rediscovered
+INFO [phidget22][2021-08-09T14:42:50]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:42:50]:Starting Networking
+ERR [phidget22][2021-08-09T14:42:50]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22net][2021-08-09T14:42:50]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:42:50]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:42:50]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:42:50]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:42:50]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:42:50]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T14:42:50]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:42:50]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:42:50]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T14:42:50]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:42:50]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T14:42:50]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T14:42:50]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T14:42:50]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:42:50]:Discovered Server: CM-Portail
+INFO [phidget22net][2021-08-09T14:42:50]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22netctl][2021-08-09T14:42:50]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T14:42:50]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:42:50]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:42:50]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:42:50]:server handshake 'phid22device' 2.2
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T14:42:50]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T14:42:50]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:42:50]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:42:50]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T14:42:50]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T14:42:50]:connected to server 'CM-Poulaller'
+INFO [phidget22][2021-08-09T14:43:58]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T14:43:58]:Starting Networking
+INFO [phidget22net][2021-08-09T14:43:58]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:43:58]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:43:58]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:43:58]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:43:58]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T14:43:58]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T14:43:58]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:43:58]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T14:43:58]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T14:43:58]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.129:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:43:59]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.129:5661)
+INFO [phidget22netctl][2021-08-09T14:43:59]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.129:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry for CM-Heater rediscovered
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T14:43:59]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:43:59]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:43:59]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T14:43:59]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T14:43:59]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:43:59]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22net][2021-08-09T14:43:59]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T14:43:59]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T14:43:59]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T14:43:59]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T14:43:59]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T14:43:59]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:43:59]:server handshake 'phid22device' 2.2
+WARN [phidget22][2021-08-09T14:43:59]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:43:59]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T14:43:59]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:43:59]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T14:43:59]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T14:43:59]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:43:59]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:43:59]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:43:59]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T14:43:59]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T14:43:59]:Starting client connection to '192.168.5.129:5661'
+INFO [phidget22net][2021-08-09T14:43:59]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T14:43:59]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T14:43:59]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T14:43:59]:server netconn://192.168.5.129:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T14:43:59]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T14:43:59]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22][2021-08-09T17:28:39]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T17:28:39]:Starting Networking
+INFO [phidget22net][2021-08-09T17:28:39]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:28:39]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T17:28:39]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T17:28:39]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22net][2021-08-09T17:28:39]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:28:39]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T17:28:39]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22netctl][2021-08-09T17:28:39]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T17:28:39]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T17:28:39]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T17:28:39]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:28:39]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T17:28:39]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T17:28:39]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T17:28:39]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T17:28:39]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:28:39]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T17:28:39]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T17:28:39]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:28:39]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:28:39]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T17:28:39]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T17:28:39]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:28:40]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:28:40]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T17:28:40]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T17:28:40]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T17:28:40]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:28:40]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T17:28:40]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T17:28:40]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T17:28:40]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T17:28:40]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:28:40]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T17:28:40]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:28:40]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T17:28:40]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T17:28:40]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T17:28:40]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:28:40]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T17:28:40]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T17:28:40]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T17:28:40]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T17:28:40]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:28:40]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T17:28:40]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:28:40]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T17:28:40]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22net][2021-08-09T17:28:40]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:28:40]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry for CM-Piscine rediscovered
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T17:28:40]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T17:28:40]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:28:40]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T17:28:40]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:28:40]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:28:40]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T17:28:40]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T17:28:40]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T17:28:40]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:28:40]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T17:28:40]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T17:28:40]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:28:41]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:28:41]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T17:28:41]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T17:28:41]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:28:41]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T17:28:41]:network control entry for CM-Heater rediscovered
+INFO [phidget22][2021-08-09T17:29:27]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T17:29:27]:Starting Networking
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T17:29:27]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T17:29:27]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T17:29:27]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22netctl][2021-08-09T17:29:27]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22net][2021-08-09T17:29:27]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T17:29:27]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Bergerie
+INFO [phidget22net][2021-08-09T17:29:27]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22netctl][2021-08-09T17:29:27]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T17:29:27]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22net][2021-08-09T17:29:27]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:29:27]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T17:29:27]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T17:29:27]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T17:29:27]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T17:29:27]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T17:29:27]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:29:27]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry for CM-Maison rediscovered
+WARN [phidget22][2021-08-09T17:29:27]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T17:29:27]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T17:29:27]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:29:27]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T17:29:27]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:29:27]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:29:27]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:29:27]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:29:27]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T17:29:27]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T17:29:27]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:29:27]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:29:27]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:29:27]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T17:29:27]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:29:27]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T17:29:27]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T17:29:27]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T17:29:27]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T17:29:27]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22][2021-08-09T17:30:06]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T17:30:06]:Starting Networking
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T17:30:06]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T17:30:06]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T17:30:06]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T17:30:06]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T17:30:06]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22net][2021-08-09T17:30:06]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T17:30:06]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T17:30:06]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T17:30:06]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22net][2021-08-09T17:30:06]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T17:30:06]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T17:30:06]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:30:06]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T17:30:06]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T17:30:06]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T17:30:06]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T17:30:06]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:30:06]:server handshake 'phid22device' 2.2
+WARN [phidget22][2021-08-09T17:30:06]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T17:30:06]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T17:30:06]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T17:30:06]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:30:06]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:30:06]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:30:06]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:30:06]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T17:30:06]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T17:30:06]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T17:30:06]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T17:30:06]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:30:06]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:30:06]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T17:30:06]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T17:30:06]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T17:30:06]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T17:30:06]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T17:30:06]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22][2021-08-09T18:00:10]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T18:00:10]:Starting Networking
+INFO [phidget22net][2021-08-09T18:00:11]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:00:11]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:00:11]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T18:00:11]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:00:11]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T18:00:11]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T18:00:11]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:00:11]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T18:00:11]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T18:00:11]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:00:11]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:00:11]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:00:11]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:00:11]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:00:11]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:00:11]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:00:11]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22netctl][2021-08-09T18:00:11]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T18:00:11]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T18:00:11]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:00:11]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T18:00:11]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T18:00:11]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T18:00:11]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:00:11]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T18:00:12]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:00:12]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:00:12]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T18:00:12]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T18:00:12]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:00:12]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T18:00:12]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T18:00:12]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:00:12]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T18:00:12]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:00:12]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:00:12]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22net][2021-08-09T18:00:12]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T18:00:12]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:00:12]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T18:00:12]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:00:12]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:00:12]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T18:00:12]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:00:12]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:00:12]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T18:00:12]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T18:00:12]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:00:12]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T18:00:12]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:00:12]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:00:12]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T18:00:12]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:00:12]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:00:12]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:00:12]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T18:00:12]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T18:00:12]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:00:13]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T18:00:13]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T18:00:13]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:00:13]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:00:13]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:00:13]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T18:00:13]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:00:13]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:00:13]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T18:00:13]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:00:13]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:00:13]:network control entry for CM-Portail rediscovered
+INFO [phidget22][2021-08-09T18:01:01]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T18:01:01]:Starting Networking
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:01:01]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:01:01]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:01:01]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22netctl][2021-08-09T18:01:01]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T18:01:01]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22netctl][2021-08-09T18:01:01]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:01:01]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T18:01:01]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22netctl][2021-08-09T18:01:01]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:01:01]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T18:01:01]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:01:01]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T18:01:01]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T18:01:01]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T18:01:01]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T18:01:01]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:01:01]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:01]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry for CM-Poulaller rediscovered
+WARN [phidget22][2021-08-09T18:01:01]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:01:01]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T18:01:01]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T18:01:01]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:01:01]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:01:01]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:01:01]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:01:01]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T18:01:01]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:01:01]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T18:01:01]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:01:01]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:01:01]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T18:01:01]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:01:01]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T18:01:01]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T18:01:01]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T18:01:01]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:01:01]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22][2021-08-09T18:01:56]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T18:01:56]:Starting Networking
+ERR [phidget22][2021-08-09T18:01:56]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22net][2021-08-09T18:01:56]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:01:56]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:01:56]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T18:01:56]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:56]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:01:56]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T18:01:56]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:56]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:01:56]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:01:56]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:56]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22netctl][2021-08-09T18:01:56]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:01:56]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T18:01:56]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T18:01:56]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:56]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22netctl][2021-08-09T18:01:56]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:01:56]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T18:01:56]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:56]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T18:01:56]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T18:01:56]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:01:56]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:01:56]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:01:56]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T18:01:56]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:01:56]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:01:56]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:01:56]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T18:01:56]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22][2021-08-09T18:02:52]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T18:02:52]:Starting Networking
+ERR [phidget22][2021-08-09T18:02:52]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T18:03:22]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T18:03:22]:Starting Networking
+ERR [phidget22][2021-08-09T18:03:22]:PhidgetVoltageRatioInput is not attached
+INFO [phidget22][2021-08-09T18:03:45]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T18:03:45]:Starting Networking
+INFO [phidget22net][2021-08-09T18:03:46]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:03:46]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:03:46]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T18:03:46]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:03:46]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T18:03:46]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T18:03:46]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:03:46]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T18:03:46]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T18:03:46]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:03:46]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:03:46]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:03:46]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:03:46]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:03:46]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T18:03:46]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:03:46]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:03:46]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T18:03:46]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T18:03:46]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:03:46]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T18:03:46]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T18:03:46]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T18:03:46]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:03:46]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T18:03:47]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:03:47]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:03:47]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T18:03:47]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T18:03:47]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:03:47]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T18:03:47]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T18:03:47]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:03:47]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T18:03:47]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:03:47]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:03:47]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22net][2021-08-09T18:03:47]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T18:03:47]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:03:47]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T18:03:47]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:03:47]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:03:47]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T18:03:47]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:03:47]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:03:47]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T18:03:47]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T18:03:47]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:03:47]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T18:03:47]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:03:47]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:03:47]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:03:47]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T18:03:48]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:03:48]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:03:48]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:03:48]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:03:48]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T18:03:48]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T18:03:48]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:03:48]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T18:03:48]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T18:03:48]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:03:48]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:03:48]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:03:48]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T18:03:48]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:03:48]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:03:48]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T18:03:48]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:03:48]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:03:48]:network control entry for CM-Portail rediscovered
+INFO [phidget22][2021-08-09T18:04:22]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T18:04:22]:Starting Networking
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:04:22]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:04:22]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22netctl][2021-08-09T18:04:22]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T18:04:22]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T18:04:22]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:04:22]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:04:22]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T18:04:22]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:04:22]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T18:04:22]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T18:04:22]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T18:04:22]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T18:04:22]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:22]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:04:22]:started network control entry for CM-Maison
+WARN [phidget22][2021-08-09T18:04:22]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Maison not connected (failures=0)
+ERR [phidget22net][2021-08-09T18:04:22]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T18:04:22]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T18:04:22]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T18:04:22]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T18:04:22]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:22]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T18:04:22]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:22]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:22]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:22]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T18:04:22]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:22]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T18:04:22]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:22]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T18:04:22]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:22]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:22]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T18:04:22]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T18:04:22]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T18:04:22]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:04:22]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22][2021-08-09T18:04:31]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T18:04:31]:Starting Networking
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:04:31]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:04:31]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:04:31]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22net][2021-08-09T18:04:31]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T18:04:31]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:04:31]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:04:31]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:04:31]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:04:31]:server handshake 'phid22device' 2.2
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry for CM-Portail rediscovered
+INFO [phidget22net][2021-08-09T18:04:31]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:04:31]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:04:31]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:31]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T18:04:31]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T18:04:31]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T18:04:31]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry for CM-Maison rediscovered
+WARN [phidget22][2021-08-09T18:04:31]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:04:31]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T18:04:31]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:31]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T18:04:31]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T18:04:31]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:31]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:31]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:31]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T18:04:31]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:31]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:31]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:31]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T18:04:31]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T18:04:31]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:31]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T18:04:31]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T18:04:31]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:31]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T18:04:31]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:04:31]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22][2021-08-09T18:04:56]:
+******************************  Logging Enabled  ******************************
+* Phidget22 - Version 1.0.0 - Built Feb 28 2019 15:22:16                      *
+*******************************************************************************
+INFO [phidget22net][2021-08-09T18:04:56]:Starting Networking
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:04:56]:started network control entry for CM-Portail
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Portail not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Portail: connecting to CM-Portail.local. (192.168.5.33:5661)
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:04:56]:started network control entry for CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Poulaller not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Poulaller: connecting to CM-Poulailler.local. (192.168.5.148:5661)
+INFO [phidget22netctl][2021-08-09T18:04:56]:started network control entry for CM-Heater
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Heater not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Heater: connecting to CM-Heater.local. (192.168.5.150:5661)
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:04:56]:started network control entry for CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Piscine not connected (failures=0)
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Piscine: connecting to CM-Piscine.local. (192.168.5.34:5661)
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:04:56]:started network control entry for CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Bergerie not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:04:56]:Starting client connection to '192.168.5.148:5661'
+INFO [phidget22net][2021-08-09T18:04:56]:Starting client connection to '192.168.5.33:5661'
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Bergerie: connecting to CM-Bergerie.local. (192.168.5.36:5661)
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:04:56]:started network control entry for CM-Maison
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Maison not connected (failures=0)
+INFO [phidget22net][2021-08-09T18:04:56]:Starting client connection to '192.168.5.34:5661'
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Portail' [CM-Portail.local./192.168.5.33:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Portail
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry for CM-Portail rediscovered
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Maison: connecting to phidgetsbc.local. (192.168.5.35:5661)
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Bergerie' [CM-Bergerie.local./192.168.5.36:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Bergerie
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry for CM-Bergerie rediscovered
+INFO [phidget22net][2021-08-09T18:04:56]:Starting client connection to '192.168.5.36:5661'
+INFO [phidget22net][2021-08-09T18:04:56]:Starting client connection to '192.168.5.150:5661'
+INFO [phidget22net][2021-08-09T18:04:56]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Piscine' [CM-Piscine.local./192.168.5.34:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Piscine
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry for CM-Piscine rediscovered
+INFO [phidget22net][2021-08-09T18:04:56]:Starting client connection to '192.168.5.35:5661'
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Heater' [CM-Heater.local./192.168.5.150:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Heater
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry for CM-Heater rediscovered
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Maison' [phidgetsbc.local./192.168.5.35:0] (interface 0x5)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Maison
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry for CM-Maison rediscovered
+INFO [phidget22net][2021-08-09T18:04:56]:Discovered server 'CM-Poulaller' [CM-Poulailler.local./192.168.5.148:0] (interface 0x4)
+INFO [phidget22netctl][2021-08-09T18:04:56]:Discovered Server: CM-Poulaller
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry for CM-Poulaller rediscovered
+INFO [phidget22net][2021-08-09T18:04:56]:connected to server 'CM-Poulaller'
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Poulaller connected to CM-Poulailler.local.:5661
+INFO [phidget22net][2021-08-09T18:04:56]:server netconn://192.168.5.148:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:56]:server handshake 'phid22device' 2.2
+WARN [phidget22][2021-08-09T18:04:56]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 1) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:04:56]:netconn://192.168.5.148:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device
+INFO [phidget22net][2021-08-09T18:04:56]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:56]:connected to server 'CM-Heater'
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Heater connected to CM-Heater.local.:5661
+INFO [phidget22net][2021-08-09T18:04:56]:server netconn://192.168.5.150:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:56]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:56]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:56]:connected to server 'CM-Portail'
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Portail connected to CM-Portail.local.:5661
+INFO [phidget22net][2021-08-09T18:04:56]:connected to server 'CM-Bergerie'
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Bergerie connected to CM-Bergerie.local.:5661
+INFO [phidget22net][2021-08-09T18:04:56]:server netconn://192.168.5.33:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:56]:server netconn://192.168.5.36:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:56]:connected to server 'CM-Maison'
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Maison connected to phidgetsbc.local.:5661
+INFO [phidget22net][2021-08-09T18:04:56]:server netconn://192.168.5.35:5661 starting DATAGRAM as requested
+INFO [phidget22net][2021-08-09T18:04:56]:server handshake 'phid22device' 2.2
+INFO [phidget22net][2021-08-09T18:04:56]:connected to server 'CM-Piscine'
+INFO [phidget22netctl][2021-08-09T18:04:56]:network control entry CM-Piscine connected to CM-Piscine.local.:5661
+INFO [phidget22net][2021-08-09T18:04:56]:server netconn://192.168.5.34:5661 starting DATAGRAM as requested
+WARN [phidget22][2021-08-09T18:04:56]:A Network VINT Phidget (ID: 0x07f Version: 102 Hub Port: 0) was found which is not supported by the library. A library upgrade is probably required to work with this Phidget
+ERR [phidget22net][2021-08-09T18:04:56]:netconn://192.168.5.35:5661: msgtype:30/50 failed:'MOSN_NOENT':
+	client.c+245 handleDeviceAttach() : (No Such Entity) failed to add VINT device

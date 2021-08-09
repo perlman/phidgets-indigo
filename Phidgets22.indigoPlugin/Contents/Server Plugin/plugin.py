@@ -148,6 +148,8 @@ class Plugin(indigo.PluginBase):
         elif typeId == 'voltageRatioInput':
             analogPhidget = True
             valuesDict['voltageRatioSensorType'] = valuesDict['deviceTypeLookup'].split('|')[0]
+        elif typeId == 'temperatureSensor':
+            valuesDict['thermoCouple'] = valuesDict['deviceTypeLookup'].split('|')[0]
         else:
             analogPhidget = False
 
@@ -246,10 +248,11 @@ class Plugin(indigo.PluginBase):
             elif device.deviceTypeId == "digitalInput":
                 newPhidget = DigitalInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "temperatureSensor":
+                self.logger.debug('deviceStartComm: temperature sensor %s' % device.name)
                 temperatureChangeTrigger = float(device.pluginProps.get("temperatureChangeTrigger", 0))
                 displayTempUnit = device.pluginProps.get("displayTempUnit", "C")
                 if device.pluginProps.get("useThermoCouple", False):
-                    thermocoupleType = int(device.pluginProps.get("thermocoupleType", None))
+                    thermocoupleType = int()
                 else:
                     thermocoupleType = None
                 newPhidget = TemperatureSensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, displayTempUnit=displayTempUnit, thermocoupleType=thermocoupleType, dataInterval=dataInterval, temperatureChangeTrigger=temperatureChangeTrigger)
