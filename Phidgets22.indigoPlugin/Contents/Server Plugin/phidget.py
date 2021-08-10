@@ -77,7 +77,8 @@ class PhidgetBase(object):
     def onErrorHandler(self, ph, errorCode, errorString):
         """Default error handler for Phidgets."""
         # do not log sample overrun (4098) and dropped packet (4099) errors
-        if errorCode != 4098 and errorCode != 4099:
+        # Also supress 4301 range errors until Phidgets inc fixes the range bug (>0 to =>0)
+        if errorCode != 4098 and errorCode != 4099 and errorCode != 4103:
             self.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ") for Indigo device '" +
                 str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
 

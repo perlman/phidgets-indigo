@@ -1,17 +1,14 @@
 # -*- coding: utf-8 -*-
 import string
 import traceback
-# from time import sleep
-
 import indigo
 
 from Phidget22.Devices.VoltageRatioInput import VoltageRatioInput
 from Phidget22.PhidgetException import PhidgetException
 from Phidget22.VoltageRatioSensorType import VoltageRatioSensorType
-
+import phidget_util
 from phidget import PhidgetBase
 
-import phidget_util
 
 class VoltageRatioInputPhidget(PhidgetBase):
     def __init__(self, *args, **kwargs):
@@ -50,8 +47,6 @@ class VoltageRatioInputPhidget(PhidgetBase):
 
         try:
             self.phidget.openWaitForAttachment(1000)
-            # self.phidget.open()
-            # self.phidget.setDataInterval(self.dataInterval)
             self.phidget.setSensorType(self.sensorType)
             self.phidget.setVoltageRatioChangeTrigger(self.voltageRatioChangeTrigger)
             self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
@@ -74,8 +69,8 @@ class VoltageRatioInputPhidget(PhidgetBase):
             #     self.logger.warning('Attached %s: unable to update sensor reading' % (self.indigoDevice.name))
             #     self.logger.error('Indigo device: %s: %s' %  (self.indigoDevice.name, traceback.format_exc()))
         except Exception as e:
-            self.logger.error('Indigo device: %s failed to attach' %  (self.indigoDevice.name))
-            self.logger.error('Indigo device: %s: %s' %  (self.indigoDevice.name, traceback.format_exc()))
+            self.logger.error('onAttachHandler: Indigo device: %s failed to attach' %  (self.indigoDevice.name))
+            self.logger.error('onAttachHandler: Indigo device: %s: %s' %  (self.indigoDevice.name, traceback.format_exc()))
 
 
     def onVoltageRatioChangeHandler(self, ph, voltageRatio):
@@ -89,7 +84,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
                     formula = lambda x: eval(self.customFormula)
                     customValue = formula(float(voltageRatio))
                 except Exception as e:
-                    self.logger.error('%s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
+                    self.logger.error('onVoltageChangeHandler: %s reveived for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
                 # self.logger.error('for %s. Received: %s, Calculated: %s for name' %  (self.indigoDevice.name, voltageRatio, customValue, self.customStateName))
 
                 self.indigoDevice.updateStateOnServer(self.customStateName, value=customValue, decimalPlaces=self.decimalPlaces)
