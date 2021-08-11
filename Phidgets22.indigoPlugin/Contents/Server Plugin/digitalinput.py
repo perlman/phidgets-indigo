@@ -39,7 +39,7 @@ class DigitalInputPhidget(PhidgetBase):
                 stateImage = indigo.kStateImageSel.SensorTripped
             else:
                 stateImage = indigo.kStateImageSel.SensorOn
-    
+
         self.indigoDevice.updateStateOnServer("onOffState", value=setState)
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now)
@@ -62,18 +62,18 @@ class DigitalInputPhidget(PhidgetBase):
                     stateImage = indigo.kStateImageSel.SensorOn
             self.indigoDevice.updateStateOnServer("onOffState", value=state)
             now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-            self.logger.error("Unexpected action: %s" % now) 
+            self.logger.error("Unexpected action: %s" % now)
             self.indigoDevice.updateStateOnServer("lastUpdate", value=now)
             self.indigoDevice.updateStateImageOnServer(stateImage)
         else:
-            self.logger.error("Unexpected action: %s" % action.deviceAction) 
+            self.logger.error("Unexpected action: %s" % action.deviceAction)
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForBoolOnOffType('onOffState', 'onOffState', 'onOffState'))
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForStringType('lastUpdate', 'lastUpdate', 'lastUpdate'))
-        
+
         return newStatesList
-    
+
     def getDeviceDisplayStateId(self):
         return "onOffState"

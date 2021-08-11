@@ -56,7 +56,7 @@ class VoltageInputPhidget(PhidgetBase):
 
 
     def onVoltageChangeHandler(self, ph, voltage):
-        self.logger.debug('voltageRatioChangeHandler: dev %s. voltageRatio: %s' % (self.indigoDevice.name, voltageRatio))
+        self.logger.debug('voltageRatioChangeHandler: dev %s. voltageRatio: %s' % (self.indigoDevice.name, voltage))
 
         self.indigoDevice.updateStateOnServer("voltage", value=voltage, decimalPlaces=3) #self.decimalPlaces)
 
