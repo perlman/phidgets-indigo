@@ -58,10 +58,12 @@
 	<Device id="voltageInput" type="custom">
 		<Name>Voltage Input</Name>
 		<ConfigUI>
+
 			<Field id="deviceTypeLookup" type="menu" defaultValue="">
 				<Label>Voltage input type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="VoltageSensorType"/>
 				<CallbackMethod>getPhidgetSensorInfo</CallbackMethod>
+				<!-- the callback will return 'voltageSensorType'  'sensorFormula' 'sensorRange' 'sensorUnit' -->
 			</Field>
 
 			 <Field id="isVintHub" type="checkbox" defaultValue="False">
@@ -125,12 +127,8 @@
 				<Label>Voltage input type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="VoltageRatioSensorType"/>
 				<CallbackMethod>getPhidgetSensorInfo</CallbackMethod>
+				<!-- the callback will return 'voltageRatioSensorType' 'sensorFormula' 'sensorRange' 'sensorUnit' -->
 			</Field>
-
-			<!-- <Field id="phidgetSensorInfo" type="menu" defaultValue="0" defaultValue="0" dynamicReload="true">
-				<Label>Sensor info:</Label>
-				<List class="self" method="getPhidgetSensorInfo" filter="VoltageRatioSensorType"/>
-			</Field> -->
 
 			<Field id="dataInterval" type="textfield" defaultValue="1000">
 					<Label>Data interval (ms):</Label>

@@ -10,10 +10,6 @@ import phidget_util
 from phidget import PhidgetBase
 
 
-# TODO: How do we figure out which VoltageInput devices support sensors and which do not?
-#       We need to add the sensor features for certain devices (e.g. interface kits)
-#       but not others (e.g. temperature sensor used in voltage mode.)
-
 class VoltageInputPhidget(PhidgetBase):
     def __init__(self, sensorType, dataInterval, voltageChangeTrigger, sensorValueChangeTrigger, *args, **kwargs):
         super(VoltageInputPhidget, self).__init__(phidget=VoltageInput(), *args, **kwargs)
@@ -44,6 +40,7 @@ class VoltageInputPhidget(PhidgetBase):
         self.phidget.setOnVoltageChangeHandler(self.onVoltageChangeHandler)
         self.phidget.setOnSensorChangeHandler(self.onSensorChangeHandler)
 
+
     def onAttachHandler(self, ph):
         super(VoltageInputPhidget, self).onAttachHandler(ph)
         self.logger.debug('onAttachHandler: device: %s, sensorType: %s' %  (self.indigoDevice.name, self.sensorType))
@@ -53,25 +50,6 @@ class VoltageInputPhidget(PhidgetBase):
             self.phidget.setSensorType(self.sensorType)
             self.phidget.setVoltageChangeTrigger(self.voltageChangeTrigger)
             self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
-
-            # newDataInterval = self.checkValueRange("dataInterval", value=self.dataInterval, minValue=self.phidget.getMinDataInterval(),  maxValue=self.phidget.getMaxDataInterval())
-            # if newDataInterval is None:
-            #     self.phidget.setDataInterval(PhidgetBase.PHIDGET_DEFAULT_DATA_INTERVAL)
-            # else:
-            #     self.phidget.setDataInterval(newDataInterval)
-
-            # self.phidget.setSensorType(self.sensorType)
-
-            # newVoltageChangeTrigger = self.checkValueRange(
-            #     fieldname="voltageChangeTrigger", value=self.voltageChangeTrigger,
-            #     minValue=self.phidget.getMinVoltageChangeTrigger(),
-            #     maxValue=self.phidget.getMaxVoltageChangeTrigger())
-            # if newVoltageChangeTrigger is not None:
-            #     self.phidget.setVoltageChangeTrigger(newVoltageChangeTrigger)
-
-            # if self.sensorType != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
-            #     self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
-
         except Exception as e:
             self.logger.error('onAttachHandler: Indigo device: %s failed to attach' %  (self.indigoDevice.name))
             self.logger.error('onAttachHandler: Indigo device: %s: %s' %  (self.indigoDevice.name, traceback.format_exc()))
@@ -114,21 +92,6 @@ class VoltageInputPhidget(PhidgetBase):
         # self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
 
 
-        # try:
-        #     if sensorState not in self.indigoDevice.states:
-        #         self.indigoDevice.stateListOrDisplayStateIdChanged()
-        #     self.indigoDevice.updateStateOnServer(sensorState, value=sensorValue, decimalPlaces=self.decimalPlaces)
-        # except Exception as e:
-        #     self.logger.error('%s reveived for device: %s, state name: %s' %  (traceback.format_exc(), self.indigoDevice.name, sensorState))
-        # self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
-        # if self.sensorUnit is None or self.sensorUnit.name != sensorUnit.name:
-        #     # First update with a new sensorUnit. Trigger an Indigo refresh of getDeviceStateList()
-        #     self.sensorUnit = sensorUnit
-        #     self.sensorStateName = filter(lambda x: x in string.ascii_letters, self.sensorUnit.name)
-        #     self.indigoDevice.stateListOrDisplayStateIdChanged()
-        # elif self.sensorUnit and self.sensorUnit.name != "none":
-        #     self.indigoDevice.updateStateOnServer(self.sensorStateName, value=sensorValue, decimalPlaces=self.decimalPlaces)
-
     def getDeviceStateList(self):
         self.logger.debug('getDeviceStateList: called for %s with state name %s' %  (self.indigoDevice.name, self.sensorStateName))
         newStatesList = indigo.List()
@@ -147,6 +110,7 @@ class VoltageInputPhidget(PhidgetBase):
         self.logger.debug('getDeviceStateList: %s returned %s' %  (self.indigoDevice.name, str(newStatesList)))
         return newStatesList
 
+
     def getDeviceDisplayStateId(self):
         if self.customFormula:
             return self.customStateName
@@ -159,13 +123,3 @@ class VoltageInputPhidget(PhidgetBase):
                 return "sensorValue"
         else:
             return "voltage"
-
-        # if self.sensorType != VoltageSensorType.SENSOR_TYPE_VOLTAGE:
-        #     if self.sensorUnit and self.sensorUnit.name != "none":
-        #         return self.sensorStateName
-        #     else:
-        #         return "sensorValue"
-        # elif self.customFormula:
-        #     return self.customStateName
-        # else:
-        #     return "voltage"
