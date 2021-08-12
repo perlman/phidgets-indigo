@@ -140,31 +140,39 @@ class Plugin(indigo.PluginBase):
 
 
     def getPhidgetSensorInfo(self, valuesDict, typeId, targetId):
-        self.logger.debug("typeId=%s, targetId=%s\nvaluesDict = %s\n" % (typeId, targetId, valuesDict))
+        try:
+            self.logger.debug("Enter with: typeId=%s, targetId=%s\nvaluesDict = %s\n" % (typeId, targetId, valuesDict))
 
-        if typeId == 'voltageInput':
             analogPhidget = True
-            valuesDict['voltageSensorType'] = valuesDict['deviceTypeLookup'].split('|')[0]
-        elif typeId == 'voltageRatioInput':
-            analogPhidget = True
-            valuesDict['voltageRatioSensorType'] = valuesDict['deviceTypeLookup'].split('|')[0]
-        elif typeId == 'temperatureSensor':
-            valuesDict['thermoCouple'] = valuesDict['deviceTypeLookup'].split('|')[0]
-        else:
-            analogPhidget = False
+            if typeId == 'voltageInput':
+                analogPhidget = True
+                valuesDict['voltageSensorType'] = valuesDict['deviceTypeLookup'].split('|')[0]
+            elif typeId == 'voltageRatioInput':
+                analogPhidget = True
+                valuesDict['voltageRatioSensorType'] = valuesDict['deviceTypeLookup'].split('|')[0]
+            elif typeId == 'temperatureSensor':
+                valuesDict['thermocoupleType'] = valuesDict['deviceTypeLookup'].split('|')[0]
+            elif typeId == 'frequencyCounter':
+                valuesDict['filterType'] = valuesDict['deviceTypeLookup'].split('|')[0]
+            else:
+                analogPhidget = False
 
-        if analogPhidget:
-            valuesDict['phidgetTypeEnum'] = valuesDict['deviceTypeLookup'].split('|')[1]
-            phLookup = valuesDict['phidgetTypeEnum']
-            valuesDict['sensorFormula'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[0]
-            valuesDict['sensorRange'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[1]
-            sensorUnitAll = self.phidgetSensorInfo.getSensorInfo(phLookup)[2]
-            valuesDict['sensorUnit'] = sensorUnitAll[0]
-            self.logger.debug("Lookup = %s, returned %s" % (phLookup, self.phidgetSensorInfo.getSensorInfo(phLookup)))
-            self.logger.debug("Formula = %s, Range = %s, Unit = %s\n" % (valuesDict['sensorFormula'], valuesDict['sensorRange'], valuesDict['sensorUnit'] ))
-            self.logger.debug("valuedDict = %s\n" % (valuesDict))
+            if analogPhidget:
+                valuesDict['phidgetTypeEnum'] = valuesDict['deviceTypeLookup'].split('|')[1]
+                phLookup = valuesDict['phidgetTypeEnum']
+                valuesDict['sensorFormula'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[0]
+                valuesDict['sensorRange'] = self.phidgetSensorInfo.getSensorInfo(phLookup)[1]
+                sensorUnitAll = self.phidgetSensorInfo.getSensorInfo(phLookup)[2]
+                valuesDict['sensorUnit'] = sensorUnitAll[0]
+                self.logger.debug("Lookup = %s, returned %s" % (phLookup, self.phidgetSensorInfo.getSensorInfo(phLookup)))
+                self.logger.debug("Formula = %s, Range = %s, Unit = %s\n" % (valuesDict['sensorFormula'], valuesDict['sensorRange'], valuesDict['sensorUnit'] ))
+                self.logger.debug("valuedDict = %s\n" % (valuesDict))
 
-        return valuesDict
+            self.logger.debug("Exit with: typeId=%s, targetId=%s\nvaluesDict = %s\n" % (typeId, targetId, valuesDict))
+            return valuesDict
+        except Exception as e:
+            self.logger.error(traceback.format_exc())
+
 
     #
     # Interact with the phidgets

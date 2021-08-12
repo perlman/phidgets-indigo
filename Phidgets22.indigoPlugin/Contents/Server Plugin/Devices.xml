@@ -200,9 +200,11 @@
 		 	<Field id="useThermoCouple" type="checkbox" defaultValue="False">
 				<Label>Custom thermocoupler?</Label>
 			</Field>
-			<Field id="thermocoupleType" type="menu" visibleBindingId="useThermoCouple" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true" defaultValue="">
+			<Field id="deviceTypeLookup" type="menu" visibleBindingId="useThermoCouple" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true" defaultValue="">
 				<Label>Thermocouple Type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="ThermocoupleType"/>
+				<CallbackMethod>getPhidgetSensorInfo</CallbackMethod>
+				<!-- the callback will return 'voltageRatioSensorType' 'sensorFormula' 'sensorRange' 'sensorUnit' -->
 			</Field>
 
 			<Field id="decimalPlaces" type="menu" defaultValue="2" >
@@ -291,9 +293,11 @@
 	<Device id="frequencyCounter" type="custom">
 		<Name>Frequency Counter</Name>
 		<ConfigUI>
-			<Field id="filterType" type="menu" defaultValue="">
+			<Field id="deviceTypeLookup" type="menu" defaultValue="">
 				<Label>Filter type:</Label>
 				<List class="self" method="getPhidgetTypeMenu" filter="FilterType"/>
+				<CallbackMethod>getPhidgetSensorInfo</CallbackMethod>
+				<!-- the callback will return 'voltageRatioSensorType' 'sensorFormula' 'sensorRange' 'sensorUnit' -->
 			</Field>
 			<Field id="displayStateName" type="menu" defualtValue="frequency">
 					<Label>State to display</Label>
