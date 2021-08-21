@@ -12,11 +12,15 @@ from phidget import PhidgetBase
 import phidget_util
 
 class FrequencyCounterPhidget(PhidgetBase):
-    def __init__(self, filterType, dataInterval, displayStateName, *args, **kwargs):
+    def __init__(self, filterType, dataInterval, displayStateName, frequencyCutoff, isDAQ1400, inputType, powerSupply, *args, **kwargs):
         super(FrequencyCounterPhidget, self).__init__(phidget=FrequencyCounter(), *args, **kwargs)
         self.filterType = filterType
         self.dataInterval = dataInterval
         self.displayStateName = displayStateName
+        self.frequencyCutoff = frequencyCutoff
+        self.inputType = inputType
+        self.powerSupply = powerSupply
+        self.isDAQ1400 = isDAQ1400
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -33,7 +37,19 @@ class FrequencyCounterPhidget(PhidgetBase):
             else:
                 self.phidget.setDataInterval(newDataInterval)
 
+            # setFrequencyCutoff() - The frequency at which zero hertz is assumed.
+            newFrequencyCutoff = self.checkValueRange('frequencyCutoff', value=self.frequencyCutoff, minValue=0, maxValue=100, zero_ok=True)
+            if newFrequencyCutoff is None:
+                self.phidget.setFrequencyCutoff(1.0)
+            else:
+                self.phidget.setFrequencyCutoff(float(newFrequencyCutoff))
+
             self.phidget.setFilterType(self.filterType)
+   
+            if self.isDAQ1400:
+                self.phidget.setInputMode(self.DAQ1400inputType)
+                self.phidget.setPowerSupply(self.DAQ1400voltage)
+
         except Exception as e:
             self.logger.error(traceback.format_exc())
 

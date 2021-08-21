@@ -294,6 +294,10 @@
 			<Field id="dataInterval" type="textfield" defaultValue="1000">
 					<Label>Data interval:</Label>
 			</Field>
+			
+			<Field id="frequencyCutoff" type="textfield" defaultValue="1.0">
+					<Label>Frequency cuoff (Hz):</Label>
+			</Field>
 
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.</Label>
@@ -314,6 +318,21 @@
 			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
+
+			<Field id="isDAQ1400" type="checkbox" defaultValue="False" visibleBindingId="isVintDevice" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Is this a DAQ1400 VINT Phidget?</Label>
+			</Field>
+
+			<Field id="inputType" type="menu" defaultValue="" visibleBindingId="isDAQ1400" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Signal Input type:</Label>
+				<List class="self" method="getPhidgetTypeMenu" filter="InputMode"/>
+			</Field>
+
+			<Field id="powerSupply" type="menu" defaultValue="" visibleBindingId="isDAQ1400" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Power supply:</Label>
+				<List class="self" method="getPhidgetTypeMenu" filter="PowerSupply"/>
+			</Field>
+
 		</ConfigUI>
 	</Device>
 

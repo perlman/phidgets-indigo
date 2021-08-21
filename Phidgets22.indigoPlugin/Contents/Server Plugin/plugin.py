@@ -166,7 +166,7 @@ class Plugin(indigo.PluginBase):
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "digitalInput":
-                isAlarm = bool(self.indigoDevice.pluginProps.get("isAlarm", False))
+                isAlarm = bool(device.pluginProps.get("isAlarm", False))
                 newPhidget = DigitalInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, isAlarm=isAlarm)
             elif device.deviceTypeId == "temperatureSensor":
                 temperatureChangeTrigger = float(device.pluginProps.get("temperatureChangeTrigger", 0))
@@ -179,7 +179,11 @@ class Plugin(indigo.PluginBase):
             elif device.deviceTypeId == "frequencyCounter":
                 filterType = int(device.pluginProps.get("filterType", 0))
                 displayStateName = device.pluginProps.get("displayStateName", None)
-                newPhidget = FrequencyCounterPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, filterType=filterType, dataInterval=dataInterval, displayStateName=displayStateName)
+                frequencyCutoff = float(device.pluginProps.get("frequencyCutoff", 1))
+                isDAQ1400 = bool(device.pluginProps.get("isDAQ1400", False))
+                inputType = int(device.pluginProps.get("inputType", 0))
+                powerSupply = int(device.pluginProps.get("powerSupply", 0))
+                newPhidget = FrequencyCounterPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, filterType=filterType, dataInterval=dataInterval, displayStateName=displayStateName, frequencyCutoff=frequencyCutoff, isDAQ1400=isDAQ1400, inputType=inputType, powerSupply=powerSupply)
             elif device.deviceTypeId == "humiditySensor":
                 humidityChangeTrigger = float(device.pluginProps.get("humidityChangeTrigger", 0))
                 newPhidget = HumiditySensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, humidityChangeTrigger=humidityChangeTrigger, dataInterval=dataInterval)
