@@ -33,7 +33,7 @@ class ChannelInfo():
 class PhidgetBase(object):
     """
     Base class for phidget devices living in Indigo.
-    This will be extended for the various types of devices.   
+    This will be extended for the various types of devices.
     """
     PHIDGET_DEFAULT_DATA_INTERVAL = 1000  # ms
 
@@ -80,12 +80,12 @@ class PhidgetBase(object):
     
     def onDetachHandler(self, ph):
         self.indigoDevice.setErrorStateOnServer('Detached')
-        phidget_util.logPhidgetEvent(ph, self.logger.debug, "Detach")
+        phidget_util.logPhidgetEvent(ph, self.logger.debug, "Detached '" + self.indigoDevice.name + "'")
 
     def onAttachHandler(self, ph):
         self.timer.cancel()
         self.indigoDevice.setErrorStateOnServer(None)
-        phidget_util.logPhidgetEvent(ph, self.logger.debug, "Attach")
+        phidget_util.logPhidgetEvent(ph, self.logger.debug, "Attached '" + self.indigoDevice.name + "'")
 
     def stop(self):
         self.timer.cancel()
