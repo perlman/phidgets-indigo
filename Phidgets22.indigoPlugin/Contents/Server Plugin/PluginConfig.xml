@@ -11,8 +11,12 @@
 		<Description>(Required)</Description>
     </Field>
 
+	<Field type="textfield" id="attachTimeout" defaultValue="5" readonly="false">
+        <Label>Timeout for Phidget attachment (seconds):</Label>
+    </Field>
+
 	<Field id="simpleSeparator1" type="separator"/>
-	
+
 	<Field id="phidgetPluginLoggingLevel" type="menu" defaultValue="0">
 		<Label>Phidget plugin logging level</Label>
 		<List>
@@ -20,7 +24,7 @@
 			<Option value="20">Info</Option>
 			<Option value="30">Warning</Option>
 			<Option value="40">Error</Option>
-			<Option value="50">Critical</Option>	
+			<Option value="50">Critical</Option>
 		</List>
 	</Field>
 
@@ -41,7 +45,7 @@
 			<Option value="2">Error</Option>
 			<Option value="3">Warning</Option>
 			<Option value="4">Debug</Option>
-			<Option value="5">Info</Option>		
+			<Option value="5">Info</Option>
 			<Option value="6">Verbose</Option>
 		</List>
 	</Field>

@@ -36,9 +36,8 @@ class PhidgetBase(object):
     This will be extended for the various types of devices.   
     """
     PHIDGET_DEFAULT_DATA_INTERVAL = 1000  # ms
-    PHIDGET_INITIAL_CONNECT_TIMEOUT = 5   # s
 
-    def __init__(self, phidget, indigo_plugin=None, channelInfo=ChannelInfo(), indigoDevice=None, logger=None, decimalPlaces=-1):
+    def __init__(self, phidget, indigo_plugin, channelInfo=ChannelInfo(), indigoDevice=None, logger=None, decimalPlaces=-1):
         self.phidget = phidget      # PhidgetAPI object for this phidget
         self.phidget.parent = self  # Reference back to this object from the PhidgetAPI
         self.logger = logger        # Where do we log?
@@ -46,6 +45,8 @@ class PhidgetBase(object):
         self.indigoDevice = indigoDevice
         self.indigo_plugin = indigo_plugin
         self.decimalPlaces = decimalPlaces # Number of decimal places for Indigo do display for numbers. -1 means default (likely 5)
+
+        self.initial_connection_timeout = int(indigo_plugin.pluginPrefs.get('attachTimeout', '5'))
 
     def start(self):
         self.logger.debug("Creating " + self.__class__.__name__ + " for Indigo device '" + str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
@@ -57,7 +58,7 @@ class PhidgetBase(object):
         self.phidget.setHubPort(self.channelInfo.hubPort)
 
         # Set the initial connection timer
-        self.timer = threading.Timer(self.PHIDGET_INITIAL_CONNECT_TIMEOUT, self.connectionTimeoutHandler)
+        self.timer = threading.Timer(self.initial_connection_timeout, self.connectionTimeoutHandler)
         self.timer.start()
 
         # Add appropriate handlers
@@ -70,7 +71,7 @@ class PhidgetBase(object):
         self.indigoDevice.setErrorStateOnServer('Detached')
         self.logger.error("No response creating " + self.__class__.__name__ + " for Indigo device '" +
             str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id +
-            ' after %d seconds.' % self.PHIDGET_INITIAL_CONNECT_TIMEOUT)
+            ' after %d seconds.' % self.initial_connection_timeout)
 
     def onErrorHandler(self, ph, errorCode, errorString):
         """Default error handler for Phidgets."""
