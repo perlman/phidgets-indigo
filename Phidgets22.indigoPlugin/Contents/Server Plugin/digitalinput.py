@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import traceback
-import time
+import datetime
 
 import indigo
 
@@ -13,8 +13,9 @@ from phidget import PhidgetBase
 import phidget_util
 
 class DigitalInputPhidget(PhidgetBase):
-    def __init__(self, *args, **kwargs):
+    def __init__(self, isAlarm, *args, **kwargs):
         super(DigitalInputPhidget, self).__init__(phidget=DigitalInput(), *args, **kwargs)
+        self.isAlarm = isAlarm
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -25,30 +26,35 @@ class DigitalInputPhidget(PhidgetBase):
     def onAttachHandler(self, ph):
         super(DigitalInputPhidget, self).onAttachHandler(ph)
 
-    def onStateChangeHandler(self, ph, state):
-        setState = 'off'
-        stateImage = indigo.kStateImageSel.SensorOff
+    def updateIndigoStatus(self, state):
+        # Common code between onStateChangeHandler & indigo.kSensorAction.RequestStatus
         if state:
             setState = 'on'
-            stateImage = indigo.kStateImageSel.SensorOn
+            if self.isAlarm:
+                stateImage = indigo.kStateImageSel.SensorTripped
+            else:
+                stateImage = indigo.kStateImageSel.Sensor
+        else:
+            setState = 'off'
+            if self.isAlarm:
+                stateImage = indigo.kStateImageSel.SensorOn
+            else:
+                stateImage = indigo.kStateImageSel.SensorOff
+
         self.indigoDevice.updateStateOnServer("onOffState", value=setState)
-        now = datetime.datetime.now()
-        self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now.strftime("%Y-%m-%d %H:%M:%S"))
+        now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now)
         self.indigoDevice.updateStateImageOnServer(stateImage)
+
+    def onStateChangeHandler(self, ph, state):
+        self.updateIndigoStatus(state)
 
     def actionControlSensor(self, action):
         if action.sensorAction == indigo.kSensorAction.RequestStatus:
-            setState = 'off'
-            stateImage = indigo.kStateImageSel.SensorOff
-            if state:
-                setState = 'on'
-                stateImage = indigo.kStateImageSel.SensorOn
-            self.indigoDevice.updateStateOnServer("onOffState", value=state)
-            now = datetime.datetime.now()
-            self.indigoDevice.updateStateOnServer(key="lastUpdate", value=now.strftime("%Y-%m-%d %H:%M:%S"))
-            self.indigoDevice.updateStateImageOnServer(stateImage)
+            state = self.phidget.getState()
+            self.updateIndigoStatus(state)
         else:
-            self.logger.error("Unexpected action: %s" % action.deviceAction) 
+            self.logger.error("Unexpected action: %s" % action.deviceAction)
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
@@ -59,3 +65,5 @@ class DigitalInputPhidget(PhidgetBase):
     
     def getDeviceDisplayStateId(self):
         return "onOffState"
+
+

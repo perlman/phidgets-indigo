@@ -56,17 +56,19 @@
 	<Device id="digitalInput" type="custom">
 		<Name>Digital Input</Name>
 		<ConfigUI>
+			<Field id="isAlarm" type="checkbox" defaultValue="False" tooltip="Device state Off will show as green, On as red">
+				<Label>Does this device signal an alarm condition</Label>
+			</Field>
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.</Label>
 			</Field>
-
 			<Field id="serialNumber" type="textfield">
 					<Label>Serial number:</Label>
 			</Field>
 			<Field id="channel" type="textfield">
 					<Label>Channel:</Label>
 			</Field>
- 		    <Field id="isVintHub" type="checkbox" defaultValue="False">
+			<Field id="isVintHub" type="checkbox" defaultValue="False">
 				<Label>Connected to a VINT hub?</Label>
 			</Field>
 			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
