@@ -140,6 +140,7 @@ class Plugin(indigo.PluginBase):
 
 
     def getPhidgetSensorInfo(self, valuesDict, typeId, targetId):
+        # This could take place in the individual Phidget classes, making this whole step unecessary.
         try:
             self.logger.debug("Enter with: typeId=%s, targetId=%s\nvaluesDict = %s\n" % (typeId, targetId, valuesDict))
 
@@ -235,43 +236,22 @@ class Plugin(indigo.PluginBase):
                 netInfo=NetInfo(isRemote=networkPhidgets, serverDiscovery=enableServerDiscovery)
             )
 
-            # Data interval is used by many types. See if it is set
-            dataInterval = device.pluginProps.get("dataInterval", None)
-            dataInterval = int(dataInterval) if dataInterval else None
-            decimalPlaces = int(device.pluginProps.get("decimalPlaces", 3)) # Sane default 3 decimal places?
-
             # TODO: Use better default sensor types... this might error if not populated
+            # Since we pass the Indigo device, any needed properties can be added in the appropriate Phidget class
             if device.deviceTypeId == "voltageInput":
-                sensorType = int(device.pluginProps.get("voltageSensorType", 0))
-                voltageChangeTrigger = float(device.pluginProps.get("voltageChangeTrigger", 0))
-                sensorValueChangeTrigger = float(device.pluginProps.get("sensorValueChangeTrigger", 0))
-                newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, decimalPlaces=decimalPlaces, logger=self.logger, sensorType=sensorType, dataInterval=dataInterval, voltageChangeTrigger=voltageChangeTrigger, sensorValueChangeTrigger=sensorValueChangeTrigger)
+                newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "voltageRatioInput":
-                # voltageRatioChangeTrigger = float(device.pluginProps.get("voltageRatioChangeTrigger", 0))
-                # sensorValueChangeTrigger = float(device.pluginProps.get("sensorValueChangeTrigger", 0))
-                # sensorType = int(device.pluginProps.get("voltageRatioSensorType", 0))
                 newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "digitalInput":
                 newPhidget = DigitalInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "temperatureSensor":
-                self.logger.debug('deviceStartComm: temperature sensor %s' % device.name)
-                temperatureChangeTrigger = float(device.pluginProps.get("temperatureChangeTrigger", 0))
-                displayTempUnit = device.pluginProps.get("displayTempUnit", "C")
-                if device.pluginProps.get("useThermoCouple", False):
-                    thermocoupleType = int()
-                else:
-                    thermocoupleType = None
-                newPhidget = TemperatureSensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, displayTempUnit=displayTempUnit, thermocoupleType=thermocoupleType, dataInterval=dataInterval, temperatureChangeTrigger=temperatureChangeTrigger)
+                newPhidget = TemperatureSensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "frequencyCounter":
-                filterType = int(device.pluginProps.get("filterType", 0))
-                frequencyCutoff = float(device.pluginProps.get("frequencyCutoff", 1))
-                displayStateName = device.pluginProps.get("displayStateName", None)
-                newPhidget = FrequencyCounterPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, filterType=filterType, dataInterval=dataInterval, frequencyCutoff=frequencyCutoff, displayStateName=displayStateName)
+                newPhidget = FrequencyCounterPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "humiditySensor":
-                humidityChangeTrigger = float(device.pluginProps.get("humidityChangeTrigger", 0))
-                newPhidget = HumiditySensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, decimalPlaces=decimalPlaces, humidityChangeTrigger=humidityChangeTrigger, dataInterval=dataInterval)
+                newPhidget = HumiditySensorPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             else:
                 raise Exception("Unexpected device type: %s" % device.deviceTypeId)
             self.activePhidgets[device.id] = newPhidget

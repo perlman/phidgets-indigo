@@ -12,16 +12,22 @@ from phidget import PhidgetBase
 import phidget_util
 
 class TemperatureSensorPhidget(PhidgetBase):
-    def __init__(self, thermocoupleType, dataInterval, temperatureChangeTrigger, displayTempUnit, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(TemperatureSensorPhidget, self).__init__(phidget=TemperatureSensor(), *args, **kwargs)
-        self.thermocoupleType = thermocoupleType
-        self.dataInterval = dataInterval
-        self.displayTempUnit = displayTempUnit
+        self.dataInterval = int(self.indigoDevice.pluginProps.get("dataInterval", 0))
+        self.temperatureChangeTrigger = float(self.indigoDevice.pluginProps.get("temperatureChangeTrigger", 0))
+        self.displayTempUnit = self.indigoDevice.pluginProps.get("displayTempUnit", "C")
+        self.decimalPlaces = int(self.indigoDevice.pluginProps.get("decimalPlaces", 2))
+
+        if self.indigoDevice.pluginProps.get("useThermoCouple", False):
+            self.thermocoupleType = int()
+        else:
+            self.thermocoupleType = None
 
         if self.displayTempUnit.upper() == "F":
-            self.temperatureChangeTrigger = 9.0/5.0 * temperatureChangeTrigger
+            self.temperatureChangeTrigger = 9.0/5.0 * self.temperatureChangeTrigger
         else: # C
-            self.temperatureChangeTrigger = temperatureChangeTrigger
+            self.temperatureChangeTrigger = self.temperatureChangeTrigger
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)

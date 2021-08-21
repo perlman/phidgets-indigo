@@ -12,12 +12,19 @@ from phidget import PhidgetBase
 import phidget_util
 
 class FrequencyCounterPhidget(PhidgetBase):
-    def __init__(self, filterType, dataInterval, frequencyCutoff, displayStateName, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(FrequencyCounterPhidget, self).__init__(phidget=FrequencyCounter(), *args, **kwargs)
-        self.filterType = filterType
-        self.dataInterval = dataInterval
-        self.frequencyCutoff = frequencyCutoff
-        self.displayStateName = displayStateName
+
+        self.dataInterval = int(self.indigoDevice.pluginProps.get("dataInterval", 0))
+        self.filterType = int(self.indigoDevice.pluginProps.get("filterType", 0))
+        self.frequencyCutoff = float(self.indigoDevice.pluginProps.get("frequencyCutoff", 1))
+        self.displayStateName = self.indigoDevice.pluginProps.get("displayStateName", None)
+        self.decimalPlaces = int(self.indigoDevice.pluginProps.get("decimalPlaces", 2))
+        self.isVintDevice = bool(self.indigoDevice.pluginProps.get("isVintDevice", False))
+        self.isDAQ1400 = bool(self.indigoDevice.pluginProps.get("isDAQ1400", False))
+        if self.isDAQ1400:
+            self.DAQ1400inputType = int(self.indigoDevice.pluginProps.get("DAQ1400inputType", 1))
+            self.DAQ1400voltage = int(self.indigoDevice.pluginProps.get("DAQ1400voltage", 2))
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -40,10 +47,15 @@ class FrequencyCounterPhidget(PhidgetBase):
                 self.phidget.setFrequencyCutoff(1.0)
             else:
                 self.phidget.setFrequencyCutoff(float(newFrequencyCutoff))
-            
-            # rdp. this seems to be missing in the UI - not sure how necessary it enev is    
-            self.phidget.setEnabled(True)
-            self.phidget.setFilterType(self.filterType)
+
+            if self.isDAQ1400:
+                self.phidget.setInputMode(self.DAQ1400inputType)
+                self.phidget.setPowerSupply(self.DAQ1400voltage)
+            else:
+                # rdp. this seems to be missing in the UI - not sure how necessary it even is
+                self.phidget.setEnabled(True)
+                self.phidget.setFilterType(self.filterType)
+
         except Exception as e:
             self.logger.error(traceback.format_exc())
 

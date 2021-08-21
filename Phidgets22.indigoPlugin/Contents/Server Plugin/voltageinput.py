@@ -11,18 +11,19 @@ from phidget import PhidgetBase
 
 
 class VoltageInputPhidget(PhidgetBase):
-    def __init__(self, sensorType, dataInterval, voltageChangeTrigger, sensorValueChangeTrigger, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(VoltageInputPhidget, self).__init__(phidget=VoltageInput(), *args, **kwargs)
 
-        self.sensorType = sensorType # int(self.indigoDevice.pluginProps.get("voltageRatioSensorType", 0))
-        self.dataInterval = dataInterval # int(self.indigoDevice.pluginProps.get("dataInterval", 0))
-        self.voltageChangeTrigger = voltageChangeTrigger
-        self.sensorValueChangeTrigger = sensorValueChangeTrigger
+        self.sensorType = int(self.indigoDevice.pluginProps.get("voltageSensorType", 0))
+        self.dataInterval = int(self.indigoDevice.pluginProps.get("dataInterval", 0))
+        self.voltageChangeTrigger = float(self.indigoDevice.pluginProps.get("voltageChangeTrigger", 0))
+        self.sensorValueChangeTrigger = float(self.indigoDevice.pluginProps.get("sensorValueChangeTrigger", 0))
         self.decimalPlaces = int(self.indigoDevice.pluginProps.get("decimalPlaces", 2))
         self.voltageSensorType = str(self.indigoDevice.pluginProps.get("voltageSensorType", 0))
         self.customFormula = self.indigoDevice.pluginProps.get("customFormula", None)
         self.customStateName = str(self.indigoDevice.pluginProps.get("customState", ""))
         self.sensorStateName = str(self.indigoDevice.pluginProps.get("sensorUnit", None))
+
         if not self.customStateName:  # for some reason a cleared field still has a value and the default is not used.
             self.customStateName = 'custom'
         self.sensorUnit = None          # Last sensor unit

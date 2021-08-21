@@ -12,10 +12,14 @@ from phidget import PhidgetBase
 import phidget_util
 
 class HumiditySensorPhidget(PhidgetBase):
-    def __init__(self, dataInterval, humidityChangeTrigger, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         super(HumiditySensorPhidget, self).__init__(phidget=HumiditySensor(), *args, **kwargs)
-        self.dataInterval = dataInterval
-        self.humidityChangeTrigger = humidityChangeTrigger
+
+        self.dataInterval = int(self.indigoDevice.pluginProps.get("dataInterval", 0))
+        self.decimalPlaces = int(self.indigoDevice.pluginProps.get("decimalPlaces", 2))
+        self.humidityChangeTrigger = float(self.indigoDevice.pluginProps.get("humidityChangeTrigger", 0))
+        # self.dataInterval = dataInterval
+        # self.humidityChangeTrigger = humidityChangeTrigger
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -34,7 +38,7 @@ class HumiditySensorPhidget(PhidgetBase):
 
             newHumidityChangeTrigger = self.checkValueRange(
                 fieldname="humidityChangeTrigger", value=self.humidityChangeTrigger,
-                minValue=self.phidget.getHumidityChangeTrigger(), 
+                minValue=self.phidget.getHumidityChangeTrigger(),
                 maxValue=self.phidget.getHumidityChangeTrigger())
             if newHumidityChangeTrigger is not None:
                 self.phidget.setHumidityChangeTrigger(newHumidityChangeTrigger)
@@ -49,6 +53,6 @@ class HumiditySensorPhidget(PhidgetBase):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("humidity", "humidity", "humidity"))
         return newStatesList
-    
+
     def getDeviceDisplayStateId(self):
         return "humidity"

@@ -309,7 +309,7 @@
 			</Field>
 
 			<Field id="decimalPlaces" type="menu" defaultValue="2" >
-				<Label>Decimals places</Label>
+				<Label>Decimal places</Label>
 				<List>
 					<Option value="-1">No limit</Option>
 					<Option value="0">0</Option>
@@ -348,6 +348,26 @@
 			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
+			<Field id="isDAQ1400" type="checkbox" defaultValue="False" visibleBindingId="isVintDevice" visibleBindingValue="true" >
+				<Label>Is this a DAQ1400 VINT Phidget?</Label>
+			</Field>
+			<Field id="DAQ1400inputType" type="menu" defaultValue="1" visibleBindingId="isDAQ1400" visibleBindingValue="true" >
+				<Label>Signal Input type</Label>
+				<Label>Decimals places</Label>
+				<List>
+					<Option value="1">NPN</Option>
+					<Option value="2">PNP</Option>
+				</List>
+			</Field>
+			<Field id="DAQ1400voltage" type="menu" defaultValue="2" visibleBindingId="isDAQ1400" visibleBindingValue="true" >
+				<Label>Voltage output</Label>
+				<List>
+					<Option value="1">Off</Option>
+					<Option value="2">12 volts</Option>
+					<Option value="3">24 volts</Option>
+				</List>
+			</Field>
+
 		</ConfigUI>
 	</Device>
 
