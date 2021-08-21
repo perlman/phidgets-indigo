@@ -14,12 +14,12 @@
 			<Field id="voltageChangeTrigger" type="textfield" defaultValue="0.0">
 					<Label>Voltage change trigger:</Label>
 			</Field>
-			<Field id="sensorValueChangeTrigger" type="textfield" defaultValue="0.0" >
+			<Field id="sensorValueChangeTrigger" type="textfield" defaultValue="0.0">
 					<Label>Sensor value change trigger:</Label>
 			</Field>
 
-			<Field id="decimalPlaces" type="menu" defaultValue="2" >
-				<Label>Decimals places</Label>
+			<Field id="decimalPlaces" type="menu" defaultValue="2">
+				<Label>Decimal places</Label>
 				<List>
 					<Option value="-1">No limit</Option>
 					<Option value="0">0</Option>
@@ -31,8 +31,7 @@
 			</Field>
 
 			<Field id="exampleLabel" type="label">
-				<Label>The following sections will (eventually) be populated automatically.
-				</Label>
+				<Label>The following sections will (eventually) be populated automatically.</Label>
 			</Field>
 
 			<Field id="serialNumber" type="textfield">
@@ -58,8 +57,7 @@
 		<Name>Digital Input</Name>
 		<ConfigUI>
 			<Field id="exampleLabel" type="label">
-				<Label>The following sections will (eventually) be populated automatically.
-				</Label>
+				<Label>The following sections will (eventually) be populated automatically.</Label>
 			</Field>
 
 			<Field id="serialNumber" type="textfield">
@@ -77,13 +75,6 @@
 			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
-			<!-- <Field id="SupportsOnState" type="checkbox" defaultValue="true">
-				<Label>Show ON/OFF state:</Label>
-			</Field>
-			<Field id="SupportsSensorValue" type="checkbox" defaultValue="true">
-				<Label>Show sensor value:</Label>
-			</Field> -->
-
 		</ConfigUI>
 	</Device>
 
@@ -101,11 +92,11 @@
 			<Field id="voltageRatioChangeTrigger" type="textfield" defaultValue="0.0">
 					<Label>Voltage ratio change trigger:</Label>
 			</Field>
-			<Field id="sensorValueChangeTrigger" type="textfield" defaultValue="0.0" >
+			<Field id="sensorValueChangeTrigger" type="textfield" defaultValue="0.0">
 					<Label>Sensor value change trigger:</Label>
 			</Field>
 
-			<Field id="decimalPlaces" type="menu" defaultValue="2" >
+			<Field id="decimalPlaces" type="menu" defaultValue="2">
 				<Label>Decimals places</Label>
 				<List>
 					<Option value="-1">No limit</Option>
@@ -118,8 +109,7 @@
 			</Field>
 
 			<Field id="exampleLabel" type="label">
-				<Label>The following sections will (eventually) be populated automatically.
-				</Label>
+				<Label>The following sections will (eventually) be populated automatically.</Label>
 			</Field>
 
 			<Field id="serialNumber" type="textfield">
@@ -145,8 +135,7 @@
 		<ConfigUI>
 
 			<Field id="exampleLabel" type="label">
-				<Label>The following sections will (eventually) be populated automatically.
-				</Label>
+				<Label>The following sections will (eventually) be populated automatically.</Label>
 			</Field>
 
 			<Field id="serialNumber" type="textfield">
@@ -177,7 +166,7 @@
 					<Label>Temperature scale to display</Label>
 					<List>
 						<Option value="F">Fahrenheit</Option>
-						<Option value="C">Celsius</Option>	
+						<Option value="C">Celsius</Option>
 					</List>
 			</Field>
 			<Field id="temperatureChangeTrigger" type="textfield" defaultValue="0.0">
@@ -191,7 +180,7 @@
 				<List class="self" method="getPhidgetTypeMenu" filter="ThermocoupleType"/>
 			</Field>
 
-			<Field id="decimalPlaces" type="menu" defaultValue="2" >
+			<Field id="decimalPlaces" type="menu" defaultValue="2">
 				<Label>Decimals places</Label>
 				<List>
 					<Option value="-1">No limit</Option>
@@ -205,8 +194,7 @@
 
 
 			<Field id="exampleLabel" type="label">
-				<Label>The following sections will (eventually) be populated automatically.
-				</Label>
+				<Label>The following sections will (eventually) be populated automatically.</Label>
 			</Field>
 
 			<Field id="serialNumber" type="textfield">
@@ -238,7 +226,7 @@
 					<Label>Humidity change trigger (in %RH):</Label>
 			</Field>
 			
-			<Field id="decimalPlaces" type="menu" defaultValue="2" >
+			<Field id="decimalPlaces" type="menu" defaultValue="2">
 				<Label>Decimals places</Label>
 				<List>
 					<Option value="-1">No limit</Option>
@@ -252,8 +240,7 @@
 
 
 			<Field id="exampleLabel" type="label">
-				<Label>The following sections will (eventually) be populated automatically.
-				</Label>
+				<Label>The following sections will (eventually) be populated automatically.</Label>
 			</Field>
 
 			<Field id="serialNumber" type="textfield">
@@ -286,11 +273,11 @@
 					<List>
 						<Option value="count">count</Option>
 						<Option value="timeChange">time (ms)</Option>
-						<Option value="frequency">frequency (Hz)</Option>	
+						<Option value="frequency">frequency (Hz)</Option>
 					</List>
 			</Field>
 
-			<Field id="decimalPlaces" type="menu" defaultValue="2" >
+			<Field id="decimalPlaces" type="menu" defaultValue="2">
 				<Label>Decimals places</Label>
 				<List>
 					<Option value="-1">No limit</Option>
@@ -307,8 +294,7 @@
 			</Field>
 
 			<Field id="exampleLabel" type="label">
-				<Label>The following sections will (eventually) be populated automatically.
-				</Label>
+				<Label>The following sections will (eventually) be populated automatically.</Label>
 			</Field>
 
 			<Field id="serialNumber" type="textfield">
@@ -328,8 +314,5 @@
 			</Field>
 		</ConfigUI>
 	</Device>
-
-
-
 
 </Devices>
