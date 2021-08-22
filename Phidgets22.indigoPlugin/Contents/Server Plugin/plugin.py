@@ -152,17 +152,26 @@ class Plugin(indigo.PluginBase):
             dataInterval = int(dataInterval) if dataInterval else None
             decimalPlaces = int(device.pluginProps.get("decimalPlaces", 3)) # Sane default 3 decimal places?
 
+            if device.deviceTypeId == "voltageInput" or device.deviceTypeId == "voltageRatioInput":
+                # Custom formula fields
+                if device.pluginProps.get("useCustomFormula", False):
+                    customState = device.pluginProps.get("customState", None)
+                    customFormula = device.pluginProps.get("customFormula", None)
+                else:
+                    customState = None
+                    customFormula = None
+
             # TODO: Use better default sensor types... this might error if not populated
             if device.deviceTypeId == "voltageInput":
                 sensorType = int(device.pluginProps.get("voltageSensorType", 0))
                 voltageChangeTrigger = float(device.pluginProps.get("voltageChangeTrigger", 0))
                 sensorValueChangeTrigger = float(device.pluginProps.get("sensorValueChangeTrigger", 0))
-                newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, decimalPlaces=decimalPlaces, logger=self.logger, sensorType=sensorType, dataInterval=dataInterval, voltageChangeTrigger=voltageChangeTrigger, sensorValueChangeTrigger=sensorValueChangeTrigger)
+                newPhidget = VoltageInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, decimalPlaces=decimalPlaces, logger=self.logger, sensorType=sensorType, dataInterval=dataInterval, voltageChangeTrigger=voltageChangeTrigger, sensorValueChangeTrigger=sensorValueChangeTrigger, customState=customState, customFormula=customFormula)
             elif device.deviceTypeId == "voltageRatioInput":
                 voltageRatioChangeTrigger = float(device.pluginProps.get("voltageRatioChangeTrigger", 0))
                 sensorValueChangeTrigger = float(device.pluginProps.get("sensorValueChangeTrigger", 0))
                 sensorType = int(device.pluginProps.get("voltageRatioSensorType", 0))
-                newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, decimalPlaces=decimalPlaces, logger=self.logger, sensorType=sensorType, dataInterval=dataInterval, voltageRatioChangeTrigger=voltageRatioChangeTrigger, sensorValueChangeTrigger=sensorValueChangeTrigger)
+                newPhidget = VoltageRatioInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, decimalPlaces=decimalPlaces, logger=self.logger, sensorType=sensorType, dataInterval=dataInterval, voltageRatioChangeTrigger=voltageRatioChangeTrigger, sensorValueChangeTrigger=sensorValueChangeTrigger, customState=customState, customFormula=customFormula)
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "digitalInput":

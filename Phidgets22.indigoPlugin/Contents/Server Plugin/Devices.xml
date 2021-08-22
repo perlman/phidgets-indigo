@@ -49,33 +49,14 @@
 			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
-
-		</ConfigUI>
-	</Device>
-
-	<Device id="digitalInput" type="custom">
-		<Name>Digital Input</Name>
-		<ConfigUI>
-			<Field id="isAlarm" type="checkbox" defaultValue="False" tooltip="Device state Off will show as green, On as red">
-				<Label>Does this device signal an alarm condition</Label>
+			<Field id="useCustomFormula" type="checkbox" defaultValue="False" visibleBindingId="voltageSensorType" visibleBindingValue="0" alwaysUseInDialogHeightCalc="true">
+				<Label>Use custom formula?</Label>
 			</Field>
-			<Field id="exampleLabel" type="label">
-				<Label>The following sections will (eventually) be populated automatically.</Label>
+			<Field id="customFormula" type="textfield" visibleBindingId="useCustomFormula" visibleBindingValue="true">
+				<Label>Formula to be applied to sensor reading</Label>
 			</Field>
-			<Field id="serialNumber" type="textfield">
-					<Label>Serial number:</Label>
-			</Field>
-			<Field id="channel" type="textfield">
-					<Label>Channel:</Label>
-			</Field>
-			<Field id="isVintHub" type="checkbox" defaultValue="False">
-				<Label>Connected to a VINT hub?</Label>
-			</Field>
-			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
-				<Label>Is this a VINT device?</Label>
-			</Field>
-			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
-				<Label>Hub port:</Label>
+			<Field id="customState" type="textfield" visibleBindingId="useCustomFormula" visibleBindingValue="true">
+				<Label>Name to be given to custom state</Label>
 			</Field>
 		</ConfigUI>
 	</Device>
@@ -129,8 +110,45 @@
 			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
 			</Field>
+			<Field id="useCustomFormula" type="checkbox" defaultValue="False" visibleBindingId="voltageRatioSensorType" visibleBindingValue="0" alwaysUseInDialogHeightCalc="true">
+				<Label>Use custom formula?</Label>
+			</Field>
+			<Field id="customFormula" type="textfield" visibleBindingId="useCustomFormula" visibleBindingValue="true">
+				<Label>Formula to be applied to sensor reading</Label>
+			</Field>
+			<Field id="customState" type="textfield" visibleBindingId="useCustomFormula" visibleBindingValue="true">
+				<Label>Name to be given to custom state</Label>
+			</Field>
 		</ConfigUI>
 	</Device>
+
+	<Device id="digitalInput" type="custom">
+		<Name>Digital Input</Name>
+		<ConfigUI>
+			<Field id="isAlarm" type="checkbox" defaultValue="False" tooltip="Device state Off will show as green, On as red">
+				<Label>Does this device signal an alarm condition</Label>
+			</Field>
+			<Field id="exampleLabel" type="label">
+				<Label>The following sections will (eventually) be populated automatically.</Label>
+			</Field>
+			<Field id="serialNumber" type="textfield">
+					<Label>Serial number:</Label>
+			</Field>
+			<Field id="channel" type="textfield">
+					<Label>Channel:</Label>
+			</Field>
+			<Field id="isVintHub" type="checkbox" defaultValue="False">
+				<Label>Connected to a VINT hub?</Label>
+			</Field>
+			<Field id="isVintDevice" type="checkbox" defaultValue="False" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Is this a VINT device?</Label>
+			</Field>
+			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
+				<Label>Hub port:</Label>
+			</Field>
+		</ConfigUI>
+	</Device>
+
 
 	<Device id="digitalOutput" type="dimmer">
 		<Name>Digital Output</Name>

@@ -17,12 +17,14 @@ import phidget_util
 #       but not others (e.g. temperature sensor used in voltage mode.)
 
 class VoltageInputPhidget(PhidgetBase):
-    def __init__(self, sensorType, dataInterval, voltageChangeTrigger, sensorValueChangeTrigger, *args, **kwargs):
+    def __init__(self, sensorType, dataInterval, voltageChangeTrigger, sensorValueChangeTrigger, customState, customFormula, *args, **kwargs):
         super(VoltageInputPhidget, self).__init__(phidget=VoltageInput(), *args, **kwargs)
         self.sensorType = sensorType
         self.dataInterval = dataInterval
         self.voltageChangeTrigger = voltageChangeTrigger
         self.sensorValueChangeTrigger = sensorValueChangeTrigger
+        self.customState = customState
+        self.customFormula = customFormula
         self.sensorUnit = None          # Last sensor unit
         self.sensorStateName = None     # Clean name for Indigo
 
@@ -59,6 +61,14 @@ class VoltageInputPhidget(PhidgetBase):
 
     def onVoltageChangeHandler(self, ph, voltage):
         self.indigoDevice.updateStateOnServer("voltage", value=voltage, decimalPlaces=self.decimalPlaces)
+        if self.sensorType == VoltageSensorType.SENSOR_TYPE_VOLTAGE and self.customState and self.customFormula:
+            try:
+                formula = lambda x: eval(self.customFormula)
+                customValue = formula(float(voltage))
+                self.indigoDevice.updateStateOnServer(self.customState, value=customValue, decimalPlaces=self.decimalPlaces)
+            except Exception as e:
+                self.logger.error('onVoltageChangeHandler: %s received for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
+
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
         self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
@@ -77,6 +87,8 @@ class VoltageInputPhidget(PhidgetBase):
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorValue", "sensorValue", "sensorValue"))
             if self.sensorUnit and self.sensorUnit.name != "none":
                 newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
+        elif self.customState and self.customFormula:
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.customState, self.customState, self.customState))
         return newStatesList
     
     def getDeviceDisplayStateId(self):
