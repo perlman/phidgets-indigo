@@ -97,5 +97,7 @@ class VoltageInputPhidget(PhidgetBase):
                 return self.sensorStateName
             else:
                 return "sensorValue"
+        elif self.customState and self.customFormula:
+            return self.customState
         else:
             return "voltage"
