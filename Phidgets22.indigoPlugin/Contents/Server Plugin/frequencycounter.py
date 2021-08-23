@@ -44,11 +44,16 @@ class FrequencyCounterPhidget(PhidgetBase):
             else:
                 self.phidget.setFrequencyCutoff(float(newFrequencyCutoff))
 
-            self.phidget.setFilterType(self.filterType)
+            if not self.phidget.getEnabled():
+                # Enable if not already enabled. DAQ1400 is always enabled.
+                self.phidget.setEnabled(True)
    
             if self.isDAQ1400:
                 self.phidget.setInputMode(self.DAQ1400inputType)
                 self.phidget.setPowerSupply(self.DAQ1400voltage)
+            else:
+                # FilterType can not be set for DAQ1400.
+                self.phidget.setFilterType(self.filterType)
 
         except Exception as e:
             self.logger.error(traceback.format_exc())
