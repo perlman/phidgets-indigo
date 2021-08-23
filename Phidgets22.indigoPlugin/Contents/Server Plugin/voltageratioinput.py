@@ -11,6 +11,7 @@ from Phidget22.VoltageRatioSensorType import VoltageRatioSensorType
 from phidget import PhidgetBase
 
 import phidget_util
+import sensortypes
 
 class VoltageRatioInputPhidget(PhidgetBase):
     def __init__(self, sensorType, dataInterval, voltageRatioChangeTrigger, sensorValueChangeTrigger, customState, customFormula, *args, **kwargs):
@@ -21,8 +22,9 @@ class VoltageRatioInputPhidget(PhidgetBase):
         self.sensorValueChangeTrigger = sensorValueChangeTrigger
         self.customState = customState
         self.customFormula = customFormula
-        self.sensorUnit = None          # Last sensor unit
-        self.sensorStateName = None     # Clean name for Indigo
+
+        self.sensorUnit = sensortypes.getVoltageSensorUnit(sensorType)
+        (self.sensorStateName, self.sensorSymbol) = sensortypes.getNameAndSymbol(self.sensorUnit)
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -49,8 +51,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
             if newVoltageRatioChangeTrigger is not None:
                 self.phidget.setVoltageRatioChangeTrigger(newVoltageRatioChangeTrigger)
 
-            if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
-                self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
+            self.phidget.setSensorValueChangeTrigger(self.sensorValueChangeTrigger)
 
         except Exception as e:
             self.logger.error(traceback.format_exc())
@@ -66,32 +67,25 @@ class VoltageRatioInputPhidget(PhidgetBase):
                 self.logger.error('onVoltageRatioChangeHandler: %s received for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
 
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
-        self.indigoDevice.updateStateOnServer("sensorValue", value=sensorValue, decimalPlaces=self.decimalPlaces)
-        if self.sensorUnit is None or self.sensorUnit.name != sensorUnit.name:
-            # First update with a new sensorUnit. Trigger an Indigo refresh of getDeviceStateList()
-            self.sensorUnit = sensorUnit
-            self.sensorStateName = filter(lambda x: x in string.ascii_letters, self.sensorUnit.name)
-            self.indigoDevice.stateListOrDisplayStateIdChanged()
-        elif self.sensorUnit and self.sensorUnit.name != "none":
-            self.indigoDevice.updateStateOnServer(self.sensorStateName, value=sensorValue, decimalPlaces=self.decimalPlaces)
+        self.indigoDevice.updateStateOnServer(self.sensorStateName , value=sensorValue, decimalPlaces=self.decimalPlaces)
+        if self.sensorStateName == "tempF":
+            self.indigoDevice.updateStateOnServer(self.sensorStateName , value=(9.0/5.0 * sensorValue + 32), decimalPlaces=self.decimalPlaces)
+
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltageRatio", "voltageRatio", "voltageRatio"))
         if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
-            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("sensorValue", "sensorValue", "sensorValue"))
-            if self.sensorUnit and self.sensorUnit.name != "none":
-                newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
+            newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
+            if self.sensorStateName == "tempC":
+                newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("tempF", "tempF", "tempF"))
         elif self.customState and self.customFormula:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.customState, self.customState, self.customState))
         return newStatesList
     
     def getDeviceDisplayStateId(self):
         if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
-            if self.sensorUnit and self.sensorUnit.name != "none":
-                return self.sensorStateName
-            else:
-                return "sensorValue"
+            return self.sensorStateName
         elif self.customState and self.customFormula:
             return self.customState
         else:
