@@ -69,7 +69,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
         self.indigoDevice.updateStateOnServer(self.sensorStateName , value=sensorValue, decimalPlaces=self.decimalPlaces)
         if self.sensorStateName == "tempF":
-            self.indigoDevice.updateStateOnServer(self.sensorStateName , value=(9.0/5.0 * sensorValue + 32), decimalPlaces=self.decimalPlaces)
+            self.indigoDevice.updateStateOnServer("tempF", value=(9.0/5.0 * sensorValue + 32), decimalPlaces=self.decimalPlaces)
 
 
     def getDeviceStateList(self):
@@ -77,6 +77,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltageRatio", "voltageRatio", "voltageRatio"))
         if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
+            self.logger.error(self.sensorStateName)
             if self.sensorStateName == "tempC":
                 newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("tempF", "tempF", "tempF"))
         elif self.customState and self.customFormula:
