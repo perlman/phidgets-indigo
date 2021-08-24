@@ -23,7 +23,7 @@ class VoltageRatioInputPhidget(PhidgetBase):
         self.customState = customState
         self.customFormula = customFormula
 
-        self.sensorUnit = sensortypes.getVoltageSensorUnit(sensorType)
+        self.sensorUnit = sensortypes.getVoltageRatioSensorUnit(sensorType)
         (self.sensorStateName, self.sensorSymbol) = sensortypes.getNameAndSymbol(self.sensorUnit)
 
     def addPhidgetHandlers(self):
