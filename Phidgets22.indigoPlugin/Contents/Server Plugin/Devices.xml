@@ -30,6 +30,10 @@
 				</List>
 			</Field>
 
+			<Field id="suppressErrors" type="checkbox" defaultValue="False">
+				<Label>Suppress out of range errors for this device?</Label>
+			</Field>
+
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.</Label>
 			</Field>
@@ -89,6 +93,10 @@
 					<Option value="3">3</Option>
 					<Option value="4">4</Option>
 				</List>
+			</Field>
+
+			<Field id="suppressErrors" type="checkbox" defaultValue="False">
+				<Label>Suppress out of range errors for this device?</Label>
 			</Field>
 
 			<Field id="exampleLabel" type="label">

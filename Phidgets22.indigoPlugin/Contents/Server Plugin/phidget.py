@@ -45,6 +45,7 @@ class PhidgetBase(object):
         self.indigoDevice = indigoDevice
         self.indigo_plugin = indigo_plugin
         self.decimalPlaces = decimalPlaces # Number of decimal places for Indigo do display for numbers. -1 means default (likely 5)
+        self.pluginSuppressErrors = bool(self.indigo_plugin.pluginPrefs.get('suppressErrors', False))
 
         self.initial_connection_timeout = int(indigo_plugin.pluginPrefs.get('attachTimeout', '5'))
 
@@ -74,8 +75,16 @@ class PhidgetBase(object):
             ' after %d seconds.' % self.initial_connection_timeout)
 
     def onErrorHandler(self, ph, errorCode, errorString):
+        # quick hack to get this working. Supress error info should be passed into this method.
+        deviceSuppressErrors = bool(self.indigoDevice.pluginProps.get("suppressErrors", False))
+
         """Default error handler for Phidgets."""
-        self.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ") for Indigo device '" +
+        if deviceSuppressErrors and errorCode == 4103:
+            pass
+        elif self.pluginSuppressErrors and (errorCode == 4098 or errorCode == 4099):
+            pass    
+        else:
+            self.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ") for Indigo device '" +
             str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
     
     def onDetachHandler(self, ph):
