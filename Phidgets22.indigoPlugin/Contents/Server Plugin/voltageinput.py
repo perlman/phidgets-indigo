@@ -70,11 +70,13 @@ class VoltageInputPhidget(PhidgetBase):
             except Exception as e:
                 self.logger.error('onVoltageChangeHandler: %s received for device: %s' %  (traceback.format_exc(), self.indigoDevice.name))
 
-
     def onSensorChangeHandler(self, ph, sensorValue, sensorUnit):
         self.indigoDevice.updateStateOnServer(self.sensorStateName , value=sensorValue, decimalPlaces=self.decimalPlaces)
         if self.sensorStateName == "tempC":
             self.indigoDevice.updateStateOnServer("tempF", value=(9.0/5.0 * sensorValue + 32), decimalPlaces=self.decimalPlaces)
+
+        if self.sensorStateName == "lux":
+            self.indigoDevice.updateStateImageOnServer(indigo.kStateImageSel.EnergyMeterOn)
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
