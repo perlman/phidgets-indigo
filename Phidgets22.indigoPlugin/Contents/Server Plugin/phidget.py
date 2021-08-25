@@ -82,11 +82,11 @@ class PhidgetBase(object):
         if deviceSuppressErrors and errorCode == 4103:
             pass
         elif self.pluginSuppressErrors and (errorCode == 4098 or errorCode == 4099):
-            pass    
+            pass
         else:
             self.logger.error("[Phidget Error Event] -> " + errorString + " (" + str(errorCode) + ") for Indigo device '" +
             str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
-    
+
     def onDetachHandler(self, ph):
         self.indigoDevice.setErrorStateOnServer('Detached')
         phidget_util.logPhidgetEvent(ph, self.logger.debug, "Detached '" + self.indigoDevice.name + "'")
