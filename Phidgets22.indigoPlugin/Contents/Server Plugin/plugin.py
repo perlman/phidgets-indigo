@@ -73,10 +73,25 @@ class Plugin(indigo.PluginBase):
 
         # Set an address here
         # TODO: dynamic address updating would require replacing the device and using didDeviceCommPropertyChange to prevent respawn
-        if 'hubPort' in valuesDict and len(valuesDict['hubPort']) > 0:
-            valuesDict[u'address'] = valuesDict['serialNumber'] + "|" + valuesDict['hubPort']
+        if bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):
+            valuesDict['address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort']
+        elif not bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):   # an interfaceKit
+            if typeId == 'digitalInput':
+                valuesDict['address'] = valuesDict['serialNumber'] + "|di-" + valuesDict['channel']
+            elif typeId == 'digitalOutput':
+                valuesDict['address'] = valuesDict['serialNumber'] + "|do-" + valuesDict['channel']
+            elif typeId == 'voltageRatioInput':
+                valuesDict['address'] = valuesDict['serialNumber'] + "|vr-" + valuesDict['channel']
+            elif typeId == 'voltageInput':
+                valuesDict['address'] = valuesDict['serialNumber'] + "|av-" + valuesDict['channel']
+            else:
+                valuesDict['address'] = valuesDict['serialNumber'] + "|p-" + valuesDict['channel']
+        elif 'hubPort' in valuesDict and len(valuesDict['hubPort']) > 0 and 'channel' in valuesDict and len(valuesDict['channel']) > 0:
+            valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort'] + "-c" + valuesDict['channel']
+        elif 'hubPort' in valuesDict and len(valuesDict['hubPort']):
+            valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort']
         elif 'channel' in valuesDict and len(valuesDict['channel']) > 0:
-            valuesDict[u'address'] = valuesDict['serialNumber'] + "|" + valuesDict['channel']
+            valuesDict[u'address'] = valuesDict['serialNumber'] + "|c" + valuesDict['channel']
         else:
             valuesDict[u'address'] = valuesDict['serialNumber']
 
