@@ -70,30 +70,37 @@ class Plugin(indigo.PluginBase):
 
     def validateDeviceConfigUi(self, valuesDict, typeId, devId):
         # TODO: Perform some type of verification on the fields?
+        # Look to see if there ia a label for the serial number
+        addrIndex = str(valuesDict['serialNumber'])
+        varName = "p22_" + addrIndex
+        if varName in indigo.variables:
+            phLabel = str(indigo.variables[varName].value)
+            if phLabel != "":  # If we got a non-null value, use it
+                addrIndex = phLabel
 
         # Set an address here
         # TODO: dynamic address updating would require replacing the device and using didDeviceCommPropertyChange to prevent respawn
         if bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):
-            valuesDict['address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort']
+            valuesDict['address'] = addrIndex + "|p" + valuesDict['hubPort']
         elif not bool(valuesDict['isVintHub']) and not bool(valuesDict['isVintDevice']):   # an interfaceKit
             if typeId == 'digitalInput':
-                valuesDict['address'] = valuesDict['serialNumber'] + "|di-" + valuesDict['channel']
+                valuesDict['address'] = addrIndex + "|di-" + valuesDict['channel']
             elif typeId == 'digitalOutput':
-                valuesDict['address'] = valuesDict['serialNumber'] + "|do-" + valuesDict['channel']
+                valuesDict['address'] = addrIndex + "|do-" + valuesDict['channel']
             elif typeId == 'voltageRatioInput':
-                valuesDict['address'] = valuesDict['serialNumber'] + "|vr-" + valuesDict['channel']
+                valuesDict['address'] = addrIndex + "|vr-" + valuesDict['channel']
             elif typeId == 'voltageInput':
-                valuesDict['address'] = valuesDict['serialNumber'] + "|av-" + valuesDict['channel']
+                valuesDict['address'] = addrIndex + "|av-" + valuesDict['channel']
             else:
-                valuesDict['address'] = valuesDict['serialNumber'] + "|p-" + valuesDict['channel']
+                valuesDict['address'] = addrIndex + "|p-" + valuesDict['channel']
         elif 'hubPort' in valuesDict and len(valuesDict['hubPort']) > 0 and 'channel' in valuesDict and len(valuesDict['channel']) > 0:
-            valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort'] + "-c" + valuesDict['channel']
+            valuesDict[u'address'] = addrIndex + "|p" + valuesDict['hubPort'] + "-c" + valuesDict['channel']
         elif 'hubPort' in valuesDict and len(valuesDict['hubPort']):
-            valuesDict[u'address'] = valuesDict['serialNumber'] + "|p" + valuesDict['hubPort']
+            valuesDict[u'address'] = addrIndex + "|p" + valuesDict['hubPort']
         elif 'channel' in valuesDict and len(valuesDict['channel']) > 0:
-            valuesDict[u'address'] = valuesDict['serialNumber'] + "|c" + valuesDict['channel']
+            valuesDict[u'address'] = addrIndex + "|c" + valuesDict['channel']
         else:
-            valuesDict[u'address'] = valuesDict['serialNumber']
+            valuesDict[u'address'] = addrIndex
 
         return (True, valuesDict)
 
