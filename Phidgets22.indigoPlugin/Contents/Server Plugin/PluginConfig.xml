@@ -15,6 +15,10 @@
         <Label>Timeout for Phidget attachment (seconds):</Label>
     </Field>
 
+	<Field type="checkbox"  id="suppressErrors" defaultValue="False">
+		<Label>Suppress interfaceKit sample overrun and lost packet errors?</Label>
+	</Field>
+
 	<Field id="simpleSeparator1" type="separator"/>
 
 	<Field id="phidgetPluginLoggingLevel" type="menu" defaultValue="0">
