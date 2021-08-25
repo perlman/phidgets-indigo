@@ -77,7 +77,6 @@ class VoltageRatioInputPhidget(PhidgetBase):
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("voltageRatio", "voltageRatio", "voltageRatio"))
         if self.sensorType != VoltageRatioSensorType.SENSOR_TYPE_VOLTAGERATIO:
             newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType(self.sensorStateName, self.sensorStateName, self.sensorStateName))
-            self.logger.error(self.sensorStateName)
             if self.sensorStateName == "tempC":
                 newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("tempF", "tempF", "tempF"))
         elif self.customState and self.customFormula:
