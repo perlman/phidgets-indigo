@@ -33,7 +33,7 @@ class DigitalInputPhidget(PhidgetBase):
             if self.isAlarm:
                 stateImage = indigo.kStateImageSel.SensorTripped
             else:
-                stateImage = indigo.kStateImageSel.Sensor
+                stateImage = indigo.kStateImageSel.SensorOn
         else:
             setState = 'off'
             if self.isAlarm:

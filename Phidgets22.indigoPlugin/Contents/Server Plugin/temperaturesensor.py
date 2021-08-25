@@ -52,9 +52,9 @@ class TemperatureSensorPhidget(PhidgetBase):
             self.logger.error(traceback.format_exc())
 
     def onTemperatureChangeHandler(self, ph, temperature):
-
         self.indigoDevice.updateStateOnServer("tempC", value=temperature, decimalPlaces=self.decimalPlaces)
         self.indigoDevice.updateStateOnServer("tempF", value=(9.0/5.0 * temperature + 32), decimalPlaces=self.decimalPlaces)
+        self.indigoDevice.updateStateImageOnServer(indigo.kStateImageSel.TemperatureSensorOn)
 
     def getDeviceStateList(self):
         newStatesList = indigo.List()
