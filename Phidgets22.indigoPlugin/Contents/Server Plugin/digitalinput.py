@@ -13,9 +13,11 @@ from phidget import PhidgetBase
 import phidget_util
 
 class DigitalInputPhidget(PhidgetBase):
-    def __init__(self, isAlarm, *args, **kwargs):
+    def __init__(self, isAlarm, onStateIcon, offStateIcon, *args, **kwargs):
         super(DigitalInputPhidget, self).__init__(phidget=DigitalInput(), *args, **kwargs)
         self.isAlarm = isAlarm
+        self.onStateIcon = onStateIcon
+        self.offStateIcon = offStateIcon
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -28,18 +30,13 @@ class DigitalInputPhidget(PhidgetBase):
 
     def updateIndigoStatus(self, state):
         # Common code between onStateChangeHandler & indigo.kSensorAction.RequestStatus
+        stateImage =  getattr(indigo.kStateImageSel, "Auto")
         if state:
             setState = 'on'
-            if self.isAlarm:
-                stateImage = indigo.kStateImageSel.SensorTripped
-            else:
-                stateImage = indigo.kStateImageSel.SensorOn
+            stateImage =  getattr(indigo.kStateImageSel, self.onStateIcon)
         else:
             setState = 'off'
-            if self.isAlarm:
-                stateImage = indigo.kStateImageSel.SensorOn
-            else:
-                stateImage = indigo.kStateImageSel.SensorOff
+            stateImage =  getattr(indigo.kStateImageSel, str(self.offStateIcon))
 
         self.indigoDevice.updateStateOnServer("onOffState", value=setState)
         now = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -60,10 +57,10 @@ class DigitalInputPhidget(PhidgetBase):
         newStatesList = indigo.List()
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForBoolOnOffType('onOffState', 'onOffState', 'onOffState'))
         newStatesList.append(self.indigo_plugin.getDeviceStateDictForStringType('lastUpdate', 'lastUpdate', 'lastUpdate'))
-        
+
         return newStatesList
-    
+
     def getDeviceDisplayStateId(self):
-        return "onOffState"
+        return "onState"
 
 

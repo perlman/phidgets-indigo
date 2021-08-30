@@ -197,8 +197,10 @@ class Plugin(indigo.PluginBase):
             elif device.deviceTypeId == "digitalOutput":
                 newPhidget = DigitalOutputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger)
             elif device.deviceTypeId == "digitalInput":
+                onStateIcon = str(device.pluginProps.get("onStateIcon", "SensorOn"))
+                offStateIcon = str(device.pluginProps.get("offStateIcon", "SensorOff"))
                 isAlarm = bool(device.pluginProps.get("isAlarm", False))
-                newPhidget = DigitalInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, isAlarm=isAlarm)
+                newPhidget = DigitalInputPhidget(indigo_plugin=self, channelInfo=channelInfo, indigoDevice=device, logger=self.logger, isAlarm=isAlarm, onStateIcon=onStateIcon, offStateIcon=offStateIcon)
             elif device.deviceTypeId == "temperatureSensor":
                 temperatureChangeTrigger = float(device.pluginProps.get("temperatureChangeTrigger", 0))
                 displayTempUnit = device.pluginProps.get("displayTempUnit", "C")

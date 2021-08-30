@@ -133,9 +133,10 @@
 	<Device id="digitalInput" type="custom">
 		<Name>Digital Input</Name>
 		<ConfigUI>
-			<Field id="isAlarm" type="checkbox" defaultValue="False" tooltip="Device state Off will show as green, On as red">
+			<!-- <Field id="isAlarm" type="checkbox" defaultValue="False" tooltip="Device state Off will show as green, On as red">
 				<Label>Does this device signal an alarm condition</Label>
-			</Field>
+			</Field> -->
+
 			<Field id="exampleLabel" type="label">
 				<Label>The following sections will (eventually) be populated automatically.</Label>
 			</Field>
@@ -153,6 +154,150 @@
 			</Field>
 			<Field id="hubPort" type="textfield" visibleBindingId="isVintHub" visibleBindingValue="true" alwaysUseInDialogHeightCalc="true">
 				<Label>Hub port:</Label>
+			</Field>
+
+			<Field id="customIcons" type="checkbox" defaultValue="False">
+				<Label>Define Device display on/off icons?</Label>
+			</Field>
+
+			<Field id="onStateIcon" type="menu" defaultValue="SensorOn" visibleBindingId="customIcons" visibleBindingValue="true" >
+				<Label>On state display icon</Label>
+				<List>
+					<Option value="Auto">Automatic</Option>
+					<Option value="None">no device image</Option>
+					<Option value="AvPaused">A/V paused</Option>
+					<Option value="AvPlaying">A/V playing</Option>
+					<Option value="AvStopped">A/V stopped</Option>
+					<Option value="BatteryCharger">battery charger</Option>
+					<Option value="BatteryChargerOn">battery charger on</Option>
+					<Option value="BatteryLevel">battery level</Option>
+					<Option value="BatteryLevel25">battery level (25%)</Option>
+					<Option value="BatteryLevel50">battery level (50%)</Option>
+					<Option value="BatteryLevel75">battery level (75%)</Option>
+					<Option value="BatteryLevelHigh">battery level (full)</Option>
+					<Option value="BatteryLevelLow">battery level (low)</Option>
+					<Option value="DehumidifierOn">dehumidifier</Option>
+					<Option value="DimmerOff">dimmer or bulb off</Option>
+					<Option value="DimmerOn">dimmer or bulb on</Option>
+					<Option value="DoorSensorClosed">door sensor closed</Option>
+					<Option value="DoorSensorOpened">door sensor opened</Option>
+					<Option value="EnergyMeterOff">energy meter off</Option>
+					<Option value="EnergyMeterOn">energy meter on</Option>
+					<Option value="Error">error device image</Option>
+					<Option value="FanHigh">fan on (high)</Option>
+					<Option value="FanLow">fan on (low)</Option>
+					<Option value="FanMedium">fan on (medium)</Option>
+					<Option value="FanOff">fan off</Option>
+					<Option value="HumidifierOn">humidity sensor on</Option>
+					<Option value="HumiditySensor">humidity sensor</Option>
+					<Option value="HvacAutoMode">thermostat in auto mode</Option>
+					<Option value="HvacCoolMode">thermostat in cool mode</Option>
+					<Option value="HvacCooling">thermostat that is cooling</Option>
+					<Option value="HvacFanOn">thermostat with fan blower on only</Option>
+					<Option value="HvacHeatMode">thermostat in heat mode</Option>
+					<Option value="HvacHeating">thermostat that is heating</Option>
+					<Option value="HvacOff">thermostat off</Option>
+					<Option value="LightSensor">light meter off</Option>
+					<Option value="LightSensorOn">light meter on</Option>
+					<Option value="MotionSensor">motion sensor</Option>
+					<Option value="MotionSensorTripped">motion sensor tripped/activated</Option>
+					<Option value="PowerOff">power off</Option>
+					<Option value="PowerOn">power on</Option>
+					<Option value="SensorOff">generic sensor off (gray circle)</Option>
+					<Option value="SensorOn">generic sensor on (green circle)</Option>
+					<Option value="SensorTripped">generic sensor tripped (red circle)</Option>
+					<Option value="SprinklerOff">sprinkler off</Option>
+					<Option value="SprinklerOn">sprinkler off</Option>
+					<Option value="TemperatureSensor">temperature sensor</Option>
+					<Option value="TemperatureSensorOn">temperature sensor on</Option>
+					<Option value="TimerOff">timer off</Option>
+					<Option value="TimerOn">timer on</Option>
+					<Option value="WindDirectionSensor">wind direction sensor</Option>
+					<Option value="WindDirectionSensorEast">wind direction sensor (E)</Option>
+					<Option value="WindDirectionSensorNorth">wind direction sensor (N)</Option>
+					<Option value="WindDirectionSensorNorthEast">wind direction sensor (NE)</Option>
+					<Option value="WindDirectionSensorNorthWest">wind direction sensor (NW)</Option>
+					<Option value="WindDirectionSensorSouth">wind direction sensor (S)</Option>
+					<Option value="WindDirectionSensorSouthEast">wind direction sensor (SE)</Option>
+					<Option value="WindDirectionSensorSouthWest">wind direction sensor (SW)</Option>
+					<Option value="WindDirectionSensorWest">wind direction sensor (W)</Option>
+					<Option value="WindSpeedSensor">wind speed sensor</Option>
+					<Option value="WindSpeedSensorHigh">wind speed sensor (high)</Option>
+					<Option value="WindSpeedSensorLow">wind speed sensor (low)</Option>
+					<Option value="WindSpeedSensorMedium">wind speed sensor (medium)</Option>
+					<Option value="WindowSensorClosed">window sensor closed</Option>
+					<Option value="WindowSensorOpened">window sensor opened</Option>
+				</List>
+			</Field>
+
+			<Field id="offStateIcon" type="menu" defaultValue="SensorOff" visibleBindingId="customIcons" visibleBindingValue="true" >
+				<Label>Off state display icon</Label>
+				<List>
+					<Option value="Auto">Automatic</Option>
+					<Option value="None">no device image</Option>
+					<Option value="AvPaused">A/V paused</Option>
+					<Option value="AvPlaying">A/V playing</Option>
+					<Option value="AvStopped">A/V stopped</Option>
+					<Option value="BatteryCharger">battery charger</Option>
+					<Option value="BatteryChargerOn">battery charger on</Option>
+					<Option value="BatteryLevel">battery level</Option>
+					<Option value="BatteryLevel25">battery level (25%)</Option>
+					<Option value="BatteryLevel50">battery level (50%)</Option>
+					<Option value="BatteryLevel75">battery level (75%)</Option>
+					<Option value="BatteryLevelHigh">battery level (full)</Option>
+					<Option value="BatteryLevelLow">battery level (low)</Option>
+					<Option value="DehumidifierOn">dehumidifier</Option>
+					<Option value="DimmerOff">dimmer or bulb off</Option>
+					<Option value="DimmerOn">dimmer or bulb on</Option>
+					<Option value="DoorSensorClosed">door sensor closed</Option>
+					<Option value="DoorSensorOpened">door sensor opened</Option>
+					<Option value="EnergyMeterOff">energy meter off</Option>
+					<Option value="EnergyMeterOn">energy meter on</Option>
+					<Option value="Error">error device image</Option>
+					<Option value="FanHigh">fan on (high)</Option>
+					<Option value="FanLow">fan on (low)</Option>
+					<Option value="FanMedium">fan on (medium)</Option>
+					<Option value="FanOff">fan off</Option>
+					<Option value="HumidifierOn">humidity sensor on</Option>
+					<Option value="HumiditySensor">humidity sensor</Option>
+					<Option value="HvacAutoMode">thermostat in auto mode</Option>
+					<Option value="HvacCoolMode">thermostat in cool mode</Option>
+					<Option value="HvacCooling">thermostat that is cooling</Option>
+					<Option value="HvacFanOn">thermostat with fan blower on only</Option>
+					<Option value="HvacHeatMode">thermostat in heat mode</Option>
+					<Option value="HvacHeating">thermostat that is heating</Option>
+					<Option value="HvacOff">thermostat off</Option>
+					<Option value="LightSensor">light meter off</Option>
+					<Option value="LightSensorOn">light meter on</Option>
+					<Option value="MotionSensor">motion sensor</Option>
+					<Option value="MotionSensorTripped">motion sensor tripped/activated</Option>
+					<Option value="PowerOff">power off</Option>
+					<Option value="PowerOn">power on</Option>
+					<Option value="SensorOff">generic sensor off (gray circle)</Option>
+					<Option value="SensorOn">generic sensor on (green circle)</Option>
+					<Option value="SensorTripped">generic sensor tripped (red circle)</Option>
+					<Option value="SprinklerOff">sprinkler off</Option>
+					<Option value="SprinklerOn">sprinkler off</Option>
+					<Option value="TemperatureSensor">temperature sensor</Option>
+					<Option value="TemperatureSensorOn">temperature sensor on</Option>
+					<Option value="TimerOff">timer off</Option>
+					<Option value="TimerOn">timer on</Option>
+					<Option value="WindDirectionSensor">wind direction sensor</Option>
+					<Option value="WindDirectionSensorEast">wind direction sensor (E)</Option>
+					<Option value="WindDirectionSensorNorth">wind direction sensor (N)</Option>
+					<Option value="WindDirectionSensorNorthEast">wind direction sensor (NE)</Option>
+					<Option value="WindDirectionSensorNorthWest">wind direction sensor (NW)</Option>
+					<Option value="WindDirectionSensorSouth">wind direction sensor (S)</Option>
+					<Option value="WindDirectionSensorSouthEast">wind direction sensor (SE)</Option>
+					<Option value="WindDirectionSensorSouthWest">wind direction sensor (SW)</Option>
+					<Option value="WindDirectionSensorWest">wind direction sensor (W)</Option>
+					<Option value="WindSpeedSensor">wind speed sensor</Option>
+					<Option value="WindSpeedSensorHigh">wind speed sensor (high)</Option>
+					<Option value="WindSpeedSensorLow">wind speed sensor (low)</Option>
+					<Option value="WindSpeedSensorMedium">wind speed sensor (medium)</Option>
+					<Option value="WindowSensorClosed">window sensor closed</Option>
+					<Option value="WindowSensorOpened">window sensor opened</Option>
+				</List>
 			</Field>
 		</ConfigUI>
 	</Device>
@@ -253,7 +398,7 @@
 			<Field id="humidityChangeTrigger" type="textfield" defaultValue="0.0">
 					<Label>Humidity change trigger (in %RH):</Label>
 			</Field>
-			
+
 			<Field id="decimalPlaces" type="menu" defaultValue="2">
 				<Label>Decimals places</Label>
 				<List>
@@ -320,7 +465,7 @@
 			<Field id="dataInterval" type="textfield" defaultValue="1000">
 					<Label>Data interval:</Label>
 			</Field>
-			
+
 			<Field id="frequencyCutoff" type="textfield" defaultValue="1.0">
 					<Label>Frequency cuoff (Hz):</Label>
 			</Field>

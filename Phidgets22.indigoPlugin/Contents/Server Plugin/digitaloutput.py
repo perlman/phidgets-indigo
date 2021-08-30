@@ -22,7 +22,7 @@ class DigitalOutputPhidget(PhidgetBase):
             self.indigoDevice.updateStateOnServer("brightnessLevel", value=brightnessLevel, uiValue="%d" % brightnessLevel)
             self.indigoDevice.updateStateOnServer("onOffState", value=onOffState, uiValue="on" if onOffState else "off")
         except Exception as e:
-            self.logger.error(traceback.format_exc())
+            self.logger.error('%s: %s' % (self.indigoDevice.name, traceback.format_exc()))
 
     def addPhidgetHandlers(self):
         self.phidget.setOnErrorHandler(self.onErrorHandler)
@@ -39,7 +39,7 @@ class DigitalOutputPhidget(PhidgetBase):
         # newStatesList.append(self.indigo_plugin.getDeviceStateDictForBoolOnOffType("onOffState", "onOffState", "onOffState"))
         # newStatesList.append(self.indigo_plugin.getDeviceStateDictForNumberType("dutyCycle", "dutyCycle", "dutyCycle"))
         return newStatesList
-    
+
     def getDeviceDisplayStateId(self):
         return "onOffState"
 
