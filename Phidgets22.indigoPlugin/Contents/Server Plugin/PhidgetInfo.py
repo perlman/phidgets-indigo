@@ -13,7 +13,7 @@ class PhidgetInfo(object):
     def __init__(self, phidgetInfoFile=None):
         if phidgetInfoFile:
             # Read JSON with human-readable phidget sensors/modes/etc.
-            with open(phidgetInfoFile, 'r') as f:
+            with open(phidgetInfoFile, 'r', encoding="utf-8") as f:
                 self.phidgetInfo = json.load(f)
         else:
             self.phidgetInfo = {}
