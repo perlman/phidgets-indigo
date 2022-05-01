@@ -49,6 +49,8 @@ class PhidgetBase(object):
 
         self.initial_connection_timeout = int(indigo_plugin.pluginPrefs.get('attachTimeout', '5'))
 
+        self.timer = None
+
     def start(self):
         self.logger.debug("Creating " + self.__class__.__name__ + " for Indigo device '" + str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
 
@@ -97,7 +99,9 @@ class PhidgetBase(object):
         phidget_util.logPhidgetEvent(ph, self.logger.debug, "Attached '" + self.indigoDevice.name + "'")
 
     def stop(self):
-        self.timer.cancel()
+        if self.timer: # Timer might not be defined if start() was never called [e.g. bad config]
+            self.timer.cancel()
+        self.timer = None
         self.logger.debug("Stopping " + self.__class__.__name__ + " for Indigo device '" + str(self.indigoDevice.name) + "' (%d)" % self.indigoDevice.id)
         self.phidget.close()
 
