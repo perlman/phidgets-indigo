@@ -1,4 +1,4 @@
-#!/usr/bin/env python2.7
+#!/usr/bin/env python3
 
 #
 # Use comments from the Phidget22 python library to generate a JSON file mapping
@@ -10,14 +10,13 @@ import os
 import re
 import json
 import glob
-import io
 
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('--phidgetpath', help="Path to Phdiget22 python library",
-        default="Phidgets.indigoPlugin/Contents/Server Plugin/Phidget22/")
+        default="Phidgets22.indigoPlugin/Contents/Server Plugin/Phidget22/")
     parser.add_argument('--output', help="JSON output file",
-        default="Phidgets.indigoPlugin/Contents/Resources/phidgets.json")
+        default="Phidgets22.indigoPlugin/Contents/Resources/phidgets.json")
     args = parser.parse_args()
 
     output = {}
@@ -34,8 +33,9 @@ def main():
                     'description' : m.group('desc'),
                     'enum' : m.group('def')
                     })
-    with io.open(args.output, 'w', encoding='utf8') as f:
-        f.write(unicode(json.dumps(output, ensure_ascii=False, indent=4, sort_keys=True)))
+    
+    with open(args.output, 'w', encoding='utf8') as f:
+        json.dump(output, f, ensure_ascii=False, indent=4, sort_keys=True)
 
 if __name__ == "__main__":
     main()
