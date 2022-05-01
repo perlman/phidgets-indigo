@@ -8,8 +8,8 @@ for [Indigo](https://www.indigodomo.com/).
 
 ## Requirements
 
-- [Indigo](https://www.indigodomo.com) 2021.1 or newer
-- [Phidgets 2.2 Driver](https://www.phidgets.com/docs/OS_-_macOS)
+- [Indigo](https://www.indigodomo.com) 2022.1 or newer
+- [Phidgets 2.2 Driver](https://www.phidgets.com/docs/OS_-_macOS) 1.10.20220413 or newer
 
 ## Status
 
@@ -27,7 +27,3 @@ Only network phidgets are supported. To use local attached phidgets, enable the 
 ## Phidget Addressing
 
 See the [Phidget Documentation](https://www.phidgets.com/docs/Addressing_Phidgets]) for details on how to address a Phidget.
-
-## Other notes
-
-- The [Phidgets Python 2.2 API](https://www.phidgets.com/docs/Language_-_Python) has been included, with a minor modification to use utf-8 encoding. This was required for python2.7 to grok ± which is used in several of the comments.
