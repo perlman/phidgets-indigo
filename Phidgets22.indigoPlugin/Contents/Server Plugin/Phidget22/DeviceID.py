@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 import ctypes
 class DeviceID:
@@ -102,8 +101,6 @@ class DeviceID:
 	PHIDID_1219__1222 = 48
 	# pH Adapter
 	PHIDID_ADP1000 = 49
-	# SPI Customer Interface
-	PHIDID_ADP1001 = 50
 	# Analog Input Module x8
 	PHIDID_DAQ1000 = 51
 	# Digital Input 4
@@ -132,14 +129,8 @@ class DeviceID:
 	PHIDID_HIN1100 = 63
 	# Phidget USB VINT Hub with 6 ports
 	PHIDID_HUB0000 = 64
-	# Phidget Mesh Hub with 4 ports
-	PHIDID_MESHHUB = 65
-	# Phidget Mesh Dongle
-	PHIDID_MESHDONGLE = 66
 	# Phidget SPI VINT Hub with 6 ports
 	PHIDID_HUB0004 = 67
-	# Phidget Lightning VINT Hub with 6 ports
-	PHIDID_LIGHTNINGHUB = 68
 	# Humidity Sensor
 	PHIDID_HUM1000 = 69
 	# LCD
@@ -184,8 +175,6 @@ class DeviceID:
 	PHIDID_TMP1101 = 89
 	# RTD
 	PHIDID_TMP1200 = 90
-	# Infrared Temperature Sensor
-	PHIDID_TMP1300 = 91
 	# Voltage Sensor High Precision
 	PHIDID_VCP1000 = 92
 	# Voltage Sensor Large
@@ -200,18 +189,6 @@ class DeviceID:
 	PHIDID_VOLTAGEINPUT_PORT = 97
 	# Hub Port in Voltage Ratio Input mode
 	PHIDID_VOLTAGERATIOINPUT_PORT = 98
-	# Generic USB device
-	PHIDID_GENERICUSB = 99
-	# Generic VINT device
-	PHIDID_GENERICVINT = 100
-	# USB device in firmware upgrade mode
-	PHIDID_FIRMWARE_UPGRADE_USB = 101
-	# VINT Device in firmware upgrade mode, STM32F0 Proc.
-	PHIDID_FIRMWARE_UPGRADE_STM32F0 = 102
-	# VINT Device in firmware upgrade mode, STM8S Proc.
-	PHIDID_FIRMWARE_UPGRADE_STM8S = 103
-	# Phidget SPI device under firmware upgrade
-	PHIDID_FIRMWARE_UPGRADE_SPI = 104
 	# 30A Current Sensor
 	PHIDID_VCP1100 = 105
 	# BLDC Motor Controller
@@ -224,8 +201,6 @@ class DeviceID:
 	PHIDID_DICTIONARY = 111
 	# Bipolar Stepper Motor SmallController
 	PHIDID_STC1001 = 115
-	# OS Testing Fixture
-	PHIDID_USBSWITCH = 116
 	# 4A Small DC Motor Controller
 	PHIDID_DCC1002 = 117
 	# 8A Bipolar Stepper Motor Controller
@@ -236,8 +211,6 @@ class DeviceID:
 	PHIDID_DCC1003 = 120
 	# 650mm distance sensor
 	PHIDID_DST1001 = 121
-	# 4-20mA Output
-	PHIDID_CURLOOP = 122
 	# Phidget Network Hub with 6 ports
 	PHIDID_HUB5000 = 123
 	# PhidgetAdvancedServo 8-Motor (RCC0004)
@@ -248,34 +221,14 @@ class DeviceID:
 	PHIDID_DST1002 = 126
 	# Humidity Sensor
 	PHIDID_HUM1001 = 127
-	# DC Motor Controller 12A
-	PHIDID_DCC1004 = 128
-	# DC Motor Controller High Current
-	PHIDID_DCC1005 = 129
-	# PhidgetSpatial 3/3/3
-	PHIDID_MOT0108 = 131
-	# RS232 Prototype
-	PHIDID_ADP_RS232 = 132
-	# RS485/422 Prototype
-	PHIDID_ADP_RS485_422 = 133
-	# Serial Prototype
-	PHIDID_ADP_SERIAL = 134
 	# VINT Moisture Sensor
 	PHIDID_HUM1100 = 136
 	# VINT Spatial Phidget AHRS
 	PHIDID_MOT1102 = 137
-	# VINT Accelerometer
-	PHIDID_VINTACCEL = 138
-	# Testpoint Diagnoser
-	PHIDID_TP_DIAGNOSER = 139
 	# PhidgetSpatial Precision 3/3/3
 	PHIDID_MOT0109 = 140
-	# PhidgetSpatial Precision 3/3/3
-	PHIDID_MOT0110 = 141
 	# Phidget USB VINT Hub with 6 ports
 	PHIDID_HUB0001 = 142
-	# VINT Device in firmware upgrade mode, STM32G0 Proc.
-	PHIDID_FIRMWARE_UPGRADE_STM32G0 = 143
 
 	@classmethod
 	def getName(self, val):
@@ -379,8 +332,6 @@ class DeviceID:
 			return "PHIDID_1219__1222"
 		if val == self.PHIDID_ADP1000:
 			return "PHIDID_ADP1000"
-		if val == self.PHIDID_ADP1001:
-			return "PHIDID_ADP1001"
 		if val == self.PHIDID_DAQ1000:
 			return "PHIDID_DAQ1000"
 		if val == self.PHIDID_DAQ1200:
@@ -409,14 +360,8 @@ class DeviceID:
 			return "PHIDID_HIN1100"
 		if val == self.PHIDID_HUB0000:
 			return "PHIDID_HUB0000"
-		if val == self.PHIDID_MESHHUB:
-			return "PHIDID_MESHHUB"
-		if val == self.PHIDID_MESHDONGLE:
-			return "PHIDID_MESHDONGLE"
 		if val == self.PHIDID_HUB0004:
 			return "PHIDID_HUB0004"
-		if val == self.PHIDID_LIGHTNINGHUB:
-			return "PHIDID_LIGHTNINGHUB"
 		if val == self.PHIDID_HUM1000:
 			return "PHIDID_HUM1000"
 		if val == self.PHIDID_LCD1100:
@@ -461,8 +406,6 @@ class DeviceID:
 			return "PHIDID_TMP1101"
 		if val == self.PHIDID_TMP1200:
 			return "PHIDID_TMP1200"
-		if val == self.PHIDID_TMP1300:
-			return "PHIDID_TMP1300"
 		if val == self.PHIDID_VCP1000:
 			return "PHIDID_VCP1000"
 		if val == self.PHIDID_VCP1001:
@@ -477,18 +420,6 @@ class DeviceID:
 			return "PHIDID_VOLTAGEINPUT_PORT"
 		if val == self.PHIDID_VOLTAGERATIOINPUT_PORT:
 			return "PHIDID_VOLTAGERATIOINPUT_PORT"
-		if val == self.PHIDID_GENERICUSB:
-			return "PHIDID_GENERICUSB"
-		if val == self.PHIDID_GENERICVINT:
-			return "PHIDID_GENERICVINT"
-		if val == self.PHIDID_FIRMWARE_UPGRADE_USB:
-			return "PHIDID_FIRMWARE_UPGRADE_USB"
-		if val == self.PHIDID_FIRMWARE_UPGRADE_STM32F0:
-			return "PHIDID_FIRMWARE_UPGRADE_STM32F0"
-		if val == self.PHIDID_FIRMWARE_UPGRADE_STM8S:
-			return "PHIDID_FIRMWARE_UPGRADE_STM8S"
-		if val == self.PHIDID_FIRMWARE_UPGRADE_SPI:
-			return "PHIDID_FIRMWARE_UPGRADE_SPI"
 		if val == self.PHIDID_VCP1100:
 			return "PHIDID_VCP1100"
 		if val == self.PHIDID_DCC1100:
@@ -501,8 +432,6 @@ class DeviceID:
 			return "PHIDID_DICTIONARY"
 		if val == self.PHIDID_STC1001:
 			return "PHIDID_STC1001"
-		if val == self.PHIDID_USBSWITCH:
-			return "PHIDID_USBSWITCH"
 		if val == self.PHIDID_DCC1002:
 			return "PHIDID_DCC1002"
 		if val == self.PHIDID_STC1002:
@@ -513,8 +442,6 @@ class DeviceID:
 			return "PHIDID_DCC1003"
 		if val == self.PHIDID_DST1001:
 			return "PHIDID_DST1001"
-		if val == self.PHIDID_CURLOOP:
-			return "PHIDID_CURLOOP"
 		if val == self.PHIDID_HUB5000:
 			return "PHIDID_HUB5000"
 		if val == self.PHIDID_RCC0004:
@@ -525,32 +452,12 @@ class DeviceID:
 			return "PHIDID_DST1002"
 		if val == self.PHIDID_HUM1001:
 			return "PHIDID_HUM1001"
-		if val == self.PHIDID_DCC1004:
-			return "PHIDID_DCC1004"
-		if val == self.PHIDID_DCC1005:
-			return "PHIDID_DCC1005"
-		if val == self.PHIDID_MOT0108:
-			return "PHIDID_MOT0108"
-		if val == self.PHIDID_ADP_RS232:
-			return "PHIDID_ADP_RS232"
-		if val == self.PHIDID_ADP_RS485_422:
-			return "PHIDID_ADP_RS485_422"
-		if val == self.PHIDID_ADP_SERIAL:
-			return "PHIDID_ADP_SERIAL"
 		if val == self.PHIDID_HUM1100:
 			return "PHIDID_HUM1100"
 		if val == self.PHIDID_MOT1102:
 			return "PHIDID_MOT1102"
-		if val == self.PHIDID_VINTACCEL:
-			return "PHIDID_VINTACCEL"
-		if val == self.PHIDID_TP_DIAGNOSER:
-			return "PHIDID_TP_DIAGNOSER"
 		if val == self.PHIDID_MOT0109:
 			return "PHIDID_MOT0109"
-		if val == self.PHIDID_MOT0110:
-			return "PHIDID_MOT0110"
 		if val == self.PHIDID_HUB0001:
 			return "PHIDID_HUB0001"
-		if val == self.PHIDID_FIRMWARE_UPGRADE_STM32G0:
-			return "PHIDID_FIRMWARE_UPGRADE_STM32G0"
 		return "<invalid enumeration value>"

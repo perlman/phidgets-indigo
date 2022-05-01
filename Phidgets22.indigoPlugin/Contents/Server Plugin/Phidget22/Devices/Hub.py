@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
@@ -22,6 +21,19 @@ class Hub(Phidget):
 
 	def __del__(self):
 		Phidget.__del__(self)
+
+	def getPortPower(self, port):
+		_port = ctypes.c_int(port)
+		_state = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().PhidgetHub_getPortPower
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _port, ctypes.byref(_state))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _state.value
 
 	def setPortPower(self, port, state):
 		_port = ctypes.c_int(port)

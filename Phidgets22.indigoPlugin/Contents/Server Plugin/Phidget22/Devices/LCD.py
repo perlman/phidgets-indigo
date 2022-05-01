@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
@@ -47,6 +46,29 @@ class LCD(Phidget):
 
 	def __del__(self):
 		Phidget.__del__(self)
+
+	def getAutoFlush(self):
+		_autoFlush = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().PhidgetLCD_getAutoFlush
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_autoFlush))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _autoFlush.value
+
+	def setAutoFlush(self, autoFlush):
+		_autoFlush = ctypes.c_int(autoFlush)
+
+		__func = PhidgetSupport.getDll().PhidgetLCD_setAutoFlush
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _autoFlush)
+
+		if result > 0:
+			raise PhidgetException(result)
+
 
 	def getBacklight(self):
 		_Backlight = ctypes.c_double()

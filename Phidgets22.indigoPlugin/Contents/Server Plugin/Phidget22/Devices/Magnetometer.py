@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
@@ -133,6 +132,53 @@ class Magnetometer(Phidget):
 			raise PhidgetException(result)
 
 		return _MaxDataInterval.value
+
+	def getDataRate(self):
+		_DataRate = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _DataRate.value
+
+	def setDataRate(self, DataRate):
+		_DataRate = ctypes.c_double(DataRate)
+
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_setDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataRate)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinDataRate(self):
+		_MinDataRate = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMinDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinDataRate.value
+
+	def getMaxDataRate(self):
+		_MaxDataRate = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetMagnetometer_getMaxDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxDataRate.value
 
 	def getHeatingEnabled(self):
 		_HeatingEnabled = ctypes.c_int()

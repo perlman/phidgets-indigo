@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
@@ -94,6 +93,17 @@ class FrequencyCounter(Phidget):
 
 		return _Count.value
 
+	def setEnabled(self, Enabled):
+		_Enabled = ctypes.c_int(Enabled)
+
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Enabled)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
 	def getEnabled(self):
 		_Enabled = ctypes.c_int()
 
@@ -105,17 +115,6 @@ class FrequencyCounter(Phidget):
 			raise PhidgetException(result)
 
 		return _Enabled.value
-
-	def setEnabled(self, Enabled):
-		_Enabled = ctypes.c_int(Enabled)
-
-		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setEnabled
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _Enabled)
-
-		if result > 0:
-			raise PhidgetException(result)
-
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
@@ -163,6 +162,53 @@ class FrequencyCounter(Phidget):
 			raise PhidgetException(result)
 
 		return _MaxDataInterval.value
+
+	def getDataRate(self):
+		_DataRate = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _DataRate.value
+
+	def setDataRate(self, DataRate):
+		_DataRate = ctypes.c_double(DataRate)
+
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataRate)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinDataRate(self):
+		_MinDataRate = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMinDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinDataRate.value
+
+	def getMaxDataRate(self):
+		_MaxDataRate = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getMaxDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxDataRate.value
 
 	def getFilterType(self):
 		_FilterType = ctypes.c_int()

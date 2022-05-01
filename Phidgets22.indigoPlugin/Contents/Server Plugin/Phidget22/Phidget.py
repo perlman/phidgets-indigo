@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import sys
 import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
@@ -474,6 +473,53 @@ class Phidget:
 
 		return _HubPortCount.value
 
+	def getHubPortSpeed(self):
+		_HubPortSpeed = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().Phidget_getHubPortSpeed
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_HubPortSpeed))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _HubPortSpeed.value
+
+	def setHubPortSpeed(self, HubPortSpeed):
+		_HubPortSpeed = ctypes.c_uint32(HubPortSpeed)
+
+		__func = PhidgetSupport.getDll().Phidget_setHubPortSpeed
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _HubPortSpeed)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMaxHubPortSpeed(self):
+		_MaxHubPortSpeed = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().Phidget_getMaxHubPortSpeed
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxHubPortSpeed))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxHubPortSpeed.value
+
+	def getHubPortSupportsSetSpeed(self):
+		_HubPortSupportsSetSpeed = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().Phidget_getHubPortSupportsSetSpeed
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_HubPortSupportsSetSpeed))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _HubPortSupportsSetSpeed.value
+
 	def getIsChannel(self):
 		_IsChannel = ctypes.c_int()
 
@@ -647,6 +693,30 @@ class Phidget:
 			raise PhidgetException(result)
 
 		return _ServerUniqueName.value.decode('utf-8')
+
+	def getMaxVINTDeviceSpeed(self):
+		_MaxVINTDeviceSpeed = ctypes.c_uint32()
+
+		__func = PhidgetSupport.getDll().Phidget_getMaxVINTDeviceSpeed
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxVINTDeviceSpeed))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxVINTDeviceSpeed.value
+
+	def getVINTDeviceSupportsSetSpeed(self):
+		_VINTDeviceSupportsSetSpeed = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().Phidget_getVINTDeviceSupportsSetSpeed
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_VINTDeviceSupportsSetSpeed))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _VINTDeviceSupportsSetSpeed.value
 
 	def writeDeviceLabel(self, deviceLabel):
 		_deviceLabel = ctypes.create_string_buffer(deviceLabel.encode('utf-8'))

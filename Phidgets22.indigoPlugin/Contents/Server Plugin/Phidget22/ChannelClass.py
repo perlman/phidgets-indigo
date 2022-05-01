@@ -1,15 +1,10 @@
-# -*- coding: utf-8 -*-
 import sys
 import ctypes
 class ChannelClass:
-	# Any channel
-	PHIDCHCLASS_NOTHING = 0
 	# Accelerometer channel
 	PHIDCHCLASS_ACCELEROMETER = 1
 	# Current input channel
 	PHIDCHCLASS_CURRENTINPUT = 2
-	# Data adapter channel
-	PHIDCHCLASS_DATAADAPTER = 3
 	# DC motor channel
 	PHIDCHCLASS_DCMOTOR = 4
 	# Digital input channel
@@ -40,8 +35,6 @@ class ChannelClass:
 	PHIDCHCLASS_LIGHTSENSOR = 17
 	# Magnetometer channel
 	PHIDCHCLASS_MAGNETOMETER = 18
-	# Mesh dongle channel
-	PHIDCHCLASS_MESHDONGLE = 19
 	# pH sensor channel
 	PHIDCHCLASS_PHSENSOR = 37
 	# Power guard channel
@@ -68,10 +61,6 @@ class ChannelClass:
 	PHIDCHCLASS_VOLTAGEOUTPUT = 30
 	# Voltage ratio input channel
 	PHIDCHCLASS_VOLTAGERATIOINPUT = 31
-	# Firmware upgrade channel
-	PHIDCHCLASS_FIRMWAREUPGRADE = 32
-	# Generic channel
-	PHIDCHCLASS_GENERIC = 33
 	# Motor position control channel.
 	PHIDCHCLASS_MOTORPOSITIONCONTROLLER = 34
 	# BLDC motor channel
@@ -83,14 +72,10 @@ class ChannelClass:
 
 	@classmethod
 	def getName(self, val):
-		if val == self.PHIDCHCLASS_NOTHING:
-			return "PHIDCHCLASS_NOTHING"
 		if val == self.PHIDCHCLASS_ACCELEROMETER:
 			return "PHIDCHCLASS_ACCELEROMETER"
 		if val == self.PHIDCHCLASS_CURRENTINPUT:
 			return "PHIDCHCLASS_CURRENTINPUT"
-		if val == self.PHIDCHCLASS_DATAADAPTER:
-			return "PHIDCHCLASS_DATAADAPTER"
 		if val == self.PHIDCHCLASS_DCMOTOR:
 			return "PHIDCHCLASS_DCMOTOR"
 		if val == self.PHIDCHCLASS_DIGITALINPUT:
@@ -121,8 +106,6 @@ class ChannelClass:
 			return "PHIDCHCLASS_LIGHTSENSOR"
 		if val == self.PHIDCHCLASS_MAGNETOMETER:
 			return "PHIDCHCLASS_MAGNETOMETER"
-		if val == self.PHIDCHCLASS_MESHDONGLE:
-			return "PHIDCHCLASS_MESHDONGLE"
 		if val == self.PHIDCHCLASS_PHSENSOR:
 			return "PHIDCHCLASS_PHSENSOR"
 		if val == self.PHIDCHCLASS_POWERGUARD:
@@ -149,10 +132,6 @@ class ChannelClass:
 			return "PHIDCHCLASS_VOLTAGEOUTPUT"
 		if val == self.PHIDCHCLASS_VOLTAGERATIOINPUT:
 			return "PHIDCHCLASS_VOLTAGERATIOINPUT"
-		if val == self.PHIDCHCLASS_FIRMWAREUPGRADE:
-			return "PHIDCHCLASS_FIRMWAREUPGRADE"
-		if val == self.PHIDCHCLASS_GENERIC:
-			return "PHIDCHCLASS_GENERIC"
 		if val == self.PHIDCHCLASS_MOTORPOSITIONCONTROLLER:
 			return "PHIDCHCLASS_MOTORPOSITIONCONTROLLER"
 		if val == self.PHIDCHCLASS_BLDCMOTOR:
