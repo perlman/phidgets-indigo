@@ -1,9 +1,10 @@
-# -*- coding: utf-8 -*-
 import sys
 import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
 from Phidget22.Async import *
 from Phidget22.SpatialAlgorithm import SpatialAlgorithm
+from Phidget22.SpatialEulerAngles import SpatialEulerAngles
+from Phidget22.SpatialQuaternion import SpatialQuaternion
 from Phidget22.PhidgetException import PhidgetException
 
 from Phidget22.Phidget import Phidget
@@ -193,6 +194,65 @@ class Spatial(Phidget):
 
 		return _MaxDataInterval.value
 
+	def getDataRate(self):
+		_DataRate = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DataRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _DataRate.value
+
+	def setDataRate(self, DataRate):
+		_DataRate = ctypes.c_double(DataRate)
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_setDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DataRate)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinDataRate(self):
+		_MinDataRate = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getMinDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinDataRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinDataRate.value
+
+	def getMaxDataRate(self):
+		_MaxDataRate = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getMaxDataRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxDataRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxDataRate.value
+
+	def getEulerAngles(self):
+		_EulerAngles = SpatialEulerAngles()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getEulerAngles
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_EulerAngles))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _EulerAngles.toPython()
+
 	def getHeatingEnabled(self):
 		_HeatingEnabled = ctypes.c_int()
 
@@ -238,6 +298,18 @@ class Spatial(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
+
+	def getQuaternion(self):
+		_Quaternion = SpatialQuaternion()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getQuaternion
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Quaternion))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _Quaternion.toPython()
 
 	def resetMagnetometerCorrectionParameters(self):
 		__func = PhidgetSupport.getDll().PhidgetSpatial_resetMagnetometerCorrectionParameters

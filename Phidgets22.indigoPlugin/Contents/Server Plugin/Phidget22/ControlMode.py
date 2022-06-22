@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 import sys
 import ctypes
 class ControlMode:
 	# Control the motor by setting a target position.
 	CONTROL_MODE_STEP = 0
-	# Control the motor by selecting a target velocity (sign indicates direction). The motor will rotate continously in the chosen direction.
+	# Control the motor by selecting a target velocity (sign indicates direction). The motor will rotate continuously in the chosen direction.
 	CONTROL_MODE_RUN = 1
 
 	@classmethod

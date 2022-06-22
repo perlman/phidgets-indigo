@@ -1,9 +1,6 @@
-# -*- coding: utf-8 -*-
 import sys
 import ctypes
 class DeviceClass:
-	# Any device
-	PHIDCLASS_NOTHING = 0
 	# PhidgetAccelerometer device
 	PHIDCLASS_ACCELEROMETER = 1
 	# PhidgetAdvancedServo device
@@ -26,8 +23,6 @@ class DeviceClass:
 	PHIDCLASS_IR = 10
 	# PhidgetLED device
 	PHIDCLASS_LED = 11
-	# Phidget Mesh Dongle
-	PHIDCLASS_MESHDONGLE = 12
 	# PhidgetMotorControl device
 	PHIDCLASS_MOTORCONTROL = 13
 	# PhidgetPHSensor device
@@ -46,19 +41,11 @@ class DeviceClass:
 	PHIDCLASS_TEXTLCD = 20
 	# Phidget VINT device
 	PHIDCLASS_VINT = 21
-	# Generic device
-	PHIDCLASS_GENERIC = 22
-	# Phidget device in Firmware Upgrade mode
-	PHIDCLASS_FIRMWAREUPGRADE = 23
 	# Dictionary device
 	PHIDCLASS_DICTIONARY = 24
-	# PhidgetDataAdapter device
-	PHIDCLASS_DATAADAPTER = 25
 
 	@classmethod
 	def getName(self, val):
-		if val == self.PHIDCLASS_NOTHING:
-			return "PHIDCLASS_NOTHING"
 		if val == self.PHIDCLASS_ACCELEROMETER:
 			return "PHIDCLASS_ACCELEROMETER"
 		if val == self.PHIDCLASS_ADVANCEDSERVO:
@@ -81,8 +68,6 @@ class DeviceClass:
 			return "PHIDCLASS_IR"
 		if val == self.PHIDCLASS_LED:
 			return "PHIDCLASS_LED"
-		if val == self.PHIDCLASS_MESHDONGLE:
-			return "PHIDCLASS_MESHDONGLE"
 		if val == self.PHIDCLASS_MOTORCONTROL:
 			return "PHIDCLASS_MOTORCONTROL"
 		if val == self.PHIDCLASS_PHSENSOR:
@@ -101,12 +86,6 @@ class DeviceClass:
 			return "PHIDCLASS_TEXTLCD"
 		if val == self.PHIDCLASS_VINT:
 			return "PHIDCLASS_VINT"
-		if val == self.PHIDCLASS_GENERIC:
-			return "PHIDCLASS_GENERIC"
-		if val == self.PHIDCLASS_FIRMWAREUPGRADE:
-			return "PHIDCLASS_FIRMWAREUPGRADE"
 		if val == self.PHIDCLASS_DICTIONARY:
 			return "PHIDCLASS_DICTIONARY"
-		if val == self.PHIDCLASS_DATAADAPTER:
-			return "PHIDCLASS_DATAADAPTER"
 		return "<invalid enumeration value>"

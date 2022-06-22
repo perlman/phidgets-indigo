@@ -3,9 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>PluginVersion</key>
-	<string>0.0.13b</string>
+	<string>0.1.1</string>
 	<key>ServerApiVersion</key>
-	<string>2.5</string>
+	<string>3.0</string>
+	<key>IwsApiVersion</key>
+	<string>1.0.0</string>
 	<key>CFBundleDisplayName</key>
 	<string>Phidgets 22</string>
 	<key>CFBundleName</key>
