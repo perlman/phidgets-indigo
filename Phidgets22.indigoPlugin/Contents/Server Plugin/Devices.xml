@@ -507,4 +507,59 @@
 		</ConfigUI>
 	</Device>
 
+	<Device id="textLCDAdapter" type="custom">
+		<Name>PhidgetTextLCD Adapter</Name>
+		<ConfigUI>
+			<Field id="lcdPort" type="menu" defualtValue="frequency">
+					<Label>LCD port</Label>
+					<List>
+						<Option value="0">0</Option>
+						<Option value="1">1</Option>
+					</List>
+			</Field>
+			<Field id="screenSize" type="menu" defaultValue="0">
+				<Label>Screen size</Label>
+				<List>
+					<Option value="0x1">No Screen</Option>
+					<Option value="0x2">1x8</Option>
+					<Option value="0x3">2x8</Option>
+					<Option value="0x4">1x16</Option>
+					<Option value="0x5">2x16</Option>
+					<Option value="0x6">4x16</Option>
+					<Option value="0x7">2x20</Option>
+					<Option value="0x8">4x20</Option>
+					<Option value="0x9">2x24</Option>
+					<Option value="0xa">1x40</Option>
+					<Option value="0xb">2x40</Option>
+					<Option value="0xc">4x40</Option>
+				</List>
+			</Field>
+
+			<Field id="backlight" type="textfield" defaultValue="1">
+					<Label>Backlight level:</Label>
+			</Field>
+
+			<Field id="contrast" type="textfield" defaultValue="0.5">
+					<Label>Contrast level:</Label>
+			</Field>
+
+			<Field id="cursorOn" type="checkbox" defaultValue="False">
+					<Label>Visible cursor:</Label>
+			</Field>
+
+			<Field id="cursorBlink" type="checkbox" defaultValue="False">
+					<Label>Blinking cursor:</Label>
+			</Field>
+
+			<Field id="writeText" type="textfield">
+					<Label>Text to display:</Label>
+			</Field>
+
+			<Field id="autoFlush" type="checkbox" defaultValue="False">
+					<Label>Auto erase after writing:</Label>
+			</Field>
+
+		</ConfigUI>
+	</Device>
+
 </Devices>
