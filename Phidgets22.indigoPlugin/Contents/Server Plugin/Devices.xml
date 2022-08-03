@@ -553,6 +553,7 @@
 
 			<Field id="writeText" type="textfield">
 					<Label>Text to display:</Label>
+			<!-- https://wiki.indigodomo.com/doku.php?id=indigo_7_documentation:plugins:variable_substitution -->
 			</Field>
 
 			<Field id="autoFlush" type="checkbox" defaultValue="False">
