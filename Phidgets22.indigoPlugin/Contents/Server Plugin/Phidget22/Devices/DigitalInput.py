@@ -37,20 +37,18 @@ class DigitalInput(Phidget):
 		self._StateChange(self, state)
 
 	def setOnStateChangeHandler(self, handler):
-		if handler == None:
-			self._StateChange = None
-			self._onStateChange = None
-		else:
-			self._StateChange = handler
-			self._onStateChange = self._StateChangeFactory(self._localStateChangeEvent)
+		self._StateChange = handler
 
-		try:
+		if self._onStateChange == None:
+			fptr = self._StateChangeFactory(self._localStateChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetDigitalInput_setOnStateChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onStateChange, None)
-		except RuntimeError:
-			self._StateChange = None
-			self._onStateChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onStateChange = fptr
 
 	def getInputMode(self):
 		_InputMode = ctypes.c_int()
@@ -108,4 +106,4 @@ class DigitalInput(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _State.value
+		return bool(_State.value)

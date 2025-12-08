@@ -51,20 +51,18 @@ class Dictionary(Phidget):
 		self._Add(self, key, value)
 
 	def setOnAddHandler(self, handler):
-		if handler == None:
-			self._Add = None
-			self._onAdd = None
-		else:
-			self._Add = handler
-			self._onAdd = self._AddFactory(self._localAddEvent)
+		self._Add = handler
 
-		try:
+		if self._onAdd == None:
+			fptr = self._AddFactory(self._localAddEvent)
 			__func = PhidgetSupport.getDll().PhidgetDictionary_setOnAddHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onAdd, None)
-		except RuntimeError:
-			self._Add = None
-			self._onAdd = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onAdd = fptr
 
 	def _localRemoveEvent(self, handle, userPtr, key):
 		if self._Remove == None:
@@ -73,20 +71,18 @@ class Dictionary(Phidget):
 		self._Remove(self, key)
 
 	def setOnRemoveHandler(self, handler):
-		if handler == None:
-			self._Remove = None
-			self._onRemove = None
-		else:
-			self._Remove = handler
-			self._onRemove = self._RemoveFactory(self._localRemoveEvent)
+		self._Remove = handler
 
-		try:
+		if self._onRemove == None:
+			fptr = self._RemoveFactory(self._localRemoveEvent)
 			__func = PhidgetSupport.getDll().PhidgetDictionary_setOnRemoveHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onRemove, None)
-		except RuntimeError:
-			self._Remove = None
-			self._onRemove = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onRemove = fptr
 
 	def _localUpdateEvent(self, handle, userPtr, key, value):
 		if self._Update == None:
@@ -96,20 +92,18 @@ class Dictionary(Phidget):
 		self._Update(self, key, value)
 
 	def setOnUpdateHandler(self, handler):
-		if handler == None:
-			self._Update = None
-			self._onUpdate = None
-		else:
-			self._Update = handler
-			self._onUpdate = self._UpdateFactory(self._localUpdateEvent)
+		self._Update = handler
 
-		try:
+		if self._onUpdate == None:
+			fptr = self._UpdateFactory(self._localUpdateEvent)
 			__func = PhidgetSupport.getDll().PhidgetDictionary_setOnUpdateHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onUpdate, None)
-		except RuntimeError:
-			self._Update = None
-			self._onUpdate = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onUpdate = fptr
 
 	def add(self, key, value):
 		_key = ctypes.create_string_buffer(key.encode('utf-8'))

@@ -39,20 +39,18 @@ class Net:
 		self._ServerAdded(self, server, kv)
 
 	def setOnServerAddedHandler(self, handler):
-		if handler == None:
-			self._ServerAdded = None
-			self._onServerAdded = None
-		else:
-			self._ServerAdded = handler
-			self._onServerAdded = self._ServerAddedFactory(self._localServerAddedEvent)
+		self._ServerAdded = handler
 
-		try:
+		if self._onServerAdded == None:
+			fptr = self._ServerAddedFactory(self._localServerAddedEvent)
 			__func = PhidgetSupport.getDll().PhidgetNet_setOnServerAddedHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self._onServerAdded, None)
-		except RuntimeError:
-			self._ServerAdded = None
-			self._onServerAdded = None
+			res = __func(fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onServerAdded = fptr
 
 	def _localServerRemovedEvent(self, userPtr, server):
 		if self._ServerRemoved == None:
@@ -63,20 +61,18 @@ class Net:
 		self._ServerRemoved(self, server)
 
 	def setOnServerRemovedHandler(self, handler):
-		if handler == None:
-			self._ServerRemoved = None
-			self._onServerRemoved = None
-		else:
-			self._ServerRemoved = handler
-			self._onServerRemoved = self._ServerRemovedFactory(self._localServerRemovedEvent)
+		self._ServerRemoved = handler
 
-		try:
+		if self._onServerRemoved == None:
+			fptr = self._ServerRemovedFactory(self._localServerRemovedEvent)
 			__func = PhidgetSupport.getDll().PhidgetNet_setOnServerRemovedHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self._onServerRemoved, None)
-		except RuntimeError:
-			self._ServerRemoved = None
-			self._onServerRemoved = None
+			res = __func(fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onServerRemoved = fptr
 
 	@staticmethod
 	def addServer(serverName, address, port, password, flags):

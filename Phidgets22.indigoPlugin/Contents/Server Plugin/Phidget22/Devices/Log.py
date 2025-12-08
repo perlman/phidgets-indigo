@@ -67,9 +67,23 @@ class Log:
 		_level = ctypes.c_int(level)
 		_message = ctypes.create_string_buffer(message.encode('utf-8'))
 
-		__func = PhidgetSupport.getDll().PhidgetLog_log
+		__func = PhidgetSupport.getDll().PhidgetLog_logs
 		__func.restype = ctypes.c_int32
 		result = __func(_level, ctypes.byref(_message))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	@staticmethod
+	def loge(level, source, message):
+		_level = ctypes.c_int(level)
+		_source = ctypes.create_string_buffer(source.encode('utf-8'))
+		_message = ctypes.create_string_buffer(message.encode('utf-8'))
+
+		__func = PhidgetSupport.getDll().PhidgetLog_loges
+		__func.restype = ctypes.c_int32
+		result = __func(_level, ctypes.byref(_source), ctypes.byref(_message))
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -96,7 +110,7 @@ class Log:
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _isrotating.value
+		return bool(_isrotating.value)
 
 	@staticmethod
 	def getRotating():
@@ -140,6 +154,19 @@ class Log:
 		__func = PhidgetSupport.getDll().PhidgetLog_disableRotating
 		__func.restype = ctypes.c_int32
 		result = __func()
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	@staticmethod
+	def addSource(source, level):
+		_source = ctypes.create_string_buffer(source.encode('utf-8'))
+		_level = ctypes.c_int(level)
+
+		__func = PhidgetSupport.getDll().PhidgetLog_addSource
+		__func.restype = ctypes.c_int32
+		result = __func(ctypes.byref(_source), _level)
 
 		if result > 0:
 			raise PhidgetException(result)

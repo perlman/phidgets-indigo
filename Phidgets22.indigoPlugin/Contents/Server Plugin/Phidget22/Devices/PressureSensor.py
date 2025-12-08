@@ -35,20 +35,18 @@ class PressureSensor(Phidget):
 		self._PressureChange(self, pressure)
 
 	def setOnPressureChangeHandler(self, handler):
-		if handler == None:
-			self._PressureChange = None
-			self._onPressureChange = None
-		else:
-			self._PressureChange = handler
-			self._onPressureChange = self._PressureChangeFactory(self._localPressureChangeEvent)
+		self._PressureChange = handler
 
-		try:
+		if self._onPressureChange == None:
+			fptr = self._PressureChangeFactory(self._localPressureChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetPressureSensor_setOnPressureChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onPressureChange, None)
-		except RuntimeError:
-			self._PressureChange = None
-			self._onPressureChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onPressureChange = fptr
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()

@@ -25,17 +25,6 @@ class VoltageOutput(Phidget):
 	def __del__(self):
 		Phidget.__del__(self)
 
-	def setEnabled(self, Enabled):
-		_Enabled = ctypes.c_int(Enabled)
-
-		__func = PhidgetSupport.getDll().PhidgetVoltageOutput_setEnabled
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _Enabled)
-
-		if result > 0:
-			raise PhidgetException(result)
-
-
 	def getEnabled(self):
 		_Enabled = ctypes.c_int()
 
@@ -46,7 +35,18 @@ class VoltageOutput(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _Enabled.value
+		return bool(_Enabled.value)
+
+	def setEnabled(self, Enabled):
+		_Enabled = ctypes.c_int(Enabled)
+
+		__func = PhidgetSupport.getDll().PhidgetVoltageOutput_setEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Enabled)
+
+		if result > 0:
+			raise PhidgetException(result)
+
 
 	def enableFailsafe(self, failsafeTime):
 		_failsafeTime = ctypes.c_uint32(failsafeTime)

@@ -35,20 +35,18 @@ class LightSensor(Phidget):
 		self._IlluminanceChange(self, illuminance)
 
 	def setOnIlluminanceChangeHandler(self, handler):
-		if handler == None:
-			self._IlluminanceChange = None
-			self._onIlluminanceChange = None
-		else:
-			self._IlluminanceChange = handler
-			self._onIlluminanceChange = self._IlluminanceChangeFactory(self._localIlluminanceChangeEvent)
+		self._IlluminanceChange = handler
 
-		try:
+		if self._onIlluminanceChange == None:
+			fptr = self._IlluminanceChangeFactory(self._localIlluminanceChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetLightSensor_setOnIlluminanceChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onIlluminanceChange, None)
-		except RuntimeError:
-			self._IlluminanceChange = None
-			self._onIlluminanceChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onIlluminanceChange = fptr
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()

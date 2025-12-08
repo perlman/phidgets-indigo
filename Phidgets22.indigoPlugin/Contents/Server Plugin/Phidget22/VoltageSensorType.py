@@ -79,6 +79,8 @@ class VoltageSensorType:
 	SENSOR_TYPE_MOT2002_HIGH = 20022
 	# VCP4114 - +-25A DC Current Transducer
 	SENSOR_TYPE_VCP4114 = 41140
+	# VCP4115 - +-75A DC Current Transducer
+	SENSOR_TYPE_VCP4115 = 41150
 
 	@classmethod
 	def getName(self, val):
@@ -160,4 +162,6 @@ class VoltageSensorType:
 			return "SENSOR_TYPE_MOT2002_HIGH"
 		if val == self.SENSOR_TYPE_VCP4114:
 			return "SENSOR_TYPE_VCP4114"
+		if val == self.SENSOR_TYPE_VCP4115:
+			return "SENSOR_TYPE_VCP4115"
 		return "<invalid enumeration value>"

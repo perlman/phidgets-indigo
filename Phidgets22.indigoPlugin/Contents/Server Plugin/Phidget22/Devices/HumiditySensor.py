@@ -35,20 +35,18 @@ class HumiditySensor(Phidget):
 		self._HumidityChange(self, humidity)
 
 	def setOnHumidityChangeHandler(self, handler):
-		if handler == None:
-			self._HumidityChange = None
-			self._onHumidityChange = None
-		else:
-			self._HumidityChange = handler
-			self._onHumidityChange = self._HumidityChangeFactory(self._localHumidityChangeEvent)
+		self._HumidityChange = handler
 
-		try:
+		if self._onHumidityChange == None:
+			fptr = self._HumidityChangeFactory(self._localHumidityChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetHumiditySensor_setOnHumidityChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onHumidityChange, None)
-		except RuntimeError:
-			self._HumidityChange = None
-			self._onHumidityChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onHumidityChange = fptr
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()

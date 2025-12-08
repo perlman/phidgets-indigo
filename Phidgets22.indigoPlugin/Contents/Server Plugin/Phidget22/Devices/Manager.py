@@ -53,20 +53,18 @@ class Manager:
 		self._Attach(self, ph)
 
 	def setOnAttachHandler(self, handler):
-		if handler == None:
-			self._Attach = None
-			self._onAttach = None
-		else:
-			self._Attach = handler
-			self._onAttach = self._AttachFactory(self._localAttachEvent)
+		self._Attach = handler
 
-		try:
+		if self._onAttach == None:
+			fptr = self._AttachFactory(self._localAttachEvent)
 			__func = PhidgetSupport.getDll().PhidgetManager_setOnAttachHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onAttach, None)
-		except RuntimeError:
-			self._Attach = None
-			self._onAttach = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onAttach = fptr
 
 	def _localDetachEvent(self, handle, userPtr, Channel):
 		if self._Detach == None:
@@ -81,20 +79,18 @@ class Manager:
 		self._Detach(self, ph)
 
 	def setOnDetachHandler(self, handler):
-		if handler == None:
-			self._Detach = None
-			self._onDetach = None
-		else:
-			self._Detach = handler
-			self._onDetach = self._DetachFactory(self._localDetachEvent)
+		self._Detach = handler
 
-		try:
+		if self._onDetach == None:
+			fptr = self._DetachFactory(self._localDetachEvent)
 			__func = PhidgetSupport.getDll().PhidgetManager_setOnDetachHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onDetach, None)
-		except RuntimeError:
-			self._Detach = None
-			self._onDetach = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onDetach = fptr
 
 	def close(self):
 		__func = PhidgetSupport.getDll().PhidgetManager_close

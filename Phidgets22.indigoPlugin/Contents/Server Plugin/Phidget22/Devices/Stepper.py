@@ -52,20 +52,18 @@ class Stepper(Phidget):
 		self._PositionChange(self, position)
 
 	def setOnPositionChangeHandler(self, handler):
-		if handler == None:
-			self._PositionChange = None
-			self._onPositionChange = None
-		else:
-			self._PositionChange = handler
-			self._onPositionChange = self._PositionChangeFactory(self._localPositionChangeEvent)
+		self._PositionChange = handler
 
-		try:
+		if self._onPositionChange == None:
+			fptr = self._PositionChangeFactory(self._localPositionChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetStepper_setOnPositionChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onPositionChange, None)
-		except RuntimeError:
-			self._PositionChange = None
-			self._onPositionChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onPositionChange = fptr
 
 	def _localStoppedEvent(self, handle, userPtr):
 		if self._Stopped == None:
@@ -73,20 +71,18 @@ class Stepper(Phidget):
 		self._Stopped(self)
 
 	def setOnStoppedHandler(self, handler):
-		if handler == None:
-			self._Stopped = None
-			self._onStopped = None
-		else:
-			self._Stopped = handler
-			self._onStopped = self._StoppedFactory(self._localStoppedEvent)
+		self._Stopped = handler
 
-		try:
+		if self._onStopped == None:
+			fptr = self._StoppedFactory(self._localStoppedEvent)
 			__func = PhidgetSupport.getDll().PhidgetStepper_setOnStoppedHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onStopped, None)
-		except RuntimeError:
-			self._Stopped = None
-			self._onStopped = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onStopped = fptr
 
 	def _localVelocityChangeEvent(self, handle, userPtr, velocity):
 		if self._VelocityChange == None:
@@ -94,20 +90,18 @@ class Stepper(Phidget):
 		self._VelocityChange(self, velocity)
 
 	def setOnVelocityChangeHandler(self, handler):
-		if handler == None:
-			self._VelocityChange = None
-			self._onVelocityChange = None
-		else:
-			self._VelocityChange = handler
-			self._onVelocityChange = self._VelocityChangeFactory(self._localVelocityChangeEvent)
+		self._VelocityChange = handler
 
-		try:
+		if self._onVelocityChange == None:
+			fptr = self._VelocityChangeFactory(self._localVelocityChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetStepper_setOnVelocityChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onVelocityChange, None)
-		except RuntimeError:
-			self._VelocityChange = None
-			self._onVelocityChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onVelocityChange = fptr
 
 	def getAcceleration(self):
 		_Acceleration = ctypes.c_double()
@@ -330,7 +324,7 @@ class Stepper(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _Engaged.value
+		return bool(_Engaged.value)
 
 	def setEngaged(self, Engaged):
 		_Engaged = ctypes.c_int(Engaged)
@@ -411,7 +405,7 @@ class Stepper(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _IsMoving.value
+		return bool(_IsMoving.value)
 
 	def getPosition(self):
 		_Position = ctypes.c_double()

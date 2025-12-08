@@ -3,10 +3,16 @@ import ctypes
 class ChannelClass:
 	# Accelerometer channel
 	PHIDCHCLASS_ACCELEROMETER = 1
+	# Brushless DC motor channel
+	PHIDCHCLASS_BLDCMOTOR = 35
+	# Capacitive Touch channel
+	PHIDCHCLASS_CAPACITIVETOUCH = 14
 	# Current input channel
 	PHIDCHCLASS_CURRENTINPUT = 2
 	# DC motor channel
 	PHIDCHCLASS_DCMOTOR = 4
+	# Dictionary
+	PHIDCHCLASS_DICTIONARY = 36
 	# Digital input channel
 	PHIDCHCLASS_DIGITALINPUT = 5
 	# Digital output channel
@@ -19,22 +25,24 @@ class ChannelClass:
 	PHIDCHCLASS_FREQUENCYCOUNTER = 9
 	# GPS channel
 	PHIDCHCLASS_GPS = 10
-	# LCD channel
-	PHIDCHCLASS_LCD = 11
 	# Gyroscope channel
 	PHIDCHCLASS_GYROSCOPE = 12
 	# VINT Hub channel
 	PHIDCHCLASS_HUB = 13
-	# Capacitive Touch channel
-	PHIDCHCLASS_CAPACITIVETOUCH = 14
 	# Humidity sensor channel
 	PHIDCHCLASS_HUMIDITYSENSOR = 15
 	# IR channel
 	PHIDCHCLASS_IR = 16
+	# LCD channel
+	PHIDCHCLASS_LCD = 11
 	# Light sensor channel
 	PHIDCHCLASS_LIGHTSENSOR = 17
 	# Magnetometer channel
 	PHIDCHCLASS_MAGNETOMETER = 18
+	# Motor position control channel.
+	PHIDCHCLASS_MOTORPOSITIONCONTROLLER = 34
+	# Motor velocity control channel.
+	PHIDCHCLASS_MOTORVELOCITYCONTROLLER = 39
 	# pH sensor channel
 	PHIDCHCLASS_PHSENSOR = 37
 	# Power guard channel
@@ -61,23 +69,21 @@ class ChannelClass:
 	PHIDCHCLASS_VOLTAGEOUTPUT = 30
 	# Voltage ratio input channel
 	PHIDCHCLASS_VOLTAGERATIOINPUT = 31
-	# Motor position control channel.
-	PHIDCHCLASS_MOTORPOSITIONCONTROLLER = 34
-	# BLDC motor channel
-	PHIDCHCLASS_BLDCMOTOR = 35
-	# Dictionary
-	PHIDCHCLASS_DICTIONARY = 36
-	# Current output channel
-	PHIDCHCLASS_CURRENTOUTPUT = 38
 
 	@classmethod
 	def getName(self, val):
 		if val == self.PHIDCHCLASS_ACCELEROMETER:
 			return "PHIDCHCLASS_ACCELEROMETER"
+		if val == self.PHIDCHCLASS_BLDCMOTOR:
+			return "PHIDCHCLASS_BLDCMOTOR"
+		if val == self.PHIDCHCLASS_CAPACITIVETOUCH:
+			return "PHIDCHCLASS_CAPACITIVETOUCH"
 		if val == self.PHIDCHCLASS_CURRENTINPUT:
 			return "PHIDCHCLASS_CURRENTINPUT"
 		if val == self.PHIDCHCLASS_DCMOTOR:
 			return "PHIDCHCLASS_DCMOTOR"
+		if val == self.PHIDCHCLASS_DICTIONARY:
+			return "PHIDCHCLASS_DICTIONARY"
 		if val == self.PHIDCHCLASS_DIGITALINPUT:
 			return "PHIDCHCLASS_DIGITALINPUT"
 		if val == self.PHIDCHCLASS_DIGITALOUTPUT:
@@ -90,22 +96,24 @@ class ChannelClass:
 			return "PHIDCHCLASS_FREQUENCYCOUNTER"
 		if val == self.PHIDCHCLASS_GPS:
 			return "PHIDCHCLASS_GPS"
-		if val == self.PHIDCHCLASS_LCD:
-			return "PHIDCHCLASS_LCD"
 		if val == self.PHIDCHCLASS_GYROSCOPE:
 			return "PHIDCHCLASS_GYROSCOPE"
 		if val == self.PHIDCHCLASS_HUB:
 			return "PHIDCHCLASS_HUB"
-		if val == self.PHIDCHCLASS_CAPACITIVETOUCH:
-			return "PHIDCHCLASS_CAPACITIVETOUCH"
 		if val == self.PHIDCHCLASS_HUMIDITYSENSOR:
 			return "PHIDCHCLASS_HUMIDITYSENSOR"
 		if val == self.PHIDCHCLASS_IR:
 			return "PHIDCHCLASS_IR"
+		if val == self.PHIDCHCLASS_LCD:
+			return "PHIDCHCLASS_LCD"
 		if val == self.PHIDCHCLASS_LIGHTSENSOR:
 			return "PHIDCHCLASS_LIGHTSENSOR"
 		if val == self.PHIDCHCLASS_MAGNETOMETER:
 			return "PHIDCHCLASS_MAGNETOMETER"
+		if val == self.PHIDCHCLASS_MOTORPOSITIONCONTROLLER:
+			return "PHIDCHCLASS_MOTORPOSITIONCONTROLLER"
+		if val == self.PHIDCHCLASS_MOTORVELOCITYCONTROLLER:
+			return "PHIDCHCLASS_MOTORVELOCITYCONTROLLER"
 		if val == self.PHIDCHCLASS_PHSENSOR:
 			return "PHIDCHCLASS_PHSENSOR"
 		if val == self.PHIDCHCLASS_POWERGUARD:
@@ -132,12 +140,4 @@ class ChannelClass:
 			return "PHIDCHCLASS_VOLTAGEOUTPUT"
 		if val == self.PHIDCHCLASS_VOLTAGERATIOINPUT:
 			return "PHIDCHCLASS_VOLTAGERATIOINPUT"
-		if val == self.PHIDCHCLASS_MOTORPOSITIONCONTROLLER:
-			return "PHIDCHCLASS_MOTORPOSITIONCONTROLLER"
-		if val == self.PHIDCHCLASS_BLDCMOTOR:
-			return "PHIDCHCLASS_BLDCMOTOR"
-		if val == self.PHIDCHCLASS_DICTIONARY:
-			return "PHIDCHCLASS_DICTIONARY"
-		if val == self.PHIDCHCLASS_CURRENTOUTPUT:
-			return "PHIDCHCLASS_CURRENTOUTPUT"
 		return "<invalid enumeration value>"

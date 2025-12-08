@@ -138,7 +138,7 @@ class PowerGuard(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _PowerEnabled.value
+		return bool(_PowerEnabled.value)
 
 	def setPowerEnabled(self, PowerEnabled):
 		_PowerEnabled = ctypes.c_int(PowerEnabled)

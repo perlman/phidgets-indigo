@@ -5,7 +5,7 @@ class PhidgetServerType:
 	PHIDGETSERVER_DEVICEREMOTE = 3
 	# Phidget22 Web server<br/>Server discovery with this server type detects the presence of Phidget web servers used to communicate with in-browser JavaScript. Enabling server discovery with this server type will enable ServerAdded and ServerRemoved events for this server type.
 	PHIDGETSERVER_WWWREMOTE = 6
-	# Phidget SBC<br/>Server discovery with this server type detects the presence of Phidget SBCs on the network. Enabling server discovery with this server type will enable ServerAdded and ServerRemoved events for this server type.
+	# Phidget SBC<br/>Server discovery with this server type detects the presence of Network Phidgets (SBC3003, HUB5000, etc.). Enabling server discovery with this server type will enable ServerAdded and ServerRemoved events for this server type.
 	PHIDGETSERVER_SBC = 7
 
 	@classmethod

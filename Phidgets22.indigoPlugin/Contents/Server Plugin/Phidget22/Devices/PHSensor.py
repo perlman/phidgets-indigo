@@ -35,20 +35,18 @@ class PHSensor(Phidget):
 		self._PHChange(self, PH)
 
 	def setOnPHChangeHandler(self, handler):
-		if handler == None:
-			self._PHChange = None
-			self._onPHChange = None
-		else:
-			self._PHChange = handler
-			self._onPHChange = self._PHChangeFactory(self._localPHChangeEvent)
+		self._PHChange = handler
 
-		try:
+		if self._onPHChange == None:
+			fptr = self._PHChangeFactory(self._localPHChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetPHSensor_setOnPHChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onPHChange, None)
-		except RuntimeError:
-			self._PHChange = None
-			self._onPHChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onPHChange = fptr
 
 	def getCorrectionTemperature(self):
 		_CorrectionTemperature = ctypes.c_double()

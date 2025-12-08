@@ -271,7 +271,7 @@ class DigitalOutput(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _State.value
+		return bool(_State.value)
 
 	def setState(self, State):
 		_State = ctypes.c_int(State)

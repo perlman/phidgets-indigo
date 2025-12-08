@@ -36,20 +36,18 @@ class Magnetometer(Phidget):
 		self._MagneticFieldChange(self, magneticField, timestamp)
 
 	def setOnMagneticFieldChangeHandler(self, handler):
-		if handler == None:
-			self._MagneticFieldChange = None
-			self._onMagneticFieldChange = None
-		else:
-			self._MagneticFieldChange = handler
-			self._onMagneticFieldChange = self._MagneticFieldChangeFactory(self._localMagneticFieldChangeEvent)
+		self._MagneticFieldChange = handler
 
-		try:
+		if self._onMagneticFieldChange == None:
+			fptr = self._MagneticFieldChangeFactory(self._localMagneticFieldChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetMagnetometer_setOnMagneticFieldChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onMagneticFieldChange, None)
-		except RuntimeError:
-			self._MagneticFieldChange = None
-			self._onMagneticFieldChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onMagneticFieldChange = fptr
 
 	def getAxisCount(self):
 		_AxisCount = ctypes.c_int()
@@ -190,7 +188,7 @@ class Magnetometer(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _HeatingEnabled.value
+		return bool(_HeatingEnabled.value)
 
 	def setHeatingEnabled(self, HeatingEnabled):
 		_HeatingEnabled = ctypes.c_int(HeatingEnabled)

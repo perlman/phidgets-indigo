@@ -73,7 +73,7 @@ class ErrorCode:
 	EPHIDGET_PIPE = 41
 	# Name Resolution Failure
 	EPHIDGET_RESOLV = 44
-	# The value is unknown. This can happen right after attach, when the value has not yet been recieved from the Phidget. This can also happen if a device has not yet been configured / enabled. Some properties can only be read back after being set.
+	# The value is unknown. This can happen right after attach, when the value has not yet been received from the Phidget. This can also happen if a device has not yet been configured / enabled. Some properties can only be read back after being set.
 	EPHIDGET_UNKNOWNVAL = 51
 	# This can happen for a number of common reasons. Be sure you are opening the channel before trying to use it. If you are opening the channel, the program may not be waiting for the channel to be attached. If possible use openWaitForAttachment. Otherwise, be sure to check the Attached property of the channel before trying to use it.
 	EPHIDGET_NOTATTACHED = 52
@@ -91,6 +91,22 @@ class ErrorCode:
 	EPHIDGET_EOF = 31
 	# Failsafe Triggered on this channel. Close and Re-open the channel to resume operation.
 	EPHIDGET_FAILSAFE = 59
+	# The value has been measured to be higher than the valid range of the sensor.
+	EPHIDGET_UNKNOWNVALHIGH = 60
+	# The value has been measured to be lower than the valid range of the sensor.
+	EPHIDGET_UNKNOWNVALLOW = 61
+	# The power supply of your device is outside the acceptable range to allow operation.
+	EPHIDGET_BADPOWER = 62
+	# Something has caused your device to decide it needs to be powered off and on to resume operation.
+	EPHIDGET_POWERCYCLE = 63
+	# The hall sensor on your Brushless DC Motor Controller is Improperly Connected
+	EPHIDGET_HALLSENSOR = 64
+	# Current sensor offset outside acceptable bounds. Move the sensor aways from magnetic fields and try again.
+	EPHIDGET_BADCURRENT = 65
+	# One or more required connections on the device has been deemed faulty. Check your connections and try again.
+	EPHIDGET_BADCONNECTION = 66
+	# An external device has responded with a NACK response. Evaluate whether this is expected and try again.
+	EPHIDGET_NACK = 67
 
 	@classmethod
 	def getName(self, val):
@@ -184,4 +200,20 @@ class ErrorCode:
 			return "EPHIDGET_EOF"
 		if val == self.EPHIDGET_FAILSAFE:
 			return "EPHIDGET_FAILSAFE"
+		if val == self.EPHIDGET_UNKNOWNVALHIGH:
+			return "EPHIDGET_UNKNOWNVALHIGH"
+		if val == self.EPHIDGET_UNKNOWNVALLOW:
+			return "EPHIDGET_UNKNOWNVALLOW"
+		if val == self.EPHIDGET_BADPOWER:
+			return "EPHIDGET_BADPOWER"
+		if val == self.EPHIDGET_POWERCYCLE:
+			return "EPHIDGET_POWERCYCLE"
+		if val == self.EPHIDGET_HALLSENSOR:
+			return "EPHIDGET_HALLSENSOR"
+		if val == self.EPHIDGET_BADCURRENT:
+			return "EPHIDGET_BADCURRENT"
+		if val == self.EPHIDGET_BADCONNECTION:
+			return "EPHIDGET_BADCONNECTION"
+		if val == self.EPHIDGET_NACK:
+			return "EPHIDGET_NACK"
 		return "<invalid enumeration value>"

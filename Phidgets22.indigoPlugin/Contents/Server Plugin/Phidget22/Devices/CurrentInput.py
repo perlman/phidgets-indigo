@@ -36,20 +36,18 @@ class CurrentInput(Phidget):
 		self._CurrentChange(self, current)
 
 	def setOnCurrentChangeHandler(self, handler):
-		if handler == None:
-			self._CurrentChange = None
-			self._onCurrentChange = None
-		else:
-			self._CurrentChange = handler
-			self._onCurrentChange = self._CurrentChangeFactory(self._localCurrentChangeEvent)
+		self._CurrentChange = handler
 
-		try:
+		if self._onCurrentChange == None:
+			fptr = self._CurrentChangeFactory(self._localCurrentChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetCurrentInput_setOnCurrentChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onCurrentChange, None)
-		except RuntimeError:
-			self._CurrentChange = None
-			self._onCurrentChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onCurrentChange = fptr
 
 	def getCurrent(self):
 		_Current = ctypes.c_double()

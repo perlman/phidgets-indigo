@@ -51,20 +51,18 @@ class GPS(Phidget):
 		self._HeadingChange(self, heading, velocity)
 
 	def setOnHeadingChangeHandler(self, handler):
-		if handler == None:
-			self._HeadingChange = None
-			self._onHeadingChange = None
-		else:
-			self._HeadingChange = handler
-			self._onHeadingChange = self._HeadingChangeFactory(self._localHeadingChangeEvent)
+		self._HeadingChange = handler
 
-		try:
+		if self._onHeadingChange == None:
+			fptr = self._HeadingChangeFactory(self._localHeadingChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetGPS_setOnHeadingChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onHeadingChange, None)
-		except RuntimeError:
-			self._HeadingChange = None
-			self._onHeadingChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onHeadingChange = fptr
 
 	def _localPositionChangeEvent(self, handle, userPtr, latitude, longitude, altitude):
 		if self._PositionChange == None:
@@ -72,20 +70,18 @@ class GPS(Phidget):
 		self._PositionChange(self, latitude, longitude, altitude)
 
 	def setOnPositionChangeHandler(self, handler):
-		if handler == None:
-			self._PositionChange = None
-			self._onPositionChange = None
-		else:
-			self._PositionChange = handler
-			self._onPositionChange = self._PositionChangeFactory(self._localPositionChangeEvent)
+		self._PositionChange = handler
 
-		try:
+		if self._onPositionChange == None:
+			fptr = self._PositionChangeFactory(self._localPositionChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetGPS_setOnPositionChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onPositionChange, None)
-		except RuntimeError:
-			self._PositionChange = None
-			self._onPositionChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onPositionChange = fptr
 
 	def _localPositionFixStateChangeEvent(self, handle, userPtr, positionFixState):
 		if self._PositionFixStateChange == None:
@@ -93,20 +89,18 @@ class GPS(Phidget):
 		self._PositionFixStateChange(self, positionFixState)
 
 	def setOnPositionFixStateChangeHandler(self, handler):
-		if handler == None:
-			self._PositionFixStateChange = None
-			self._onPositionFixStateChange = None
-		else:
-			self._PositionFixStateChange = handler
-			self._onPositionFixStateChange = self._PositionFixStateChangeFactory(self._localPositionFixStateChangeEvent)
+		self._PositionFixStateChange = handler
 
-		try:
+		if self._onPositionFixStateChange == None:
+			fptr = self._PositionFixStateChangeFactory(self._localPositionFixStateChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetGPS_setOnPositionFixStateChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onPositionFixStateChange, None)
-		except RuntimeError:
-			self._PositionFixStateChange = None
-			self._onPositionFixStateChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onPositionFixStateChange = fptr
 
 	def getAltitude(self):
 		_Altitude = ctypes.c_double()
@@ -178,7 +172,7 @@ class GPS(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _PositionFixState.value
+		return bool(_PositionFixState.value)
 
 	def getTime(self):
 		_Time = GPSTime()

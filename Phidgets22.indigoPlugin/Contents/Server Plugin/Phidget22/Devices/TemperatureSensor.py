@@ -38,20 +38,18 @@ class TemperatureSensor(Phidget):
 		self._TemperatureChange(self, temperature)
 
 	def setOnTemperatureChangeHandler(self, handler):
-		if handler == None:
-			self._TemperatureChange = None
-			self._onTemperatureChange = None
-		else:
-			self._TemperatureChange = handler
-			self._onTemperatureChange = self._TemperatureChangeFactory(self._localTemperatureChangeEvent)
+		self._TemperatureChange = handler
 
-		try:
+		if self._onTemperatureChange == None:
+			fptr = self._TemperatureChangeFactory(self._localTemperatureChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetTemperatureSensor_setOnTemperatureChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onTemperatureChange, None)
-		except RuntimeError:
-			self._TemperatureChange = None
-			self._onTemperatureChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onTemperatureChange = fptr
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()

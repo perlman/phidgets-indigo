@@ -43,6 +43,16 @@ class ErrorEventCode:
 	EEPHIDGET_INVALIDSTATE = 4112
 	# Bad connection detected.
 	EEPHIDGET_BADCONNECTION = 4113
+	# Measurement is above the valid range.
+	EEPHIDGET_OUTOFRANGEHIGH = 4114
+	# Measurement is below the valid range.
+	EEPHIDGET_OUTOFRANGELOW = 4115
+	# Fault condition detected.
+	EEPHIDGET_FAULT = 4116
+	# External stop condition detected.
+	EEPHIDGET_ESTOP = 4117
+	# Current sensor problem detected.
+	EEPHIDGET_BADCURRENT = 4118
 
 	@classmethod
 	def getName(self, val):
@@ -88,4 +98,14 @@ class ErrorEventCode:
 			return "EEPHIDGET_INVALIDSTATE"
 		if val == self.EEPHIDGET_BADCONNECTION:
 			return "EEPHIDGET_BADCONNECTION"
+		if val == self.EEPHIDGET_OUTOFRANGEHIGH:
+			return "EEPHIDGET_OUTOFRANGEHIGH"
+		if val == self.EEPHIDGET_OUTOFRANGELOW:
+			return "EEPHIDGET_OUTOFRANGELOW"
+		if val == self.EEPHIDGET_FAULT:
+			return "EEPHIDGET_FAULT"
+		if val == self.EEPHIDGET_ESTOP:
+			return "EEPHIDGET_ESTOP"
+		if val == self.EEPHIDGET_BADCURRENT:
+			return "EEPHIDGET_BADCURRENT"
 		return "<invalid enumeration value>"

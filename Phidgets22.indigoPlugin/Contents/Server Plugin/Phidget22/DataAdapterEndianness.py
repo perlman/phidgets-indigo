@@ -1,6 +1,6 @@
 import sys
 import ctypes
-class Endianness:
+class DataAdapterEndianness:
 	# MSB First
 	ENDIANNESS_MSB_FIRST = 1
 	# LSB First

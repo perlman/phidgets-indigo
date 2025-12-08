@@ -37,20 +37,18 @@ class SoundSensor(Phidget):
 		self._SPLChange(self, dB, dBA, dBC, Octaves)
 
 	def setOnSPLChangeHandler(self, handler):
-		if handler == None:
-			self._SPLChange = None
-			self._onSPLChange = None
-		else:
-			self._SPLChange = handler
-			self._onSPLChange = self._SPLChangeFactory(self._localSPLChangeEvent)
+		self._SPLChange = handler
 
-		try:
+		if self._onSPLChange == None:
+			fptr = self._SPLChangeFactory(self._localSPLChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetSoundSensor_setOnSPLChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onSPLChange, None)
-		except RuntimeError:
-			self._SPLChange = None
-			self._onSPLChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onSPLChange = fptr
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
@@ -158,18 +156,6 @@ class SoundSensor(Phidget):
 
 		return _dB.value
 
-	def getMaxdB(self):
-		_MaxdB = ctypes.c_double()
-
-		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMaxdB
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_MaxdB))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _MaxdB.value
-
 	def getdBA(self):
 		_dBA = ctypes.c_double()
 
@@ -193,6 +179,18 @@ class SoundSensor(Phidget):
 			raise PhidgetException(result)
 
 		return _dBC.value
+
+	def getMaxdB(self):
+		_MaxdB = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetSoundSensor_getMaxdB
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxdB))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxdB.value
 
 	def getNoiseFloor(self):
 		_NoiseFloor = ctypes.c_double()

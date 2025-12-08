@@ -1,6 +1,6 @@
 import sys
 import ctypes
-class SPIMode:
+class DataAdapterSPIMode:
 	# CPOL = 0 CPHA = 0
 	SPI_MODE_0 = 1
 	# CPOL = 0 CPHA = 1

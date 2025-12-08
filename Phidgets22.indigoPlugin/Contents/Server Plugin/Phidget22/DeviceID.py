@@ -1,10 +1,18 @@
 import sys
 import ctypes
 class DeviceID:
-	# Unknown device
-	PHIDID_NOTHING = 0
-	# PhidgetInterfaceKit 4/8/8
-	PHIDID_INTERFACEKIT_4_8_8 = 1
+	# Unknown Device
+	PHIDID_UNKNOWN = 125
+	# Hub Port - Digital Input mode
+	PHIDID_DIGITALINPUT_PORT = 95
+	# Hub Port - Digital Output mode
+	PHIDID_DIGITALOUTPUT_PORT = 96
+	# Hub Port - Voltage Input mode
+	PHIDID_VOLTAGEINPUT_PORT = 97
+	# Hub Port - Voltage Ratio Input mode
+	PHIDID_VOLTAGERATIOINPUT_PORT = 98
+	# Dictionary
+	PHIDID_DICTIONARY = 111
 	# PhidgetServo 1-Motor (1000)
 	PHIDID_1000 = 2
 	# PhidgetServo 4-Motor (1001)
@@ -53,13 +61,13 @@ class DeviceID:
 	PHIDID_1046 = 24
 	# PhidgetEncoder HighSpeed 4-Input (1047)
 	PHIDID_1047 = 25
-	# PhidgetTemperatureSensor 4-input (1048)
+	# PhidgetTemperatureSensor 4-Input (1048)
 	PHIDID_1048 = 26
 	# PhidgetSpatial 0/0/3 (1049)
 	PHIDID_1049 = 27
 	# PhidgetTemperatureSensor 1-Input (1051)
 	PHIDID_1051 = 28
-	# PhidgetEncoder Mechanical (1052)
+	# PhidgetEncoder (1052)
 	PHIDID_1052 = 29
 	# PhidgetAccelerometer 2-Axis (1053)
 	PHIDID_1053 = 30
@@ -91,151 +99,163 @@ class DeviceID:
 	PHIDID_1066 = 43
 	# PhidgetStepper Bipolar HC (1067)
 	PHIDID_1067 = 44
-	# PhidgetTextLCD 20x2 with PhidgetInterfaceKit 8/8/8 (1201, 1202, 1203)
+	# PhidgetTextLCD 20x2 with PhidgetInterfaceKit 8/8/8 (1202, 1203)
 	PHIDID_1202_1203 = 45
 	# PhidgetTextLCD Adapter (1204)
 	PHIDID_1204 = 46
-	# PhidgetTextLCD 20x2 (1215/1216/1217/1218)
+	# PhidgetTextLCD 20x2 (1215, 1216, 1217, 1218)
 	PHIDID_1215__1218 = 47
 	# PhidgetTextLCD 20x2 with PhidgetInterfaceKit 0/8/8 (1219, 1220, 1221, 1222)
 	PHIDID_1219__1222 = 48
-	# pH Adapter
+	# pH Adapter Phidget (ADP1000)
 	PHIDID_ADP1000 = 49
-	# Analog Input Module x8
+	# 8x Voltage Input Phidget (DAQ1000)
 	PHIDID_DAQ1000 = 51
-	# Digital Input 4
+	# 4x Digital Input Phidget (DAQ1200)
 	PHIDID_DAQ1200 = 52
-	# Digital Input 4 Isolated
+	# 4x Isolated Digital Input Phidget (DAQ1300)
 	PHIDID_DAQ1300 = 53
-	# Digital Input 16
+	# 16x Isolated Digital Input Phidget (DAQ1301)
 	PHIDID_DAQ1301 = 54
-	# Versatile Input
+	# Versatile Input Phidget (DAQ1400)
 	PHIDID_DAQ1400 = 55
-	# Bridge
+	# Wheatstone Bridge Phidget (DAQ1500)
 	PHIDID_DAQ1500 = 56
-	# DC Motor Controller with PID
+	# DC Motor Phidget (DCC1000)
 	PHIDID_DCC1000 = 57
-	# 200mm Distance Sensor
-	PHIDID_DST1000 = 58
-	# Sonar Distance Sensor
-	PHIDID_DST1200 = 59
-	# Encoder
-	PHIDID_ENC1000 = 60
-	# Capacitive Touch Sensor
-	PHIDID_HIN1000 = 61
-	# Capacitive Scroll
-	PHIDID_HIN1001 = 62
-	# Joystick
-	PHIDID_HIN1100 = 63
-	# Phidget USB VINT Hub with 6 ports
-	PHIDID_HUB0000 = 64
-	# Phidget SPI VINT Hub with 6 ports
-	PHIDID_HUB0004 = 67
-	# Humidity Sensor
-	PHIDID_HUM1000 = 69
-	# LCD
-	PHIDID_LCD1100 = 70
-	# LED Driver 32
-	PHIDID_LED1000 = 71
-	# Light Sensor
-	PHIDID_LUX1000 = 72
-	# Accelerometer 0/0/3
-	PHIDID_MOT1100 = 73
-	# Spatial 3/3/3
-	PHIDID_MOT1101 = 74
-	# Analog Output 0-5V
-	PHIDID_OUT1000 = 75
-	# Analog Output (+/-)10V
-	PHIDID_OUT1001 = 76
-	# Analog Output (+/-)10V - 16 bit
-	PHIDID_OUT1002 = 77
-	# Digital Output 4
-	PHIDID_OUT1100 = 78
-	# Barometer
-	PHIDID_PRE1000 = 79
-	# 8-Servo Controller
-	PHIDID_RCC1000 = 80
-	# Power Relay 4
-	PHIDID_REL1000 = 81
-	# Digital Output 4 Isolated
-	PHIDID_REL1100 = 82
-	# Digital Output 16 Isolated
-	PHIDID_REL1101 = 83
-	# Power Supply Protector
-	PHIDID_SAF1000 = 84
-	# Sound Pressure Level Sensor
-	PHIDID_SND1000 = 85
-	# Bipolar Stepper Motor Controller
-	PHIDID_STC1000 = 86
-	# Integrated Temperature Sensor
-	PHIDID_TMP1000 = 87
-	# Thermocouple 1
-	PHIDID_TMP1100 = 88
-	# Thermocouple 4
-	PHIDID_TMP1101 = 89
-	# RTD
-	PHIDID_TMP1200 = 90
-	# Voltage Sensor High Precision
-	PHIDID_VCP1000 = 92
-	# Voltage Sensor Large
-	PHIDID_VCP1001 = 93
-	# Voltage Sensor Small
-	PHIDID_VCP1002 = 94
-	# Hub Port in Digital Input mode
-	PHIDID_DIGITALINPUT_PORT = 95
-	# Hub Port in Digital Output mode
-	PHIDID_DIGITALOUTPUT_PORT = 96
-	# Hub Port in Voltage Input mode
-	PHIDID_VOLTAGEINPUT_PORT = 97
-	# Hub Port in Voltage Ratio Input mode
-	PHIDID_VOLTAGERATIOINPUT_PORT = 98
-	# 30A Current Sensor
-	PHIDID_VCP1100 = 105
-	# BLDC Motor Controller
-	PHIDID_DCC1100 = 108
-	# Dial Encoder
-	PHIDID_HIN1101 = 109
-	# Small DC Motor Controller
+	# 2A DC Motor Phidget (DCC1001)
 	PHIDID_DCC1001 = 110
-	# Dictionary
-	PHIDID_DICTIONARY = 111
-	# Bipolar Stepper Motor SmallController
-	PHIDID_STC1001 = 115
-	# 4A Small DC Motor Controller
+	# 4A DC Motor Phidget (DCC1002)
 	PHIDID_DCC1002 = 117
-	# 8A Bipolar Stepper Motor Controller
-	PHIDID_STC1002 = 118
-	# 4A Bipolar Stepper Motor SmallController
-	PHIDID_STC1003 = 119
-	# 2 Channel DC Motor Controller
+	# 2x DC Motor Phidget (DCC1003)
 	PHIDID_DCC1003 = 120
-	# 650mm distance sensor
+	# 30V 50A DC Motor Phidget (DCC1020)
+	PHIDID_DCC1020 = 128
+	# Brushless DC Motor Phidget (DCC1100)
+	PHIDID_DCC1100 = 108
+	# 30V 50A Brushless DC Motor Phidget (DCC1120)
+	PHIDID_DCC1120 = 150
+	# Distance Phidget (DST1000)
+	PHIDID_DST1000 = 58
+	# Distance Phidget 650mm (DST1001)
 	PHIDID_DST1001 = 121
-	# Phidget Network Hub with 6 ports
+	# Distance Phidget 1300mm (DST1002)
+	PHIDID_DST1002 = 126
+	# Sonar Phidget (DST1200)
+	PHIDID_DST1200 = 59
+	# Quadrature Encoder Phidget (ENC1000)
+	PHIDID_ENC1000 = 60
+	# Quadrature Encoder Phidget (ENC1001)
+	PHIDID_ENC1001 = 155
+	# Touch Keypad Phidget (HIN1000)
+	PHIDID_HIN1000 = 61
+	# Touch Wheel Phidget (HIN1001)
+	PHIDID_HIN1001 = 62
+	# Thumbstick Phidget (HIN1100)
+	PHIDID_HIN1100 = 63
+	# Phidget Dial (HIN1101)
+	PHIDID_HIN1101 = 109
+	# 6-Port USB VINT Hub Phidget (HUB0000)
+	PHIDID_HUB0000 = 64
+	# 6-Port USB VINT Hub Phidget (HUB0001)
+	PHIDID_HUB0001 = 142
+	# 6-Port USB VINT Hub Phidget (HUB0002)
+	PHIDID_HUB0002 = 147
+	# 6-Port PhidgetSBC VINT Hub Phidget (HUB0004)
+	PHIDID_HUB0004 = 67
+	# 1-Port USB VINT Hub Phidget (HUB0007)
+	PHIDID_HUB0007 = 148
+	# 6-Port Network VINT Hub Phidget (HUB5000)
 	PHIDID_HUB5000 = 123
+	# Humidity Phidget (HUM1000)
+	PHIDID_HUM1000 = 69
+	# Humidity Phidget (HUM1001)
+	PHIDID_HUM1001 = 127
+	# Soil Moisture Phidget (HUM1100)
+	PHIDID_HUM1100 = 136
+	# Graphic LCD Phidget (LCD1100)
+	PHIDID_LCD1100 = 70
+	# 32x Isolated LED Phidget (LED1000)
+	PHIDID_LED1000 = 71
+	# Light Phidget (LUX1000)
+	PHIDID_LUX1000 = 72
+	# PhidgetAccelerometer (MOT0100)
+	PHIDID_MOT0100 = 146
+	# PhidgetSpatial Precision 3/3/3 (MOT0109)
+	PHIDID_MOT0109 = 140
+	# PhidgetSpatial Precision 3/3/3 (MOT0110)
+	PHIDID_MOT0110 = 141
+	# Accelerometer Phidget (MOT1100)
+	PHIDID_MOT1100 = 73
+	# Spatial Phidget (MOT1101)
+	PHIDID_MOT1101 = 74
+	# Spatial Phidget (MOT1102)
+	PHIDID_MOT1102 = 137
+	# 12-bit Voltage Output Phidget (OUT1000)
+	PHIDID_OUT1000 = 75
+	# Isolated 12-bit Voltage Output Phidget (OUT1001)
+	PHIDID_OUT1001 = 76
+	# Isolated 16-bit Voltage Output Phidget (OUT1002)
+	PHIDID_OUT1002 = 77
+	# 4x Digital Output Phidget (OUT1100)
+	PHIDID_OUT1100 = 78
+	# Barometer Phidget (PRE1000)
+	PHIDID_PRE1000 = 79
 	# PhidgetAdvancedServo 8-Motor (RCC0004)
 	PHIDID_RCC0004 = 124
-	# Unknown device
-	PHIDID_UNKNOWN = 125
-	# 1200mm distance sensor
-	PHIDID_DST1002 = 126
-	# Humidity Sensor
-	PHIDID_HUM1001 = 127
-	# VINT Moisture Sensor
-	PHIDID_HUM1100 = 136
-	# VINT Spatial Phidget AHRS
-	PHIDID_MOT1102 = 137
-	# PhidgetSpatial Precision 3/3/3
-	PHIDID_MOT0109 = 140
-	# Phidget USB VINT Hub with 6 ports
-	PHIDID_HUB0001 = 142
+	# 16x RC Servo Phidget (RCC1000)
+	PHIDID_RCC1000 = 80
+	# 4x Relay Phidget (REL1000)
+	PHIDID_REL1000 = 81
+	# 4x Isolated Solid State Relay Phidget (REL1100)
+	PHIDID_REL1100 = 82
+	# 16x Isolated Solid State Relay Phidget (REL1101)
+	PHIDID_REL1101 = 83
+	# Programmable Power Guard Phidget (SAF1000)
+	PHIDID_SAF1000 = 84
+	# Sound Phidget (SND1000)
+	PHIDID_SND1000 = 85
+	# Stepper Phidget (STC1000)
+	PHIDID_STC1000 = 86
+	# 2.5A Stepper Phidget (STC1001)
+	PHIDID_STC1001 = 115
+	# 8A Stepper Phidget (STC1002)
+	PHIDID_STC1002 = 118
+	# 4A Stepper Phidget (STC1003)
+	PHIDID_STC1003 = 119
+	# 4A Stepper Phidget (STC1005)
+	PHIDID_STC1005 = 149
+	# Temperature Phidget (TMP1000)
+	PHIDID_TMP1000 = 87
+	# Isolated Thermocouple Phidget (TMP1100)
+	PHIDID_TMP1100 = 88
+	# 4x Thermocouple Phidget (TMP1101)
+	PHIDID_TMP1101 = 89
+	# RTD Phidget (TMP1200)
+	PHIDID_TMP1200 = 90
+	# 20-bit (+-40V) Voltage Input Phidget (VCP1000)
+	PHIDID_VCP1000 = 92
+	# 10-bit (+-40V) Voltage Input Phidget (VCP1001)
+	PHIDID_VCP1001 = 93
+	# 10-bit (+-1V) Voltage Input Phidget (VCP1002)
+	PHIDID_VCP1002 = 94
+	# 30A Current Sensor Phidget (VCP1100)
+	PHIDID_VCP1100 = 105
 
 	@classmethod
 	def getName(self, val):
-		if val == self.PHIDID_NOTHING:
-			return "PHIDID_NOTHING"
-		if val == self.PHIDID_INTERFACEKIT_4_8_8:
-			return "PHIDID_INTERFACEKIT_4_8_8"
+		if val == self.PHIDID_UNKNOWN:
+			return "PHIDID_UNKNOWN"
+		if val == self.PHIDID_DIGITALINPUT_PORT:
+			return "PHIDID_DIGITALINPUT_PORT"
+		if val == self.PHIDID_DIGITALOUTPUT_PORT:
+			return "PHIDID_DIGITALOUTPUT_PORT"
+		if val == self.PHIDID_VOLTAGEINPUT_PORT:
+			return "PHIDID_VOLTAGEINPUT_PORT"
+		if val == self.PHIDID_VOLTAGERATIOINPUT_PORT:
+			return "PHIDID_VOLTAGERATIOINPUT_PORT"
+		if val == self.PHIDID_DICTIONARY:
+			return "PHIDID_DICTIONARY"
 		if val == self.PHIDID_1000:
 			return "PHIDID_1000"
 		if val == self.PHIDID_1001:
@@ -346,34 +366,74 @@ class DeviceID:
 			return "PHIDID_DAQ1500"
 		if val == self.PHIDID_DCC1000:
 			return "PHIDID_DCC1000"
+		if val == self.PHIDID_DCC1001:
+			return "PHIDID_DCC1001"
+		if val == self.PHIDID_DCC1002:
+			return "PHIDID_DCC1002"
+		if val == self.PHIDID_DCC1003:
+			return "PHIDID_DCC1003"
+		if val == self.PHIDID_DCC1020:
+			return "PHIDID_DCC1020"
+		if val == self.PHIDID_DCC1100:
+			return "PHIDID_DCC1100"
+		if val == self.PHIDID_DCC1120:
+			return "PHIDID_DCC1120"
 		if val == self.PHIDID_DST1000:
 			return "PHIDID_DST1000"
+		if val == self.PHIDID_DST1001:
+			return "PHIDID_DST1001"
+		if val == self.PHIDID_DST1002:
+			return "PHIDID_DST1002"
 		if val == self.PHIDID_DST1200:
 			return "PHIDID_DST1200"
 		if val == self.PHIDID_ENC1000:
 			return "PHIDID_ENC1000"
+		if val == self.PHIDID_ENC1001:
+			return "PHIDID_ENC1001"
 		if val == self.PHIDID_HIN1000:
 			return "PHIDID_HIN1000"
 		if val == self.PHIDID_HIN1001:
 			return "PHIDID_HIN1001"
 		if val == self.PHIDID_HIN1100:
 			return "PHIDID_HIN1100"
+		if val == self.PHIDID_HIN1101:
+			return "PHIDID_HIN1101"
 		if val == self.PHIDID_HUB0000:
 			return "PHIDID_HUB0000"
+		if val == self.PHIDID_HUB0001:
+			return "PHIDID_HUB0001"
+		if val == self.PHIDID_HUB0002:
+			return "PHIDID_HUB0002"
 		if val == self.PHIDID_HUB0004:
 			return "PHIDID_HUB0004"
+		if val == self.PHIDID_HUB0007:
+			return "PHIDID_HUB0007"
+		if val == self.PHIDID_HUB5000:
+			return "PHIDID_HUB5000"
 		if val == self.PHIDID_HUM1000:
 			return "PHIDID_HUM1000"
+		if val == self.PHIDID_HUM1001:
+			return "PHIDID_HUM1001"
+		if val == self.PHIDID_HUM1100:
+			return "PHIDID_HUM1100"
 		if val == self.PHIDID_LCD1100:
 			return "PHIDID_LCD1100"
 		if val == self.PHIDID_LED1000:
 			return "PHIDID_LED1000"
 		if val == self.PHIDID_LUX1000:
 			return "PHIDID_LUX1000"
+		if val == self.PHIDID_MOT0100:
+			return "PHIDID_MOT0100"
+		if val == self.PHIDID_MOT0109:
+			return "PHIDID_MOT0109"
+		if val == self.PHIDID_MOT0110:
+			return "PHIDID_MOT0110"
 		if val == self.PHIDID_MOT1100:
 			return "PHIDID_MOT1100"
 		if val == self.PHIDID_MOT1101:
 			return "PHIDID_MOT1101"
+		if val == self.PHIDID_MOT1102:
+			return "PHIDID_MOT1102"
 		if val == self.PHIDID_OUT1000:
 			return "PHIDID_OUT1000"
 		if val == self.PHIDID_OUT1001:
@@ -384,6 +444,8 @@ class DeviceID:
 			return "PHIDID_OUT1100"
 		if val == self.PHIDID_PRE1000:
 			return "PHIDID_PRE1000"
+		if val == self.PHIDID_RCC0004:
+			return "PHIDID_RCC0004"
 		if val == self.PHIDID_RCC1000:
 			return "PHIDID_RCC1000"
 		if val == self.PHIDID_REL1000:
@@ -398,6 +460,14 @@ class DeviceID:
 			return "PHIDID_SND1000"
 		if val == self.PHIDID_STC1000:
 			return "PHIDID_STC1000"
+		if val == self.PHIDID_STC1001:
+			return "PHIDID_STC1001"
+		if val == self.PHIDID_STC1002:
+			return "PHIDID_STC1002"
+		if val == self.PHIDID_STC1003:
+			return "PHIDID_STC1003"
+		if val == self.PHIDID_STC1005:
+			return "PHIDID_STC1005"
 		if val == self.PHIDID_TMP1000:
 			return "PHIDID_TMP1000"
 		if val == self.PHIDID_TMP1100:
@@ -412,52 +482,6 @@ class DeviceID:
 			return "PHIDID_VCP1001"
 		if val == self.PHIDID_VCP1002:
 			return "PHIDID_VCP1002"
-		if val == self.PHIDID_DIGITALINPUT_PORT:
-			return "PHIDID_DIGITALINPUT_PORT"
-		if val == self.PHIDID_DIGITALOUTPUT_PORT:
-			return "PHIDID_DIGITALOUTPUT_PORT"
-		if val == self.PHIDID_VOLTAGEINPUT_PORT:
-			return "PHIDID_VOLTAGEINPUT_PORT"
-		if val == self.PHIDID_VOLTAGERATIOINPUT_PORT:
-			return "PHIDID_VOLTAGERATIOINPUT_PORT"
 		if val == self.PHIDID_VCP1100:
 			return "PHIDID_VCP1100"
-		if val == self.PHIDID_DCC1100:
-			return "PHIDID_DCC1100"
-		if val == self.PHIDID_HIN1101:
-			return "PHIDID_HIN1101"
-		if val == self.PHIDID_DCC1001:
-			return "PHIDID_DCC1001"
-		if val == self.PHIDID_DICTIONARY:
-			return "PHIDID_DICTIONARY"
-		if val == self.PHIDID_STC1001:
-			return "PHIDID_STC1001"
-		if val == self.PHIDID_DCC1002:
-			return "PHIDID_DCC1002"
-		if val == self.PHIDID_STC1002:
-			return "PHIDID_STC1002"
-		if val == self.PHIDID_STC1003:
-			return "PHIDID_STC1003"
-		if val == self.PHIDID_DCC1003:
-			return "PHIDID_DCC1003"
-		if val == self.PHIDID_DST1001:
-			return "PHIDID_DST1001"
-		if val == self.PHIDID_HUB5000:
-			return "PHIDID_HUB5000"
-		if val == self.PHIDID_RCC0004:
-			return "PHIDID_RCC0004"
-		if val == self.PHIDID_UNKNOWN:
-			return "PHIDID_UNKNOWN"
-		if val == self.PHIDID_DST1002:
-			return "PHIDID_DST1002"
-		if val == self.PHIDID_HUM1001:
-			return "PHIDID_HUM1001"
-		if val == self.PHIDID_HUM1100:
-			return "PHIDID_HUM1100"
-		if val == self.PHIDID_MOT1102:
-			return "PHIDID_MOT1102"
-		if val == self.PHIDID_MOT0109:
-			return "PHIDID_MOT0109"
-		if val == self.PHIDID_HUB0001:
-			return "PHIDID_HUB0001"
 		return "<invalid enumeration value>"

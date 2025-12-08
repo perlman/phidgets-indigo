@@ -36,20 +36,18 @@ class ResistanceInput(Phidget):
 		self._ResistanceChange(self, resistance)
 
 	def setOnResistanceChangeHandler(self, handler):
-		if handler == None:
-			self._ResistanceChange = None
-			self._onResistanceChange = None
-		else:
-			self._ResistanceChange = handler
-			self._onResistanceChange = self._ResistanceChangeFactory(self._localResistanceChangeEvent)
+		self._ResistanceChange = handler
 
-		try:
+		if self._onResistanceChange == None:
+			fptr = self._ResistanceChangeFactory(self._localResistanceChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetResistanceInput_setOnResistanceChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onResistanceChange, None)
-		except RuntimeError:
-			self._ResistanceChange = None
-			self._onResistanceChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onResistanceChange = fptr
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()

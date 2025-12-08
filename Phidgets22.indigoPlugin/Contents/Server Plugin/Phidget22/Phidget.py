@@ -73,20 +73,18 @@ class Phidget:
 		self._Attach(self)
 
 	def setOnAttachHandler(self, handler):
-		if handler == None:
-			self._Attach = None
-			self._onAttach = None
-		else:
-			self._Attach = handler
-			self._onAttach = self._AttachFactory(self._localAttachEvent)
+		self._Attach = handler
 
-		try:
+		if self._onAttach == None:
+			fptr = self._AttachFactory(self._localAttachEvent)
 			__func = PhidgetSupport.getDll().Phidget_setOnAttachHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onAttach, None)
-		except RuntimeError:
-			self._Attach = None
-			self._onAttach = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onAttach = fptr
 
 	def _localDetachEvent(self, handle, userPtr):
 		if self._Detach == None:
@@ -94,20 +92,18 @@ class Phidget:
 		self._Detach(self)
 
 	def setOnDetachHandler(self, handler):
-		if handler == None:
-			self._Detach = None
-			self._onDetach = None
-		else:
-			self._Detach = handler
-			self._onDetach = self._DetachFactory(self._localDetachEvent)
+		self._Detach = handler
 
-		try:
+		if self._onDetach == None:
+			fptr = self._DetachFactory(self._localDetachEvent)
 			__func = PhidgetSupport.getDll().Phidget_setOnDetachHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onDetach, None)
-		except RuntimeError:
-			self._Detach = None
-			self._onDetach = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onDetach = fptr
 
 	def _localErrorEvent(self, handle, userPtr, Code, Description):
 		if self._Error == None:
@@ -116,20 +112,18 @@ class Phidget:
 		self._Error(self, Code, Description)
 
 	def setOnErrorHandler(self, handler):
-		if handler == None:
-			self._Error = None
-			self._onError = None
-		else:
-			self._Error = handler
-			self._onError = self._ErrorFactory(self._localErrorEvent)
+		self._Error = handler
 
-		try:
+		if self._onError == None:
+			fptr = self._ErrorFactory(self._localErrorEvent)
 			__func = PhidgetSupport.getDll().Phidget_setOnErrorHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onError, None)
-		except RuntimeError:
-			self._Error = None
-			self._onError = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onError = fptr
 
 	def _localPropertyChangeEvent(self, handle, userPtr, propertyName):
 		if self._PropertyChange == None:
@@ -138,24 +132,22 @@ class Phidget:
 		self._PropertyChange(self, propertyName)
 
 	def setOnPropertyChangeHandler(self, handler):
-		if handler == None:
-			self._PropertyChange = None
-			self._onPropertyChange = None
-		else:
-			self._PropertyChange = handler
-			self._onPropertyChange = self._PropertyChangeFactory(self._localPropertyChangeEvent)
+		self._PropertyChange = handler
 
-		try:
+		if self._onPropertyChange == None:
+			fptr = self._PropertyChangeFactory(self._localPropertyChangeEvent)
 			__func = PhidgetSupport.getDll().Phidget_setOnPropertyChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onPropertyChange, None)
-		except RuntimeError:
-			self._PropertyChange = None
-			self._onPropertyChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onPropertyChange = fptr
 
 	@staticmethod
 	def finalize(flags):
-		_flags = ctypes.c_int32(flags)
+		_flags = ctypes.c_int(flags)
 
 		__func = PhidgetSupport.getDll().Phidget_finalize
 		__func.restype = ctypes.c_int32
@@ -211,7 +203,7 @@ class Phidget:
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _Attached.value
+		return bool(_Attached.value)
 
 	def getChannel(self):
 		_Channel = ctypes.c_int()
@@ -271,6 +263,29 @@ class Phidget:
 			raise PhidgetException(result)
 
 		return _ChannelName.value.decode('utf-8')
+
+	def getChannelPersistence(self):
+		_ChannelPersistence = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().Phidget_getChannelPersistence
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ChannelPersistence))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return bool(_ChannelPersistence.value)
+
+	def setChannelPersistence(self, ChannelPersistence):
+		_ChannelPersistence = ctypes.c_int(ChannelPersistence)
+
+		__func = PhidgetSupport.getDll().Phidget_setChannelPersistence
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _ChannelPersistence)
+
+		if result > 0:
+			raise PhidgetException(result)
+
 
 	def getChannelSubclass(self):
 		_ChannelSubclass = ctypes.c_int()
@@ -508,6 +523,18 @@ class Phidget:
 
 		return _MaxHubPortSpeed.value
 
+	def getHubPortSupportsAutoSetSpeed(self):
+		_HubPortSupportsAutoSetSpeed = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().Phidget_getHubPortSupportsAutoSetSpeed
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_HubPortSupportsAutoSetSpeed))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return bool(_HubPortSupportsAutoSetSpeed.value)
+
 	def getHubPortSupportsSetSpeed(self):
 		_HubPortSupportsSetSpeed = ctypes.c_int()
 
@@ -518,7 +545,7 @@ class Phidget:
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _HubPortSupportsSetSpeed.value
+		return bool(_HubPortSupportsSetSpeed.value)
 
 	def getIsChannel(self):
 		_IsChannel = ctypes.c_int()
@@ -530,7 +557,7 @@ class Phidget:
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _IsChannel.value
+		return bool(_IsChannel.value)
 
 	def getIsHubPortDevice(self):
 		_IsHubPortDevice = ctypes.c_int()
@@ -542,7 +569,7 @@ class Phidget:
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _IsHubPortDevice.value
+		return bool(_IsHubPortDevice.value)
 
 	def setIsHubPortDevice(self, IsHubPortDevice):
 		_IsHubPortDevice = ctypes.c_int(IsHubPortDevice)
@@ -565,7 +592,7 @@ class Phidget:
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _IsLocal.value
+		return bool(_IsLocal.value)
 
 	def setIsLocal(self, IsLocal):
 		_IsLocal = ctypes.c_int(IsLocal)
@@ -578,6 +605,18 @@ class Phidget:
 			raise PhidgetException(result)
 
 
+	def getIsOpen(self):
+		_IsOpen = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().Phidget_getIsOpen
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_IsOpen))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return bool(_IsOpen.value)
+
 	def getIsRemote(self):
 		_IsRemote = ctypes.c_int()
 
@@ -588,7 +627,7 @@ class Phidget:
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _IsRemote.value
+		return bool(_IsRemote.value)
 
 	def setIsRemote(self, IsRemote):
 		_IsRemote = ctypes.c_int(IsRemote)
@@ -706,6 +745,18 @@ class Phidget:
 
 		return _MaxVINTDeviceSpeed.value
 
+	def getVINTDeviceSupportsAutoSetSpeed(self):
+		_VINTDeviceSupportsAutoSetSpeed = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().Phidget_getVINTDeviceSupportsAutoSetSpeed
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_VINTDeviceSupportsAutoSetSpeed))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return bool(_VINTDeviceSupportsAutoSetSpeed.value)
+
 	def getVINTDeviceSupportsSetSpeed(self):
 		_VINTDeviceSupportsSetSpeed = ctypes.c_int()
 
@@ -716,7 +767,7 @@ class Phidget:
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _VINTDeviceSupportsSetSpeed.value
+		return bool(_VINTDeviceSupportsSetSpeed.value)
 
 	def writeDeviceLabel(self, deviceLabel):
 		_deviceLabel = ctypes.create_string_buffer(deviceLabel.encode('utf-8'))
@@ -740,3 +791,5 @@ class Phidget:
 	INFINITE_TIMEOUT = 0
 
 	DEFAULT_TIMEOUT = 1000
+
+	AUTO_HUBPORTSPEED = 0

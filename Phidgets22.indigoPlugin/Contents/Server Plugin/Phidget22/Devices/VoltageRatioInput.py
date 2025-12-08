@@ -49,20 +49,18 @@ class VoltageRatioInput(Phidget):
 		self._SensorChange(self, sensorValue, sensorUnit)
 
 	def setOnSensorChangeHandler(self, handler):
-		if handler == None:
-			self._SensorChange = None
-			self._onSensorChange = None
-		else:
-			self._SensorChange = handler
-			self._onSensorChange = self._SensorChangeFactory(self._localSensorChangeEvent)
+		self._SensorChange = handler
 
-		try:
+		if self._onSensorChange == None:
+			fptr = self._SensorChangeFactory(self._localSensorChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setOnSensorChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onSensorChange, None)
-		except RuntimeError:
-			self._SensorChange = None
-			self._onSensorChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onSensorChange = fptr
 
 	def _localVoltageRatioChangeEvent(self, handle, userPtr, voltageRatio):
 		if self._VoltageRatioChange == None:
@@ -70,20 +68,18 @@ class VoltageRatioInput(Phidget):
 		self._VoltageRatioChange(self, voltageRatio)
 
 	def setOnVoltageRatioChangeHandler(self, handler):
-		if handler == None:
-			self._VoltageRatioChange = None
-			self._onVoltageRatioChange = None
-		else:
-			self._VoltageRatioChange = handler
-			self._onVoltageRatioChange = self._VoltageRatioChangeFactory(self._localVoltageRatioChangeEvent)
+		self._VoltageRatioChange = handler
 
-		try:
+		if self._onVoltageRatioChange == None:
+			fptr = self._VoltageRatioChangeFactory(self._localVoltageRatioChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetVoltageRatioInput_setOnVoltageRatioChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onVoltageRatioChange, None)
-		except RuntimeError:
-			self._VoltageRatioChange = None
-			self._onVoltageRatioChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onVoltageRatioChange = fptr
 
 	def getBridgeEnabled(self):
 		_BridgeEnabled = ctypes.c_int()
@@ -95,7 +91,7 @@ class VoltageRatioInput(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _BridgeEnabled.value
+		return bool(_BridgeEnabled.value)
 
 	def setBridgeEnabled(self, BridgeEnabled):
 		_BridgeEnabled = ctypes.c_int(BridgeEnabled)

@@ -2,20 +2,16 @@ import sys
 import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
 from Phidget22.Async import *
-from Phidget22.FanMode import FanMode
-from Phidget22.EncoderIOMode import EncoderIOMode
 from Phidget22.PositionType import PositionType
 from Phidget22.PhidgetException import PhidgetException
 
 from Phidget22.Phidget import Phidget
 
-class MotorPositionController(Phidget):
+class MotorVelocityController(Phidget):
 
 	def __init__(self):
 		Phidget.__init__(self)
 		self.handle = ctypes.c_void_p()
-		self._setTargetPosition_async = None
-		self._onsetTargetPosition_async = None
 
 		if sys.platform == 'win32':
 			self._DutyCycleUpdateFactory = ctypes.WINFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_double)
@@ -25,20 +21,20 @@ class MotorPositionController(Phidget):
 		self._onDutyCycleUpdate = None
 
 		if sys.platform == 'win32':
-			self._ExpectedPositionChangeFactory = ctypes.WINFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_double)
+			self._ExpectedVelocityChangeFactory = ctypes.WINFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_double)
 		else:
-			self._ExpectedPositionChangeFactory = ctypes.CFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_double)
-		self._ExpectedPositionChange = None
-		self._onExpectedPositionChange = None
+			self._ExpectedVelocityChangeFactory = ctypes.CFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_double)
+		self._ExpectedVelocityChange = None
+		self._onExpectedVelocityChange = None
 
 		if sys.platform == 'win32':
-			self._PositionChangeFactory = ctypes.WINFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_double)
+			self._VelocityChangeFactory = ctypes.WINFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_double)
 		else:
-			self._PositionChangeFactory = ctypes.CFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_double)
-		self._PositionChange = None
-		self._onPositionChange = None
+			self._VelocityChangeFactory = ctypes.CFUNCTYPE(None, ctypes.c_void_p, ctypes.c_void_p, ctypes.c_double)
+		self._VelocityChange = None
+		self._onVelocityChange = None
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_create
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_create
 		__func.restype = ctypes.c_int32
 		res = __func(ctypes.byref(self.handle))
 
@@ -58,7 +54,7 @@ class MotorPositionController(Phidget):
 
 		if self._onDutyCycleUpdate == None:
 			fptr = self._DutyCycleUpdateFactory(self._localDutyCycleUpdateEvent)
-			__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setOnDutyCycleUpdateHandler
+			__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setOnDutyCycleUpdateHandler
 			__func.restype = ctypes.c_int32
 			res = __func(self.handle, fptr, None)
 
@@ -67,48 +63,48 @@ class MotorPositionController(Phidget):
 
 			self._onDutyCycleUpdate = fptr
 
-	def _localExpectedPositionChangeEvent(self, handle, userPtr, expectedPosition):
-		if self._ExpectedPositionChange == None:
+	def _localExpectedVelocityChangeEvent(self, handle, userPtr, expectedVelocity):
+		if self._ExpectedVelocityChange == None:
 			return
-		self._ExpectedPositionChange(self, expectedPosition)
+		self._ExpectedVelocityChange(self, expectedVelocity)
 
-	def setOnExpectedPositionChangeHandler(self, handler):
-		self._ExpectedPositionChange = handler
+	def setOnExpectedVelocityChangeHandler(self, handler):
+		self._ExpectedVelocityChange = handler
 
-		if self._onExpectedPositionChange == None:
-			fptr = self._ExpectedPositionChangeFactory(self._localExpectedPositionChangeEvent)
-			__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setOnExpectedPositionChangeHandler
+		if self._onExpectedVelocityChange == None:
+			fptr = self._ExpectedVelocityChangeFactory(self._localExpectedVelocityChangeEvent)
+			__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setOnExpectedVelocityChangeHandler
 			__func.restype = ctypes.c_int32
 			res = __func(self.handle, fptr, None)
 
 			if res > 0:
 				raise PhidgetException(res)
 
-			self._onExpectedPositionChange = fptr
+			self._onExpectedVelocityChange = fptr
 
-	def _localPositionChangeEvent(self, handle, userPtr, position):
-		if self._PositionChange == None:
+	def _localVelocityChangeEvent(self, handle, userPtr, velocity):
+		if self._VelocityChange == None:
 			return
-		self._PositionChange(self, position)
+		self._VelocityChange(self, velocity)
 
-	def setOnPositionChangeHandler(self, handler):
-		self._PositionChange = handler
+	def setOnVelocityChangeHandler(self, handler):
+		self._VelocityChange = handler
 
-		if self._onPositionChange == None:
-			fptr = self._PositionChangeFactory(self._localPositionChangeEvent)
-			__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setOnPositionChangeHandler
+		if self._onVelocityChange == None:
+			fptr = self._VelocityChangeFactory(self._localVelocityChangeEvent)
+			__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setOnVelocityChangeHandler
 			__func.restype = ctypes.c_int32
 			res = __func(self.handle, fptr, None)
 
 			if res > 0:
 				raise PhidgetException(res)
 
-			self._onPositionChange = fptr
+			self._onVelocityChange = fptr
 
 	def getAcceleration(self):
 		_Acceleration = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getAcceleration
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getAcceleration
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_Acceleration))
 
@@ -120,7 +116,7 @@ class MotorPositionController(Phidget):
 	def setAcceleration(self, Acceleration):
 		_Acceleration = ctypes.c_double(Acceleration)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setAcceleration
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setAcceleration
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _Acceleration)
 
@@ -131,7 +127,7 @@ class MotorPositionController(Phidget):
 	def getMinAcceleration(self):
 		_MinAcceleration = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinAcceleration
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMinAcceleration
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MinAcceleration))
 
@@ -143,7 +139,7 @@ class MotorPositionController(Phidget):
 	def getMaxAcceleration(self):
 		_MaxAcceleration = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxAcceleration
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMaxAcceleration
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MaxAcceleration))
 
@@ -155,7 +151,7 @@ class MotorPositionController(Phidget):
 	def getActiveCurrentLimit(self):
 		_ActiveCurrentLimit = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getActiveCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getActiveCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_ActiveCurrentLimit))
 
@@ -167,7 +163,7 @@ class MotorPositionController(Phidget):
 	def getCurrentLimit(self):
 		_CurrentLimit = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_CurrentLimit))
 
@@ -179,7 +175,7 @@ class MotorPositionController(Phidget):
 	def setCurrentLimit(self, CurrentLimit):
 		_CurrentLimit = ctypes.c_double(CurrentLimit)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _CurrentLimit)
 
@@ -190,7 +186,7 @@ class MotorPositionController(Phidget):
 	def getMinCurrentLimit(self):
 		_MinCurrentLimit = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMinCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MinCurrentLimit))
 
@@ -202,7 +198,7 @@ class MotorPositionController(Phidget):
 	def getMaxCurrentLimit(self):
 		_MaxCurrentLimit = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMaxCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MaxCurrentLimit))
 
@@ -211,57 +207,10 @@ class MotorPositionController(Phidget):
 
 		return _MaxCurrentLimit.value
 
-	def getCurrentRegulatorGain(self):
-		_CurrentRegulatorGain = ctypes.c_double()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getCurrentRegulatorGain
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_CurrentRegulatorGain))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _CurrentRegulatorGain.value
-
-	def setCurrentRegulatorGain(self, CurrentRegulatorGain):
-		_CurrentRegulatorGain = ctypes.c_double(CurrentRegulatorGain)
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setCurrentRegulatorGain
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _CurrentRegulatorGain)
-
-		if result > 0:
-			raise PhidgetException(result)
-
-
-	def getMinCurrentRegulatorGain(self):
-		_MinCurrentRegulatorGain = ctypes.c_double()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinCurrentRegulatorGain
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_MinCurrentRegulatorGain))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _MinCurrentRegulatorGain.value
-
-	def getMaxCurrentRegulatorGain(self):
-		_MaxCurrentRegulatorGain = ctypes.c_double()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxCurrentRegulatorGain
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_MaxCurrentRegulatorGain))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _MaxCurrentRegulatorGain.value
-
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getDataInterval
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getDataInterval
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_DataInterval))
 
@@ -273,7 +222,7 @@ class MotorPositionController(Phidget):
 	def setDataInterval(self, DataInterval):
 		_DataInterval = ctypes.c_uint32(DataInterval)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setDataInterval
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setDataInterval
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _DataInterval)
 
@@ -284,7 +233,7 @@ class MotorPositionController(Phidget):
 	def getMinDataInterval(self):
 		_MinDataInterval = ctypes.c_uint32()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinDataInterval
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMinDataInterval
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MinDataInterval))
 
@@ -296,7 +245,7 @@ class MotorPositionController(Phidget):
 	def getMaxDataInterval(self):
 		_MaxDataInterval = ctypes.c_uint32()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxDataInterval
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMaxDataInterval
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MaxDataInterval))
 
@@ -308,7 +257,7 @@ class MotorPositionController(Phidget):
 	def getDataRate(self):
 		_DataRate = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getDataRate
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getDataRate
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_DataRate))
 
@@ -320,7 +269,7 @@ class MotorPositionController(Phidget):
 	def setDataRate(self, DataRate):
 		_DataRate = ctypes.c_double(DataRate)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setDataRate
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setDataRate
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _DataRate)
 
@@ -331,7 +280,7 @@ class MotorPositionController(Phidget):
 	def getMinDataRate(self):
 		_MinDataRate = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinDataRate
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMinDataRate
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MinDataRate))
 
@@ -343,7 +292,7 @@ class MotorPositionController(Phidget):
 	def getMaxDataRate(self):
 		_MaxDataRate = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxDataRate
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMaxDataRate
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MaxDataRate))
 
@@ -355,7 +304,7 @@ class MotorPositionController(Phidget):
 	def getDeadBand(self):
 		_DeadBand = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getDeadBand
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getDeadBand
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_DeadBand))
 
@@ -367,7 +316,7 @@ class MotorPositionController(Phidget):
 	def setDeadBand(self, DeadBand):
 		_DeadBand = ctypes.c_double(DeadBand)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setDeadBand
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setDeadBand
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _DeadBand)
 
@@ -378,7 +327,7 @@ class MotorPositionController(Phidget):
 	def getDutyCycle(self):
 		_DutyCycle = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getDutyCycle
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getDutyCycle
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_DutyCycle))
 
@@ -390,7 +339,7 @@ class MotorPositionController(Phidget):
 	def getEngaged(self):
 		_Engaged = ctypes.c_int()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getEngaged
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getEngaged
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_Engaged))
 
@@ -402,7 +351,7 @@ class MotorPositionController(Phidget):
 	def setEngaged(self, Engaged):
 		_Engaged = ctypes.c_int(Engaged)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setEngaged
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setEngaged
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _Engaged)
 
@@ -410,45 +359,45 @@ class MotorPositionController(Phidget):
 			raise PhidgetException(result)
 
 
-	def getExpectedPosition(self):
-		_ExpectedPosition = ctypes.c_double()
+	def getExpectedVelocity(self):
+		_ExpectedVelocity = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getExpectedPosition
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getExpectedVelocity
 		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_ExpectedPosition))
+		result = __func(self.handle, ctypes.byref(_ExpectedVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _ExpectedPosition.value
+		return _ExpectedVelocity.value
 
-	def setEnableExpectedPosition(self, EnableExpectedPosition):
-		_EnableExpectedPosition = ctypes.c_int(EnableExpectedPosition)
+	def setEnableExpectedVelocity(self, EnableExpectedVelocity):
+		_EnableExpectedVelocity = ctypes.c_int(EnableExpectedVelocity)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setEnableExpectedPosition
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setEnableExpectedVelocity
 		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _EnableExpectedPosition)
+		result = __func(self.handle, _EnableExpectedVelocity)
 
 		if result > 0:
 			raise PhidgetException(result)
 
 
-	def getEnableExpectedPosition(self):
-		_EnableExpectedPosition = ctypes.c_int()
+	def getEnableExpectedVelocity(self):
+		_EnableExpectedVelocity = ctypes.c_int()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getEnableExpectedPosition
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getEnableExpectedVelocity
 		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_EnableExpectedPosition))
+		result = __func(self.handle, ctypes.byref(_EnableExpectedVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)
 
-		return bool(_EnableExpectedPosition.value)
+		return bool(_EnableExpectedVelocity.value)
 
 	def enableFailsafe(self, failsafeTime):
 		_failsafeTime = ctypes.c_uint32(failsafeTime)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_enableFailsafe
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_enableFailsafe
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _failsafeTime)
 
@@ -459,7 +408,7 @@ class MotorPositionController(Phidget):
 	def getFailsafeBrakingEnabled(self):
 		_FailsafeBrakingEnabled = ctypes.c_int()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getFailsafeBrakingEnabled
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getFailsafeBrakingEnabled
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_FailsafeBrakingEnabled))
 
@@ -471,7 +420,7 @@ class MotorPositionController(Phidget):
 	def setFailsafeBrakingEnabled(self, FailsafeBrakingEnabled):
 		_FailsafeBrakingEnabled = ctypes.c_int(FailsafeBrakingEnabled)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setFailsafeBrakingEnabled
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setFailsafeBrakingEnabled
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _FailsafeBrakingEnabled)
 
@@ -482,7 +431,7 @@ class MotorPositionController(Phidget):
 	def getFailsafeCurrentLimit(self):
 		_FailsafeCurrentLimit = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getFailsafeCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getFailsafeCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_FailsafeCurrentLimit))
 
@@ -494,7 +443,7 @@ class MotorPositionController(Phidget):
 	def setFailsafeCurrentLimit(self, FailsafeCurrentLimit):
 		_FailsafeCurrentLimit = ctypes.c_double(FailsafeCurrentLimit)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setFailsafeCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setFailsafeCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _FailsafeCurrentLimit)
 
@@ -505,7 +454,7 @@ class MotorPositionController(Phidget):
 	def getMinFailsafeTime(self):
 		_MinFailsafeTime = ctypes.c_uint32()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinFailsafeTime
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMinFailsafeTime
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MinFailsafeTime))
 
@@ -517,7 +466,7 @@ class MotorPositionController(Phidget):
 	def getMaxFailsafeTime(self):
 		_MaxFailsafeTime = ctypes.c_uint32()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxFailsafeTime
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMaxFailsafeTime
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MaxFailsafeTime))
 
@@ -526,33 +475,10 @@ class MotorPositionController(Phidget):
 
 		return _MaxFailsafeTime.value
 
-	def getFanMode(self):
-		_FanMode = ctypes.c_int()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getFanMode
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_FanMode))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _FanMode.value
-
-	def setFanMode(self, FanMode):
-		_FanMode = ctypes.c_int(FanMode)
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setFanMode
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _FanMode)
-
-		if result > 0:
-			raise PhidgetException(result)
-
-
 	def getInductance(self):
 		_Inductance = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getInductance
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getInductance
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_Inductance))
 
@@ -564,7 +490,7 @@ class MotorPositionController(Phidget):
 	def setInductance(self, Inductance):
 		_Inductance = ctypes.c_double(Inductance)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setInductance
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setInductance
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _Inductance)
 
@@ -575,7 +501,7 @@ class MotorPositionController(Phidget):
 	def getMinInductance(self):
 		_MinInductance = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinInductance
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMinInductance
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MinInductance))
 
@@ -587,7 +513,7 @@ class MotorPositionController(Phidget):
 	def getMaxInductance(self):
 		_MaxInductance = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxInductance
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMaxInductance
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MaxInductance))
 
@@ -596,33 +522,10 @@ class MotorPositionController(Phidget):
 
 		return _MaxInductance.value
 
-	def getIOMode(self):
-		_IOMode = ctypes.c_int()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getIOMode
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_IOMode))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _IOMode.value
-
-	def setIOMode(self, IOMode):
-		_IOMode = ctypes.c_int(IOMode)
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setIOMode
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _IOMode)
-
-		if result > 0:
-			raise PhidgetException(result)
-
-
 	def getKd(self):
 		_Kd = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getKd
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getKd
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_Kd))
 
@@ -634,7 +537,7 @@ class MotorPositionController(Phidget):
 	def setKd(self, Kd):
 		_Kd = ctypes.c_double(Kd)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setKd
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setKd
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _Kd)
 
@@ -645,7 +548,7 @@ class MotorPositionController(Phidget):
 	def getKi(self):
 		_Ki = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getKi
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getKi
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_Ki))
 
@@ -657,7 +560,7 @@ class MotorPositionController(Phidget):
 	def setKi(self, Ki):
 		_Ki = ctypes.c_double(Ki)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setKi
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setKi
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _Ki)
 
@@ -668,7 +571,7 @@ class MotorPositionController(Phidget):
 	def getKp(self):
 		_Kp = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getKp
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getKp
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_Kp))
 
@@ -680,79 +583,9 @@ class MotorPositionController(Phidget):
 	def setKp(self, Kp):
 		_Kp = ctypes.c_double(Kp)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setKp
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setKp
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _Kp)
-
-		if result > 0:
-			raise PhidgetException(result)
-
-
-	def getNormalizePID(self):
-		_NormalizePID = ctypes.c_int()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getNormalizePID
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_NormalizePID))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return bool(_NormalizePID.value)
-
-	def setNormalizePID(self, NormalizePID):
-		_NormalizePID = ctypes.c_int(NormalizePID)
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setNormalizePID
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _NormalizePID)
-
-		if result > 0:
-			raise PhidgetException(result)
-
-
-	def getPosition(self):
-		_Position = ctypes.c_double()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getPosition
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_Position))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _Position.value
-
-	def getMinPosition(self):
-		_MinPosition = ctypes.c_double()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinPosition
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_MinPosition))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _MinPosition.value
-
-	def getMaxPosition(self):
-		_MaxPosition = ctypes.c_double()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxPosition
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_MaxPosition))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _MaxPosition.value
-
-	def addPositionOffset(self, positionOffset):
-		_positionOffset = ctypes.c_double(positionOffset)
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_addPositionOffset
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _positionOffset)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -761,7 +594,7 @@ class MotorPositionController(Phidget):
 	def getPositionType(self):
 		_PositionType = ctypes.c_int()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getPositionType
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getPositionType
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_PositionType))
 
@@ -773,7 +606,7 @@ class MotorPositionController(Phidget):
 	def setPositionType(self, PositionType):
 		_PositionType = ctypes.c_int(PositionType)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setPositionType
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setPositionType
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _PositionType)
 
@@ -784,7 +617,7 @@ class MotorPositionController(Phidget):
 	def getRescaleFactor(self):
 		_RescaleFactor = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getRescaleFactor
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getRescaleFactor
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_RescaleFactor))
 
@@ -796,7 +629,7 @@ class MotorPositionController(Phidget):
 	def setRescaleFactor(self, RescaleFactor):
 		_RescaleFactor = ctypes.c_double(RescaleFactor)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setRescaleFactor
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setRescaleFactor
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _RescaleFactor)
 
@@ -805,7 +638,7 @@ class MotorPositionController(Phidget):
 
 
 	def resetFailsafe(self):
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_resetFailsafe
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_resetFailsafe
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle)
 
@@ -816,7 +649,7 @@ class MotorPositionController(Phidget):
 	def getStallVelocity(self):
 		_StallVelocity = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getStallVelocity
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getStallVelocity
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_StallVelocity))
 
@@ -828,7 +661,7 @@ class MotorPositionController(Phidget):
 	def setStallVelocity(self, StallVelocity):
 		_StallVelocity = ctypes.c_double(StallVelocity)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setStallVelocity
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setStallVelocity
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _StallVelocity)
 
@@ -839,7 +672,7 @@ class MotorPositionController(Phidget):
 	def getMinStallVelocity(self):
 		_MinStallVelocity = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinStallVelocity
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMinStallVelocity
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MinStallVelocity))
 
@@ -851,7 +684,7 @@ class MotorPositionController(Phidget):
 	def getMaxStallVelocity(self):
 		_MaxStallVelocity = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxStallVelocity
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMaxStallVelocity
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MaxStallVelocity))
 
@@ -863,7 +696,7 @@ class MotorPositionController(Phidget):
 	def getSurgeCurrentLimit(self):
 		_SurgeCurrentLimit = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getSurgeCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getSurgeCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_SurgeCurrentLimit))
 
@@ -875,7 +708,7 @@ class MotorPositionController(Phidget):
 	def setSurgeCurrentLimit(self, SurgeCurrentLimit):
 		_SurgeCurrentLimit = ctypes.c_double(SurgeCurrentLimit)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setSurgeCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setSurgeCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _SurgeCurrentLimit)
 
@@ -886,7 +719,7 @@ class MotorPositionController(Phidget):
 	def getMinSurgeCurrentLimit(self):
 		_MinSurgeCurrentLimit = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinSurgeCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMinSurgeCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MinSurgeCurrentLimit))
 
@@ -898,7 +731,7 @@ class MotorPositionController(Phidget):
 	def getMaxSurgeCurrentLimit(self):
 		_MaxSurgeCurrentLimit = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxSurgeCurrentLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMaxSurgeCurrentLimit
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_MaxSurgeCurrentLimit))
 
@@ -907,84 +740,61 @@ class MotorPositionController(Phidget):
 
 		return _MaxSurgeCurrentLimit.value
 
-	def getTargetPosition(self):
-		_TargetPosition = ctypes.c_double()
+	def getTargetVelocity(self):
+		_TargetVelocity = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getTargetPosition
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getTargetVelocity
 		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_TargetPosition))
+		result = __func(self.handle, ctypes.byref(_TargetVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _TargetPosition.value
+		return _TargetVelocity.value
 
-	def setTargetPosition(self, TargetPosition):
-		_TargetPosition = ctypes.c_double(TargetPosition)
+	def setTargetVelocity(self, TargetVelocity):
+		_TargetVelocity = ctypes.c_double(TargetVelocity)
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setTargetPosition
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_setTargetVelocity
 		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _TargetPosition)
-
-		if result > 0:
-			raise PhidgetException(result)
-
-
-	def setTargetPosition_async(self, TargetPosition, asyncHandler):
-		_TargetPosition = ctypes.c_double(TargetPosition)
-
-		_ctx = ctypes.c_void_p()
-		if asyncHandler != None:
-			_ctx = ctypes.c_void_p(AsyncSupport.add(asyncHandler, self))
-		_asyncHandler = AsyncSupport.getCallback()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setTargetPosition_async
-		__func(self.handle, _TargetPosition, _asyncHandler, _ctx)
-
-
-	def getVelocityLimit(self):
-		_VelocityLimit = ctypes.c_double()
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getVelocityLimit
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_VelocityLimit))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _VelocityLimit.value
-
-	def setVelocityLimit(self, VelocityLimit):
-		_VelocityLimit = ctypes.c_double(VelocityLimit)
-
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_setVelocityLimit
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _VelocityLimit)
+		result = __func(self.handle, _TargetVelocity)
 
 		if result > 0:
 			raise PhidgetException(result)
 
 
-	def getMinVelocityLimit(self):
-		_MinVelocityLimit = ctypes.c_double()
+	def getMinTargetVelocity(self):
+		_MinTargetVelocity = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMinVelocityLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMinTargetVelocity
 		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_MinVelocityLimit))
+		result = __func(self.handle, ctypes.byref(_MinTargetVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _MinVelocityLimit.value
+		return _MinTargetVelocity.value
 
-	def getMaxVelocityLimit(self):
-		_MaxVelocityLimit = ctypes.c_double()
+	def getMaxTargetVelocity(self):
+		_MaxTargetVelocity = ctypes.c_double()
 
-		__func = PhidgetSupport.getDll().PhidgetMotorPositionController_getMaxVelocityLimit
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getMaxTargetVelocity
 		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_MaxVelocityLimit))
+		result = __func(self.handle, ctypes.byref(_MaxTargetVelocity))
 
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _MaxVelocityLimit.value
+		return _MaxTargetVelocity.value
+
+	def getVelocity(self):
+		_Velocity = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetMotorVelocityController_getVelocity
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Velocity))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _Velocity.value

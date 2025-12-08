@@ -52,20 +52,18 @@ class RCServo(Phidget):
 		self._PositionChange(self, position)
 
 	def setOnPositionChangeHandler(self, handler):
-		if handler == None:
-			self._PositionChange = None
-			self._onPositionChange = None
-		else:
-			self._PositionChange = handler
-			self._onPositionChange = self._PositionChangeFactory(self._localPositionChangeEvent)
+		self._PositionChange = handler
 
-		try:
+		if self._onPositionChange == None:
+			fptr = self._PositionChangeFactory(self._localPositionChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetRCServo_setOnPositionChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onPositionChange, None)
-		except RuntimeError:
-			self._PositionChange = None
-			self._onPositionChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onPositionChange = fptr
 
 	def _localTargetPositionReachedEvent(self, handle, userPtr, position):
 		if self._TargetPositionReached == None:
@@ -73,20 +71,18 @@ class RCServo(Phidget):
 		self._TargetPositionReached(self, position)
 
 	def setOnTargetPositionReachedHandler(self, handler):
-		if handler == None:
-			self._TargetPositionReached = None
-			self._onTargetPositionReached = None
-		else:
-			self._TargetPositionReached = handler
-			self._onTargetPositionReached = self._TargetPositionReachedFactory(self._localTargetPositionReachedEvent)
+		self._TargetPositionReached = handler
 
-		try:
+		if self._onTargetPositionReached == None:
+			fptr = self._TargetPositionReachedFactory(self._localTargetPositionReachedEvent)
 			__func = PhidgetSupport.getDll().PhidgetRCServo_setOnTargetPositionReachedHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onTargetPositionReached, None)
-		except RuntimeError:
-			self._TargetPositionReached = None
-			self._onTargetPositionReached = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onTargetPositionReached = fptr
 
 	def _localVelocityChangeEvent(self, handle, userPtr, velocity):
 		if self._VelocityChange == None:
@@ -94,20 +90,18 @@ class RCServo(Phidget):
 		self._VelocityChange(self, velocity)
 
 	def setOnVelocityChangeHandler(self, handler):
-		if handler == None:
-			self._VelocityChange = None
-			self._onVelocityChange = None
-		else:
-			self._VelocityChange = handler
-			self._onVelocityChange = self._VelocityChangeFactory(self._localVelocityChangeEvent)
+		self._VelocityChange = handler
 
-		try:
+		if self._onVelocityChange == None:
+			fptr = self._VelocityChangeFactory(self._localVelocityChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetRCServo_setOnVelocityChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onVelocityChange, None)
-		except RuntimeError:
-			self._VelocityChange = None
-			self._onVelocityChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onVelocityChange = fptr
 
 	def getAcceleration(self):
 		_Acceleration = ctypes.c_double()
@@ -260,7 +254,7 @@ class RCServo(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _Engaged.value
+		return bool(_Engaged.value)
 
 	def setEngaged(self, Engaged):
 		_Engaged = ctypes.c_int(Engaged)
@@ -318,7 +312,7 @@ class RCServo(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _IsMoving.value
+		return bool(_IsMoving.value)
 
 	def getPosition(self):
 		_Position = ctypes.c_double()
@@ -467,7 +461,7 @@ class RCServo(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _SpeedRampingState.value
+		return bool(_SpeedRampingState.value)
 
 	def setSpeedRampingState(self, SpeedRampingState):
 		_SpeedRampingState = ctypes.c_int(SpeedRampingState)

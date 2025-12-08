@@ -9,6 +9,8 @@ class DeviceClass:
 	PHIDCLASS_ANALOG = 3
 	# PhidgetBridge device
 	PHIDCLASS_BRIDGE = 4
+	# Dictionary device
+	PHIDCLASS_DICTIONARY = 24
 	# PhidgetEncoder device
 	PHIDCLASS_ENCODER = 5
 	# PhidgetFrequencyCounter device
@@ -41,8 +43,6 @@ class DeviceClass:
 	PHIDCLASS_TEXTLCD = 20
 	# Phidget VINT device
 	PHIDCLASS_VINT = 21
-	# Dictionary device
-	PHIDCLASS_DICTIONARY = 24
 
 	@classmethod
 	def getName(self, val):
@@ -54,6 +54,8 @@ class DeviceClass:
 			return "PHIDCLASS_ANALOG"
 		if val == self.PHIDCLASS_BRIDGE:
 			return "PHIDCLASS_BRIDGE"
+		if val == self.PHIDCLASS_DICTIONARY:
+			return "PHIDCLASS_DICTIONARY"
 		if val == self.PHIDCLASS_ENCODER:
 			return "PHIDCLASS_ENCODER"
 		if val == self.PHIDCLASS_FREQUENCYCOUNTER:
@@ -86,6 +88,4 @@ class DeviceClass:
 			return "PHIDCLASS_TEXTLCD"
 		if val == self.PHIDCLASS_VINT:
 			return "PHIDCLASS_VINT"
-		if val == self.PHIDCLASS_DICTIONARY:
-			return "PHIDCLASS_DICTIONARY"
 		return "<invalid enumeration value>"

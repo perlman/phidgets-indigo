@@ -42,20 +42,18 @@ class DistanceSensor(Phidget):
 		self._DistanceChange(self, distance)
 
 	def setOnDistanceChangeHandler(self, handler):
-		if handler == None:
-			self._DistanceChange = None
-			self._onDistanceChange = None
-		else:
-			self._DistanceChange = handler
-			self._onDistanceChange = self._DistanceChangeFactory(self._localDistanceChangeEvent)
+		self._DistanceChange = handler
 
-		try:
+		if self._onDistanceChange == None:
+			fptr = self._DistanceChangeFactory(self._localDistanceChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetDistanceSensor_setOnDistanceChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onDistanceChange, None)
-		except RuntimeError:
-			self._DistanceChange = None
-			self._onDistanceChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onDistanceChange = fptr
 
 	def _localSonarReflectionsUpdateEvent(self, handle, userPtr, distances, amplitudes, count):
 		if self._SonarReflectionsUpdate == None:
@@ -65,20 +63,18 @@ class DistanceSensor(Phidget):
 		self._SonarReflectionsUpdate(self, distances, amplitudes, count)
 
 	def setOnSonarReflectionsUpdateHandler(self, handler):
-		if handler == None:
-			self._SonarReflectionsUpdate = None
-			self._onSonarReflectionsUpdate = None
-		else:
-			self._SonarReflectionsUpdate = handler
-			self._onSonarReflectionsUpdate = self._SonarReflectionsUpdateFactory(self._localSonarReflectionsUpdateEvent)
+		self._SonarReflectionsUpdate = handler
 
-		try:
+		if self._onSonarReflectionsUpdate == None:
+			fptr = self._SonarReflectionsUpdateFactory(self._localSonarReflectionsUpdateEvent)
 			__func = PhidgetSupport.getDll().PhidgetDistanceSensor_setOnSonarReflectionsUpdateHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onSonarReflectionsUpdate, None)
-		except RuntimeError:
-			self._SonarReflectionsUpdate = None
-			self._onSonarReflectionsUpdate = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onSonarReflectionsUpdate = fptr
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
@@ -267,7 +263,7 @@ class DistanceSensor(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _SonarQuietMode.value
+		return bool(_SonarQuietMode.value)
 
 	def setSonarQuietMode(self, SonarQuietMode):
 		_SonarQuietMode = ctypes.c_int(SonarQuietMode)

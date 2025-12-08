@@ -2,6 +2,7 @@ import sys
 import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
 from Phidget22.Async import *
+from Phidget22.DriveMode import DriveMode
 from Phidget22.FanMode import FanMode
 from Phidget22.PhidgetException import PhidgetException
 
@@ -52,20 +53,18 @@ class DCMotor(Phidget):
 		self._BackEMFChange(self, backEMF)
 
 	def setOnBackEMFChangeHandler(self, handler):
-		if handler == None:
-			self._BackEMFChange = None
-			self._onBackEMFChange = None
-		else:
-			self._BackEMFChange = handler
-			self._onBackEMFChange = self._BackEMFChangeFactory(self._localBackEMFChangeEvent)
+		self._BackEMFChange = handler
 
-		try:
+		if self._onBackEMFChange == None:
+			fptr = self._BackEMFChangeFactory(self._localBackEMFChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetDCMotor_setOnBackEMFChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onBackEMFChange, None)
-		except RuntimeError:
-			self._BackEMFChange = None
-			self._onBackEMFChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onBackEMFChange = fptr
 
 	def _localBrakingStrengthChangeEvent(self, handle, userPtr, brakingStrength):
 		if self._BrakingStrengthChange == None:
@@ -73,20 +72,18 @@ class DCMotor(Phidget):
 		self._BrakingStrengthChange(self, brakingStrength)
 
 	def setOnBrakingStrengthChangeHandler(self, handler):
-		if handler == None:
-			self._BrakingStrengthChange = None
-			self._onBrakingStrengthChange = None
-		else:
-			self._BrakingStrengthChange = handler
-			self._onBrakingStrengthChange = self._BrakingStrengthChangeFactory(self._localBrakingStrengthChangeEvent)
+		self._BrakingStrengthChange = handler
 
-		try:
+		if self._onBrakingStrengthChange == None:
+			fptr = self._BrakingStrengthChangeFactory(self._localBrakingStrengthChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetDCMotor_setOnBrakingStrengthChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onBrakingStrengthChange, None)
-		except RuntimeError:
-			self._BrakingStrengthChange = None
-			self._onBrakingStrengthChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onBrakingStrengthChange = fptr
 
 	def _localVelocityUpdateEvent(self, handle, userPtr, velocity):
 		if self._VelocityUpdate == None:
@@ -94,20 +91,18 @@ class DCMotor(Phidget):
 		self._VelocityUpdate(self, velocity)
 
 	def setOnVelocityUpdateHandler(self, handler):
-		if handler == None:
-			self._VelocityUpdate = None
-			self._onVelocityUpdate = None
-		else:
-			self._VelocityUpdate = handler
-			self._onVelocityUpdate = self._VelocityUpdateFactory(self._localVelocityUpdateEvent)
+		self._VelocityUpdate = handler
 
-		try:
+		if self._onVelocityUpdate == None:
+			fptr = self._VelocityUpdateFactory(self._localVelocityUpdateEvent)
 			__func = PhidgetSupport.getDll().PhidgetDCMotor_setOnVelocityUpdateHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onVelocityUpdate, None)
-		except RuntimeError:
-			self._VelocityUpdate = None
-			self._onVelocityUpdate = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onVelocityUpdate = fptr
 
 	def getAcceleration(self):
 		_Acceleration = ctypes.c_double()
@@ -156,6 +151,18 @@ class DCMotor(Phidget):
 
 		return _MaxAcceleration.value
 
+	def getActiveCurrentLimit(self):
+		_ActiveCurrentLimit = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getActiveCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_ActiveCurrentLimit))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _ActiveCurrentLimit.value
+
 	def getBackEMF(self):
 		_BackEMF = ctypes.c_double()
 
@@ -178,7 +185,7 @@ class DCMotor(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _BackEMFSensingState.value
+		return bool(_BackEMFSensingState.value)
 
 	def setBackEMFSensingState(self, BackEMFSensingState):
 		_BackEMFSensingState = ctypes.c_int(BackEMFSensingState)
@@ -186,6 +193,29 @@ class DCMotor(Phidget):
 		__func = PhidgetSupport.getDll().PhidgetDCMotor_setBackEMFSensingState
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _BackEMFSensingState)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getBrakingEnabled(self):
+		_BrakingEnabled = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getBrakingEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_BrakingEnabled))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return bool(_BrakingEnabled.value)
+
+	def setBrakingEnabled(self, BrakingEnabled):
+		_BrakingEnabled = ctypes.c_int(BrakingEnabled)
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_setBrakingEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _BrakingEnabled)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -415,12 +445,81 @@ class DCMotor(Phidget):
 
 		return _MaxDataRate.value
 
+	def getDriveMode(self):
+		_DriveMode = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getDriveMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_DriveMode))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _DriveMode.value
+
+	def setDriveMode(self, DriveMode):
+		_DriveMode = ctypes.c_int(DriveMode)
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_setDriveMode
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _DriveMode)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
 	def enableFailsafe(self, failsafeTime):
 		_failsafeTime = ctypes.c_uint32(failsafeTime)
 
 		__func = PhidgetSupport.getDll().PhidgetDCMotor_enableFailsafe
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, _failsafeTime)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getFailsafeBrakingEnabled(self):
+		_FailsafeBrakingEnabled = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getFailsafeBrakingEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_FailsafeBrakingEnabled))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return bool(_FailsafeBrakingEnabled.value)
+
+	def setFailsafeBrakingEnabled(self, FailsafeBrakingEnabled):
+		_FailsafeBrakingEnabled = ctypes.c_int(FailsafeBrakingEnabled)
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_setFailsafeBrakingEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _FailsafeBrakingEnabled)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getFailsafeCurrentLimit(self):
+		_FailsafeCurrentLimit = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getFailsafeCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_FailsafeCurrentLimit))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _FailsafeCurrentLimit.value
+
+	def setFailsafeCurrentLimit(self, FailsafeCurrentLimit):
+		_FailsafeCurrentLimit = ctypes.c_double(FailsafeCurrentLimit)
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_setFailsafeCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _FailsafeCurrentLimit)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -473,6 +572,53 @@ class DCMotor(Phidget):
 			raise PhidgetException(result)
 
 
+	def getInductance(self):
+		_Inductance = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getInductance
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Inductance))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _Inductance.value
+
+	def setInductance(self, Inductance):
+		_Inductance = ctypes.c_double(Inductance)
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_setInductance
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Inductance)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinInductance(self):
+		_MinInductance = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getMinInductance
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinInductance))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinInductance.value
+
+	def getMaxInductance(self):
+		_MaxInductance = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getMaxInductance
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxInductance))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxInductance.value
+
 	def resetFailsafe(self):
 		__func = PhidgetSupport.getDll().PhidgetDCMotor_resetFailsafe
 		__func.restype = ctypes.c_int32
@@ -481,6 +627,53 @@ class DCMotor(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
+
+	def getSurgeCurrentLimit(self):
+		_SurgeCurrentLimit = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getSurgeCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_SurgeCurrentLimit))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _SurgeCurrentLimit.value
+
+	def setSurgeCurrentLimit(self, SurgeCurrentLimit):
+		_SurgeCurrentLimit = ctypes.c_double(SurgeCurrentLimit)
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_setSurgeCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _SurgeCurrentLimit)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def getMinSurgeCurrentLimit(self):
+		_MinSurgeCurrentLimit = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getMinSurgeCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinSurgeCurrentLimit))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MinSurgeCurrentLimit.value
+
+	def getMaxSurgeCurrentLimit(self):
+		_MaxSurgeCurrentLimit = ctypes.c_double()
+
+		__func = PhidgetSupport.getDll().PhidgetDCMotor_getMaxSurgeCurrentLimit
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxSurgeCurrentLimit))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return _MaxSurgeCurrentLimit.value
 
 	def getTargetBrakingStrength(self):
 		_TargetBrakingStrength = ctypes.c_double()

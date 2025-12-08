@@ -36,20 +36,18 @@ class Gyroscope(Phidget):
 		self._AngularRateUpdate(self, angularRate, timestamp)
 
 	def setOnAngularRateUpdateHandler(self, handler):
-		if handler == None:
-			self._AngularRateUpdate = None
-			self._onAngularRateUpdate = None
-		else:
-			self._AngularRateUpdate = handler
-			self._onAngularRateUpdate = self._AngularRateUpdateFactory(self._localAngularRateUpdateEvent)
+		self._AngularRateUpdate = handler
 
-		try:
+		if self._onAngularRateUpdate == None:
+			fptr = self._AngularRateUpdateFactory(self._localAngularRateUpdateEvent)
 			__func = PhidgetSupport.getDll().PhidgetGyroscope_setOnAngularRateUpdateHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onAngularRateUpdate, None)
-		except RuntimeError:
-			self._AngularRateUpdate = None
-			self._onAngularRateUpdate = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onAngularRateUpdate = fptr
 
 	def getAngularRate(self):
 		_AngularRate = (ctypes.c_double * 3)()
@@ -203,7 +201,7 @@ class Gyroscope(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _HeatingEnabled.value
+		return bool(_HeatingEnabled.value)
 
 	def setHeatingEnabled(self, HeatingEnabled):
 		_HeatingEnabled = ctypes.c_int(HeatingEnabled)

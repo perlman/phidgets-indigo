@@ -45,20 +45,18 @@ class FrequencyCounter(Phidget):
 		self._CountChange(self, counts, timeChange)
 
 	def setOnCountChangeHandler(self, handler):
-		if handler == None:
-			self._CountChange = None
-			self._onCountChange = None
-		else:
-			self._CountChange = handler
-			self._onCountChange = self._CountChangeFactory(self._localCountChangeEvent)
+		self._CountChange = handler
 
-		try:
+		if self._onCountChange == None:
+			fptr = self._CountChangeFactory(self._localCountChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setOnCountChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onCountChange, None)
-		except RuntimeError:
-			self._CountChange = None
-			self._onCountChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onCountChange = fptr
 
 	def _localFrequencyChangeEvent(self, handle, userPtr, frequency):
 		if self._FrequencyChange == None:
@@ -66,20 +64,18 @@ class FrequencyCounter(Phidget):
 		self._FrequencyChange(self, frequency)
 
 	def setOnFrequencyChangeHandler(self, handler):
-		if handler == None:
-			self._FrequencyChange = None
-			self._onFrequencyChange = None
-		else:
-			self._FrequencyChange = handler
-			self._onFrequencyChange = self._FrequencyChangeFactory(self._localFrequencyChangeEvent)
+		self._FrequencyChange = handler
 
-		try:
+		if self._onFrequencyChange == None:
+			fptr = self._FrequencyChangeFactory(self._localFrequencyChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setOnFrequencyChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onFrequencyChange, None)
-		except RuntimeError:
-			self._FrequencyChange = None
-			self._onFrequencyChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onFrequencyChange = fptr
 
 	def getCount(self):
 		_Count = ctypes.c_uint64()
@@ -92,29 +88,6 @@ class FrequencyCounter(Phidget):
 			raise PhidgetException(result)
 
 		return _Count.value
-
-	def setEnabled(self, Enabled):
-		_Enabled = ctypes.c_int(Enabled)
-
-		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setEnabled
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _Enabled)
-
-		if result > 0:
-			raise PhidgetException(result)
-
-
-	def getEnabled(self):
-		_Enabled = ctypes.c_int()
-
-		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getEnabled
-		__func.restype = ctypes.c_int32
-		result = __func(self.handle, ctypes.byref(_Enabled))
-
-		if result > 0:
-			raise PhidgetException(result)
-
-		return _Enabled.value
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
@@ -209,6 +182,29 @@ class FrequencyCounter(Phidget):
 			raise PhidgetException(result)
 
 		return _MaxDataRate.value
+
+	def getEnabled(self):
+		_Enabled = ctypes.c_int()
+
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_getEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_Enabled))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return bool(_Enabled.value)
+
+	def setEnabled(self, Enabled):
+		_Enabled = ctypes.c_int(Enabled)
+
+		__func = PhidgetSupport.getDll().PhidgetFrequencyCounter_setEnabled
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, _Enabled)
+
+		if result > 0:
+			raise PhidgetException(result)
+
 
 	def getFilterType(self):
 		_FilterType = ctypes.c_int()

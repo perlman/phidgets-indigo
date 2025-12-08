@@ -29,10 +29,13 @@ class AsyncSupport:
 		if entry == None:
 			return
 
+		details = ""
 		_code = ctypes.c_int(res)
 		_desc = ctypes.c_char_p()
 		result = PhidgetSupport.getDll().Phidget_getErrorDescription(_code, ctypes.byref(_desc))
-		details = _desc.value
+		if result == 0:
+			details = _desc.value.decode("utf-8")
+
 		entry[0](entry[1], res, details)
 
 	@staticmethod

@@ -3,6 +3,7 @@ import ctypes
 from Phidget22.PhidgetSupport import PhidgetSupport
 from Phidget22.Async import *
 from Phidget22.RFIDProtocol import RFIDProtocol
+from Phidget22.RFIDChipset import RFIDChipset
 from Phidget22.PhidgetException import PhidgetException
 
 from Phidget22.Phidget import Phidget
@@ -44,20 +45,18 @@ class RFID(Phidget):
 		self._Tag(self, Tag, Protocol)
 
 	def setOnTagHandler(self, handler):
-		if handler == None:
-			self._Tag = None
-			self._onTag = None
-		else:
-			self._Tag = handler
-			self._onTag = self._TagFactory(self._localTagEvent)
+		self._Tag = handler
 
-		try:
+		if self._onTag == None:
+			fptr = self._TagFactory(self._localTagEvent)
 			__func = PhidgetSupport.getDll().PhidgetRFID_setOnTagHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onTag, None)
-		except RuntimeError:
-			self._Tag = None
-			self._onTag = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onTag = fptr
 
 	def _localTagLostEvent(self, handle, userPtr, Tag, Protocol):
 		if self._TagLost == None:
@@ -66,20 +65,18 @@ class RFID(Phidget):
 		self._TagLost(self, Tag, Protocol)
 
 	def setOnTagLostHandler(self, handler):
-		if handler == None:
-			self._TagLost = None
-			self._onTagLost = None
-		else:
-			self._TagLost = handler
-			self._onTagLost = self._TagLostFactory(self._localTagLostEvent)
+		self._TagLost = handler
 
-		try:
+		if self._onTagLost == None:
+			fptr = self._TagLostFactory(self._localTagLostEvent)
 			__func = PhidgetSupport.getDll().PhidgetRFID_setOnTagLostHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onTagLost, None)
-		except RuntimeError:
-			self._TagLost = None
-			self._onTagLost = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onTagLost = fptr
 
 	def getAntennaEnabled(self):
 		_AntennaEnabled = ctypes.c_int()
@@ -91,7 +88,7 @@ class RFID(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _AntennaEnabled.value
+		return bool(_AntennaEnabled.value)
 
 	def setAntennaEnabled(self, AntennaEnabled):
 		_AntennaEnabled = ctypes.c_int(AntennaEnabled)
@@ -128,7 +125,7 @@ class RFID(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _TagPresent.value
+		return bool(_TagPresent.value)
 
 	def write(self, tagString, protocol, lockTag):
 		_tagString = ctypes.create_string_buffer(tagString.encode('utf-8'))
@@ -138,6 +135,20 @@ class RFID(Phidget):
 		__func = PhidgetSupport.getDll().PhidgetRFID_write
 		__func.restype = ctypes.c_int32
 		result = __func(self.handle, ctypes.byref(_tagString), _protocol, _lockTag)
+
+		if result > 0:
+			raise PhidgetException(result)
+
+
+	def writeWithChipset(self, tagString, protocol, lockTag, chipset):
+		_tagString = ctypes.create_string_buffer(tagString.encode('utf-8'))
+		_protocol = ctypes.c_int(protocol)
+		_lockTag = ctypes.c_int(lockTag)
+		_chipset = ctypes.c_int(chipset)
+
+		__func = PhidgetSupport.getDll().PhidgetRFID_writeWithChipset
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_tagString), _protocol, _lockTag, _chipset)
 
 		if result > 0:
 			raise PhidgetException(result)

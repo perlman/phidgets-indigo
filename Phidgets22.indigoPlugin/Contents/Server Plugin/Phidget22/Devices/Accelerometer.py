@@ -36,20 +36,18 @@ class Accelerometer(Phidget):
 		self._AccelerationChange(self, acceleration, timestamp)
 
 	def setOnAccelerationChangeHandler(self, handler):
-		if handler == None:
-			self._AccelerationChange = None
-			self._onAccelerationChange = None
-		else:
-			self._AccelerationChange = handler
-			self._onAccelerationChange = self._AccelerationChangeFactory(self._localAccelerationChangeEvent)
+		self._AccelerationChange = handler
 
-		try:
+		if self._onAccelerationChange == None:
+			fptr = self._AccelerationChangeFactory(self._localAccelerationChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetAccelerometer_setOnAccelerationChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onAccelerationChange, None)
-		except RuntimeError:
-			self._AccelerationChange = None
-			self._onAccelerationChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onAccelerationChange = fptr
 
 	def getAcceleration(self):
 		_Acceleration = (ctypes.c_double * 3)()
@@ -250,7 +248,7 @@ class Accelerometer(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _HeatingEnabled.value
+		return bool(_HeatingEnabled.value)
 
 	def setHeatingEnabled(self, HeatingEnabled):
 		_HeatingEnabled = ctypes.c_int(HeatingEnabled)

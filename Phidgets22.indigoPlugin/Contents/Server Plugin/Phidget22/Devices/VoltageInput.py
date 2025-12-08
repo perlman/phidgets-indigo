@@ -50,20 +50,18 @@ class VoltageInput(Phidget):
 		self._SensorChange(self, sensorValue, sensorUnit)
 
 	def setOnSensorChangeHandler(self, handler):
-		if handler == None:
-			self._SensorChange = None
-			self._onSensorChange = None
-		else:
-			self._SensorChange = handler
-			self._onSensorChange = self._SensorChangeFactory(self._localSensorChangeEvent)
+		self._SensorChange = handler
 
-		try:
+		if self._onSensorChange == None:
+			fptr = self._SensorChangeFactory(self._localSensorChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetVoltageInput_setOnSensorChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onSensorChange, None)
-		except RuntimeError:
-			self._SensorChange = None
-			self._onSensorChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onSensorChange = fptr
 
 	def _localVoltageChangeEvent(self, handle, userPtr, voltage):
 		if self._VoltageChange == None:
@@ -71,20 +69,18 @@ class VoltageInput(Phidget):
 		self._VoltageChange(self, voltage)
 
 	def setOnVoltageChangeHandler(self, handler):
-		if handler == None:
-			self._VoltageChange = None
-			self._onVoltageChange = None
-		else:
-			self._VoltageChange = handler
-			self._onVoltageChange = self._VoltageChangeFactory(self._localVoltageChangeEvent)
+		self._VoltageChange = handler
 
-		try:
+		if self._onVoltageChange == None:
+			fptr = self._VoltageChangeFactory(self._localVoltageChangeEvent)
 			__func = PhidgetSupport.getDll().PhidgetVoltageInput_setOnVoltageChangeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onVoltageChange, None)
-		except RuntimeError:
-			self._VoltageChange = None
-			self._onVoltageChange = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onVoltageChange = fptr
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()

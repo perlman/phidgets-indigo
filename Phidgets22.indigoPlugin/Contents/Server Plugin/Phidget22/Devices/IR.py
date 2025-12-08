@@ -53,20 +53,18 @@ class IR(Phidget):
 		self._Code(self, code, bitCount, isRepeat)
 
 	def setOnCodeHandler(self, handler):
-		if handler == None:
-			self._Code = None
-			self._onCode = None
-		else:
-			self._Code = handler
-			self._onCode = self._CodeFactory(self._localCodeEvent)
+		self._Code = handler
 
-		try:
+		if self._onCode == None:
+			fptr = self._CodeFactory(self._localCodeEvent)
 			__func = PhidgetSupport.getDll().PhidgetIR_setOnCodeHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onCode, None)
-		except RuntimeError:
-			self._Code = None
-			self._onCode = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onCode = fptr
 
 	def _localLearnEvent(self, handle, userPtr, code, codeInfo):
 		if self._Learn == None:
@@ -78,20 +76,18 @@ class IR(Phidget):
 		self._Learn(self, code, codeInfo)
 
 	def setOnLearnHandler(self, handler):
-		if handler == None:
-			self._Learn = None
-			self._onLearn = None
-		else:
-			self._Learn = handler
-			self._onLearn = self._LearnFactory(self._localLearnEvent)
+		self._Learn = handler
 
-		try:
+		if self._onLearn == None:
+			fptr = self._LearnFactory(self._localLearnEvent)
 			__func = PhidgetSupport.getDll().PhidgetIR_setOnLearnHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onLearn, None)
-		except RuntimeError:
-			self._Learn = None
-			self._onLearn = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onLearn = fptr
 
 	def _localRawDataEvent(self, handle, userPtr, data, dataLen):
 		if self._RawData == None:
@@ -100,20 +96,18 @@ class IR(Phidget):
 		self._RawData(self, data)
 
 	def setOnRawDataHandler(self, handler):
-		if handler == None:
-			self._RawData = None
-			self._onRawData = None
-		else:
-			self._RawData = handler
-			self._onRawData = self._RawDataFactory(self._localRawDataEvent)
+		self._RawData = handler
 
-		try:
+		if self._onRawData == None:
+			fptr = self._RawDataFactory(self._localRawDataEvent)
 			__func = PhidgetSupport.getDll().PhidgetIR_setOnRawDataHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onRawData, None)
-		except RuntimeError:
-			self._RawData = None
-			self._onRawData = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onRawData = fptr
 
 	def getLastCode(self):
 		_code = (ctypes.c_char * 33)()

@@ -57,7 +57,7 @@ class LCD(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _autoFlush.value
+		return bool(_autoFlush.value)
 
 	def setAutoFlush(self, autoFlush):
 		_autoFlush = ctypes.c_int(autoFlush)
@@ -273,7 +273,7 @@ class LCD(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _CursorBlink.value
+		return bool(_CursorBlink.value)
 
 	def setCursorBlink(self, CursorBlink):
 		_CursorBlink = ctypes.c_int(CursorBlink)
@@ -296,7 +296,7 @@ class LCD(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _CursorOn.value
+		return bool(_CursorOn.value)
 
 	def setCursorOn(self, CursorOn):
 		_CursorOn = ctypes.c_int(CursorOn)
@@ -557,7 +557,7 @@ class LCD(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _Sleeping.value
+		return bool(_Sleeping.value)
 
 	def setSleeping(self, Sleeping):
 		_Sleeping = ctypes.c_int(Sleeping)

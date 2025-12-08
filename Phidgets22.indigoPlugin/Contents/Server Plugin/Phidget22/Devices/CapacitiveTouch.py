@@ -42,20 +42,18 @@ class CapacitiveTouch(Phidget):
 		self._Touch(self, touchValue)
 
 	def setOnTouchHandler(self, handler):
-		if handler == None:
-			self._Touch = None
-			self._onTouch = None
-		else:
-			self._Touch = handler
-			self._onTouch = self._TouchFactory(self._localTouchEvent)
+		self._Touch = handler
 
-		try:
+		if self._onTouch == None:
+			fptr = self._TouchFactory(self._localTouchEvent)
 			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_setOnTouchHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onTouch, None)
-		except RuntimeError:
-			self._Touch = None
-			self._onTouch = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onTouch = fptr
 
 	def _localTouchEndEvent(self, handle, userPtr):
 		if self._TouchEnd == None:
@@ -63,20 +61,18 @@ class CapacitiveTouch(Phidget):
 		self._TouchEnd(self)
 
 	def setOnTouchEndHandler(self, handler):
-		if handler == None:
-			self._TouchEnd = None
-			self._onTouchEnd = None
-		else:
-			self._TouchEnd = handler
-			self._onTouchEnd = self._TouchEndFactory(self._localTouchEndEvent)
+		self._TouchEnd = handler
 
-		try:
+		if self._onTouchEnd == None:
+			fptr = self._TouchEndFactory(self._localTouchEndEvent)
 			__func = PhidgetSupport.getDll().PhidgetCapacitiveTouch_setOnTouchEndHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onTouchEnd, None)
-		except RuntimeError:
-			self._TouchEnd = None
-			self._onTouchEnd = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onTouchEnd = fptr
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
@@ -182,7 +178,7 @@ class CapacitiveTouch(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _IsTouched.value
+		return bool(_IsTouched.value)
 
 	def getSensitivity(self):
 		_Sensitivity = ctypes.c_double()

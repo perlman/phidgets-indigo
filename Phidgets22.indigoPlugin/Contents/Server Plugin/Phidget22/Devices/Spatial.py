@@ -46,20 +46,18 @@ class Spatial(Phidget):
 		self._AlgorithmData(self, quaternion, timestamp)
 
 	def setOnAlgorithmDataHandler(self, handler):
-		if handler == None:
-			self._AlgorithmData = None
-			self._onAlgorithmData = None
-		else:
-			self._AlgorithmData = handler
-			self._onAlgorithmData = self._AlgorithmDataFactory(self._localAlgorithmDataEvent)
+		self._AlgorithmData = handler
 
-		try:
+		if self._onAlgorithmData == None:
+			fptr = self._AlgorithmDataFactory(self._localAlgorithmDataEvent)
 			__func = PhidgetSupport.getDll().PhidgetSpatial_setOnAlgorithmDataHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onAlgorithmData, None)
-		except RuntimeError:
-			self._AlgorithmData = None
-			self._onAlgorithmData = None
+			res = __func(self.handle, fptr, None)
+
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onAlgorithmData = fptr
 
 	def _localSpatialDataEvent(self, handle, userPtr, acceleration, angularRate, magneticField, timestamp):
 		if self._SpatialData == None:
@@ -70,24 +68,46 @@ class Spatial(Phidget):
 		self._SpatialData(self, acceleration, angularRate, magneticField, timestamp)
 
 	def setOnSpatialDataHandler(self, handler):
-		if handler == None:
-			self._SpatialData = None
-			self._onSpatialData = None
-		else:
-			self._SpatialData = handler
-			self._onSpatialData = self._SpatialDataFactory(self._localSpatialDataEvent)
+		self._SpatialData = handler
 
-		try:
+		if self._onSpatialData == None:
+			fptr = self._SpatialDataFactory(self._localSpatialDataEvent)
 			__func = PhidgetSupport.getDll().PhidgetSpatial_setOnSpatialDataHandler
 			__func.restype = ctypes.c_int32
-			res = __func(self.handle, self._onSpatialData, None)
-		except RuntimeError:
-			self._SpatialData = None
-			self._onSpatialData = None
+			res = __func(self.handle, fptr, None)
 
-	def setAHRSParameters(self, angularVelocityThreshold, AngularVelocityDeltaThreshold, accelerationThreshold, magTime, accelTime, biasTime):
+			if res > 0:
+				raise PhidgetException(res)
+
+			self._onSpatialData = fptr
+
+	def getMinAcceleration(self):
+		_MinAcceleration = (ctypes.c_double * 3)()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getMinAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinAcceleration))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return list(_MinAcceleration)
+
+	def getMaxAcceleration(self):
+		_MaxAcceleration = (ctypes.c_double * 3)()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getMaxAcceleration
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxAcceleration))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return list(_MaxAcceleration)
+
+	def setAHRSParameters(self, angularVelocityThreshold, angularVelocityDeltaThreshold, accelerationThreshold, magTime, accelTime, biasTime):
 		_angularVelocityThreshold = ctypes.c_double(angularVelocityThreshold)
-		_AngularVelocityDeltaThreshold = ctypes.c_double(AngularVelocityDeltaThreshold)
+		_angularVelocityDeltaThreshold = ctypes.c_double(angularVelocityDeltaThreshold)
 		_accelerationThreshold = ctypes.c_double(accelerationThreshold)
 		_magTime = ctypes.c_double(magTime)
 		_accelTime = ctypes.c_double(accelTime)
@@ -95,7 +115,7 @@ class Spatial(Phidget):
 
 		__func = PhidgetSupport.getDll().PhidgetSpatial_setAHRSParameters
 		__func.restype = ctypes.c_int32
-		result = __func(self.handle, _angularVelocityThreshold, _AngularVelocityDeltaThreshold, _accelerationThreshold, _magTime, _accelTime, _biasTime)
+		result = __func(self.handle, _angularVelocityThreshold, _angularVelocityDeltaThreshold, _accelerationThreshold, _magTime, _accelTime, _biasTime)
 
 		if result > 0:
 			raise PhidgetException(result)
@@ -146,6 +166,30 @@ class Spatial(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
+
+	def getMinAngularRate(self):
+		_MinAngularRate = (ctypes.c_double * 3)()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getMinAngularRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinAngularRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return list(_MinAngularRate)
+
+	def getMaxAngularRate(self):
+		_MaxAngularRate = (ctypes.c_double * 3)()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getMaxAngularRate
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxAngularRate))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return list(_MaxAngularRate)
 
 	def getDataInterval(self):
 		_DataInterval = ctypes.c_uint32()
@@ -263,7 +307,7 @@ class Spatial(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
-		return _HeatingEnabled.value
+		return bool(_HeatingEnabled.value)
 
 	def setHeatingEnabled(self, HeatingEnabled):
 		_HeatingEnabled = ctypes.c_int(HeatingEnabled)
@@ -275,6 +319,30 @@ class Spatial(Phidget):
 		if result > 0:
 			raise PhidgetException(result)
 
+
+	def getMinMagneticField(self):
+		_MinMagneticField = (ctypes.c_double * 3)()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getMinMagneticField
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MinMagneticField))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return list(_MinMagneticField)
+
+	def getMaxMagneticField(self):
+		_MaxMagneticField = (ctypes.c_double * 3)()
+
+		__func = PhidgetSupport.getDll().PhidgetSpatial_getMaxMagneticField
+		__func.restype = ctypes.c_int32
+		result = __func(self.handle, ctypes.byref(_MaxMagneticField))
+
+		if result > 0:
+			raise PhidgetException(result)
+
+		return list(_MaxMagneticField)
 
 	def setMagnetometerCorrectionParameters(self, magneticField, offset0, offset1, offset2, gain0, gain1, gain2, T0, T1, T2, T3, T4, T5):
 		_magneticField = ctypes.c_double(magneticField)
