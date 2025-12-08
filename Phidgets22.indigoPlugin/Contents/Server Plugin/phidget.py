@@ -92,11 +92,14 @@ class PhidgetBase(object):
     def onDetachHandler(self, ph):
         self.indigoDevice.setErrorStateOnServer('Detached')
         phidget_util.logPhidgetEvent(ph, self.logger.debug, "Detached '" + self.indigoDevice.name + "'")
+        self.indigo_plugin.triggerEvent(self, "deviceDetached")
 
     def onAttachHandler(self, ph):
         self.timer.cancel()
         self.indigoDevice.setErrorStateOnServer(None)
         phidget_util.logPhidgetEvent(ph, self.logger.debug, "Attached '" + self.indigoDevice.name + "'")
+        self.indigo_plugin.triggerEvent(self, "deviceAttached")
+
 
     def stop(self):
         if self.timer is not None: # Timer might not be defined if start() was never called [e.g. bad config]

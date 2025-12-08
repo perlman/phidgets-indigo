@@ -39,6 +39,9 @@ class Plugin(indigo.PluginBase):
 
         self.logger.setLevel(logging.DEBUG)
 
+        self.trigger_dict = {}
+
+
     def startup(self):
         # Setup logging in the phidgets library
         if self.pluginPrefs.get('phidgetApiLogging', False):
@@ -230,6 +233,48 @@ class Plugin(indigo.PluginBase):
             self.logger.error(traceback.format_exc())
         except Exception as e:
             self.logger.error(traceback.format_exc())
+        
+    # Event and action methods
+     ########################################
+    def getAttachCapableList(self, filter="", valuesDict=None, typeId="", targetId=0):
+        # if self.logLevel > 1:
+        #    indigo.server.log(u"Entering getIfKitStandaloneList", type=self.pluginDisplayName)
+
+        myArray = []
+
+        for device in indigo.devices:
+            if device.pluginId == 'com.yikes.eric.phidgets-indigo':
+            # if self.logLevel > 1: indigo.server.log(u'device list found: %s - %s' % (device.name, device.deviceTypeId), type=self.pluginDisplayName, isError=False)
+                myArray.append((device.id, device.name))
+
+        return myArray
+    
+    # Indigo Triggers
+
+    def triggerStartProcessing(self, trigger):
+        # indigo.server.log("triggerStartProcessing: received  trigger:\n%s\n " % (trigger), type=self.pluginDisplayName)
+
+        phDevId = int(trigger.pluginProps["indigoDevice"])
+        self.trigger_dict[trigger.id] = {'devid' : phDevId, 'event' : trigger.pluginTypeId}
+
+        # indigo.server.log("triggerStartProcessing: added to trigger_dict:\n%s\n " % (self.trigger_dict), type=self.pluginDisplayName)
+
+    def triggerStopProcessing(self, trigger):
+        # indigo.server.log("triggerStopProcessing: entered for trigger %s(%s)" % (trigger.name, trigger.id), type=self.pluginDisplayName)
+
+        if trigger.id in self.trigger_dict:
+            # indigo.server.log("triggerStartProcessing: trgger found", type=self.pluginDisplayName)
+            del self.trigger_dict[trigger.id]
+        # indigo.server.log("triggerStopProcessing: ended processing for trigger %s(%s)" % (trigger.name, trigger.id), type=self.pluginDisplayName)
+
+
+    def triggerEvent(self, device, event):
+        # indigo.server.log(f"trigger event from phidget {device.indigoDevice.id}:{event}")
+        for trigger_id, trigger in self.trigger_dict.items():
+            if trigger['devid'] == device.indigoDevice.id and trigger['event'] == event:
+                # indigo.server.log(f"Sending trigger {trigger_id} ({trigger})")
+                indigo.trigger.execute(trigger_id)
+
 
     #
     # Methods related to shutdown
