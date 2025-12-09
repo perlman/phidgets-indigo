@@ -19,6 +19,9 @@ class PhidgetSupport:
 			elif sys.platform == 'darwin':
 				if os.path.exists(os.path.join(libs_path, "libphidget22.dylib")):
 					PhidgetSupport.__dll = cdll.LoadLibrary(os.path.join(libs_path, "libphidget22.dylib"))
+				# Hack to check /usr/local/lib/libphidget22.dylib, which is otherwise skipped?
+				elif os.path.exists(os.path.join("/usr/local/lib", "libphidget22.dylib")):
+					PhidgetSupport.__dll = cdll.LoadLibrary(os.path.join("/usr/local/lib", "libphidget22.dylib"))
 				else:
 					PhidgetSupport.__dll = cdll.LoadLibrary("libphidget22.dylib")
 			else:
